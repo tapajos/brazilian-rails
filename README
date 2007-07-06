@@ -1,0 +1,16 @@
+= Brazilian Rails
+
+== Installation
+
+=== Installation inside your Rails project via script/plugin
+
+script/plugin install 
+
+== License
+
+Released under the GNU
+
+== Authors
+
+* Marcos Cóssio Tapajós Martins do Couto (original author)
+* Celestino Gomes (collaborator)
