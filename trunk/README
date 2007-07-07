@@ -4,7 +4,7 @@
 
 === Installation inside your Rails project via script/plugin
 
-script/plugin install svn://rubyforge.org/var/svn/brazilian-rails
+script/plugin install svn://rubyforge.org/var/svn/brazilian-rails/stable
 
 == License
 
