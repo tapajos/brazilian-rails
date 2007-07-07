@@ -1,0 +1,20 @@
+= Brazilian Rails
+
+== Installation
+
+=== Installation inside your Rails project via script/plugin
+
+script/plugin install svn://rubyforge.org/var/svn/brazilian-rails/stable
+
+== License
+
+Released under the GNU
+
+== Authors
+
+* Marcos Cóssio Tapajós Martins do Couto (original author)
+* Celestino Ferreira Gomes (collaborator)
+* André Luiz Kupkovski (collaborator)
+* Rafael Fraga Walter (collaborator)
+* Fernando João Manfroi (collaborator)
+* Luciene Souza Luna (collaborator)
