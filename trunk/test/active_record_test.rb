@@ -14,18 +14,18 @@ class ActiveRecordTest < Test::Unit::TestCase
   # Replace this with your real tests.
   def test_this_plugin
     errors = ActiveRecordTestable.default_error_messages
-    assert_equal "não está incluído na lista", errors[:inclusion]  
-    assert_equal "está reservado", errors[:exclusion]  
-    assert_equal "é inválido.", errors[:invalid]  
-    assert_equal "não corresponde à confirmação", errors[:confirmation]  
+    assert_equal "nÃ£o estÃ¡ incluÃ­do na lista", errors[:inclusion]  
+    assert_equal "estÃ¡ reservado", errors[:exclusion]  
+    assert_equal "Ã© invÃ¡lido.", errors[:invalid]  
+    assert_equal "nÃ£o corresponde Ã  confirmaÃ§Ã£o", errors[:confirmation]  
     assert_equal "deve ser aceito", errors[:accepted]  
-    assert_equal "não pode estar vazio", errors[:empty]  
-    assert_equal "não pode estar em branco", errors[:blank]  
-    assert_equal "muito longo (máximo %d caracteres)", errors[:too_long]  
-    assert_equal "muito curto (mánimo %d caracteres)", errors[:too_short]  
+    assert_equal "nÃ£o pode estar vazio", errors[:empty]  
+    assert_equal "nÃ£o pode estar em branco", errors[:blank]  
+    assert_equal "muito longo (mÃ¡ximo %d caracteres)", errors[:too_long]  
+    assert_equal "muito curto (mÃ­nimo %d caracteres)", errors[:too_short]  
     assert_equal "de comprimento errado (deveria ter %d caracteres)", errors[:wrong_length]  
-    assert_equal "já está em uso", errors[:taken]  
-    assert_equal "não é um número", errors[:not_a_number]  
+    assert_equal "jÃ¡ estÃ¡ em uso", errors[:taken]  
+    assert_equal "nÃ£o Ã© um nÃºmero", errors[:not_a_number]  
   end
 
 end
