@@ -4,7 +4,7 @@
 
 === Installation inside your Rails project via script/plugin
 
-script/plugin install svn://rubyforge.org/var/svn/brazilian-rails/stable
+script/plugin install svn://rubyforge.org/var/svn/brazilian-rails/trunk
 
 == License
 
@@ -12,9 +12,9 @@ Released under the GNU
 
 == Authors
 
-* Marcos CÛssio TapajÛs Martins do Couto (original author)
+* Marcos C√≥ssio Tapaj√≥s Martins do Couto (original author)
 * Celestino Ferreira Gomes (collaborator)
-* AndrÈ Luiz Kupkovski (collaborator)
+* Andr√© Luiz Kupkovski (collaborator)
 * Rafael Fraga Walter (collaborator)
-* Fernando Jo„o Manfroi (collaborator)
+* Fernando Jo√£o Manfroi (collaborator)
 * Luciene Souza Luna (collaborator)
