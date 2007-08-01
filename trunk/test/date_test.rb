@@ -52,5 +52,54 @@ class DateTest < Test::Unit::TestCase
   def test_valid_when_date_format_is_brazilian_and_valid_format_and_invalid_civil
     assert !Date.valid?("00/00/0000"), "Should be a invalid date"
   end
-  
+
+	def test_month_names
+		assert_equal [nil,
+									 "Janeiro",
+									 "Fevereiro",
+									 "Marco",
+									 "Abril",
+									 "Maio",
+									 "Junho",
+									 "Julho",
+									 "Agosto",
+									 "Setembro",
+									 "Outubro",
+									 "Novembro",
+									 "Dezembro"],
+									Date::MONTHNAMES
+	end
+	
+	def test_days_names
+		assert_equal ["Domingo",
+									 "Segunda-Feira",
+									 "Terca-Feira",
+									 "Quarta-Feira",
+									 "Quinta-Feira",
+									 "Sexta-Feira",
+									 "Sabado"],
+									Date::DAYNAMES
+	end
+
+	def test_abbr_monthnames
+		assert_equal [nil,
+									 "Jan",
+									 "Fev",
+									 "Mar",
+									 "Abr",
+									 "Mai",
+									 "Jun",
+									 "Jul",
+									 "Ago",
+									 "Set",
+									 "Out",
+									 "Nov",
+									 "Dez"],
+									Date::ABBR_MONTHNAMES
+  end
+
+	def test_abbr_daysnames
+		assert_equal ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"], Date::ABBR_DAYNAMES
+	end
+
 end
