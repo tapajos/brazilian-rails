@@ -6,6 +6,12 @@
 
 script/plugin install svn://rubyforge.org/var/svn/brazilian-rails/trunk
 
+To use the inflector in portuguese add this line to your enviroment.rb
+
+require 'inflector_portuguese'
+
+Para usar a as regras de plural em português basta adicionar a linha acima no seu enviroment.rb
+
 == License
 
 Released under the GNU

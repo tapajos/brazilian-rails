@@ -1,7 +1,16 @@
 For more examples see the tests.
+Para maiores exemplos olhe os testes.
+
+Configuration: 
+
+To use the inflector in portuguese add this line to your enviroment.rb
+
+require 'inflector_portuguese'
+
+Para usar a as regras de plural em português basta adicionar a linha acima no seu enviroment.rb
 
 
-Method to_date of String
+Method to_date of String.
 "2007/01/02".to_date
 "13/12/2007".to_date
 "01-02-2007".to_date
