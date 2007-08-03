@@ -16,7 +16,6 @@ Method to_date of String.
 "01-02-2007".to_date
 
 "01/02/2007".to_date.to_s returns "2007-02-01"
-"01/02/2007".to_date.to_s("BR") returns "01/02/2007"
 
 "13/12/2007".to_date.to_s_br returns "13/12/2007"
 
