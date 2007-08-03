@@ -22,15 +22,6 @@ class DateTest < Test::Unit::TestCase
     assert_equal "2007-02-01", "01/02/2007".to_date.to_s
   end
   
-  def test_date_to_s_with_brazilian_format
-    assert_equal "01/02/2007", "01/02/2007".to_date.to_s("BR")
-  end
-  
-  def test_date_to_s_with_brazilian_format
-    locale = "br"
-    assert_equal "01/02/2007", "01/02/2007".to_date.to_s(locale)
-  end
-  
   #to_s_br
   def test_date_to_s_br
     assert_equal "13/12/2007", "13/12/2007".to_date.to_s_br
