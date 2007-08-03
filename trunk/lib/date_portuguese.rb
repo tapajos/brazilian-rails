@@ -18,11 +18,6 @@ class Date
   ABBR_DAYNAMES = %w(Dom Seg Ter Qua Qui Sex Sab)
 	$VERBOSE = old_verbose
 
-  def to_s(locale = nil)
-    return send("to_s_#{locale.downcase}") if locale && locale.downcase == "br"
-    strftime
-  end
-  
   def to_s_br
     strftime("%d/%m/%Y")
   end
