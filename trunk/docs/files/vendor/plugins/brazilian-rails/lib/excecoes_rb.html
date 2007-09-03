@@ -5,7 +5,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>File: date_utils.rb</title>
+  <title>File: excecoes.rb</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <meta http-equiv="Content-Script-Type" content="text/javascript" />
   <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
@@ -47,16 +47,16 @@
 
 
   <div id="fileHeader">
-    <h1>date_utils.rb</h1>
+    <h1>excecoes.rb</h1>
     <table class="header-table">
     <tr class="top-aligned-row">
       <td><strong>Path:</strong></td>
-      <td>vendor/plugins/brazilian-rails/lib/date_utils.rb
+      <td>vendor/plugins/brazilian-rails/lib/excecoes.rb
       </td>
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Fri Aug 03 15:47:53 -0300 2007</td>
+      <td>Mon Sep 03 08:45:18 -0300 2007</td>
     </tr>
     </table>
   </div>
@@ -72,6 +72,13 @@
 
    </div>
 
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000001">cria_excecao</a>&nbsp;&nbsp;
+      </div>
+    </div>
 
   </div>
 
@@ -88,6 +95,34 @@
 
 
     <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="#M000001" class="method-signature">
+          <span class="method-name">cria_excecao</span><span class="method-args">(classe, mensagem)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000001-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000001-source">
+<pre>
+   <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/excecoes.rb, line 1</span>
+1: <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cria_excecao</span>(<span class="ruby-identifier">classe</span>, <span class="ruby-identifier">mensagem</span>)
+2:   <span class="ruby-identifier">eval</span> <span class="ruby-node">&quot;class #{classe}; def initialize; super('#{mensagem}'); end; end&quot;</span>
+3: <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
 
 
   </div>

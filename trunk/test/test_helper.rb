@@ -24,4 +24,13 @@ class Test::Unit::TestCase
   self.use_instantiated_fixtures  = false
 
   # Add more helper methods to be used by all tests here...
+
+  require File.expand_path(File.dirname(__FILE__) + "/../init")
+  def tornar_metodos_publicos(clazz)
+    clazz.class_eval do
+      private_instance_methods.each { |instance_method| public instance_method }
+      private_methods.each { |method| public_class_method method } 
+    end  
+  end
+  
 end
