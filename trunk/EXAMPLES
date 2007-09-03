@@ -25,4 +25,7 @@ Date.valid?("13/12/2007") returns true
 Date.valid?("13/12/200A") returns false
 Date.valid?("00/00/0000") returns false
 
+Para ver os usos da parte de dinheiro recomendo olhar o arquivo dinheiro_test.
+
+
  
