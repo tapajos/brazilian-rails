@@ -42,6 +42,17 @@ class Dinheiro
     outro * to_f
   end
   
+  def /(outro)
+    soma_parcial = Dinheiro.new(0)
+    parcelas = []
+    (outro-1).times do
+      parcela = Dinheiro.new(transforma_em_string_que_represente_a_quantia(@quantia/outro))
+      parcelas << parcela
+      soma_parcial += parcela
+    end
+    parcelas << Dinheiro.new(transforma_em_string_que_represente_a_quantia(@quantia - quantia_de(soma_parcial)))
+  end
+  
   def to_f
     to_s.gsub(',', '.').to_f
   end

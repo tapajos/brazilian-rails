@@ -111,6 +111,15 @@ class DinheiroTest < Test::Unit::TestCase
     assert_equal um_real, 1.0
   end
   
+  # / (divisao/parcelamento)
+  def testa_divisao
+    assert_equal [Dinheiro.new(0.33), Dinheiro.new(0.33), Dinheiro.new(0.34)], Dinheiro.new(1)/3
+    assert_equal [Dinheiro.new(33.33), Dinheiro.new(33.33), Dinheiro.new(33.34)], Dinheiro.new(100)/3
+    assert_equal [Dinheiro.new(50.00), Dinheiro.new(50)], Dinheiro.new(100)/2
+    assert_equal [Dinheiro.new(0.25), Dinheiro.new(0.25)], Dinheiro.new(0.5)/2
+    assert_equal [Dinheiro.new(0.16), Dinheiro.new(0.16),Dinheiro.new(0.18)], Dinheiro.new(0.5)/3
+  end
+  
   # initialize
   def testa_se_cria_dinheiro_a_partir_de_float
     verifica_se_cria_dinheiro_para 1.0
