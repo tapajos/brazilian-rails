@@ -106,6 +106,11 @@ class DinheiroTest < Test::Unit::TestCase
     assert_equal um_real, outro_real
   end
   
+  def testa_igualdade_quando_passa_possivel_dinheiro
+    um_real = Dinheiro.new(1)
+    assert_equal um_real, 1.0
+  end
+  
   # initialize
   def testa_se_cria_dinheiro_a_partir_de_float
     verifica_se_cria_dinheiro_para 1.0
@@ -251,6 +256,16 @@ class DinheiroTest < Test::Unit::TestCase
     assert 1.real == 1.real
     assert 1.real >= 1.real
     assert 1.real <= 1.real    
+  end
+  
+  def testa_comparacao_entre_possivel_dinheiro
+    assert 1.real < 2.00
+    assert 1.real <= 2.00
+    assert 2.real > 1.00
+    assert 2.real >= 1.00
+    assert 1.real == 1.00
+    assert 1.real >= 1.00
+    assert 1.real <= 1.00
   end
   
   # decimal
