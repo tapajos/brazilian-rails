@@ -4,6 +4,7 @@ require 'date_portuguese'
 require 'dinheiro'
 require 'dinheiro_util'
 require 'excecoes'
+require 'nil_class'
 
 Time.send(:include, DateUtils)
 Numeric.send(:include, DinheiroUtil)

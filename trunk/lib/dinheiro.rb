@@ -20,10 +20,12 @@ class Dinheiro
   end
   
   def ==(outro_dinheiro)
+    outro_dinheiro = Dinheiro.new(outro_dinheiro) unless outro_dinheiro.kind_of?(Dinheiro)
     @quantia == outro_dinheiro.quantia
   end
   
   def <=>(outro_dinheiro)
+    outro_dinheiro = Dinheiro.new(outro_dinheiro) unless outro_dinheiro.kind_of?(Dinheiro)
     @quantia <=> outro_dinheiro.quantia
   end
   
