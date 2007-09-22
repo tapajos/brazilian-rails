@@ -4,8 +4,193 @@ require File.expand_path(File.dirname(__FILE__) + "/../lib/dinheiro")
 require File.expand_path(File.dirname(__FILE__) + "/../lib/dinheiro_util")
 require File.expand_path(File.dirname(__FILE__) + "/../lib/excecoes")
 
-
 class DinheiroTest < Test::Unit::TestCase
+
+  CONTABIL = { "(2,00)" =>    -2,
+                 "2,00" =>     2,    
+                 "0,00" =>     0,
+                 "0,32" =>  0.32,
+               "(0,01)" => -0.01 }
+  
+  REAL_CONTABIL = { "R$ (1,00)" => -1,
+                    "R$ (0,12)" => -0.12,
+                      "R$ 1,00" => 1,
+                      "R$ 1,00" => 1,
+                      "R$ 1,00" => 1,
+                      "R$ 0,00" => 0 }
+
+  SOMA = {      0.real =>    0.real + 0.real,
+                1.real =>    0.real + 1.real,
+                1.real =>    1.real + 0.real,
+               2.reais =>    1.real + 1.real,
+               2.reais =>   0.real + 2.reais,
+               2.reais =>   2.reais + 0.real,
+                0.real =>   2.real + -2.real,
+              0.3.real =>  0.real + 0.3.real,
+             -0.3.real => 0.real + -0.3.real,
+            -0.03.real =>     0 + -0.03.real,
+            -0.03.real =>     0.real + -0.03,   
+            -1.03.real =>    -1.real + -0.03    }
+
+  SUBTRACAO = {     0.real =>       0.real - 0.real,
+                   -1.real =>       0.real - 1.real,
+                    1.real =>       1.real - 0.real,
+                    0.real =>       1.real - 1.real,
+                  -2.reais =>      0.real - 2.reais,
+                   2.reais =>      2.reais - 0.real,
+                  -4.reais =>    -2.reais - 2.reais,
+                  0.3.real =>     0.3.real - 0.real,
+                 0.03.real =>    0.03.real - 0.real,
+                 0.03.real => 0.06.real - 0.03.real,
+                -0.03.real =>         0 - 0.03.real,
+                -0.03.real =>         0.real - 0.03,    
+                -1.03.real =>        -1.real - 0.03 }
+                
+  MULTIPLICACAO = {    0.real =>        0.real * 0,
+                       0.real =>        0.real * 1,
+                       0.real =>       0.real * -1,
+                       1.real =>        1.real * 1,
+                       1.real =>      -1.real * -1,
+                      -1.real =>       1.real * -1,
+                      -1.real =>       -1.real * 1,
+                     0.1.real =>      1.real * 0.1,
+                    0.01.real =>     1.real * 0.01,
+                    0.01.real =>    1.real * 0.009,
+                    0.01.real =>    1.real * 0.005,
+                    0.00.real =>   1.real * 0.0049,
+                     0.1.real =>      0.1.real * 1,
+                    0.01.real =>     0.01.real * 1,
+                    0.01.real =>    0.009.real * 1,
+                    0.00.real =>  0.00049.real * 1,
+                       0.real =>   0.real * 0.real,
+                       1.real =>   1.real * 1.real,
+                       1.real => 0.5.real * 2.real,
+                       1.real =>        1 * 1.real,
+                      -1.real =>       -1 * 1.real,
+                       1.real =>      -1 * -1.real,
+                    0.01.real =>     0.01 * 1.real }
+                    
+  DIVISAO = { 
+            [Dinheiro.new(0.33), Dinheiro.new(0.33), Dinheiro.new(0.34)] =>    Dinheiro.new(1) / 3,
+         [Dinheiro.new(33.33), Dinheiro.new(33.33), Dinheiro.new(33.34)] =>  Dinheiro.new(100) / 3,
+                                 [Dinheiro.new(50.00), Dinheiro.new(50)] =>  Dinheiro.new(100) / 2,
+                                [Dinheiro.new(0.25), Dinheiro.new(0.25)] =>  Dinheiro.new(0.5) / 2,
+             [Dinheiro.new(0.16), Dinheiro.new(0.16),Dinheiro.new(0.18)] =>  Dinheiro.new(0.5) / 3,
+                                                    [Dinheiro.new(0.33)] => Dinheiro.new(0.33) / 1 }                    
+                    
+                    
+  QUANTIA_COM_FORMATO_VALIDO =  [                   "1211",
+                                                   "1211.",
+                                                  "1211.0",
+                                                 "1211.23",
+                                                 "1211,23",
+                                                   "1.211",
+                                                "1.211,00",
+                                                "1.211,01",
+                                                 "1.211,1",
+                                                  "1.211,",
+                                                      "1,",
+                                                     "12,",
+                                         "32349898989912,",
+                                     "32.349.898.989.912,",
+                                    "32.349.898.989.912,1",
+                                   "32.349.898.989.912,12",
+                                                       "1",
+                                                    "1.00",
+                                                    "1.01",
+                                                     "1.1",
+                                                      "1.",
+                                                      ".1",
+                                                     ".12",
+                                                    "0.12",
+                                                    "1.12",
+                                                   "12.12",
+                                                   "12.12",
+                                                  "123.12",
+                                                "1,234.12",
+                                               "12,234.12",
+                                              "123,234.12",
+                                            "2,123,234.12",
+                                                      ",1",
+                                                     ",11",
+                                                     ",01",
+                                                    "0,01" ]
+  QUANTIA_COM_FORMATO_INVALIDO = [    'teste',
+                                   '12,123,99',
+                                   '12.123.99',
+                                    '1,123,99',
+                                   '1212,39.90' ]
+                                                    
+  COMPARACAO = [  1.real < 2.reais,
+                  1.real <= 2.reais,
+                  2.real  >  1.real,
+                  2.real >=  1.real,
+                  1.real ==  1.real,
+                  1.real >=  1.real,
+                  1.real <=  1.real ]
+
+  COMPARACAO_COM_ESCALAR = [  1.real  < 2.00,
+                              1.real <= 2.00,
+                              2.real  > 1.00,
+                              2.real >= 1.00,
+                              1.real == 1.00,
+                              1.real >= 1.00,
+                              1.real <= 1.00 ]
+                                                      
+  ARREDONDAMENTO =  { 23049 =>         230.49, 
+                      23049 => 230.4949999999,
+                      23050 =>        230.495 }
+  
+  PONTO_NO_MILHAR = {  "234.175.211"  =>   "234175211",
+                                 ""   =>            "",
+                                "1"   =>           "1",
+                               "12"   =>          "12",
+                              "123"   =>         "123",
+                            "1.234"   =>        "1234",
+                           "12.345"   =>       "12345",
+                          "123.456"   =>      "123456",
+                      "123.112.211"   =>   "123112211",
+                        "1.234.567"   =>     "1234567" }
+
+  QUANTIA_VALIDA = {       "0,00"  => 	           0  ,
+                           "0,00"  =>	           0.0  ,
+                           "0,00"  =>	            "0" ,
+                           "0,00"  =>	         "0,00" ,
+                           "1,00"  =>	             1  ,
+                           "1,03"  =>	          1.03  ,
+                           "1,03"  =>	         "1,03" ,
+                           "0,03"  =>	          ",03" ,
+                           "0,30"  =>	           ",3" ,
+                           "0,03"  =>	          ".03" ,
+                           "0,30"  =>	           ".3" ,
+                          "-0,30"  =>	          -0.3  ,
+                          "-0,03"  =>	         -0.03  ,
+                           "1,00"  =>	         "1,00" ,
+                          "-1,00"  =>	            -1  ,
+                          "-1,00"  =>	          -1.0  ,
+                          "-1,00"  =>	           "-1" ,
+                          "-1,00"  =>	        "-1,00" ,
+                          "-2,30"  =>	        "-2,30" ,
+                           "2,30"  =>	         "2,30" ,
+                           "2,30"  =>	          2.30  ,
+                           "2,30"  =>	           2.3  ,
+                       "1.211,00"  =>      	"1211,00" , 
+                       "1.211,01"  =>       "1211,01" , 
+                       "1.211,50"  =>        "1211,5" , 
+                       "1.211,00"  =>	        "1211," , 
+                       "1.211,00"  =>	         "1211" ,
+                       "1.211,00"  =>	      "1211.00" ,      
+                       "1.211,01"  =>	      "1211.01" ,      
+                       "1.211,20"  =>	       "1211.2" ,      
+                       "1.211,00"  =>	        "1211." ,
+                       "1.211,00"  =>	         "1211" ,
+                       "1.211,00"  =>	        "1.211" ,
+                 "123.112.211,35"  =>	 "123112211,35" ,      
+                "-123.112.211,35"  =>	"-123112211,35" ,          
+                 "123.112.211,35"  =>	"+123112211,35" }
+  
+  PARTE_INTEIRA = [ -1, -123112211, 0, 1, 12344545 ]
+  
   
   def setup
     tornar_metodos_publicos Dinheiro
@@ -13,58 +198,19 @@ class DinheiroTest < Test::Unit::TestCase
   end
 
   def testa_se_cria_dinheiro_a_partir_de_quantias_validos
-    [ [         "0,00"  ,             0  ],
-    [           "0,00"  ,           0.0  ],
-    [           "0,00"  ,            "0" ],
-    [           "0,00"  ,         "0,00" ],
-    [           "1,00"  ,             1  ],
-    [           "1,03"  ,          1.03  ],
-    [           "1,03"  ,         "1,03" ],
-    [           "0,03"  ,          ",03" ],
-    [           "0,30"  ,           ",3" ],
-    [           "0,03"  ,          ".03" ],
-    [           "0,30"  ,           ".3" ],
-    [          "-0,30"  ,          -0.3  ],
-    [          "-0,03"  ,         -0.03  ],
-    [           "1,00"  ,         "1,00" ],
-    [          "-1,00"  ,            -1  ],
-    [          "-1,00"  ,          -1.0  ],
-    [          "-1,00"  ,           "-1" ],
-    [          "-1,00"  ,        "-1,00" ],
-    [          "-2,30"  ,        "-2,30" ],
-    [           "2,30"  ,         "2,30" ],
-    [           "2,30"  ,          2.30  ],
-    [           "2,30"  ,           2.3  ],
-    [       "1.211,00"	,      "1211,00" ], 
-    [       "1.211,01"	,      "1211,01" ], 
-    [       "1.211,50"	,       "1211,5" ], 
-    [       "1.211,00"  ,        "1211," ], 
-    [       "1.211,00"  ,         "1211" ],
-    [       "1.211,00"  ,      "1211.00" ],      
-    [       "1.211,01"  ,      "1211.01" ],      
-    [       "1.211,20"  ,       "1211.2" ],      
-    [       "1.211,00"  ,        "1211." ],
-    [       "1.211,00"  ,         "1211" ],
-    [       "1.211,00"  ,        "1.211" ],
-    [ "123.112.211,35"  , "123112211,35" ],      
-    ["-123.112.211,35"  ,"-123112211,35" ],          
-    [ "123.112.211,35"  ,"+123112211,35" ],              
-    ].each { |quantia| verifica_se_aceita_quantia_valida quantia[0], quantia[1]  }
+    QUANTIA_VALIDA.each do |esperado, quantia| 
+      assert_equal esperado, Dinheiro.new(quantia).to_s, "Deveria ter vindo o quantia: #{esperado} quando recebeu #{quantia}"
+    end
   end
   
   # coloca_ponto_no_milhar
   def testa_se_coloca_ponto_no_milhar
-    [ ["234.175.211"        ,   "234175211" ],
-    [                ""   ,            "" ],
-    [               "1"   ,           "1" ],
-    [              "12"   ,          "12" ],
-    [             "123"   ,         "123" ],
-    [           "1.234"   ,        "1234" ],
-    [          "12.345"   ,       "12345" ],
-    [         "123.456"   ,      "123456" ],
-    [     "123.112.211"   ,   "123112211" ],
-    # [    "-123.112.211"   ,  "-123112211" ],
-    [       "1.234.567"   ,     "1234567" ] ].each { |par_quantia_retorno| verifica_se_coloca_ponto_no_milhar par_quantia_retorno[0],par_quantia_retorno[1] }
+    PONTO_NO_MILHAR.each do |esperado, quantia| 
+      { esperado       =>     quantia,
+        "-#{esperado}" => "-#{quantia}" }.each do |esperado, quantia| 
+          assert_equal esperado, @dinheiro.inteiro_com_milhar(quantia) 
+      end
+    end
   end
   
   # real
@@ -73,18 +219,11 @@ class DinheiroTest < Test::Unit::TestCase
   end
   
   def testa_real_contabil
-    assert_equal "R$ (1,00)", Dinheiro.new(-1).real_contabil
-    assert_equal "R$ (0,12)", Dinheiro.new(-0.12).real_contabil
-    assert_equal "R$ 1,00", Dinheiro.new(1).real_contabil
-    assert_equal "R$ 1,00", "1".real_contabil
-    assert_equal "R$ 1,00", "1".real_contabil
-    assert_equal "R$ 0,00", "0".real_contabil
+    REAL_CONTABIL.each { |esperado, quantia| assert_equal esperado, Dinheiro.new(quantia).real_contabil }
   end  
   
   def testa_reais_contabeis
-    assert_equal "R$ (2,00)", Dinheiro.new(-2).reais_contabeis
-    assert_equal "R$ 2,00", Dinheiro.new(2).reais_contabeis    
-    assert_equal "R$ 0,00", "0".reais_contabeis
+    REAL_CONTABIL.each { |esperado, quantia| assert_equal esperado, Dinheiro.new(quantia).reais_contabeis }
   end  
   
   # reais
@@ -93,31 +232,29 @@ class DinheiroTest < Test::Unit::TestCase
   end
   
   def testa_contabil
-    assert_equal "(2,00)", Dinheiro.new(-2).contabil
-    assert_equal "2,00", Dinheiro.new(2).contabil    
-    assert_equal "0,00", Dinheiro.new(0).contabil
+    CONTABIL.each { |esperado, quantia| assert_equal esperado, Dinheiro.new(quantia).contabil }
   end  
-  
   
   # ==
   def testa_igualdade
-    um_real = Dinheiro.new(1)
-    outro_real = Dinheiro.new(1)
-    assert_equal um_real, outro_real
+    assert_equal Dinheiro.new(1), Dinheiro.new(1)
   end
   
   def testa_igualdade_quando_passa_possivel_dinheiro
-    um_real = Dinheiro.new(1)
-    assert_equal um_real, 1.0
+    assert_equal Dinheiro.new(1), 1.0
   end
   
   # / (divisao/parcelamento)
   def testa_divisao
-    assert_equal [Dinheiro.new(0.33), Dinheiro.new(0.33), Dinheiro.new(0.34)], Dinheiro.new(1)/3
-    assert_equal [Dinheiro.new(33.33), Dinheiro.new(33.33), Dinheiro.new(33.34)], Dinheiro.new(100)/3
-    assert_equal [Dinheiro.new(50.00), Dinheiro.new(50)], Dinheiro.new(100)/2
-    assert_equal [Dinheiro.new(0.25), Dinheiro.new(0.25)], Dinheiro.new(0.5)/2
-    assert_equal [Dinheiro.new(0.16), Dinheiro.new(0.16),Dinheiro.new(0.18)], Dinheiro.new(0.5)/3
+    DIVISAO.each { |parcelas, divisao| assert_equal parcelas, divisao }
+  end
+  
+  def testa_divisao_por_zero
+    assert_raise(ZeroDivisionError) { 1.real / 0 }
+  end
+  
+  def testa_divisao_por_algo_que_nao_seja_um_escalar
+    assert_raise(DivisaPorNaoEscalarError) { 10.reais / 2.reais }
   end
   
   # initialize
@@ -138,73 +275,29 @@ class DinheiroTest < Test::Unit::TestCase
   end 
   
   def testa_se_rejeita_criacao_de_dinheiro_a_partir_de_string_invalida
-    [ 'teste', '12,123,99', '12.123.99', '1,123,99', '1212,39.90' ].each do |quantia| 
-      verifica_se_rejeita_criacao_de_dinheiro_a_partir_de_string_invalida quantia     
+    QUANTIA_COM_FORMATO_INVALIDO.each do |quantia| 
+      assert_raise DinheiroInvalidoError, "Deveria ter rejeitado [#{quantia}]" do
+        Dinheiro.new quantia
+      end
     end
   end
   
   # + (soma)
   def testa_soma
-    assert_equal 0.real, 0.real + 0.real
-    assert_equal 1.real, 0.real + 1.real
-    assert_equal 1.real, 1.real + 0.real
-    assert_equal 2.reais, 1.real + 1.real
-    assert_equal 2.reais, 0.real + 2.reais
-    assert_equal 2.reais, 2.reais + 0.real
-    assert_equal 0.real, 2.real + -2.real
-    assert_equal 0.3.real, 0.real + 0.3.real
-    assert_equal -0.3.real, 0.real + -0.3.real
-    assert_equal -0.03.real, 0 + -0.03.real
-    assert_equal -0.03.real, 0.real + -0.03    
-    assert_equal -1.03.real, -1.real + -0.03    
+    SOMA.each{ |esperado, soma| assert_equal esperado, soma }
   end  
   
   # - (subtracao)
   def testa_subtracao
-    assert_equal 0.real, 0.real - 0.real
-    assert_equal -1.real, 0.real - 1.real
-    assert_equal 1.real, 1.real - 0.real
-    assert_equal 0.real, 1.real - 1.real
-    assert_equal -2.reais, 0.real - 2.reais
-    assert_equal 2.reais, 2.reais - 0.real
-    assert_equal -4.reais, -2.reais - 2.reais
-    assert_equal 0.3.real, 0.3.real - 0.real
-    assert_equal 0.03.real, 0.03.real - 0.real
-    assert_equal 0.03.real, 0.06.real - 0.03.real
-    assert_equal -0.03.real, 0 - 0.03.real
-    assert_equal -0.03.real, 0.real - 0.03    
-    assert_equal -1.03.real, -1.real - 0.03    
+    SUBTRACAO.each { |esperado, subtracao| assert_equal esperado, subtracao }
   end
   
   # * (multiplicacao)
   def testa_multiplicacao
-    { 0.real      =>      0.real * 0,
-      0.real      =>      0.real * 1,
-      0.real      =>      0.real * -1,
-      1.real      =>      1.real * 1,
-      1.real      =>      -1.real * -1,
-      -1.real      =>      1.real * -1,
-      -1.real      =>      -1.real * 1,
-      0.1.real      =>      1.real * 0.1,
-      0.01.real      =>      1.real * 0.01,
-      0.01.real      =>      1.real * 0.009,
-      0.01.real      =>      1.real * 0.005,
-      0.00.real      =>      1.real * 0.0049,
-      0.1.real      =>      0.1.real * 1,
-      0.01.real      =>      0.01.real * 1,
-      0.01.real      =>      0.009.real * 1,
-      0.00.real      =>      0.00049.real * 1,
-      0.real      =>      0.real * 0.real,
-      1.real      =>      1.real * 1.real,
-      1.real      =>      0.5.real * 2.real,
-      1.real      =>      1 * 1.real,
-      -1.real      =>      -1 * 1.real,
-      1.real      =>      -1 * -1.real,
-      0.01.real      =>      0.01 * 1.real,
-    }.each { |esperado, valor| assert_equal esperado, valor }  
+    MULTIPLICACAO.each { |esperado, multiplicacao| assert_equal esperado, multiplicacao }  
   end
   
-  # quantia_do
+  # quantia_de
   def testa_quantia_de
     assert_equal 0, @dinheiro.quantia_de(0.real)
     assert_equal 0, @dinheiro.quantia_de(0)
@@ -217,64 +310,16 @@ class DinheiroTest < Test::Unit::TestCase
   
   # quantia_respeita_formato?
   def testa_se_quantia_respeita_formato
-    [                         "1211",
-    "1211.",
-    "1211.0",
-    "1211.23",
-    "1211,23",
-    "1.211",
-    "1.211,00",
-    "1.211,01",
-    "1.211,1",
-    "1.211,",
-    "1,",
-    "12,",
-    "32349898989912,",
-    "32.349.898.989.912,",
-    "32.349.898.989.912,1",
-    "32.349.898.989.912,12",
-    "1",
-    "1.00",
-    "1.01",
-    "1.1",
-    "1.",
-    ".1",
-    ".12",
-    "0.12",
-    "1.12",
-    "12.12",
-    "12.12",
-    "123.12",
-    "1,234.12",
-    "12,234.12",
-    "123,234.12",
-    "2,123,234.12",
-    ",1",
-    ",11",
-    ",01",
-    "0,01",
-    ].each { |quantia| verifica_se_quantia_respeita_formato quantia }
+    QUANTIA_COM_FORMATO_VALIDO.each { |quantia| verifica_se_quantia_respeita_formato quantia }
   end
   
   # >, <, == (ordenacao)
   def testa_comparacao_entre_dinheiro
-    assert 1.real < 2.reais
-    assert 1.real <= 2.reais
-    assert 2.real > 1.real
-    assert 2.real >= 1.real    
-    assert 1.real == 1.real
-    assert 1.real >= 1.real
-    assert 1.real <= 1.real    
+    COMPARACAO.each { |comparacao| assert comparacao }
   end
   
   def testa_comparacao_entre_possivel_dinheiro
-    assert 1.real < 2.00
-    assert 1.real <= 2.00
-    assert 2.real > 1.00
-    assert 2.real >= 1.00
-    assert 1.real == 1.00
-    assert 1.real >= 1.00
-    assert 1.real <= 1.00
+    COMPARACAO_COM_ESCALAR.each { |comparacao_com_escalar| assert comparacao_com_escalar }
   end
   
   # decimal
@@ -308,22 +353,16 @@ class DinheiroTest < Test::Unit::TestCase
 
   # parte_inteira
   def testa_parte_inteira
-    assert_equal "1", Dinheiro.new(1).parte_inteira
-    assert_equal "-123112211", Dinheiro.new(-123112211).parte_inteira
+    PARTE_INTEIRA.each { |quantia| assert_equal "#{quantia}", Dinheiro.new(quantia).parte_inteira }
   end
   
   def testa_se_arredonda_valores_corretamente
-    { 23049 => 230.49, 
-      23049 => 230.4949999999,
-      23050 => 230.495
-    }.each{ |esperado, valor| verifica_se_arredonda_valores_corretamente esperado, valor }
+    ARREDONDAMENTO.each do |esperado, quantia| 
+      assert_equal esperado, Dinheiro.new(quantia).quantia, "Deveria retornar #{esperado} para #{quantia}"
+    end
   end
 
   private
-  
-  def verifica_se_arredonda_valores_corretamente(esperado, valor)
-    assert_equal esperado, Dinheiro.new(valor).quantia, "Deveria retornar #{esperado} para #{valor}"
-  end
   
   def verifica_se_transforma_em_string_corretamente(quantia_esperada, quantia)
     assert_equal quantia_esperada, @dinheiro.transforma_em_string_que_represente_a_quantia(quantia)
@@ -336,32 +375,31 @@ class DinheiroTest < Test::Unit::TestCase
   end
   
   def verifica_se_quantia_respeita_formato(quantia)
-    [ quantia, 
-    "R$ #{quantia}", "R$#{quantia}", "R$        #{quantia}",
-    "r$ #{quantia}", "r$#{quantia}", "r$        #{quantia}"  ].each do |quantia_str| 
+    formatos_validos(quantia).each do |quantia_str| 
       assert 1.real.quantia_respeita_formato?(quantia_str), "O sistema deveria considerar o quantia '#{quantia_str}' dentro do formato valido."
     end
+  end
+  
+  def formatos_validos(quantia)
+    formatos_validos = []
+    quantias_validas(quantia).each do |quantia|
+      formatos_validos << quantia
+      [ "R$", "r$" ].each do |simbolo|
+        [ "", " ", "     " ].each do |espacos|
+          formatos_validos << "#{simbolo}#{espacos}#{quantia}"
+        end
+      end
+    end
+    formatos_validos
+  end
+  
+  def quantias_validas(quantia)
+    return [quantia] if [ ".", "," ].include?(quantia[0..0])
+    [ quantia, "-#{quantia}" ]
   end
   
   def verifica_se_cria_dinheiro_para(quantia)
     assert quantia.para_dinheiro.kind_of?(Dinheiro)
   end
-  
-  def verifica_se_aceita_quantia_valida(esperado, quantia)
-    assert_equal esperado, Dinheiro.new(quantia).to_s, "Deveria ter vindo o quantia: #{esperado} quando recebeu #{quantia}"
-  end
-  
-  def verifica_se_coloca_ponto_no_milhar(esperado, inteiro)
-    assert_equal esperado, @dinheiro.inteiro_com_milhar(inteiro) 
-    assert_equal "-#{esperado}", @dinheiro.inteiro_com_milhar("-#{inteiro}") 
-  end
-  
-  def verifica_se_rejeita_criacao_de_dinheiro_a_partir_de_string_invalida(quantia)
-    assert_raise DinheiroInvalidoError, "Deveria ter rejeitado [#{quantia}]" do
-      Dinheiro.new quantia
-    end
-  end
-  
-
   
 end
