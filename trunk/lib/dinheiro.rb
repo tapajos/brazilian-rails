@@ -43,6 +43,8 @@ class Dinheiro
   end
   
   def /(outro)
+    raise DivisaPorNaoEscalarError unless outro.kind_of?(Numeric)
+    return @quantia/outro if outro == 0
     soma_parcial = Dinheiro.new(0)
     parcelas = []
     (outro-1).times do
