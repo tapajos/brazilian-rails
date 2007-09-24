@@ -5,10 +5,10 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>File: excecoes.rb</title>
+  <title>Class: Time</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <meta http-equiv="Content-Script-Type" content="text/javascript" />
-  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
   <script type="text/javascript">
   // <![CDATA[
 
@@ -46,20 +46,30 @@
 
 
 
-  <div id="fileHeader">
-    <h1>excecoes.rb</h1>
-    <table class="header-table">
-    <tr class="top-aligned-row">
-      <td><strong>Path:</strong></td>
-      <td>vendor/plugins/brazilian-rails/lib/excecoes.rb
-      </td>
-    </tr>
-    <tr class="top-aligned-row">
-      <td><strong>Last Update:</strong></td>
-      <td>Sat Sep 22 18:32:58 -0300 2007</td>
-    </tr>
-    </table>
-  </div>
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Time</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/vendor/plugins/brazilian-rails/lib/time_portuguese_rb.html">
+                vendor/plugins/brazilian-rails/lib/time_portuguese.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
   <!-- banner header -->
 
   <div id="bodyContent">
@@ -76,7 +86,7 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000001">cria_excecao</a>&nbsp;&nbsp;
+      <a href="#M000002">to_s_br</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -98,24 +108,24 @@
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000001" class="method-detail">
-        <a name="M000001"></a>
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
 
         <div class="method-heading">
-          <a href="#M000001" class="method-signature">
-          <span class="method-name">cria_excecao</span><span class="method-args">(classe, mensagem)</span>
+          <a href="#M000002" class="method-signature">
+          <span class="method-name">to_s_br</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000001-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000001-source">
+            onclick="toggleCode('M000002-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000002-source">
 <pre>
-   <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/excecoes.rb, line 1</span>
-1: <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cria_excecao</span>(<span class="ruby-identifier">classe</span>, <span class="ruby-identifier">mensagem</span>)
-2:   <span class="ruby-identifier">eval</span> <span class="ruby-node">&quot;class #{classe}; def initialize; super('#{mensagem}'); end; end&quot;</span>
-3: <span class="ruby-keyword kw">end</span>
+   <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/time_portuguese.rb, line 3</span>
+3:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s_br</span>
+4:     <span class="ruby-identifier">strftime</span>(<span class="ruby-value str">&quot;%d/%m/%Y %H:%M&quot;</span>)
+5:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>

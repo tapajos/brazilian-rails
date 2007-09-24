@@ -80,7 +80,7 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000020">error_messages_for</a>&nbsp;&nbsp;
+      <a href="#M000026">error_messages_for</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -102,19 +102,19 @@
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000020" class="method-detail">
-        <a name="M000020"></a>
+      <div id="method-M000026" class="method-detail">
+        <a name="M000026"></a>
 
         <div class="method-heading">
-          <a href="#M000020" class="method-signature">
+          <a href="#M000026" class="method-signature">
           <span class="method-name">error_messages_for</span><span class="method-args">(*params)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000020-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000020-source">
+            onclick="toggleCode('M000026-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000026-source">
 <pre>
     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/action_view_portuguese.rb, line 2</span>
  2:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">error_messages_for</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">params</span>)
@@ -135,7 +135,7 @@
 17:       <span class="ruby-identifier">header_message</span> = <span class="ruby-node">&quot;#{pluralize(count, 'erro')} para #{(options[:object_name] || params.first).to_s.gsub('_', ' ')}&quot;</span>
 18:       <span class="ruby-identifier">error_messages</span> = <span class="ruby-identifier">objects</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">object</span><span class="ruby-operator">|</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">full_messages</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">msg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-identifier">:li</span>, <span class="ruby-identifier">msg</span>) } }
 19:       <span class="ruby-identifier">content_tag</span>(<span class="ruby-identifier">:div</span>,
-20:                   <span class="ruby-identifier">content_tag</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:header_tag</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">:h2</span>, <span class="ruby-identifier">header_message</span>) <span class="ruby-operator">&lt;&lt;</span>
+20:       <span class="ruby-identifier">content_tag</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:header_tag</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">:h2</span>, <span class="ruby-identifier">header_message</span>) <span class="ruby-operator">&lt;&lt;</span>
 21:       <span class="ruby-identifier">content_tag</span>(<span class="ruby-identifier">:p</span>, <span class="ruby-value str">'Foram detectados os seguintes erros:'</span>) <span class="ruby-operator">&lt;&lt;</span>
 22:       <span class="ruby-identifier">content_tag</span>(<span class="ruby-identifier">:ul</span>, <span class="ruby-identifier">error_messages</span>),
 23:       <span class="ruby-identifier">html</span>
