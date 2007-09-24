@@ -1,6 +1,5 @@
 require 'test_helper'
 require 'mocha'
-require File.expand_path(File.dirname(__FILE__) + "/../lib/action_view_portuguese")
 
 class ActionViewTest < Test::Unit::TestCase
   
