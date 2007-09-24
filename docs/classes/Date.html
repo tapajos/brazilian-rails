@@ -86,8 +86,8 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000016">to_s_br</a>&nbsp;&nbsp;
-      <a href="#M000017">valid?</a>&nbsp;&nbsp;
+      <a href="#M000023">to_s_br</a>&nbsp;&nbsp;
+      <a href="#M000024">valid?</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -95,45 +95,10 @@
 
 
     <!-- if includes -->
-    <div id="includes">
-      <h3 class="section-bar">Included Modules</h3>
-
-      <div id="includes-list">
-        <span class="include-name"><a href="DateUtils.html">DateUtils</a></span>
-      </div>
-    </div>
 
     <div id="section">
 
 
-    <div id="constants-list">
-      <h3 class="section-bar">Constants</h3>
-
-      <div class="name-list">
-        <table summary="Constants">
-        <tr class="top-aligned-row context-row">
-          <td class="context-item-name">MONTHNAMES</td>
-          <td>=</td>
-          <td class="context-item-value">[nil] + %w(Janeiro Fevereiro Marco Abril Maio Junho Julho Agosto Setembro Outubro Novembro Dezembro)</td>
-        </tr>
-        <tr class="top-aligned-row context-row">
-          <td class="context-item-name">DAYNAMES</td>
-          <td>=</td>
-          <td class="context-item-value">%w(Domingo Segunda-Feira Terca-Feira Quarta-Feira Quinta-Feira Sexta-Feira Sabado)</td>
-        </tr>
-        <tr class="top-aligned-row context-row">
-          <td class="context-item-name">ABBR_MONTHNAMES</td>
-          <td>=</td>
-          <td class="context-item-value">[nil] + %w(Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez)</td>
-        </tr>
-        <tr class="top-aligned-row context-row">
-          <td class="context-item-name">ABBR_DAYNAMES</td>
-          <td>=</td>
-          <td class="context-item-value">%w(Dom Seg Ter Qua Qui Sex Sab)</td>
-        </tr>
-        </table>
-      </div>
-    </div>
 
 
 
@@ -144,30 +109,30 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000017" class="method-detail">
-        <a name="M000017"></a>
+      <div id="method-M000024" class="method-detail">
+        <a name="M000024"></a>
 
         <div class="method-heading">
-          <a href="#M000017" class="method-signature">
+          <a href="#M000024" class="method-signature">
           <span class="method-name">valid?</span><span class="method-args">(date)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000017-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000017-source">
+            onclick="toggleCode('M000024-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000024-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/date_portuguese.rb, line 28</span>
-28:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">valid?</span>(<span class="ruby-identifier">date</span>)
-29:       <span class="ruby-keyword kw">begin</span>
-30:         <span class="ruby-identifier">date</span> = <span class="ruby-identifier">date</span>.<span class="ruby-identifier">to_date</span>
-31:         <span class="ruby-constant">Date</span>.<span class="ruby-identifier">valid_civil?</span>(<span class="ruby-identifier">date</span>.<span class="ruby-identifier">year</span>, <span class="ruby-identifier">date</span>.<span class="ruby-identifier">month</span>, <span class="ruby-identifier">date</span>.<span class="ruby-identifier">day</span>)        
-32:       <span class="ruby-keyword kw">rescue</span>
-33:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-34:       <span class="ruby-keyword kw">end</span>
-35:       <span class="ruby-keyword kw">true</span>
-36:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/date_portuguese.rb, line 18</span>
+18:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">valid?</span>(<span class="ruby-identifier">date</span>)
+19:       <span class="ruby-keyword kw">begin</span>
+20:         <span class="ruby-identifier">date</span> = <span class="ruby-identifier">date</span>.<span class="ruby-identifier">to_date</span>
+21:         <span class="ruby-constant">Date</span>.<span class="ruby-identifier">valid_civil?</span>(<span class="ruby-identifier">date</span>.<span class="ruby-identifier">year</span>, <span class="ruby-identifier">date</span>.<span class="ruby-identifier">month</span>, <span class="ruby-identifier">date</span>.<span class="ruby-identifier">day</span>)        
+22:       <span class="ruby-keyword kw">rescue</span>
+23:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+24:       <span class="ruby-keyword kw">end</span>
+25:       <span class="ruby-keyword kw">true</span>
+26:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -175,24 +140,24 @@
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000016" class="method-detail">
-        <a name="M000016"></a>
+      <div id="method-M000023" class="method-detail">
+        <a name="M000023"></a>
 
         <div class="method-heading">
-          <a href="#M000016" class="method-signature">
+          <a href="#M000023" class="method-signature">
           <span class="method-name">to_s_br</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000016-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000016-source">
+            onclick="toggleCode('M000023-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000023-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/date_portuguese.rb, line 24</span>
-24:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s_br</span>
-25:     <span class="ruby-identifier">strftime</span>(<span class="ruby-value str">&quot;%d/%m/%Y&quot;</span>)
-26:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/date_portuguese.rb, line 14</span>
+14:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s_br</span>
+15:     <span class="ruby-identifier">strftime</span>(<span class="ruby-value str">&quot;%d/%m/%Y&quot;</span>)
+16:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>

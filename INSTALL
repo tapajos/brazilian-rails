@@ -4,7 +4,7 @@
 
 === Installation inside your Rails project via script/plugin
 
-script/plugin install svn://rubyforge.org/var/svn/brazilian-rails/trunk
+script/plugin install svn://rubyforge.org/var/svn/brazilian-rails
 
 To use the inflector in portuguese add this line to your enviroment.rb
 
