@@ -1,5 +1,4 @@
 require 'test_helper'
-require File.expand_path(File.dirname(__FILE__) + "/../lib/time_portuguese")
 
 class TimeTest < Test::Unit::TestCase
   

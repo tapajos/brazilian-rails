@@ -1,8 +1,4 @@
 require File.expand_path(File.dirname(__FILE__) + '/test_helper')
-require File.expand_path(File.dirname(__FILE__) + "/../init")
-require File.expand_path(File.dirname(__FILE__) + "/../lib/dinheiro")
-require File.expand_path(File.dirname(__FILE__) + "/../lib/dinheiro_util")
-require File.expand_path(File.dirname(__FILE__) + "/../lib/excecoes")
 
 class DinheiroTest < Test::Unit::TestCase
 
