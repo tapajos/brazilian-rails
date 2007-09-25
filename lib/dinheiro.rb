@@ -55,6 +55,10 @@ class Dinheiro
     parcelas << Dinheiro.new(transforma_em_string_que_represente_a_quantia(@quantia - quantia_de(soma_parcial)))
   end
   
+  def to_extenso
+    (@quantia/100.0).to_extenso_real
+  end
+  
   def to_f
     to_s.gsub(',', '.').to_f
   end

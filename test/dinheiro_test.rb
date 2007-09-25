@@ -299,6 +299,14 @@ class DinheiroTest < Test::Unit::TestCase
     assert_equal 0, @dinheiro.quantia_de(0)
   end
 
+  #to_extenso
+  def testa_to_extenso
+    assert_equal 'um real', 1.real.to_extenso
+    assert_equal 'um centavo', (0.01).real.to_extenso
+    assert_equal 'cem reais', 100.real.to_extenso
+    assert_equal 'cem reais e um centavo', (100.01).real.to_extenso
+  end
+
   # to_f
   def testa_to_f
     assert_equal 2.30, 2.30.real.to_f
@@ -357,7 +365,7 @@ class DinheiroTest < Test::Unit::TestCase
       assert_equal esperado, Dinheiro.new(quantia).quantia, "Deveria retornar #{esperado} para #{quantia}"
     end
   end
-
+  
   private
   
   def verifica_se_transforma_em_string_corretamente(quantia_esperada, quantia)
