@@ -26,6 +26,8 @@ class Test::Unit::TestCase
   # Add more helper methods to be used by all tests here...
 
   require File.expand_path(File.dirname(__FILE__) + "/../init")
+  require 'inflector_portuguese'
+  
   def tornar_metodos_publicos(clazz)
     clazz.class_eval do
       private_instance_methods.each { |instance_method| public instance_method }

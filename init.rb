@@ -6,9 +6,12 @@ require 'dinheiro'
 require 'dinheiro_util'
 require 'excecoes'
 require 'nil_class'
+require 'number_portuguese'
 
 Numeric.send(:include, DinheiroUtil)
 String.send(:include, DinheiroUtil)
+Numeric.send(:include, ExtensoReal)
+
 
 old_verbose = $VERBOSE
 $VERBOSE = nil

@@ -25,7 +25,15 @@ Date.valid?("13/12/2007") returns true
 Date.valid?("13/12/200A") returns false
 Date.valid?("00/00/0000") returns false
 
-Para ver os usos da parte de dinheiro recomendo olhar o arquivo dinheiro_test.
+Para ver os usos da parte de dinheiro recomendo olhar o arquivo dinheiro_test. (Comentario preguicoso de Tapajos)
 
+"832.to_extenso => #{832.to_extenso}"
+"125623.to_extenso => #{125623.to_extenso}"
+"1_968_854_823.to_extenso => #{1_968_854_823.to_extenso}"
+"45_233_968_854_823.to_extenso => #{45_233_968_854_823.to_extenso}"
 
- 
+"1230.to_extenso_real => #{1230.to_extenso_real}"
+"1230.95.to_extenso_real => #{1230.95.to_extenso_real}"
+"1.50.to_extenso_real => #{1.50.to_extenso_real}"
+"832.01.to_extenso_real => #{832.01.to_extenso_real}"
+
