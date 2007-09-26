@@ -7,10 +7,13 @@ require 'dinheiro_util'
 require 'excecoes'
 require 'nil_class'
 require 'number_portuguese'
+require 'string_portuguese'
 
 Numeric.send(:include, DinheiroUtil)
-String.send(:include, DinheiroUtil)
 Numeric.send(:include, ExtensoReal)
+
+String.send(:include, DinheiroUtil)
+String.send(:include, StringPortuguese)
 
 
 old_verbose = $VERBOSE
