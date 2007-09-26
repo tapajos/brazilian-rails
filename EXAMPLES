@@ -3,11 +3,10 @@ Para maiores exemplos olhe os testes.
 
 Configuration: 
 
+Para usar a as regras de plural em português basta adicionar a linha acima no seu enviroment.rb
 To use the inflector in portuguese add this line to your enviroment.rb
 
 require 'inflector_portuguese'
-
-Para usar a as regras de plural em português basta adicionar a linha acima no seu enviroment.rb
 
 
 Method to_date of String.
@@ -37,3 +36,5 @@ Para ver os usos da parte de dinheiro recomendo olhar o arquivo dinheiro_test. (
 "1.50.to_extenso_real => #{1.50.to_extenso_real}"
 "832.01.to_extenso_real => #{832.01.to_extenso_real}"
 
+'maria de andrade dos santos e silva'.nome_proprio() => 'Maria de Andrade dos Santos e Silva'
+'este texto está com acentuação'.remover_acentos => 'este texto esta com acentuacao'

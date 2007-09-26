@@ -1,8 +1,10 @@
 Para maiores exemplos olhe os testes.<br/>
 <br/>
-require 'inflector_portuguese'<br/>
+Para usar a as regras de plural em português basta adicionar a linha acima no seu enviroment.rb
 <br/>
-Para usar a as regras de plural em português basta adicionar a linha acima no seu enviroment.rb<br/>
+To use the inflector in portuguese add this line to your enviroment.rb
+<br/>
+require 'inflector_portuguese'<br/>
 <br/>
 "2007/01/02".to_date<br/>
 "13/12/2007".to_date<br/>
@@ -19,7 +21,6 @@ Date.valid?("13/12/200A") returns false<br/>
 Date.valid?("00/00/0000") returns false<br/>
 Para ver os usos da parte de dinheiro recomendo olhar o arquivo dinheiro_test.<br/>
 <br/>
-<br/>
 <pre>
 "832.to_extenso => #{832.to_extenso}"
 "125623.to_extenso => #{125623.to_extenso}"
@@ -30,4 +31,9 @@ Para ver os usos da parte de dinheiro recomendo olhar o arquivo dinheiro_test.<b
 "1230.95.to_extenso_real => #{1230.95.to_extenso_real}"
 "1.50.to_extenso_real => #{1.50.to_extenso_real}"
 "832.01.to_extenso_real => #{832.01.to_extenso_real}"
+</pre>
+<br/>
+<pre>
+'maria de andrade dos santos e silva'.nome_proprio() => 'Maria de Andrade dos Santos e Silva'
+'este texto está com acentuação'.remover_acentos => 'este texto esta com acentuacao'
 </pre>
