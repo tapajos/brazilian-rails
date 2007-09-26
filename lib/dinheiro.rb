@@ -90,7 +90,11 @@ class Dinheiro
       "(" + to_s[1..-1] + ")"    
     end  
   end
-  
+
+  def valor_decimal
+    BigDecimal.new quantia_sem_separacao_milhares.gsub(',','.')
+  end
+    
   private
   
   def quantia_de(outro)
