@@ -366,6 +366,10 @@ class DinheiroTest < Test::Unit::TestCase
     end
   end
   
+  def testa_se_valor_decimal_cria_o_big_decimal_corretamente
+    assert_equal BigDecimal.new("1234.56"), Dinheiro.new("1234,56").valor_decimal
+  end
+  
   private
   
   def verifica_se_transforma_em_string_corretamente(quantia_esperada, quantia)
