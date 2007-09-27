@@ -299,12 +299,20 @@ class DinheiroTest < Test::Unit::TestCase
     assert_equal 0, @dinheiro.quantia_de(0)
   end
 
-  #to_extenso
-  def testa_to_extenso
-    assert_equal 'um real', 1.real.to_extenso
-    assert_equal 'um centavo', (0.01).real.to_extenso
-    assert_equal 'cem reais', 100.real.to_extenso
-    assert_equal 'cem reais e um centavo', (100.01).real.to_extenso
+  #por_extenso
+  def testa_por_extenso
+    assert_equal 'um real', 1.real.por_extenso
+    assert_equal 'um centavo', (0.01).real.por_extenso
+    assert_equal 'cem reais', 100.real.por_extenso
+    assert_equal 'cem reais e um centavo', (100.01).real.por_extenso
+  end
+
+  #por_extenso_em_reais
+  def testa_por_extenso
+    assert_equal 'um real', 1.real.por_extenso_em_reais
+    assert_equal 'um centavo', (0.01).real.por_extenso_em_reais
+    assert_equal 'cem reais', 100.real.por_extenso_em_reais
+    assert_equal 'cem reais e um centavo', (100.01).real.por_extenso_em_reais
   end
 
   # to_f

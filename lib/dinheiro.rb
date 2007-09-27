@@ -55,8 +55,21 @@ class Dinheiro
     parcelas << Dinheiro.new(transforma_em_string_que_represente_a_quantia(@quantia - quantia_de(soma_parcial)))
   end
   
+  # Escreve o valor por extenso
+  # Exemplo:
+  #  1.real.por_extenso ==> 'um real'
+  #  (100.58).por_extenso ==> 'cem reais e cinquenta e oito centavos'
+  def por_extenso
+    (@quantia/100.0).por_extenso_em_reais
+  end
+  
+  # Alias para o metodo por_extenso
+  alias_method(:por_extenso_em_reais, :por_extenso)
+  
+  # DEPRECATION WARNING: use por_extenso ou por_extenso_em_reais, pois este sera removido no proximo release.
   def to_extenso
-    (@quantia/100.0).to_extenso_real
+    warn("DEPRECATION WARNING: use por_extenso ou por_extenso_em_reais, pois este sera removido no proximo release.")
+    self.por_extenso
   end
   
   def to_f
