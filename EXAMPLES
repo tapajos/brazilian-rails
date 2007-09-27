@@ -38,3 +38,5 @@ Para ver os usos da parte de dinheiro recomendo olhar o arquivo dinheiro_test. (
 
 'maria de andrade dos santos e silva'.nome_proprio() => 'Maria de Andrade dos Santos e Silva'
 'este texto está com acentuação'.remover_acentos => 'este texto esta com acentuacao'
+
+Para saber como utilizar a classe Dinheiro em um modelo da sua aplicação, verifique o arquivo README no diretório samples/dinheiro.
