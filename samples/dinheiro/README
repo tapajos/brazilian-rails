@@ -1,0 +1,6 @@
+* Como utilizar a classe Dinheiro em uma classe de modelo da aplicação? 
+
+Vamos imaginar um exemplo. Suponha uma classe Lancamento que possui dois atributos: descricao e valor.
+
+Veja a migration utilizada no arquivo: 			001_create_lancamentos.rb
+Veja a classe de modelo Lancamento no arquivo:	lancamento.rb 
