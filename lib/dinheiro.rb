@@ -15,33 +15,54 @@ class Dinheiro
     self.quantia = quantia
   end
   
+  # Retorna o valor armazenado em string.
+  #
+  # Exemplo:
+  #  1000.to_s ==> '1.000,00'
   def to_s
     inteiro_com_milhar(parte_inteira) + parte_decimal
   end
   
+  # Compara com outro dinheiro se eh igual.
+  #
+  # Exemplo:
+  #  um_real = Dinheiro.new(1)
+  #  um_real == Dinheiro.new(1) ==> true
+  #  um_real == Dinheiro.new(2) ==> false
   def ==(outro_dinheiro)
     outro_dinheiro = Dinheiro.new(outro_dinheiro) unless outro_dinheiro.kind_of?(Dinheiro)
     @quantia == outro_dinheiro.quantia
   end
   
+  # Compara com outro dinheiro se eh maior ou menor.
+  #
+  # Exemplo:
+  #  1.real < 2.reais ==> true
+  #  1.real > 2.reais ==> false
+  #  2.real < 1.reais ==> false
+  #  2.real > 1.reais ==> true
   def <=>(outro_dinheiro)
     outro_dinheiro = Dinheiro.new(outro_dinheiro) unless outro_dinheiro.kind_of?(Dinheiro)
     @quantia <=> outro_dinheiro.quantia
   end
   
+  # Retorna a adicao entre dinheiros.
   def +(outro)
     Dinheiro.new(transforma_em_string_que_represente_a_quantia(@quantia + quantia_de(outro)))
   end
   
+  # Retorna a subtracao entre dinheiros.
   def -(outro)
     Dinheiro.new(transforma_em_string_que_represente_a_quantia(@quantia - quantia_de(outro)))
   end
   
+  # Retorna a multiplicacao entre dinheiros.
   def *(outro)
     return Dinheiro.new(to_f * outro) unless outro.kind_of? Dinheiro
     outro * to_f
   end
   
+  # Retorna a divisao entre dinheiros.
   def /(outro)
     raise DivisaPorNaoEscalarError unless outro.kind_of?(Numeric)
     return @quantia/outro if outro == 0
@@ -55,7 +76,8 @@ class Dinheiro
     parcelas << Dinheiro.new(transforma_em_string_que_represente_a_quantia(@quantia - quantia_de(soma_parcial)))
   end
   
-  # Escreve o valor por extenso
+  # Escreve o valor por extenso.
+  # 
   # Exemplo:
   #  1.real.por_extenso ==> 'um real'
   #  (100.58).por_extenso ==> 'cem reais e cinquenta e oito centavos'
@@ -63,8 +85,8 @@ class Dinheiro
     (@quantia/100.0).por_extenso_em_reais
   end
   
-  # Alias para o metodo por_extenso
-  alias_method(:por_extenso_em_reais, :por_extenso)
+  # Alias para o metodo por_extenso.
+  alias_method :por_extenso_em_reais, :por_extenso
   
   # DEPRECATION WARNING: use por_extenso ou por_extenso_em_reais, pois este sera removido no proximo release.
   def to_extenso
@@ -72,6 +94,7 @@ class Dinheiro
     self.por_extenso
   end
   
+  # Retorna um Float.
   def to_f
     to_s.gsub(',', '.').to_f
   end
@@ -80,22 +103,35 @@ class Dinheiro
     [ Dinheiro.new(outro), self ]
   end
   
+  # Retorna uma string formatada em valor monetario.
+  #
+  # Exemplo:
+  #  Dinheiro.new(1).real ==> 'R$ 1,00'
+  #  Dinheiro.new(-1).real ==> 'R$ -1,00'
   def real
     "R$ " + to_s
   end
   
+  # Retorna uma string formatada em valor monetario.
+  #
+  # Exemplo:
+  #  Dinheiro.new(1).real ==> 'R$ 1,00'
+  #  Dinheiro.new(-1).real ==> 'R$ (1,00)'
   def real_contabil
     "R$ " + contabil
   end
   
-  def reais
-    real
-  end
+  # Alias para real.
+  alias_method :reais, :real
   
-  def reais_contabeis
-    real_contabil
-  end  
+  # Alias para real_contabil.
+  alias_method :reais_contabeis, :real_contabil
   
+  # Retorna uma string formatada.
+  #
+  # Exemplo:
+  #  Dinheiro.new(1).contabil ==> '1,00'
+  #  Dinheiro.new(-1).contabil ==> '(1,00)'
   def contabil
     if @quantia >= 0
       to_s      
@@ -103,13 +139,13 @@ class Dinheiro
       "(" + to_s[1..-1] + ")"    
     end  
   end
-
+  
+  # Retorna um BigDecinal.
   def valor_decimal
     BigDecimal.new quantia_sem_separacao_milhares.gsub(',','.')
   end
     
   private
-  
   def quantia_de(outro)
     return outro.quantia if outro.kind_of?(Dinheiro)
     (outro * 100).round

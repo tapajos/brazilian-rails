@@ -1,8 +1,16 @@
 module StringPortuguese
+  # Normaliza nomes proprios
+  #
+  # Exemplo:
+  #  'maria de souza dos santos e silva da costa'.nome_proprio ==> 'Maria de Souza dos Santos e Silva da Costa'
   def nome_proprio
     self.titleize().gsub(/ D(a|e|o|as|os) /, ' d\1 ').gsub(/ E /, ' e ')
   end
   
+  # remove as letras acentuadas
+  # 
+  # Exemplo:
+  #  'texto está com acentuação'.remover_acentos ==> 'texto esta com acentuacao'
   def remover_acentos
     texto = self
     texto = texto.gsub(/[á|à|ã|â|ä]/, 'a').gsub(/(é|è|ê|ë)/, 'e').gsub(/(í|ì|î|ï)/, 'i').gsub(/(ó|ò|õ|ô|ö)/, 'o').gsub(/(ú|ù|û|ü)/, 'u')

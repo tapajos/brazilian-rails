@@ -1,7 +1,5 @@
 module Inflector
-  
   Inflector.inflections do |inflect|
-    
     inflect.plural /^([a-zA-z]*)r$/i, '\1res'
     inflect.plural /^([a-zA-z]*)z$/i, '\1zes'
     
@@ -43,7 +41,5 @@ module Inflector
     inflect.irregular 'alemão', 'alemães'
 
     inflect.uncountable %w( tennis torax )
-    
   end  
-  
 end
