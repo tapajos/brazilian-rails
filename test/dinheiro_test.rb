@@ -22,11 +22,13 @@ class DinheiroTest < Test::Unit::TestCase
                2.reais =>   0.real + 2.reais,
                2.reais =>   2.reais + 0.real,
                 0.real =>   2.real + -2.real,
+                0.real =>   0.real + BigDecimal.new("0"),
               0.3.real =>  0.real + 0.3.real,
              -0.3.real => 0.real + -0.3.real,
             -0.03.real =>     0 + -0.03.real,
             -0.03.real =>     0.real + -0.03,   
-            -1.03.real =>    -1.real + -0.03    }
+            -1.03.real =>    -1.real + -0.03,
+            -1.03.real =>    -1.real + BigDecimal.new("-0.03") }
 
   SUBTRACAO = {     0.real =>       0.real - 0.real,
                    -1.real =>       0.real - 1.real,
@@ -40,7 +42,8 @@ class DinheiroTest < Test::Unit::TestCase
                  0.03.real => 0.06.real - 0.03.real,
                 -0.03.real =>         0 - 0.03.real,
                 -0.03.real =>         0.real - 0.03,    
-                -1.03.real =>        -1.real - 0.03 }
+                -1.03.real =>        -1.real - 0.03, 
+                -1.03.real =>        -1.real - BigDecimal.new("0.03") }
                 
   MULTIPLICACAO = {    0.real =>        0.real * 0,
                        0.real =>        0.real * 1,
@@ -59,12 +62,17 @@ class DinheiroTest < Test::Unit::TestCase
                     0.01.real =>    0.009.real * 1,
                     0.00.real =>  0.00049.real * 1,
                        0.real =>   0.real * 0.real,
+                       0.real =>   0.real * BigDecimal("0"),
                        1.real =>   1.real * 1.real,
+                       1.real =>   1.real * BigDecimal("1"),
                        1.real => 0.5.real * 2.real,
+                       1.real => 0.5.real * BigDecimal("2"),
                        1.real =>        1 * 1.real,
                       -1.real =>       -1 * 1.real,
                        1.real =>      -1 * -1.real,
-                    0.01.real =>     0.01 * 1.real }
+                    0.01.real =>     0.01 * 1.real,
+                    0.01.real =>   1.real * BigDecimal("0.01"),
+                    0.01.real =>   BigDecimal("0.01") * 1.real }
                     
   DIVISAO = { 
             [Dinheiro.new(0.33), Dinheiro.new(0.33), Dinheiro.new(0.34)] =>    Dinheiro.new(1) / 3,
@@ -72,7 +80,9 @@ class DinheiroTest < Test::Unit::TestCase
                                  [Dinheiro.new(50.00), Dinheiro.new(50)] =>  Dinheiro.new(100) / 2,
                                 [Dinheiro.new(0.25), Dinheiro.new(0.25)] =>  Dinheiro.new(0.5) / 2,
              [Dinheiro.new(0.16), Dinheiro.new(0.16),Dinheiro.new(0.18)] =>  Dinheiro.new(0.5) / 3,
-                                                    [Dinheiro.new(0.33)] => Dinheiro.new(0.33) / 1 }                    
+                                                    [Dinheiro.new(0.33)] => Dinheiro.new(0.33) / 1 ,
+                                                    [Dinheiro.new(0.33)] => Dinheiro.new(0.33) / 1 ,
+                                                    }                    
                     
                     
   QUANTIA_COM_FORMATO_VALIDO =  [                   "1211",
@@ -376,6 +386,10 @@ class DinheiroTest < Test::Unit::TestCase
   
   def testa_se_valor_decimal_cria_o_big_decimal_corretamente
     assert_equal BigDecimal.new("1234.56"), Dinheiro.new("1234,56").valor_decimal
+  end
+
+  def testa_soma_de_dinheiro_com_big_decimal
+    assert_equal Dinheiro.new(200), BigDecimal.new("100").reais + "100".reais
   end
   
   private
