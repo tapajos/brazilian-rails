@@ -147,6 +147,7 @@ class Dinheiro
     
   private
   def quantia_de(outro)
+    outro = outro.to_f if outro.kind_of?(BigDecimal)
     return outro.quantia if outro.kind_of?(Dinheiro)
     (outro * 100).round
   end
@@ -161,6 +162,7 @@ class Dinheiro
   
   def quantia=(quantia)
     raise DinheiroInvalidoError unless quantia_valida?(quantia)
+    quantia = quantia.to_f if quantia.kind_of?(BigDecimal)
     @quantia = (quantia * 100).round if quantia.kind_of?(Numeric)
     @quantia = extrai_quantia_como_inteiro(quantia) if quantia.kind_of?(String)
   end
