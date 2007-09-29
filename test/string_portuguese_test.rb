@@ -11,9 +11,9 @@ class StringPortugueseTest < Test::Unit::TestCase
     assert_equal "Celestino dos Santos", "celestino dos santos".nome_proprio
     assert_equal "Celestino Gomes da Silva de Souza do Carmo e Souza das Couves dos Santos", "celestino gomes da silva de souza do carmo e souza das couves dos santos".nome_proprio
     assert_equal 'Maria João da Silva', 'MariaJoão da silva'.nome_proprio
-#    assert_equal "Átila da Silva", 'átila da silva'.nome_proprio
-#    assert_equal "Érica da Silva", 'érica da silva'.nome_proprio
-#    assert_equal "Íris Santos", 'íris santos'.nome_proprio
+    assert_equal "Átila da Silva", 'átila da silva'.nome_proprio
+    assert_equal "Érica da Silva", 'érica da silva'.nome_proprio
+    assert_equal "Íris Santos", 'íris santos'.nome_proprio
     
     palavras_excluidas = %w(? ! @ # $ % & * \ / ? , . ; ] [ } { = + 0 1 2 3 4 5 6 7 8 9)
     
@@ -32,4 +32,13 @@ class StringPortugueseTest < Test::Unit::TestCase
     assert_equal 'cC', "çÇ".remover_acentos
     assert_equal 'aeiouAEIOUaeiouAEIOUaeiouAEIOUaeiouAEIOUaoAOnNcC', "áéíóúÁÉÍÓÚâêîôûÂÊÎÔÛàèìòùÀÈÌÒÙäëïöüÄËÏÖÜãõÃÕñÑçÇ".remover_acentos
   end
+  
+  def test_downcase_br
+    assert_equal 'áéíóúâêîôûàèìòùäëïöüãõñç', 'ÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÄËÏÖÜÃÕÑÇ'.downcase_br
+  end
+  
+  def test_upcase_br
+    assert_equal 'ÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÄËÏÖÜÃÕÑÇ', 'áéíóúâêîôûàèìòùäëïöüãõñç'.upcase_br
+  end
+  
 end

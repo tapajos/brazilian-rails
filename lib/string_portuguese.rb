@@ -1,13 +1,21 @@
 module StringPortuguese
+  MINUSCULAS_COM_ACENTO = 'áéíóúâêîôûàèìòùäëïöüãõñç'
+  MAIUSCULAS_COM_ACENTO = 'ÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÄËÏÖÜÃÕÑÇ'
+  
   # Normaliza nomes proprios
   #
   # Exemplo:
   #  'maria de souza dos santos e silva da costa'.nome_proprio ==> 'Maria de Souza dos Santos e Silva da Costa'
   def nome_proprio
-    self.titleize().gsub(/ D(a|e|o|as|os) /, ' d\1 ').gsub(/ E /, ' e ')
+    palavras = []
+    self.titleize().each do |palavra|
+      palavra =~ /^(.)(.*)$/
+      palavras << "#{$1.upcase_br}#{$2}"
+    end
+    palavras.join(' ').gsub(/ D(a|e|o|as|os) /, ' d\1 ').gsub(/ E /, ' e ')
   end
   
-  # remove as letras acentuadas
+  # Remove as letras acentuadas
   # 
   # Exemplo:
   #  'texto está com acentuação'.remover_acentos ==> 'texto esta com acentuacao'
@@ -19,5 +27,20 @@ module StringPortuguese
     texto = texto.gsub(/ç/, 'c').gsub(/Ç/, 'C')
     texto
   end
+  
+  # Retorna uma string com caracteres maiusculos
+  # 
+  # Exemplo:
+  #  'texto com acentuação'.upcase_br ==> 'TEXTO COM ACENTUAÇÃO'
+  def upcase_br
+    self.tr(MINUSCULAS_COM_ACENTO, MAIUSCULAS_COM_ACENTO).upcase
+  end
 
+  # Retorna uma string com caracteres minúsculos
+  # 
+  # Exemplo:
+  #  'TEXTO COM ACENTUAÇÃO'.downcase_br ==> 'texto com acentuação'
+  def downcase_br
+    self.tr(MAIUSCULAS_COM_ACENTO, MINUSCULAS_COM_ACENTO).downcase
+  end
 end
