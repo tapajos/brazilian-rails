@@ -4,64 +4,29 @@
 
 script/plugin install svn://rubyforge.org/var/svn/brazilian-rails
 
-Para usar a pluralização em português basta adicionar a linha abaixo no seu enviroment.rb
+Para usar a pluralização em português (Inflector) basta adicionar a linha abaixo no seu enviroment.rb
 
 require 'inflector_portuguese'
 
 == Desenvolvedores
 
-* Marcos Cóssio Tapajós Martins do Couto
-* Celestino Ferreira Gomes
+* {Marcos Cóssio Tapajós Martins do Couto}[http://www.improveit.com.br/tapajos]
+* {Celestino Ferreira Gomes}[http://www.workingwithrails.com/person/8470-celestino-gomes]
 * André Luiz Kupkovski
 * Rafael Fraga Walter
 * Fernando João Manfroi
 * Luciene Souza Luna
-* Vinicius Manhaes Teles
+* {Vinicius Manhaes Teles}[http://www.improveit.com.br/vinicius]
 
-=== Para maiores exemplos olhe os testes.
+== Exemplos.
 
-Metodo to_date para String.
-
-"2007/01/02".to_date
-
-"13/12/2007".to_date
-
-"01-02-2007".to_date
-
-"01/02/2007".to_date.to_s  ==>  "2007-02-01"
-
-"13/12/2007".to_date.to_s_br  ==>  "13/12/2007"
-
-Date.valid?("2007/01/02")  ==>  true
-
-Date.valid?("13/12/2007")  ==>  true
-
-Date.valid?("13/12/200A")  ==>  false
-
-Date.valid?("00/00/0000")  ==>  false
-
-Para ver os usos da parte de dinheiro recomendo olhar o arquivo dinheiro_test. (Comentario preguicoso de Tapajós)
-
-Para saber como utilizar a classe Dinheiro em um modelo da sua aplicação, verifique o arquivo README no diretório samples/dinheiro.
-
-"832.to_extenso => #{832.to_extenso}"
-
-"125623.to_extenso => #{125623.to_extenso}"
-
-"1_968_854_823.to_extenso => #{1_968_854_823.to_extenso}"
-
-"45_233_968_854_823.to_extenso => #{45_233_968_854_823.to_extenso}"
-
-"1230.to_extenso_real => #{1230.to_extenso_real}"
-
-"1230.95.to_extenso_real => #{1230.95.to_extenso_real}"
-
-"1.50.to_extenso_real => #{1.50.to_extenso_real}"
-
-"832.01.to_extenso_real => #{832.01.to_extenso_real}"
-
-'maria de andrade dos santos e silva'.nome_proprio() => 'Maria de Andrade dos Santos e Silva'
-
-'este texto está com acentuação'.remover_acentos => 'este texto esta com acentuacao'
-
-
+* Time
+* Date
+* Dinheiro. OBS: Para saber como utilizar a classe Dinheiro em um modelo da sua aplicação, verifique o arquivo {README}[link:files/vendor/plugins/brazilian-rails/samples/dinheiro/README.html] no diretório samples/dinheiro.
+* Extenso
+* ActiveRecord::Errors
+* ActionView::Helpers::ActiveRecordHelper
+* ActionView::Helpers::DateHelper
+* Inflector
+* NilClass
+* ActiveSupport::CoreExtensions::String::Conversions

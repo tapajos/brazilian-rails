@@ -1,4 +1,5 @@
 module ActionView::Helpers::ActiveRecordHelper
+  # Traduz as mensagens de erro do ActiveRecord
   def error_messages_for(*params)
     options = params.last.is_a?(Hash) ? params.pop.symbolize_keys : {}
     objects = params.collect { |object_name| instance_variable_get('@'+object_name.to_s()) }
@@ -29,6 +30,8 @@ module ActionView::Helpers::ActiveRecordHelper
 end
 
 module ActionView::Helpers::DateHelper
+  # Traduz o método distance_of_time_in_words para retornar esse valor em português
+  #
   def distance_of_time_in_words(from_time, to_time = 0, include_seconds = false)
     from_time = from_time.to_time if from_time.respond_to?(:to_time)
     to_time = to_time.to_time if to_time.respond_to?(:to_time)
