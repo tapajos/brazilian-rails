@@ -1,4 +1,5 @@
 module ActiveRecord
+  # Traduz as mensagens de erro do ActiveRecord
   class Errors
     @@default_error_messages = {
       :inclusion => "não está incluído na lista",

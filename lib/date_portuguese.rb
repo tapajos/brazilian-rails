@@ -1,4 +1,8 @@
 module ActiveSupport::CoreExtensions::String::Conversions
+  # Cria a data no padrao brasileiro e permanece aceitando no formato tradicional.
+  #
+  # Exemplo:
+  # "27/09/2007".to_date
   def to_date
     if /(\d{1,2})\W(\d{1,2})\W(\d{4})/ =~ self
       ::Date.new($3.to_i, $2.to_i, $1.to_i)
