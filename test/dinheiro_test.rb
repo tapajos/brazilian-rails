@@ -49,6 +49,9 @@ class DinheiroTest < Test::Unit::TestCase
                        0.real =>        0.real * 1,
                        0.real =>       0.real * -1,
                        1.real =>        1.real * 1,
+                       10.real =>        10.real * 1,
+                       100.real =>        100.real * 1,
+                       1000.real =>        1000.real * 1,
                        1.real =>      -1.real * -1,
                       -1.real =>       1.real * -1,
                       -1.real =>       -1.real * 1,
@@ -219,6 +222,11 @@ class DinheiroTest < Test::Unit::TestCase
     end
   end
   
+  def testa_to_s
+    assert_equal "1,00", Dinheiro.new(1).to_s
+    assert_equal "1.000,00", Dinheiro.new(1000).to_s
+  end
+  
   # real
   def testa_real
     assert_equal "R$ 1,00", Dinheiro.new(1).real
@@ -328,6 +336,7 @@ class DinheiroTest < Test::Unit::TestCase
   # to_f
   def testa_to_f
     assert_equal 2.30, 2.30.real.to_f
+    assert_equal 1000, 1000.real.to_f
   end
   
   # quantia_respeita_formato?

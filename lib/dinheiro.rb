@@ -96,7 +96,7 @@ class Dinheiro
   
   # Retorna um Float.
   def to_f
-    to_s.gsub(',', '.').to_f
+    to_s.gsub('.', '').gsub(',', '.').to_f
   end
   
   def coerce(outro)
