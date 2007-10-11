@@ -15,6 +15,7 @@ module Inflector
     inflect.plural /^([a-zA-z]*)([aeiou]s)$/i, '\1\2es'
     
     inflect.plural /^([a-zA-z]*)ão$/i, '\1ões'
+    inflect.plural /^([a-zA-z]*)ao$/i, '\1oes' #sem acentos
     
     inflect.singular /^([a-zA-z]*)as$/i, '\1a'
     inflect.singular /^([a-zA-z]*)es$/i, '\1e'
@@ -34,11 +35,20 @@ module Inflector
     inflect.singular /^([a-zA-z]*)ões$/i, '\1ão'
     inflect.singular /^([a-zA-z]*)ães$/i, '\1ão'
     inflect.singular /^([a-zA-z]*)ãos$/i, '\1ão'
+    
+    inflect.singular /^([a-zA-z]*)oes$/i, '\1ao' #sem acentos
+    inflect.singular /^([a-zA-z]*)aes$/i, '\1ao' #sem acentos
+    inflect.singular /^([a-zA-z]*)aos$/i, '\1ao' #sem acentos
 
     inflect.irregular 'cão', 'cães'
     inflect.irregular 'pão', 'pães'
     inflect.irregular 'mão', 'mãos'
     inflect.irregular 'alemão', 'alemães'
+    
+    inflect.irregular 'cao', 'caes' #sem acentos
+    inflect.irregular 'pao', 'paes' #sem acentos
+    inflect.irregular 'mao', 'maos' #sem acentos
+    inflect.irregular 'alemao', 'alemaes' #sem acentos
 
     inflect.uncountable %w( tennis torax )
   end  

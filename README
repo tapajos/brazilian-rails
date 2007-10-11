@@ -2,11 +2,11 @@
 
 == Intalação
 
-script/plugin install svn://rubyforge.org/var/svn/brazilian-rails
+ script/plugin install svn://rubyforge.org/var/svn/brazilian-rails
 
 Para usar a pluralização em português (Inflector) basta adicionar a linha abaixo no seu enviroment.rb
 
-require 'inflector_portuguese'
+ require 'inflector_portuguese'
 
 == Desenvolvedores
 
