@@ -56,7 +56,7 @@ class InflectorTest < Test::Unit::TestCase
   end
   
   def test_when_word_ends_in_ao
-    words = {:portão => "portões", :portao => 'portoes'}
+    words = {:portão => "portões", :portao => 'portoes', :localizacao => 'localizacoes'}
     verify_pluralize words
     verify_singularize words
   end
