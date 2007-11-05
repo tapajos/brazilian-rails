@@ -8,6 +8,7 @@ require 'excecoes'
 require 'nil_class'
 require 'number_portuguese'
 require 'string_portuguese'
+require 'feriado/feriado'
 
 Numeric.send(:include, DinheiroUtil)
 Numeric.send(:include, ExtensoReal)
