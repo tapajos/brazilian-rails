@@ -2,6 +2,45 @@ require File.dirname(__FILE__) + '/test_helper'
 
 class DateTest < Test::Unit::TestCase
   
+  # feriado 
+  def test_feriado_quando_feriado
+    assert "25/12/2007".to_date.feriado?
+  end
+  
+  def test_feriado_quando_nao_eh_feriado
+    assert !"01/12/2007".to_date.feriado?
+  end
+  
+  def test_feriado_quando_feriado_eh_pascoa
+    assert "08/04/2007".to_date.feriado?
+  end
+  
+  def test_feriado_quando_feriado_eh_corpus_christi
+    assert "07/06/2007".to_date.feriado?
+  end
+  
+  
+  # pascoa?
+  def test_pascoa?
+    assert "08/04/2007".to_date.pascoa?
+  end
+  
+  # corpus_christi?
+  def test_christi?
+    assert "07/06/2007".to_date.corpus_christi?
+  end
+  
+  # pascoa
+  def test_pascoa
+    assert_equal "08/04/2007", "01/01/2007".to_date.pascoa.to_s_br
+  end
+  
+  # corpus_christi
+  def test_corpus_christi
+    assert_equal "07/06/2007", "01/01/2007".to_date.corpus_christi.to_s_br
+  end
+
+  
   # to_date
   def test_create_date_with_traditional_date_format
     assert_equal "2007-01-02", "2007/01/02".to_date.to_s

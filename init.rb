@@ -1,3 +1,5 @@
+require 'feriado/feriado'
+require 'feriado/feriado_parser'
 require 'active_record_portuguese'
 require 'action_view_portuguese'
 require 'date_portuguese'
@@ -8,8 +10,7 @@ require 'excecoes'
 require 'nil_class'
 require 'number_portuguese'
 require 'string_portuguese'
-require 'feriado/feriado'
-require 'feriado/feriado_parser'
+
 
 Numeric.send(:include, DinheiroUtil)
 Numeric.send(:include, ExtensoReal)
@@ -24,6 +25,14 @@ $VERBOSE = nil
   eval "#{clazz}::ABBR_MONTHNAMES = [nil] + %w(Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez)"
   eval "#{clazz}::ABBR_DAYNAMES = %w(Dom Seg Ter Qua Qui Sex Sab)"
 end
+
+FERIADOS_PATH = RAILS_ROOT + '/config/feriados'
+feriados = FeriadoParser.parser(File.dirname(__FILE__) + "/lib/feriado/config")
+feriados += FeriadoParser.parser(FERIADOS_PATH) if File.directory?(FERIADOS_PATH)
+Date::FERIADOS = feriados;
+
 $VERBOSE = old_verbose
 
-  
+
+
+
