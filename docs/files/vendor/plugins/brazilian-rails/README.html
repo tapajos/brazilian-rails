@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>vendor/plugins/brazilian-rails/README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Sun Nov 04 20:55:26 -0200 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>Brazilian Rails</h1>
+<h2>Intalação</h2>
+<pre>
+ script/plugin install svn://rubyforge.org/var/svn/brazilian-rails
+</pre>
+<p>
+Para usar a pluralização em português (<a
+href="../../../../classes/Inflector.html">Inflector</a>) basta adicionar a
+linha abaixo no seu enviroment.rb
+</p>
+<pre>
+ require 'inflector_portuguese'
+</pre>
+<h2>Desenvolvedores</h2>
+<ul>
+<li><a href="http://www.improveit.com.br/tapajos">Marcos Cóssio Tapajós
+Martins do Couto</a>
+
+</li>
+<li><a
+href="http://www.workingwithrails.com/person/8470-celestino-gomes">Celestino
+Ferreira Gomes</a>
+
+</li>
+<li>André Luiz Kupkovski
+
+</li>
+<li>Rafael Fraga Walter
+
+</li>
+<li>Fernando João Manfroi
+
+</li>
+<li>Luciene Souza Luna
+
+</li>
+<li><a href="http://www.improveit.com.br/vinicius">Vinicius Manhaes Teles</a>
+
+</li>
+</ul>
+<h2>Exemplos.</h2>
+<ul>
+<li><a href="../../../../classes/Time.html">Time</a>
+
+</li>
+<li><a href="../../../../classes/Date.html">Date</a>
+
+</li>
+<li><a href="../../../../classes/Dinheiro.html">Dinheiro</a>. OBS: Para saber
+como utilizar a classe <a
+href="../../../../classes/Dinheiro.html">Dinheiro</a> em um modelo da sua
+aplicação, verifique o arquivo <a
+href="samples/dinheiro/README.html">README</a> no diretório
+samples/dinheiro.
+
+</li>
+<li><a href="../../../../classes/Extenso.html">Extenso</a>
+
+</li>
+<li><a
+href="../../../../classes/ActiveRecord/Errors.html">ActiveRecord::Errors</a>
+
+</li>
+<li><a
+href="../../../../classes/ActionView/Helpers/ActiveRecordHelper.html">ActionView::Helpers::ActiveRecordHelper</a>
+
+</li>
+<li><a
+href="../../../../classes/ActionView/Helpers/DateHelper.html">ActionView::Helpers::DateHelper</a>
+
+</li>
+<li><a href="../../../../classes/Inflector.html">Inflector</a>
+
+</li>
+<li><a href="../../../../classes/NilClass.html">NilClass</a>
+
+</li>
+<li><a
+href="../../../../classes/ActiveSupport/CoreExtensions/String/Conversions.html">ActiveSupport::CoreExtensions::String::Conversions</a>
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
