@@ -19,17 +19,6 @@ class DateTest < Test::Unit::TestCase
     assert "07/06/2007".to_date.feriado?
   end
   
-  
-  # pascoa?
-  def test_pascoa?
-    assert "08/04/2007".to_date.pascoa?
-  end
-  
-  # corpus_christi?
-  def test_christi?
-    assert "07/06/2007".to_date.corpus_christi?
-  end
-  
   # pascoa
   def test_pascoa
     assert_equal "08/04/2007", "01/01/2007".to_date.pascoa.to_s_br
