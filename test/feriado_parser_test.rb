@@ -1,8 +1,9 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require File.dirname(__FILE__) + '/test_helper'
 
 class FeriadoParserTest < Test::Unit::TestCase
   
-  FERIADO_YML_PATH = File.dirname(__FILE__) + '/../../lib/feriado'
+  FERIADO_YML_PATH = File.expand_path(File.dirname(__FILE__) + '/../lib/config')
+  p FERIADO_YML_PATH
   NATAL = Feriado.new("natal", 25, 12)
   
   def test_feriados

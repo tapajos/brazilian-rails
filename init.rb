@@ -1,5 +1,5 @@
-require 'feriado/feriado'
-require 'feriado/feriado_parser'
+require 'feriado'
+require 'feriado_parser'
 require 'active_record_portuguese'
 require 'action_view_portuguese'
 require 'date_portuguese'
@@ -27,7 +27,7 @@ $VERBOSE = nil
 end
 
 FERIADOS_PATH = RAILS_ROOT + '/config/feriados'
-feriados, metodos = FeriadoParser.parser(File.dirname(__FILE__) + "/lib/feriado/config")
+feriados, metodos = FeriadoParser.parser(File.dirname(__FILE__) + "/lib/config")
 if File.directory?(FERIADOS_PATH)
   f, m = FeriadoParser.parser(FERIADOS_PATH)
   feriados += f
