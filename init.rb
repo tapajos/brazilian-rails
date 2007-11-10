@@ -27,9 +27,14 @@ $VERBOSE = nil
 end
 
 FERIADOS_PATH = RAILS_ROOT + '/config/feriados'
-feriados = FeriadoParser.parser(File.dirname(__FILE__) + "/lib/feriado/config")
-feriados += FeriadoParser.parser(FERIADOS_PATH) if File.directory?(FERIADOS_PATH)
+feriados, metodos = FeriadoParser.parser(File.dirname(__FILE__) + "/lib/feriado/config")
+if File.directory?(FERIADOS_PATH)
+  f, m = FeriadoParser.parser(FERIADOS_PATH)
+  feriados += f
+  metodos += m
+end
 Date::FERIADOS = feriados;
+Date::FERIADOS_METODOS = metodos
 
 $VERBOSE = old_verbose
 

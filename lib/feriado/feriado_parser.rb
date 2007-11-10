@@ -6,6 +6,7 @@ class FeriadoParser
   def self.parser(diretorio)
     files = []
     feriados = []
+    metodos = []
     raise FeriadoParserDiretorioInvalidoError unless File.directory?(diretorio)
     Find.find(diretorio) do |file| 
       files << file if file =~ /.*\.yml$/
@@ -14,10 +15,15 @@ class FeriadoParser
     files.each do |file|
       itens = YAML.load_file(file) 
       itens.each do |key, value|
+        if value["metodo"]
+          FeriadoParserMetodoInvalido if value["dia"] && value["mes"]
+          metodos << value["metodo"]
+        else
           feriados << Feriado.new(key, value["dia"], value["mes"])
+        end
       end
     end
-    feriados
+    [feriados, metodos]
   end
   
   

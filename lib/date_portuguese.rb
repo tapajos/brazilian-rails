@@ -15,7 +15,7 @@ end
 class Date
   
   FERIADOS = []
-  
+  FERIADOS_METODOS = []
   
   # Retorna a true se a data for um feriado
   #
@@ -23,7 +23,11 @@ class Date
   #  data = Date.new(2007, 12, 25)
   #  data.feriado? ==> true
   def feriado?
-    FERIADOS.include?(Feriado.new("novo_feriado", self.day, self.month)) || self.pascoa? || self.corpus_christi?
+    return true if FERIADOS.include?(Feriado.new("novo_feriado", self.day, self.month))
+    FERIADOS_METODOS.each do |metodo|
+      return true if self == send(metodo)
+    end
+    false
   end
   
   # Retorna a pascoa no ano da data atual
@@ -44,11 +48,6 @@ class Date
     Date.parse("#{self.year}-#{month}-#{day}")
   end
 
-  #Retorna true se a data atual for a pascoa
-  def pascoa?
-    pascoa == self
-  end
-
   # Retorna a corpus_christi no ano da data atual
   #
   # Exemplo:
@@ -58,11 +57,7 @@ class Date
     Date.parse((pascoa.to_time + 60.days).to_date.to_s)
   end
   
-  #Retorna true se a data atual for corpus_christi
-  def corpus_christi?
-    corpus_christi == self
-  end
-  
+
   # Retorna a data no padrao brasileiro
   #
   # Exemplo:

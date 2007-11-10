@@ -30,3 +30,9 @@ Para usar a pluralização em português (Inflector) basta adicionar a linha aba
 * Inflector
 * NilClass
 * ActiveSupport::CoreExtensions::String::Conversions
+
+
+== Configuração dos Feriados
+Os feriados são configurados através de arquivos YML que deverão estar na pasta feriados dentro da pasta config da sua aplicação.
+Você pode ver exemplos desses YML dentro do diretório samples/feriado.
+

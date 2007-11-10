@@ -6,9 +6,10 @@ class FeriadoParserTest < Test::Unit::TestCase
   NATAL = Feriado.new("natal", 25, 12)
   
   def test_feriados
-    feriados = FeriadoParser.parser(FERIADO_YML_PATH)
+    feriados, metodos = FeriadoParser.parser(FERIADO_YML_PATH)
     feriados.each {|feriado| assert_kind_of Feriado, feriado}
     assert_equal NATAL, feriados.first
+    assert_equal ["pascoa", "corpus_christi"], metodos
   end
   
   def test_feriados_quando_path_nao_eh_diretorio
