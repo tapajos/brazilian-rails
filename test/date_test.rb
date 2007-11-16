@@ -1,4 +1,5 @@
-require File.dirname(__FILE__) + '/test_helper'
+$: << File.dirname(__FILE__) + '/..' << File.dirname(__FILE__) + '/../lib'
+%w(test/unit rubygems init mocha).each { |lib| require lib }
 
 class DateTest < Test::Unit::TestCase
   
