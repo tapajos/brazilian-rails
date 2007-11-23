@@ -78,6 +78,68 @@
 
   <div id="contextContent">
 
+    <div id="description">
+      <h2>Como usar o <a href="Dinheiro.html">Dinheiro</a> em seu <a href="ActiveRecord.html">ActiveRecord</a>?</h2>
+<ul>
+<li>Arquivo 001_create_lancamentos.rb:
+
+<pre>
+  class CreateLancamentos &lt; ActiveRecord::Migration
+    def self.up
+      create_table :lancamentos do |t|
+        t.column :descricao,   :string,    :null =&gt; false
+        t.column :valor,       :decimal,   :precision =&gt; 14, :scale =&gt; 2, :null =&gt; false
+        t.column :mensalidade, :decimal,   :precision =&gt; 14, :scale =&gt; 2, :null =&gt; false
+      end
+    end
+
+    def self.down
+      drop_table :lancamentos
+    end
+  end
+</pre>
+</li>
+<li>Arquivo lancamento.rb:
+
+<pre>
+  class Lancamento &lt; ActiveRecord::Base
+    usar_como_dinheiro :valor, :mensalidade
+  end
+</pre>
+</li>
+<li>No console (script/console):
+
+<pre>
+  Loading development environment.
+  &gt;&gt; lancamento = Lancamento.new
+  =&gt; #&lt;Lancamento:0x9652cd8 @attributes={&quot;descricao&quot;=&gt;nil,
+                                         &quot;valor&quot;=&gt;#&lt;BigDecimal:9657008,'0.0',4(4)&gt;,
+                                         &quot;mensalidade&quot;=&gt;#&lt;BigDecimal:9656e8c,'0.0',4(4)&gt;},
+                            @new_record=true&gt;
+  &gt;&gt; lancamento.valor = 100
+  =&gt; 100
+  &gt;&gt; lancamento.valor
+  =&gt; #&lt;Dinheiro:0x9650f3c @quantia=10000&gt;
+  &gt;&gt; lancamento.valor.real
+  =&gt; &quot;R$ 100,00&quot;
+  &gt;&gt; lancamento.valor = 100.50
+  =&gt; 100.5
+  &gt;&gt; lancamento.valor.real
+  =&gt; &quot;R$ 100,50&quot;
+  &gt;&gt; lancamento.valor = &quot;250.50&quot;
+  =&gt; &quot;250.50&quot;
+  &gt;&gt; lancamento.valor.real
+  =&gt; &quot;R$ 250,50&quot;
+  &gt;&gt; lancamento.valor = 354.58.reais
+  =&gt; #&lt;Dinheiro:0x9646384 @quantia=35458&gt;
+  &gt;&gt; lancamento.valor.real
+  =&gt; &quot;R$ 354,58&quot;
+  &gt;&gt; exit
+</pre>
+</li>
+</ul>
+
+    </div>
 
 
    </div>
@@ -86,25 +148,25 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000010">*</a>&nbsp;&nbsp;
-      <a href="#M000008">+</a>&nbsp;&nbsp;
-      <a href="#M000009">-</a>&nbsp;&nbsp;
-      <a href="#M000011">/</a>&nbsp;&nbsp;
-      <a href="#M000007">&lt;=&gt;</a>&nbsp;&nbsp;
-      <a href="#M000006">==</a>&nbsp;&nbsp;
-      <a href="#M000016">coerce</a>&nbsp;&nbsp;
-      <a href="#M000021">contabil</a>&nbsp;&nbsp;
-      <a href="#M000004">new</a>&nbsp;&nbsp;
-      <a href="#M000012">por_extenso</a>&nbsp;&nbsp;
-      <a href="#M000013">por_extenso_em_reais</a>&nbsp;&nbsp;
-      <a href="#M000019">reais</a>&nbsp;&nbsp;
-      <a href="#M000020">reais_contabeis</a>&nbsp;&nbsp;
-      <a href="#M000017">real</a>&nbsp;&nbsp;
-      <a href="#M000018">real_contabil</a>&nbsp;&nbsp;
-      <a href="#M000014">to_extenso</a>&nbsp;&nbsp;
-      <a href="#M000015">to_f</a>&nbsp;&nbsp;
-      <a href="#M000005">to_s</a>&nbsp;&nbsp;
-      <a href="#M000022">valor_decimal</a>&nbsp;&nbsp;
+      <a href="#M000012">*</a>&nbsp;&nbsp;
+      <a href="#M000010">+</a>&nbsp;&nbsp;
+      <a href="#M000011">-</a>&nbsp;&nbsp;
+      <a href="#M000013">/</a>&nbsp;&nbsp;
+      <a href="#M000009">&lt;=&gt;</a>&nbsp;&nbsp;
+      <a href="#M000008">==</a>&nbsp;&nbsp;
+      <a href="#M000018">coerce</a>&nbsp;&nbsp;
+      <a href="#M000023">contabil</a>&nbsp;&nbsp;
+      <a href="#M000006">new</a>&nbsp;&nbsp;
+      <a href="#M000014">por_extenso</a>&nbsp;&nbsp;
+      <a href="#M000015">por_extenso_em_reais</a>&nbsp;&nbsp;
+      <a href="#M000021">reais</a>&nbsp;&nbsp;
+      <a href="#M000022">reais_contabeis</a>&nbsp;&nbsp;
+      <a href="#M000019">real</a>&nbsp;&nbsp;
+      <a href="#M000020">real_contabil</a>&nbsp;&nbsp;
+      <a href="#M000016">to_extenso</a>&nbsp;&nbsp;
+      <a href="#M000017">to_f</a>&nbsp;&nbsp;
+      <a href="#M000007">to_s</a>&nbsp;&nbsp;
+      <a href="#M000024">valor_decimal</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -184,24 +246,24 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000004" class="method-detail">
-        <a name="M000004"></a>
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
 
         <div class="method-heading">
-          <a href="#M000004" class="method-signature">
+          <a href="#M000006" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(quantia)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000004-source">
+            onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000006-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 14</span>
-14:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">quantia</span>)
-15:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">quantia</span> = <span class="ruby-identifier">quantia</span>
-16:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 66</span>
+66:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">quantia</span>)
+67:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">quantia</span> = <span class="ruby-identifier">quantia</span>
+68:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -209,11 +271,11 @@
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000010" class="method-detail">
-        <a name="M000010"></a>
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
 
         <div class="method-heading">
-          <a href="#M000010" class="method-signature">
+          <a href="#M000012" class="method-signature">
           <span class="method-name">*</span><span class="method-args">(outro)</span>
           </a>
         </div>
@@ -223,24 +285,24 @@
 Retorna a multiplicacao entre dinheiros.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000010-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000010-source">
+            onclick="toggleCode('M000012-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000012-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 60</span>
-60:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">*</span>(<span class="ruby-identifier">outro</span>)
-61:     <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Dinheiro</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">to_f</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">outro</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">outro</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Dinheiro</span>
-62:     <span class="ruby-identifier">outro</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">to_f</span>
-63:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 112</span>
+112:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">*</span>(<span class="ruby-identifier">outro</span>)
+113:     <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Dinheiro</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">to_f</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">outro</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">outro</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Dinheiro</span>
+114:     <span class="ruby-identifier">outro</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">to_f</span>
+115:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000008" class="method-detail">
-        <a name="M000008"></a>
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
 
         <div class="method-heading">
-          <a href="#M000008" class="method-signature">
+          <a href="#M000010" class="method-signature">
           <span class="method-name">+</span><span class="method-args">(outro)</span>
           </a>
         </div>
@@ -250,39 +312,13 @@ Retorna a multiplicacao entre dinheiros.
 Retorna a adicao entre dinheiros.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000008-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000008-source">
+            onclick="toggleCode('M000010-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000010-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 50</span>
-50:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">+</span>(<span class="ruby-identifier">outro</span>)
-51:     <span class="ruby-constant">Dinheiro</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">transforma_em_string_que_represente_a_quantia</span>(<span class="ruby-ivar">@quantia</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">quantia_de</span>(<span class="ruby-identifier">outro</span>)))
-52:   <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000009" class="method-detail">
-        <a name="M000009"></a>
-
-        <div class="method-heading">
-          <a href="#M000009" class="method-signature">
-          <span class="method-name">-</span><span class="method-args">(outro)</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p>
-Retorna a subtracao entre dinheiros.
-</p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000009-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000009-source">
-<pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 55</span>
-55:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">-</span>(<span class="ruby-identifier">outro</span>)
-56:     <span class="ruby-constant">Dinheiro</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">transforma_em_string_que_represente_a_quantia</span>(<span class="ruby-ivar">@quantia</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">quantia_de</span>(<span class="ruby-identifier">outro</span>)))
-57:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 102</span>
+102:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">+</span>(<span class="ruby-identifier">outro</span>)
+103:     <span class="ruby-constant">Dinheiro</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">transforma_em_string_que_represente_a_quantia</span>(<span class="ruby-ivar">@quantia</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">quantia_de</span>(<span class="ruby-identifier">outro</span>)))
+104:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -293,6 +329,32 @@ Retorna a subtracao entre dinheiros.
 
         <div class="method-heading">
           <a href="#M000011" class="method-signature">
+          <span class="method-name">-</span><span class="method-args">(outro)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Retorna a subtracao entre dinheiros.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000011-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000011-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 107</span>
+107:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">-</span>(<span class="ruby-identifier">outro</span>)
+108:     <span class="ruby-constant">Dinheiro</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">transforma_em_string_que_represente_a_quantia</span>(<span class="ruby-ivar">@quantia</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">quantia_de</span>(<span class="ruby-identifier">outro</span>)))
+109:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000013" class="method-detail">
+        <a name="M000013"></a>
+
+        <div class="method-heading">
+          <a href="#M000013" class="method-signature">
           <span class="method-name">/</span><span class="method-args">(outro)</span>
           </a>
         </div>
@@ -302,32 +364,32 @@ Retorna a subtracao entre dinheiros.
 Retorna a divisao entre dinheiros.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000011-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000011-source">
+            onclick="toggleCode('M000013-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000013-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 66</span>
-66:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">/</span>(<span class="ruby-identifier">outro</span>)
-67:     <span class="ruby-identifier">raise</span> <span class="ruby-constant">DivisaPorNaoEscalarError</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">outro</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Numeric</span>)
-68:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@quantia</span><span class="ruby-operator">/</span><span class="ruby-identifier">outro</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">outro</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
-69:     <span class="ruby-identifier">soma_parcial</span> = <span class="ruby-constant">Dinheiro</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)
-70:     <span class="ruby-identifier">parcelas</span> = []
-71:     (<span class="ruby-identifier">outro</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>).<span class="ruby-identifier">times</span> <span class="ruby-keyword kw">do</span>
-72:       <span class="ruby-identifier">parcela</span> = <span class="ruby-constant">Dinheiro</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">transforma_em_string_que_represente_a_quantia</span>(<span class="ruby-ivar">@quantia</span><span class="ruby-operator">/</span><span class="ruby-identifier">outro</span>))
-73:       <span class="ruby-identifier">parcelas</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">parcela</span>
-74:       <span class="ruby-identifier">soma_parcial</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">parcela</span>
-75:     <span class="ruby-keyword kw">end</span>
-76:     <span class="ruby-identifier">parcelas</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Dinheiro</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">transforma_em_string_que_represente_a_quantia</span>(<span class="ruby-ivar">@quantia</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">quantia_de</span>(<span class="ruby-identifier">soma_parcial</span>)))
-77:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 118</span>
+118:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">/</span>(<span class="ruby-identifier">outro</span>)
+119:     <span class="ruby-identifier">raise</span> <span class="ruby-constant">DivisaPorNaoEscalarError</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">outro</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Numeric</span>)
+120:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@quantia</span><span class="ruby-operator">/</span><span class="ruby-identifier">outro</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">outro</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+121:     <span class="ruby-identifier">soma_parcial</span> = <span class="ruby-constant">Dinheiro</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)
+122:     <span class="ruby-identifier">parcelas</span> = []
+123:     (<span class="ruby-identifier">outro</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>).<span class="ruby-identifier">times</span> <span class="ruby-keyword kw">do</span>
+124:       <span class="ruby-identifier">parcela</span> = <span class="ruby-constant">Dinheiro</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">transforma_em_string_que_represente_a_quantia</span>(<span class="ruby-ivar">@quantia</span><span class="ruby-operator">/</span><span class="ruby-identifier">outro</span>))
+125:       <span class="ruby-identifier">parcelas</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">parcela</span>
+126:       <span class="ruby-identifier">soma_parcial</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">parcela</span>
+127:     <span class="ruby-keyword kw">end</span>
+128:     <span class="ruby-identifier">parcelas</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Dinheiro</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">transforma_em_string_que_represente_a_quantia</span>(<span class="ruby-ivar">@quantia</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">quantia_de</span>(<span class="ruby-identifier">soma_parcial</span>)))
+129:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000007" class="method-detail">
-        <a name="M000007"></a>
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
 
         <div class="method-heading">
-          <a href="#M000007" class="method-signature">
+          <a href="#M000009" class="method-signature">
           <span class="method-name">&lt;=&gt;</span><span class="method-args">(outro_dinheiro)</span>
           </a>
         </div>
@@ -346,24 +408,24 @@ Exemplo:
  2.real &gt; 1.reais ==&gt; true
 </pre>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000007-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000007-source">
+            onclick="toggleCode('M000009-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000009-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 44</span>
-44:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">outro_dinheiro</span>)
-45:     <span class="ruby-identifier">outro_dinheiro</span> = <span class="ruby-constant">Dinheiro</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">outro_dinheiro</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">outro_dinheiro</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Dinheiro</span>)
-46:     <span class="ruby-ivar">@quantia</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">outro_dinheiro</span>.<span class="ruby-identifier">quantia</span>
-47:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 96</span>
+96:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">outro_dinheiro</span>)
+97:     <span class="ruby-identifier">outro_dinheiro</span> = <span class="ruby-constant">Dinheiro</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">outro_dinheiro</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">outro_dinheiro</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Dinheiro</span>)
+98:     <span class="ruby-ivar">@quantia</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">outro_dinheiro</span>.<span class="ruby-identifier">quantia</span>
+99:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000006" class="method-detail">
-        <a name="M000006"></a>
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
 
         <div class="method-heading">
-          <a href="#M000006" class="method-signature">
+          <a href="#M000008" class="method-signature">
           <span class="method-name">==</span><span class="method-args">(outro_dinheiro)</span>
           </a>
         </div>
@@ -381,47 +443,47 @@ Exemplo:
  um_real == Dinheiro.new(2) ==&gt; false
 </pre>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000006-source">
+            onclick="toggleCode('M000008-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000008-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 32</span>
-32:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">outro_dinheiro</span>)
-33:     <span class="ruby-identifier">outro_dinheiro</span> = <span class="ruby-constant">Dinheiro</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">outro_dinheiro</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">outro_dinheiro</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Dinheiro</span>)
-34:     <span class="ruby-ivar">@quantia</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">outro_dinheiro</span>.<span class="ruby-identifier">quantia</span>
-35:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 84</span>
+84:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">outro_dinheiro</span>)
+85:     <span class="ruby-identifier">outro_dinheiro</span> = <span class="ruby-constant">Dinheiro</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">outro_dinheiro</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">outro_dinheiro</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Dinheiro</span>)
+86:     <span class="ruby-ivar">@quantia</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">outro_dinheiro</span>.<span class="ruby-identifier">quantia</span>
+87:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000016" class="method-detail">
-        <a name="M000016"></a>
+      <div id="method-M000018" class="method-detail">
+        <a name="M000018"></a>
 
         <div class="method-heading">
-          <a href="#M000016" class="method-signature">
+          <a href="#M000018" class="method-signature">
           <span class="method-name">coerce</span><span class="method-args">(outro)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000016-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000016-source">
+            onclick="toggleCode('M000018-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000018-source">
 <pre>
-     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 102</span>
-102:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">coerce</span>(<span class="ruby-identifier">outro</span>)
-103:     [ <span class="ruby-constant">Dinheiro</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">outro</span>), <span class="ruby-keyword kw">self</span> ]
-104:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 154</span>
+154:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">coerce</span>(<span class="ruby-identifier">outro</span>)
+155:     [ <span class="ruby-constant">Dinheiro</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">outro</span>), <span class="ruby-keyword kw">self</span> ]
+156:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000021" class="method-detail">
-        <a name="M000021"></a>
+      <div id="method-M000023" class="method-detail">
+        <a name="M000023"></a>
 
         <div class="method-heading">
-          <a href="#M000021" class="method-signature">
+          <a href="#M000023" class="method-signature">
           <span class="method-name">contabil</span><span class="method-args">()</span>
           </a>
         </div>
@@ -438,27 +500,27 @@ Exemplo:
  Dinheiro.new(-1).contabil ==&gt; '(1,00)'
 </pre>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000021-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000021-source">
+            onclick="toggleCode('M000023-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000023-source">
 <pre>
-     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 135</span>
-135:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">contabil</span>
-136:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@quantia</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0</span>
-137:       <span class="ruby-identifier">to_s</span>      
-138:     <span class="ruby-keyword kw">else</span>  
-139:       <span class="ruby-value str">&quot;(&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">to_s</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>] <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;)&quot;</span>    
-140:     <span class="ruby-keyword kw">end</span>  
-141:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 187</span>
+187:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">contabil</span>
+188:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@quantia</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0</span>
+189:       <span class="ruby-identifier">to_s</span>      
+190:     <span class="ruby-keyword kw">else</span>  
+191:       <span class="ruby-value str">&quot;(&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">to_s</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>] <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;)&quot;</span>    
+192:     <span class="ruby-keyword kw">end</span>  
+193:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000012" class="method-detail">
-        <a name="M000012"></a>
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
 
         <div class="method-heading">
-          <a href="#M000012" class="method-signature">
+          <a href="#M000014" class="method-signature">
           <span class="method-name">por_extenso</span><span class="method-args">()</span>
           </a>
         </div>
@@ -475,20 +537,20 @@ Exemplo:
  (100.58).por_extenso ==&gt; 'cem reais e cinquenta e oito centavos'
 </pre>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000012-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000012-source">
+            onclick="toggleCode('M000014-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000014-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 84</span>
-84:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">por_extenso</span>
-85:     (<span class="ruby-ivar">@quantia</span><span class="ruby-operator">/</span><span class="ruby-value">100.0</span>).<span class="ruby-identifier">por_extenso_em_reais</span>
-86:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 136</span>
+136:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">por_extenso</span>
+137:     (<span class="ruby-ivar">@quantia</span><span class="ruby-operator">/</span><span class="ruby-value">100.0</span>).<span class="ruby-identifier">por_extenso_em_reais</span>
+138:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000013" class="method-detail">
-        <a name="M000013"></a>
+      <div id="method-M000015" class="method-detail">
+        <a name="M000015"></a>
 
         <div class="method-heading">
           <span class="method-name">por_extenso_em_reais</span><span class="method-args">()</span>
@@ -496,7 +558,35 @@ Exemplo:
       
         <div class="method-description">
           <p>
-Alias for <a href="Dinheiro.html#M000012">por_extenso</a>
+Alias for <a href="Dinheiro.html#M000014">por_extenso</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000021" class="method-detail">
+        <a name="M000021"></a>
+
+        <div class="method-heading">
+          <span class="method-name">reais</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Dinheiro.html#M000019">real</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000022" class="method-detail">
+        <a name="M000022"></a>
+
+        <div class="method-heading">
+          <span class="method-name">reais_contabeis</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Dinheiro.html#M000020">real_contabil</a>
 </p>
         </div>
       </div>
@@ -505,35 +595,7 @@ Alias for <a href="Dinheiro.html#M000012">por_extenso</a>
         <a name="M000019"></a>
 
         <div class="method-heading">
-          <span class="method-name">reais</span><span class="method-args">()</span>
-        </div>
-      
-        <div class="method-description">
-          <p>
-Alias for <a href="Dinheiro.html#M000017">real</a>
-</p>
-        </div>
-      </div>
-
-      <div id="method-M000020" class="method-detail">
-        <a name="M000020"></a>
-
-        <div class="method-heading">
-          <span class="method-name">reais_contabeis</span><span class="method-args">()</span>
-        </div>
-      
-        <div class="method-description">
-          <p>
-Alias for <a href="Dinheiro.html#M000018">real_contabil</a>
-</p>
-        </div>
-      </div>
-
-      <div id="method-M000017" class="method-detail">
-        <a name="M000017"></a>
-
-        <div class="method-heading">
-          <a href="#M000017" class="method-signature">
+          <a href="#M000019" class="method-signature">
           <span class="method-name">real</span><span class="method-args">()</span>
           </a>
         </div>
@@ -550,23 +612,23 @@ Exemplo:
  Dinheiro.new(-1).real ==&gt; 'R$ -1,00'
 </pre>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000017-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000017-source">
+            onclick="toggleCode('M000019-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000019-source">
 <pre>
-     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 111</span>
-111:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">real</span>
-112:     <span class="ruby-value str">&quot;R$ &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">to_s</span>
-113:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 163</span>
+163:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">real</span>
+164:     <span class="ruby-value str">&quot;R$ &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">to_s</span>
+165:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000018" class="method-detail">
-        <a name="M000018"></a>
+      <div id="method-M000020" class="method-detail">
+        <a name="M000020"></a>
 
         <div class="method-heading">
-          <a href="#M000018" class="method-signature">
+          <a href="#M000020" class="method-signature">
           <span class="method-name">real_contabil</span><span class="method-args">()</span>
           </a>
         </div>
@@ -583,52 +645,52 @@ Exemplo:
  Dinheiro.new(-1).real ==&gt; 'R$ (1,00)'
 </pre>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000018-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000018-source">
+            onclick="toggleCode('M000020-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000020-source">
 <pre>
-     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 120</span>
-120:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">real_contabil</span>
-121:     <span class="ruby-value str">&quot;R$ &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">contabil</span>
-122:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 172</span>
+172:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">real_contabil</span>
+173:     <span class="ruby-value str">&quot;R$ &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">contabil</span>
+174:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000014" class="method-detail">
-        <a name="M000014"></a>
+      <div id="method-M000016" class="method-detail">
+        <a name="M000016"></a>
 
         <div class="method-heading">
-          <a href="#M000014" class="method-signature">
+          <a href="#M000016" class="method-signature">
           <span class="method-name">to_extenso</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-DEPRECATION WARNING: use <a href="Dinheiro.html#M000012">por_extenso</a> ou
-<a href="Dinheiro.html#M000013">por_extenso_em_reais</a>, pois este sera
+DEPRECATION WARNING: use <a href="Dinheiro.html#M000014">por_extenso</a> ou
+<a href="Dinheiro.html#M000015">por_extenso_em_reais</a>, pois este sera
 removido no proximo release.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000014-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000014-source">
+            onclick="toggleCode('M000016-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000016-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 92</span>
-92:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_extenso</span>
-93:     <span class="ruby-identifier">warn</span>(<span class="ruby-value str">&quot;DEPRECATION WARNING: use por_extenso ou por_extenso_em_reais, pois este sera removido no proximo release.&quot;</span>)
-94:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">por_extenso</span>
-95:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 144</span>
+144:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_extenso</span>
+145:     <span class="ruby-identifier">warn</span>(<span class="ruby-value str">&quot;DEPRECATION WARNING: use por_extenso ou por_extenso_em_reais, pois este sera removido no proximo release.&quot;</span>)
+146:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">por_extenso</span>
+147:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000015" class="method-detail">
-        <a name="M000015"></a>
+      <div id="method-M000017" class="method-detail">
+        <a name="M000017"></a>
 
         <div class="method-heading">
-          <a href="#M000015" class="method-signature">
+          <a href="#M000017" class="method-signature">
           <span class="method-name">to_f</span><span class="method-args">()</span>
           </a>
         </div>
@@ -638,23 +700,23 @@ removido no proximo release.
 Retorna um Float.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000015-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000015-source">
+            onclick="toggleCode('M000017-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000017-source">
 <pre>
-     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 98</span>
- 98:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_f</span>
- 99:     <span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'.'</span>, <span class="ruby-value str">''</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">','</span>, <span class="ruby-value str">'.'</span>).<span class="ruby-identifier">to_f</span>
-100:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 150</span>
+150:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_f</span>
+151:     <span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'.'</span>, <span class="ruby-value str">''</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">','</span>, <span class="ruby-value str">'.'</span>).<span class="ruby-identifier">to_f</span>
+152:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000005" class="method-detail">
-        <a name="M000005"></a>
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
 
         <div class="method-heading">
-          <a href="#M000005" class="method-signature">
+          <a href="#M000007" class="method-signature">
           <span class="method-name">to_s</span><span class="method-args">()</span>
           </a>
         </div>
@@ -670,23 +732,23 @@ Exemplo:
  1000.to_s ==&gt; '1.000,00'
 </pre>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000005-source">
+            onclick="toggleCode('M000007-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000007-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 22</span>
-22:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
-23:     <span class="ruby-identifier">inteiro_com_milhar</span>(<span class="ruby-identifier">parte_inteira</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">parte_decimal</span>
-24:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 74</span>
+74:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
+75:     <span class="ruby-identifier">inteiro_com_milhar</span>(<span class="ruby-identifier">parte_inteira</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">parte_decimal</span>
+76:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000022" class="method-detail">
-        <a name="M000022"></a>
+      <div id="method-M000024" class="method-detail">
+        <a name="M000024"></a>
 
         <div class="method-heading">
-          <a href="#M000022" class="method-signature">
+          <a href="#M000024" class="method-signature">
           <span class="method-name">valor_decimal</span><span class="method-args">()</span>
           </a>
         </div>
@@ -696,13 +758,13 @@ Exemplo:
 Retorna um BigDecinal.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000022-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000022-source">
+            onclick="toggleCode('M000024-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000024-source">
 <pre>
-     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 144</span>
-144:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">valor_decimal</span>
-145:     <span class="ruby-constant">BigDecimal</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">quantia_sem_separacao_milhares</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">','</span>,<span class="ruby-value str">'.'</span>)
-146:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/dinheiro.rb, line 196</span>
+196:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">valor_decimal</span>
+197:     <span class="ruby-constant">BigDecimal</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">quantia_sem_separacao_milhares</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">','</span>,<span class="ruby-value str">'.'</span>)
+198:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>

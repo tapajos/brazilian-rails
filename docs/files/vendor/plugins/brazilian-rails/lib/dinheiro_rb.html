@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Tue Nov 06 20:31:19 -0200 2007</td>
+      <td>Fri Nov 23 17:16:00 -0200 2007</td>
     </tr>
     </table>
   </div>
@@ -68,6 +68,68 @@
 
   <div id="contextContent">
 
+    <div id="description">
+      <h2>Como usar o <a href="../../../../../classes/Dinheiro.html">Dinheiro</a> em seu <a href="../../../../../classes/ActiveRecord.html">ActiveRecord</a>?</h2>
+<ul>
+<li>Arquivo 001_create_lancamentos.rb:
+
+<pre>
+  class CreateLancamentos &lt; ActiveRecord::Migration
+    def self.up
+      create_table :lancamentos do |t|
+        t.column :descricao,   :string,    :null =&gt; false
+        t.column :valor,       :decimal,   :precision =&gt; 14, :scale =&gt; 2, :null =&gt; false
+        t.column :mensalidade, :decimal,   :precision =&gt; 14, :scale =&gt; 2, :null =&gt; false
+      end
+    end
+
+    def self.down
+      drop_table :lancamentos
+    end
+  end
+</pre>
+</li>
+<li>Arquivo lancamento.rb:
+
+<pre>
+  class Lancamento &lt; ActiveRecord::Base
+    usar_como_dinheiro :valor, :mensalidade
+  end
+</pre>
+</li>
+<li>No console (script/console):
+
+<pre>
+  Loading development environment.
+  &gt;&gt; lancamento = Lancamento.new
+  =&gt; #&lt;Lancamento:0x9652cd8 @attributes={&quot;descricao&quot;=&gt;nil,
+                                         &quot;valor&quot;=&gt;#&lt;BigDecimal:9657008,'0.0',4(4)&gt;,
+                                         &quot;mensalidade&quot;=&gt;#&lt;BigDecimal:9656e8c,'0.0',4(4)&gt;},
+                            @new_record=true&gt;
+  &gt;&gt; lancamento.valor = 100
+  =&gt; 100
+  &gt;&gt; lancamento.valor
+  =&gt; #&lt;Dinheiro:0x9650f3c @quantia=10000&gt;
+  &gt;&gt; lancamento.valor.real
+  =&gt; &quot;R$ 100,00&quot;
+  &gt;&gt; lancamento.valor = 100.50
+  =&gt; 100.5
+  &gt;&gt; lancamento.valor.real
+  =&gt; &quot;R$ 100,50&quot;
+  &gt;&gt; lancamento.valor = &quot;250.50&quot;
+  =&gt; &quot;250.50&quot;
+  &gt;&gt; lancamento.valor.real
+  =&gt; &quot;R$ 250,50&quot;
+  &gt;&gt; lancamento.valor = 354.58.reais
+  =&gt; #&lt;Dinheiro:0x9646384 @quantia=35458&gt;
+  &gt;&gt; lancamento.valor.real
+  =&gt; &quot;R$ 354,58&quot;
+  &gt;&gt; exit
+</pre>
+</li>
+</ul>
+
+    </div>
 
 
    </div>
