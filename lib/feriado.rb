@@ -1,3 +1,9 @@
+# == Configuração dos Feriados
+#
+# Os feriados são configurados através de arquivos YML que deverão estar na pasta feriados dentro da pasta config da sua aplicação.
+#
+# Você pode ver exemplos desses YML dentro do diretório samples/feriado.
+#
 class Feriado
   
   attr_accessor :dia 

@@ -16,6 +16,7 @@ Numeric.send(:include, DinheiroUtil)
 Numeric.send(:include, ExtensoReal)
 String.send(:include, DinheiroUtil)
 String.send(:include, StringPortuguese)
+ActiveRecord::Base.send :include, DinheiroActiveRecord
 
 old_verbose = $VERBOSE
 $VERBOSE = nil

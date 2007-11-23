@@ -1,3 +1,55 @@
+# == Como usar o Dinheiro em seu ActiveRecord?
+# 
+# * Arquivo 001_create_lancamentos.rb:
+# 
+#     class CreateLancamentos < ActiveRecord::Migration
+#       def self.up
+#         create_table :lancamentos do |t|
+#           t.column :descricao,   :string,    :null => false
+#           t.column :valor,       :decimal,   :precision => 14, :scale => 2, :null => false
+#           t.column :mensalidade, :decimal,   :precision => 14, :scale => 2, :null => false
+#         end
+#       end
+#
+#       def self.down
+#         drop_table :lancamentos
+#       end
+#     end
+# 
+# * Arquivo lancamento.rb:
+# 
+#     class Lancamento < ActiveRecord::Base
+#       usar_como_dinheiro :valor, :mensalidade
+#     end
+#
+# * No console (script/console):
+# 
+#     Loading development environment.
+#     >> lancamento = Lancamento.new
+#     => #<Lancamento:0x9652cd8 @attributes={"descricao"=>nil, 
+#                                            "valor"=>#<BigDecimal:9657008,'0.0',4(4)>, 
+#                                            "mensalidade"=>#<BigDecimal:9656e8c,'0.0',4(4)>}, 
+#                               @new_record=true>
+#     >> lancamento.valor = 100
+#     => 100
+#     >> lancamento.valor
+#     => #<Dinheiro:0x9650f3c @quantia=10000>
+#     >> lancamento.valor.real
+#     => "R$ 100,00"
+#     >> lancamento.valor = 100.50
+#     => 100.5
+#     >> lancamento.valor.real
+#     => "R$ 100,50"
+#     >> lancamento.valor = "250.50"
+#     => "250.50"
+#     >> lancamento.valor.real
+#     => "R$ 250,50"
+#     >> lancamento.valor = 354.58.reais
+#     => #<Dinheiro:0x9646384 @quantia=35458>
+#     >> lancamento.valor.real
+#     => "R$ 354,58"
+#     >> exit
+#  
 class Dinheiro
   
   include Comparable
@@ -145,6 +197,15 @@ class Dinheiro
     BigDecimal.new quantia_sem_separacao_milhares.gsub(',','.')
   end
     
+  def method_missing(symbol, *args) #:nodoc:
+    #Ex: Chama ao método valor_decimal() 
+    if (symbol.to_s =~ /^(.*)_decimal$/) && args.size == 0
+      BigDecimal.new quantia_sem_separacao_milhares.gsub(',','.')
+    else
+      super.method_missing(symbol, *args)
+    end
+  end
+
   private
   def quantia_de(outro)
     outro = outro.to_f if outro.kind_of?(BigDecimal)

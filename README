@@ -1,38 +1,41 @@
 = Brazilian Rails
 
-== Intalação
+== O que é?
+
+Brazilian Rails é um plugin para Rails, que tem como objetivo unir vários recursos de regras e traduções para o desenvolvedor brasileiro.
+
+== Como surgiu?
+
+Em meiados de 1850, numa tentativa desesperada de... 
+:) 
+Brincadeira, na verdade surgiu com o dia a dia acontecendo.
+
+== Como faço para instalar?
+
+É muito difícil...
 
  script/plugin install svn://rubyforge.org/var/svn/brazilian-rails
 
-Para usar a pluralização em português (Inflector) basta adicionar a linha abaixo no seu enviroment.rb
+*Nota*: Se você usa um certo sistema operacional, lembre de colocar a chamada ruby na frente, ok?
+
+Por padrão, a pluralização vem desabilitada, isso para não atrapalhar os projetos que já existem.
+
+Para ativar a pluralização, basta adicionar a linha abaixo no seu enviroment.rb
 
  require 'inflector_portuguese'
 
-== Desenvolvedores
+== Quem está por traz disso tudo?
 
-* {Marcos Cóssio Tapajós Martins do Couto}[http://www.improveit.com.br/tapajos]
-* {Celestino Ferreira Gomes}[http://www.workingwithrails.com/person/8470-celestino-gomes]
-* André Luiz Kupkovski
-* Rafael Fraga Walter
-* Fernando João Manfroi
-* Luciene Souza Luna
-* {Vinicius Manhaes Teles}[http://www.improveit.com.br/vinicius]
+O {Marcos Cóssio Tapajós Martins do Couto}[http://www.improveit.com.br/tapajos] tomou coragem para publicar todas as funcionalidades em um plugin, com testes unitários para garantir que tudo funcione conforme manda o figurino. Os contribuidores que atuam hoje são, {Celestino Ferreira Gomes}[http://www.workingwithrails.com/person/8470-celestino-gomes], {André Luiz Kupkovski}[http://www.workingwithrails.com/person/9227-andr-luiz-kupkovski], {Vinicius Manhaes Teles}[http://www.improveit.com.br/vinicius], a galera do Grupo Santa Isabel e mais alguns que não se manifestaram...
 
-== Exemplos.
+Vale ressaltar algumas funciolidades adicionadas por contribuição da própria comunidade, como {Shairon Toledo}[www.hashcode.eti.br/] em Extenso e StringPortuguese.
 
-* Time
-* Date
-* Dinheiro. OBS: Para saber como utilizar a classe Dinheiro em um modelo da sua aplicação, verifique o arquivo {README}[link:files/vendor/plugins/brazilian-rails/samples/dinheiro/README.html] no diretório samples/dinheiro.
-* Extenso
-* ActiveRecord::Errors
-* ActionView::Helpers::ActiveRecordHelper
-* ActionView::Helpers::DateHelper
-* Inflector
-* NilClass
-* ActiveSupport::CoreExtensions::String::Conversions
+== Algumas funcionalidades:
 
-
-== Configuração dos Feriados
-Os feriados são configurados através de arquivos YML que deverão estar na pasta feriados dentro da pasta config da sua aplicação.
-Você pode ver exemplos desses YML dentro do diretório samples/feriado.
-
+* Date e Time no formato brasileiro
+* Números por Extenso
+* Dinheiro
+* Feriado
+* Mensagens de erro traduzidas
+* Pluralização em português-Brasil-sil-sil
+* etc

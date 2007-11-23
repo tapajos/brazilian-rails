@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Sat Nov 10 08:28:19 -0200 2007</td>
+      <td>Fri Nov 23 17:40:48 -0200 2007</td>
     </tr>
     </table>
   </div>
@@ -70,93 +70,82 @@
 
     <div id="description">
       <h1>Brazilian Rails</h1>
-<h2>Intalação</h2>
+<h2>O que é?</h2>
+<p>
+Brazilian Rails é um plugin para Rails, que tem como objetivo unir vários
+recursos de regras e traduções para o desenvolvedor brasileiro.
+</p>
+<h2>Como surgiu?</h2>
+<p>
+Em meiados de 1850, numa tentativa desesperada de&#8230; :) Brincadeira, na
+verdade surgiu com o dia a dia acontecendo.
+</p>
+<h2>Como faço para instalar?</h2>
+<p>
+É muito difícil&#8230;
+</p>
 <pre>
  script/plugin install svn://rubyforge.org/var/svn/brazilian-rails
 </pre>
 <p>
-Para usar a pluralização em português (<a
-href="../../../../classes/Inflector.html">Inflector</a>) basta adicionar a
-linha abaixo no seu enviroment.rb
+<b>Nota</b>: Se você usa um certo sistema operacional, lembre de colocar a
+chamada ruby na frente, ok?
+</p>
+<p>
+Por padrão, a pluralização vem desabilitada, isso para não atrapalhar
+os projetos que já existem.
+</p>
+<p>
+Para ativar a pluralização, basta adicionar a linha abaixo no seu
+enviroment.rb
 </p>
 <pre>
  require 'inflector_portuguese'
 </pre>
-<h2>Desenvolvedores</h2>
-<ul>
-<li><a href="http://www.improveit.com.br/tapajos">Marcos Cóssio Tapajós
-Martins do Couto</a>
-
-</li>
-<li><a
-href="http://www.workingwithrails.com/person/8470-celestino-gomes">Celestino
-Ferreira Gomes</a>
-
-</li>
-<li>André Luiz Kupkovski
-
-</li>
-<li>Rafael Fraga Walter
-
-</li>
-<li>Fernando João Manfroi
-
-</li>
-<li>Luciene Souza Luna
-
-</li>
-<li><a href="http://www.improveit.com.br/vinicius">Vinicius Manhaes Teles</a>
-
-</li>
-</ul>
-<h2>Exemplos.</h2>
-<ul>
-<li><a href="../../../../classes/Time.html">Time</a>
-
-</li>
-<li><a href="../../../../classes/Date.html">Date</a>
-
-</li>
-<li><a href="../../../../classes/Dinheiro.html">Dinheiro</a>. OBS: Para saber
-como utilizar a classe <a
-href="../../../../classes/Dinheiro.html">Dinheiro</a> em um modelo da sua
-aplicação, verifique o arquivo <a
-href="samples/dinheiro/README.html">README</a> no diretório
-samples/dinheiro.
-
-</li>
-<li><a href="../../../../classes/Extenso.html">Extenso</a>
-
-</li>
-<li><a
-href="../../../../classes/ActiveRecord/Errors.html">ActiveRecord::Errors</a>
-
-</li>
-<li><a
-href="../../../../classes/ActionView/Helpers/ActiveRecordHelper.html">ActionView::Helpers::ActiveRecordHelper</a>
-
-</li>
-<li><a
-href="../../../../classes/ActionView/Helpers/DateHelper.html">ActionView::Helpers::DateHelper</a>
-
-</li>
-<li><a href="../../../../classes/Inflector.html">Inflector</a>
-
-</li>
-<li><a href="../../../../classes/NilClass.html">NilClass</a>
-
-</li>
-<li><a
-href="../../../../classes/ActiveSupport/CoreExtensions/String/Conversions.html">ActiveSupport::CoreExtensions::String::Conversions</a>
-
-</li>
-</ul>
-<h2>Configuração dos Feriados</h2>
+<h2>Quem está por traz disso tudo?</h2>
 <p>
-Os feriados são configurados através de arquivos YML que deverão estar
-na pasta feriados dentro da pasta config da sua aplicação. Você pode ver
-exemplos desses YML dentro do diretório samples/feriado.
+O <a href="http://www.improveit.com.br/tapajos">Marcos Cóssio Tapajós
+Martins do Couto</a> tomou coragem para publicar todas as funcionalidades
+em um plugin, com testes unitários para garantir que tudo funcione
+conforme manda o figurino. Os contribuidores que atuam hoje são, <a
+href="http://www.workingwithrails.com/person/8470-celestino-gomes">Celestino
+Ferreira Gomes</a>, <a
+href="http://www.workingwithrails.com/person/9227-andr-luiz-kupkovski">André
+Luiz Kupkovski</a>, <a href="http://www.improveit.com.br/vinicius">Vinicius
+Manhaes Teles</a>, a galera do Grupo Santa Isabel e mais alguns que não se
+manifestaram&#8230;
 </p>
+<p>
+Vale ressaltar algumas funciolidades adicionadas por contribuição da
+própria comunidade, como <a href="http://www.hashcode.eti.br/">Shairon
+Toledo</a> em <a href="../../../../classes/Extenso.html">Extenso</a> e <a
+href="../../../../classes/StringPortuguese.html">StringPortuguese</a>.
+</p>
+<h2>Algumas funcionalidades:</h2>
+<ul>
+<li><a href="../../../../classes/Date.html">Date</a> e <a
+href="../../../../classes/Time.html">Time</a> no formato brasileiro
+
+</li>
+<li>Números por <a href="../../../../classes/Extenso.html">Extenso</a>
+
+</li>
+<li><a href="../../../../classes/Dinheiro.html">Dinheiro</a>
+
+</li>
+<li><a href="../../../../classes/Feriado.html">Feriado</a>
+
+</li>
+<li>Mensagens de erro traduzidas
+
+</li>
+<li>Pluralização em português-Brasil-sil-sil
+
+</li>
+<li>etc
+
+</li>
+</ul>
 
     </div>
 

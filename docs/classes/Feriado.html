@@ -78,6 +78,17 @@
 
   <div id="contextContent">
 
+    <div id="description">
+      <h2>Configuração dos Feriados</h2>
+<p>
+Os feriados são configurados através de arquivos YML que deverão estar
+na pasta feriados dentro da pasta config da sua aplicação.
+</p>
+<p>
+Você pode ver exemplos desses YML dentro do diretório samples/feriado.
+</p>
+
+    </div>
 
 
    </div>
@@ -86,8 +97,8 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000024">==</a>&nbsp;&nbsp;
-      <a href="#M000023">new</a>&nbsp;&nbsp;
+      <a href="#M000005">==</a>&nbsp;&nbsp;
+      <a href="#M000004">new</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -132,11 +143,11 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000023" class="method-detail">
-        <a name="M000023"></a>
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
 
         <div class="method-heading">
-          <a href="#M000023" class="method-signature">
+          <a href="#M000004" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(nome, dia, mes)</span>
           </a>
         </div>
@@ -146,22 +157,22 @@
 Construtor um feriado.
 </p>
 <p>
-Exemplo: <a href="Feriado.html#M000023">Feriado.new</a>(&quot;nome&quot;,
+Exemplo: <a href="Feriado.html#M000004">Feriado.new</a>(&quot;nome&quot;,
 &quot;01&quot;, &quot;01&quot;)
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000023-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000023-source">
+            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000004-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/feriado.rb, line 11</span>
-11:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">nome</span>, <span class="ruby-identifier">dia</span>, <span class="ruby-identifier">mes</span>)
-12:     <span class="ruby-identifier">valida_dia</span>(<span class="ruby-identifier">dia</span>)
-13:     <span class="ruby-identifier">valida_mes</span>(<span class="ruby-identifier">mes</span>)
-14:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">nome</span> = <span class="ruby-identifier">nome</span>
-15:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">dia</span> = <span class="ruby-identifier">dia</span>.<span class="ruby-identifier">to_i</span> 
-16:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">mes</span> = <span class="ruby-identifier">mes</span>.<span class="ruby-identifier">to_i</span>
-17:     
-18:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/feriado.rb, line 17</span>
+17:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">nome</span>, <span class="ruby-identifier">dia</span>, <span class="ruby-identifier">mes</span>)
+18:     <span class="ruby-identifier">valida_dia</span>(<span class="ruby-identifier">dia</span>)
+19:     <span class="ruby-identifier">valida_mes</span>(<span class="ruby-identifier">mes</span>)
+20:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">nome</span> = <span class="ruby-identifier">nome</span>
+21:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">dia</span> = <span class="ruby-identifier">dia</span>.<span class="ruby-identifier">to_i</span> 
+22:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">mes</span> = <span class="ruby-identifier">mes</span>.<span class="ruby-identifier">to_i</span>
+23:     
+24:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -169,11 +180,11 @@ Exemplo: <a href="Feriado.html#M000023">Feriado.new</a>(&quot;nome&quot;,
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000024" class="method-detail">
-        <a name="M000024"></a>
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
 
         <div class="method-heading">
-          <a href="#M000024" class="method-signature">
+          <a href="#M000005" class="method-signature">
           <span class="method-name">==</span><span class="method-args">(outro_feriado)</span>
           </a>
         </div>
@@ -184,13 +195,13 @@ Compara dois feriados. Dois feriados são iguais se acontecem na mesma
 data.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000024-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000024-source">
+            onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000005-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/feriado.rb, line 21</span>
-21:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">outro_feriado</span>)
-22:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">mes</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">outro_feriado</span>.<span class="ruby-identifier">mes</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">dia</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">outro_feriado</span>.<span class="ruby-identifier">dia</span>
-23:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/feriado.rb, line 27</span>
+27:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">outro_feriado</span>)
+28:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">mes</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">outro_feriado</span>.<span class="ruby-identifier">mes</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">dia</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">outro_feriado</span>.<span class="ruby-identifier">dia</span>
+29:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
