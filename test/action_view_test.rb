@@ -11,6 +11,7 @@ class ActionViewTest < Test::Unit::TestCase
   include ActionView::Helpers::UrlHelper
   include ActionView::Helpers::FormTagHelper
   include ActionView::Helpers::DateHelper
+  include ActionView::Helpers::FormOptionsHelper
   
   silence_warnings do
     Post = Struct.new("Post", :title, :author_name, :body, :secret, :written_on)
@@ -27,7 +28,6 @@ class ActionViewTest < Test::Unit::TestCase
     
     Column = Struct.new("Column", :type, :name, :human_name)
   end
-  
   
   def setup_post
     @post = Post.new    
@@ -48,7 +48,9 @@ class ActionViewTest < Test::Unit::TestCase
     end
 
     silence_warnings do
-      def Post.content_columns() [ Column.new(:string, "title", "Title"), Column.new(:text, "body", "Body") ] end
+      def Post.content_columns() [ Column.new(:string, "title", "Title"), 
+                                   Column.new(:text, "body", "Body") ] 
+      end
     end
 
     @post.title       = "Hello World"
@@ -94,7 +96,6 @@ class ActionViewTest < Test::Unit::TestCase
       [options[:action], options[:id].to_param].compact.join('/')
     end
   end
-  
   
   def test_error_for_block
     assert_dom_equal %(<div class=\"errorExplanation\" id=\"errorExplanation\"><h2>1 erro para post</h2><p>Foram detectados os seguintes erros:</p><ul><li>Author name can't be empty</li></ul></div>), error_messages_for("post")
@@ -157,6 +158,22 @@ class ActionViewTest < Test::Unit::TestCase
     assert_equal "12 meses", distance_of_time_in_words("Sat Nov 06 20:51:59 -0300 2006".to_time, "Sat Nov 06 20:51:59 -0300 2007".to_time)
     assert_equal "aproximadamente 1 ano", distance_of_time_in_words("Sat Nov 06 20:51:59 -0300 2006".to_time, "Sat Dec 06 20:51:59 -0300 2007".to_time)
     assert_equal "mais de 3 anos", distance_of_time_in_words("Sat Nov 06 20:51:59 -0300 2006".to_time, "Sat Dec 06 20:51:59 -0300 2009".to_time)
+  end
+  
+  def test_option_estados_for_select
+    assert_equal %(<option value=\"AC\">Acre</option>\n<option value=\"AL\">Alagoas</option>\n<option value=\"AP\">Amapá</option>\n<option value=\"AM\">Amazonas</option>\n<option value=\"BA\">Bahia</option>\n<option value=\"CE\">Ceará</option>\n<option value=\"DF\">Distrito Federal</option>\n<option value=\"ES\">Espírito Santos</option>\n<option value=\"GO\">Goiás</option>\n<option value=\"MA\">Maranhão</option>\n<option value=\"MT\">Mato Grosso</option>\n<option value=\"MS\">Mato Grosso do Sul</option>\n<option value=\"MG\">Minas Gerais</option>\n<option value=\"PA\">Pará</option>\n<option value=\"PB\">Paraíba</option>\n<option value=\"PR\">Paraná</option>\n<option value=\"PE\">Pernambuco</option>\n<option value=\"PI\">Piauí</option>\n<option value=\"RJ\">Rio de Janeiro</option>\n<option value=\"RN\">Rio Grande do Norte</option>\n<option value=\"RS\">Rio Grande do Sul</option>\n<option value=\"RO\">Rondônia</option>\n<option value=\"RR\">Roraima</option>\n<option value=\"SC\">Santa Catarina</option>\n<option value=\"SP\">São Paulo</option>\n<option value=\"SE\">Sergipe</option>\n<option value=\"TO\">Tocantins</option>), option_estados_for_select
+  end
+
+  def test_option_uf_for_select
+    assert_equal %(<option value=\"AC\">AC</option>\n<option value=\"AL\">AL</option>\n<option value=\"AP\">AP</option>\n<option value=\"AM\">AM</option>\n<option value=\"BA\">BA</option>\n<option value=\"CE\">CE</option>\n<option value=\"DF\">DF</option>\n<option value=\"ES\">ES</option>\n<option value=\"GO\">GO</option>\n<option value=\"MA\">MA</option>\n<option value=\"MT\">MT</option>\n<option value=\"MS\">MS</option>\n<option value=\"MG\">MG</option>\n<option value=\"PA\">PA</option>\n<option value=\"PB\">PB</option>\n<option value=\"PR\">PR</option>\n<option value=\"PE\">PE</option>\n<option value=\"PI\">PI</option>\n<option value=\"RJ\">RJ</option>\n<option value=\"RN\">RN</option>\n<option value=\"RS\">RS</option>\n<option value=\"RO\">RO</option>\n<option value=\"RR\">RR</option>\n<option value=\"SC\">SC</option>\n<option value=\"SP\">SP</option>\n<option value=\"SE\">SE</option>\n<option value=\"TO\">TO</option>), option_uf_for_select
+  end
+  
+  def test_select_estado
+    assert_equal %(<select id=\"lancamento_estado\" name=\"lancamento[estado]\"><option value=\"AC\">Acre</option>\n<option value=\"AL\">Alagoas</option>\n<option value=\"AP\">Amapá</option>\n<option value=\"AM\">Amazonas</option>\n<option value=\"BA\">Bahia</option>\n<option value=\"CE\">Ceará</option>\n<option value=\"DF\">Distrito Federal</option>\n<option value=\"ES\">Espírito Santos</option>\n<option value=\"GO\">Goiás</option>\n<option value=\"MA\">Maranhão</option>\n<option value=\"MT\">Mato Grosso</option>\n<option value=\"MS\">Mato Grosso do Sul</option>\n<option value=\"MG\">Minas Gerais</option>\n<option value=\"PA\">Pará</option>\n<option value=\"PB\">Paraíba</option>\n<option value=\"PR\">Paraná</option>\n<option value=\"PE\">Pernambuco</option>\n<option value=\"PI\">Piauí</option>\n<option value=\"RJ\">Rio de Janeiro</option>\n<option value=\"RN\">Rio Grande do Norte</option>\n<option value=\"RS\">Rio Grande do Sul</option>\n<option value=\"RO\">Rondônia</option>\n<option value=\"RR\">Roraima</option>\n<option value=\"SC\">Santa Catarina</option>\n<option value=\"SP\">São Paulo</option>\n<option value=\"SE\">Sergipe</option>\n<option value=\"TO\">Tocantins</option></select>), select_estado(:lancamento, :estado)
+  end
+  
+  def test_select_uf
+    assert_equal %(<select id=\"lancamento_estado\" name=\"lancamento[estado]\"><option value=\"AC\">AC</option>\n<option value=\"AL\">AL</option>\n<option value=\"AP\">AP</option>\n<option value=\"AM\">AM</option>\n<option value=\"BA\">BA</option>\n<option value=\"CE\">CE</option>\n<option value=\"DF\">DF</option>\n<option value=\"ES\">ES</option>\n<option value=\"GO\">GO</option>\n<option value=\"MA\">MA</option>\n<option value=\"MT\">MT</option>\n<option value=\"MS\">MS</option>\n<option value=\"MG\">MG</option>\n<option value=\"PA\">PA</option>\n<option value=\"PB\">PB</option>\n<option value=\"PR\">PR</option>\n<option value=\"PE\">PE</option>\n<option value=\"PI\">PI</option>\n<option value=\"RJ\">RJ</option>\n<option value=\"RN\">RN</option>\n<option value=\"RS\">RS</option>\n<option value=\"RO\">RO</option>\n<option value=\"RR\">RR</option>\n<option value=\"SC\">SC</option>\n<option value=\"SP\">SP</option>\n<option value=\"SE\">SE</option>\n<option value=\"TO\">TO</option></select>), select_uf(:lancamento, :estado)
   end
 
 end
