@@ -18,10 +18,10 @@ module ActionView::Helpers::ActiveRecordHelper
       header_message = "#{pluralize(count, 'erro')} para #{(options[:object_name] || params.first).to_s.gsub('_', ' ')}"
       error_messages = objects.map { |object| object.errors.full_messages.map {|msg| content_tag(:li, msg) } }
       content_tag(:div,
-      content_tag(options[:header_tag] || :h2, header_message) <<
-      content_tag(:p, 'Foram detectados os seguintes erros:') <<
-      content_tag(:ul, error_messages),
-      html
+        content_tag(options[:header_tag] || :h2, header_message) <<
+          content_tag(:p, 'Foram detectados os seguintes erros:') <<
+          content_tag(:ul, error_messages),
+        html
       )
     else
       ''
@@ -60,5 +60,56 @@ module ActionView::Helpers::DateHelper
     when 525960..1051919 then 'aproximadamente 1 ano'
     else                      "mais de #{(distance_in_minutes / 525960).round} anos"
     end
+  end
+end
+
+module ActionView::Helpers::FormOptionsHelper
+  ESTADOS_BRASILEIROS = [["Acre", "AC"],
+    ["Alagoas", "AL"],
+    ["Amapá", "AP"],
+    ["Amazonas", "AM"],
+    ["Bahia", "BA"],
+    ["Ceará", "CE"],
+    ["Distrito Federal", "DF"],
+    ["Espírito Santos", "ES"],
+    ["Goiás", "GO"],
+    ["Maranhão", "MA"],
+    ["Mato Grosso", "MT"],
+    ["Mato Grosso do Sul", "MS"],
+    ["Minas Gerais", "MG"],
+    ["Pará", "PA"],
+    ["Paraíba", "PB"],
+    ["Paraná", "PR"],
+    ["Pernambuco", "PE"],
+    ["Piauí", "PI"],
+    ["Rio de Janeiro", "RJ"], 
+    ["Rio Grande do Norte", "RN"],
+    ["Rio Grande do Sul", "RS"],
+    ["Rondônia", "RO"],
+    ["Roraima", "RR"],
+    ["Santa Catarina", "SC"],
+    ["São Paulo", "SP"],
+    ["Sergipe", "SE"],
+    ["Tocantins", "TO"]
+  ] unless const_defined?("ESTADOS_BRASILEIROS")
+
+  def select_estado(object, method, options = {}, html_options = {})
+    select object, method, ESTADOS_BRASILEIROS, options, html_options
+  end
+  
+  def select_uf(object, method, options = {}, hml_options = {})
+    select object, method, ESTADOS_BRASILEIROS.collect {|estado, sigla| sigla}
+  end
+
+  def option_estados_for_select
+    html = ""
+    html += options_for_select ESTADOS_BRASILEIROS
+    html
+  end
+  
+  def option_uf_for_select
+    html = ""
+    html += options_for_select ESTADOS_BRASILEIROS.collect {|nome,sigla| sigla}
+    html
   end
 end

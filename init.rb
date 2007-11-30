@@ -11,7 +11,6 @@ require 'nil_class'
 require 'number_portuguese'
 require 'string_portuguese'
 
-
 Numeric.send(:include, DinheiroUtil)
 Numeric.send(:include, ExtensoReal)
 String.send(:include, DinheiroUtil)
@@ -38,7 +37,3 @@ Date::FERIADOS = feriados;
 Date::FERIADOS_METODOS = metodos
 
 $VERBOSE = old_verbose
-
-
-
-
