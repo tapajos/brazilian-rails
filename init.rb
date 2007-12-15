@@ -10,6 +10,7 @@ require 'excecoes'
 require 'nil_class'
 require 'number_portuguese'
 require 'string_portuguese'
+require 'dinheiro_active_record'
 
 Numeric.send(:include, DinheiroUtil)
 Numeric.send(:include, ExtensoReal)
