@@ -230,8 +230,12 @@ class DinheiroTest < Test::Unit::TestCase
   end
   
   # real
-  def testa_real
-    assert_equal "R$ 1,00", Dinheiro.new(1).real
+  def testa_real_nao_eh_dinheiro
+    assert_kind_of(Dinheiro, 1.real)
+  end
+  
+  def testa_real_eh_dinheiro
+    assert_kind_of(Dinheiro, Dinheiro.new(1).real)
   end
   
   def testa_real_contabil
@@ -244,12 +248,17 @@ class DinheiroTest < Test::Unit::TestCase
   
   # reais
   def testa_reais
-    assert_equal "R$ 2,00", Dinheiro.new(2).reais
+    assert_equal Dinheiro.new("2,00"), Dinheiro.new(2).reais
   end
   
   def testa_contabil
     CONTABIL.each { |esperado, quantia| assert_equal esperado, Dinheiro.new(quantia).contabil }
-  end  
+  end 
+
+  # real_formatado
+  def test_real_formatado
+    assert_equal "R$ 2,00", Dinheiro.new(2).real_formatado
+  end
   
   # ==
   def testa_igualdade
