@@ -155,13 +155,17 @@ class Dinheiro
     [ Dinheiro.new(outro), self ]
   end
   
-  # Retorna uma string formatada em valor monetario.
-  #
+  # Retorna a própria instância/
+  def real
+    self
+  end
+  
+  # Retorna o dinheiro formatado
   # Exemplo:
   #  Dinheiro.new(1).real ==> 'R$ 1,00'
   #  Dinheiro.new(-1).real ==> 'R$ -1,00'
-  def real
-    "R$ " + to_s
+  def real_formatado
+    "R$ #{to_s}"
   end
   
   # Retorna uma string formatada em valor monetario.
