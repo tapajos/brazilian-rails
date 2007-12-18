@@ -99,29 +99,59 @@ class Dinheiro
   end
   
   # Retorna a adicao entre dinheiros.
+  #
+  # Exemplo:
+  #  1.real + 1.real == 2.reais 
+  #  1.real + 1 == 2.reais 
   def +(outro)
     Dinheiro.new(transforma_em_string_que_represente_a_quantia(@quantia + quantia_de(outro)))
   end
   
   # Retorna a subtracao entre dinheiros.
+  #
+  # Exemplo:
+  #  10.reais - 2.reais == 8.reais 
+  #  10.reais - 2 == 8.reais 
   def -(outro)
     Dinheiro.new(transforma_em_string_que_represente_a_quantia(@quantia - quantia_de(outro)))
   end
   
   # Retorna a multiplicacao entre dinheiros.
+  #
+  # Exemplo:
+  #  5.reais * 2 == 10.reais
+  #  5.reais * 2.reais == 10.reais
   def *(outro)
     return Dinheiro.new(to_f * outro) unless outro.kind_of? Dinheiro
     outro * to_f
   end
   
   # Retorna a divisao entre dinheiros.
+  #
+  # Exemplo:
+  #  5.reais / 2 == (2.5).reais
+  #  5.reais / 2.reais == DivisaPorNaoEscalarError
+  #  5.reais / 0 == ZeroDivisionError
   def /(outro)
     raise DivisaPorNaoEscalarError unless outro.kind_of?(Numeric)
     return @quantia/outro if outro == 0
+    Dinheiro.new(to_f / outro.to_f)
+  end
+
+  # Retorna um array de dinheiro com as parcelas
+  #
+  # Exemplo:
+  #  6.reais.parcelar(2) == [3.reais, 3.reais]
+  #  6.reais.parcelar(2.reais) == DisivaPorNaoEscalarError
+  #  6.reais.parcelar(0) == ZeroDivisionError
+  def parcelar(numero_de_parcelar)
+    Fixnum
+    raise DivisaPorNaoEscalarError unless numero_de_parcelar.kind_of?(Integer)
+    return @quantia/numero_de_parcelar if numero_de_parcelar == 0
     soma_parcial = Dinheiro.new(0)
     parcelas = []
-    (outro-1).times do
-      parcela = Dinheiro.new(transforma_em_string_que_represente_a_quantia(@quantia/outro))
+    (numero_de_parcelar-1).times do
+      parcela = Dinheiro.new(transforma_em_string_que_represente_a_quantia(@quantia/numero_de_parcelar))
       parcelas << parcela
       soma_parcial += parcela
     end
@@ -131,27 +161,24 @@ class Dinheiro
   # Escreve o valor por extenso.
   # 
   # Exemplo:
-  #  1.real.por_extenso ==> 'um real'
-  #  (100.58).por_extenso ==> 'cem reais e cinquenta e oito centavos'
-  def por_extenso
+  #  1.real.to_extenso ==> 'um real'
+  #  (100.58).to_extenso ==> 'cem reais e cinquenta e oito centavos'
+  def to_extenso
     (@quantia/100.0).por_extenso_em_reais
   end
   
-  # Alias para o metodo por_extenso.
-  alias_method :por_extenso_em_reais, :por_extenso
+  # Alias para o metodo to_extenso.
+  alias_method :por_extenso, :to_extenso
   
-  # DEPRECATION WARNING: use por_extenso ou por_extenso_em_reais, pois este sera removido no proximo release.
-  def to_extenso
-    warn("DEPRECATION WARNING: use por_extenso ou por_extenso_em_reais, pois este sera removido no proximo release.")
-    self.por_extenso
-  end
+  # Alias para o metodo to_extenso.
+  alias_method :por_extenso_em_reais, :to_extenso
   
   # Retorna um Float.
   def to_f
     to_s.gsub('.', '').gsub(',', '.').to_f
   end
   
-  def coerce(outro)
+  def coerce(outro)#:nodoc:
     [ Dinheiro.new(outro), self ]
   end
   
@@ -160,30 +187,33 @@ class Dinheiro
     self
   end
   
-  # Retorna o dinheiro formatado
+  # Alias para real.
+  alias_method :reais, :real
+  
+  # Retorna uma string formatada com sigla em valor monetário.
   # Exemplo:
-  #  Dinheiro.new(1).real ==> 'R$ 1,00'
-  #  Dinheiro.new(-1).real ==> 'R$ -1,00'
+  #  Dinheiro.new(1).real_formatado ==> 'R$ 1,00'
+  #  Dinheiro.new(-1).real_formatado ==> 'R$ -1,00'
   def real_formatado
     "R$ #{to_s}"
   end
   
-  # Retorna uma string formatada em valor monetario.
+  # Alias para real_formatado.
+  alias_method :reais_formatado, :real_formatado
+  
+  # Retorna uma string formatada com sigla em valor contábil.
   #
   # Exemplo:
-  #  Dinheiro.new(1).real ==> 'R$ 1,00'
-  #  Dinheiro.new(-1).real ==> 'R$ (1,00)'
+  #  Dinheiro.new(1).real_contabil ==> 'R$ 1,00'
+  #  Dinheiro.new(-1).real_contabil ==> 'R$ (1,00)'
   def real_contabil
     "R$ " + contabil
   end
   
-  # Alias para real.
-  alias_method :reais, :real
-  
   # Alias para real_contabil.
   alias_method :reais_contabeis, :real_contabil
   
-  # Retorna uma string formatada.
+  # Retorna uma string formatada sem sigla.
   #
   # Exemplo:
   #  Dinheiro.new(1).contabil ==> '1,00'
@@ -200,7 +230,7 @@ class Dinheiro
   def valor_decimal
     BigDecimal.new quantia_sem_separacao_milhares.gsub(',','.')
   end
-    
+  
   def method_missing(symbol, *args) #:nodoc:
     #Ex: Chama ao método valor_decimal() 
     if (symbol.to_s =~ /^(.*)_decimal$/) && args.size == 0

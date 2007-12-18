@@ -80,13 +80,22 @@ class DinheiroTest < Test::Unit::TestCase
                     0.01.real =>   BigDecimal("0.01") * 1.real }
                     
   DIVISAO = { 
-            [Dinheiro.new(0.33), Dinheiro.new(0.33), Dinheiro.new(0.34)] =>    Dinheiro.new(1) / 3,
-         [Dinheiro.new(33.33), Dinheiro.new(33.33), Dinheiro.new(33.34)] =>  Dinheiro.new(100) / 3,
-                                 [Dinheiro.new(50.00), Dinheiro.new(50)] =>  Dinheiro.new(100) / 2,
-                                [Dinheiro.new(0.25), Dinheiro.new(0.25)] =>  Dinheiro.new(0.5) / 2,
-             [Dinheiro.new(0.16), Dinheiro.new(0.16),Dinheiro.new(0.18)] =>  Dinheiro.new(0.5) / 3,
-                                                    [Dinheiro.new(0.33)] => Dinheiro.new(0.33) / 1 ,
-                                                    [Dinheiro.new(0.33)] => Dinheiro.new(0.33) / 1 ,
+            Dinheiro.new(0.33)  =>  Dinheiro.new(1) / 3,
+            Dinheiro.new(33.33) =>  Dinheiro.new(100) / 3,
+            Dinheiro.new(50.00) =>  Dinheiro.new(100) / 2,
+            Dinheiro.new(0.25)  =>  Dinheiro.new(0.5) / 2,
+            Dinheiro.new(0.17)  =>  Dinheiro.new(0.5) / 3,
+            Dinheiro.new(0.33)  =>  Dinheiro.new(0.33) / 1
+            }
+                                                    
+  PARCELAS = { 
+            [Dinheiro.new(0.33), Dinheiro.new(0.33), Dinheiro.new(0.34)] =>    Dinheiro.new(1).parcelar(3),
+         [Dinheiro.new(33.33), Dinheiro.new(33.33), Dinheiro.new(33.34)] =>  Dinheiro.new(100).parcelar(3),
+                                 [Dinheiro.new(50.00), Dinheiro.new(50)] =>  Dinheiro.new(100).parcelar(2),
+                                [Dinheiro.new(0.25), Dinheiro.new(0.25)] =>  Dinheiro.new(0.5).parcelar(2),
+             [Dinheiro.new(0.16), Dinheiro.new(0.16),Dinheiro.new(0.18)] =>  Dinheiro.new(0.5).parcelar(3),
+                                                    [Dinheiro.new(0.33)] => Dinheiro.new(0.33).parcelar(1) ,
+                                                    [Dinheiro.new(0.33)] => Dinheiro.new(0.33).parcelar(1) ,
                                                     }                    
                     
                     
@@ -269,7 +278,7 @@ class DinheiroTest < Test::Unit::TestCase
     assert_equal Dinheiro.new(1), 1.0
   end
   
-  # / (divisao/parcelamento)
+  # / (divisao)
   def testa_divisao
     DIVISAO.each { |parcelas, divisao| assert_equal parcelas, divisao }
   end
@@ -280,6 +289,19 @@ class DinheiroTest < Test::Unit::TestCase
   
   def testa_divisao_por_algo_que_nao_seja_um_escalar
     assert_raise(DivisaPorNaoEscalarError) { 10.reais / 2.reais }
+  end
+
+  # parcelar
+  def testa_parcelar
+    PARCELAS.each { |parcelas, divisao| assert_equal parcelas, divisao }
+  end
+  
+  def testa_parcelar_por_zero
+    assert_raise(ZeroDivisionError) { 1.real.parcelar 0 }
+  end
+  
+  def testa_parcelar_por_algo_que_nao_seja_um_escalar
+    assert_raise(DivisaPorNaoEscalarError) { 10.reais.parcelar(2.reais) }
   end
   
   # initialize

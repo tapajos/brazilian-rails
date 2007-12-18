@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Fri Nov 23 17:16:00 -0200 2007</td>
+      <td>Tue Dec 18 17:43:21 -0200 2007</td>
     </tr>
     </table>
   </div>
@@ -78,8 +78,8 @@
     def self.up
       create_table :lancamentos do |t|
         t.column :descricao,   :string,    :null =&gt; false
-        t.column :valor,       :decimal,   :precision =&gt; 14, :scale =&gt; 2, :null =&gt; false
-        t.column :mensalidade, :decimal,   :precision =&gt; 14, :scale =&gt; 2, :null =&gt; false
+        t.column :valor,       :decimal,   :precision =&gt; 14, :scale =&gt; 2
+        t.column :mensalidade, :decimal,   :precision =&gt; 14, :scale =&gt; 2
       end
     end
 
