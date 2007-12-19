@@ -10,25 +10,10 @@ module DinheiroActiveRecord#:nodoc:
           name = name.to_s
           module_eval <<-ADICIONANDO_METODO
         alias_method :#{name}_original=, :#{name}=
-        alias_method :#{name}_original, :#{name}
         
-        def validate
-          self.errors.add(:#{name}, @erro) if !@erro.blank?
-        end
-
-        def #{name}
-          return @valor_com_erro if !@erro.blank? && !@valor_com_erro.blank?
-          #{name}_original
-        end
-
         def #{name}= valor
           self.#{name}_original = valor if valor.kind_of?(Dinheiro)
-          begin
-            self.#{name}_original = valor.real unless valor.kind_of?(Dinheiro)
-          rescue
-            @valor_com_erro = valor
-            @erro = $!
-          end
+          self.#{name}_original = valor.real unless valor.kind_of?(Dinheiro)
         end
           ADICIONANDO_METODO
         end
