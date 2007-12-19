@@ -132,6 +132,8 @@ class Dinheiro
   #  5.reais / 2 == (2.5).reais
   #  5.reais / 2.reais == DivisaPorNaoEscalarError
   #  5.reais / 0 == ZeroDivisionError
+  #
+  # Veja também o método parcelar
   def /(outro)
     raise DivisaPorNaoEscalarError unless outro.kind_of?(Numeric)
     return @quantia/outro if outro == 0
