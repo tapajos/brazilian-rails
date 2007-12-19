@@ -6,24 +6,35 @@ module DinheiroActiveRecord#:nodoc:
     def usar_como_dinheiro(*args)#:nodoc:
       unless args.size.zero?
         args.each do |name|
-          composed_of name, :class_name => 'Dinheiro', :mapping => [name, "valor_decimal"], :allow_nil => false
+          composed_of name, :class_name => 'Dinheiro', :mapping => [name.to_s, "valor_decimal"], :allow_nil => true
+
           name = name.to_s
           module_eval <<-ADICIONANDO_METODO
-          
-        def #{name}=(value)
-          if value.kind_of?(Dinheiro)
-            write_attribute(:#{name},value.valor_decimal)
-          else
+          validate :#{name}_valido?
+
+          def #{name}_valido?
+            return true if @valor_original.nil?
             begin
-              value = value.real
-              write_attribute(:#{name},value.valor_decimal)
-            rescue
-              self.valid?
-              self.errors.add(:#{name}, $!)
+              Dinheiro.new(@valor_original) 
+            rescue Exception => e
+              self.errors.add('#{name}', e.message)
             end
           end
-          
-        end
+
+          alias_method :#{name}_original=, :#{name}=
+          def #{name}=(value)
+            @valor_original = nil
+            if value.kind_of?(Dinheiro)
+              self.#{name}_original = value 
+            else
+              begin
+                self.#{name}_original = Dinheiro.new(value)
+              rescue
+                @valor_original = value
+                self.#{name}_original = nil
+              end
+            end
+          end
           ADICIONANDO_METODO
         end
       end
