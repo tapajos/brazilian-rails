@@ -43,4 +43,10 @@ class DinheiroActiveRecordTest < Test::Unit::TestCase
     assert_nil @carteira.saldo
   end
 
+  def test_se_cria_carteira_corretamente_quando_recebe_parametros
+    carteira = Carteira.new(:saldo => "1")
+    assert_equal 1.real, carteira.saldo
+  end
+
+
 end
