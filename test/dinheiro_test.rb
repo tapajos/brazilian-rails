@@ -278,6 +278,10 @@ class DinheiroTest < Test::Unit::TestCase
     assert_equal Dinheiro.new(1), 1.0
   end
   
+  def testa_igualdade_quando_passa_algo_que_nao_seja_dinheiro
+    assert_equal false, Dinheiro.new(1) == 'salario'
+  end
+  
   # / (divisao)
   def testa_divisao
     DIVISAO.each { |parcelas, divisao| assert_equal parcelas, divisao }
