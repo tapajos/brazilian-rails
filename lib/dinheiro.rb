@@ -82,7 +82,11 @@ class Dinheiro
   #  um_real == Dinheiro.new(1) ==> true
   #  um_real == Dinheiro.new(2) ==> false
   def ==(outro_dinheiro)
-    outro_dinheiro = Dinheiro.new(outro_dinheiro) unless outro_dinheiro.kind_of?(Dinheiro)
+    begin 
+      outro_dinheiro = Dinheiro.new(outro_dinheiro) unless outro_dinheiro.kind_of?(Dinheiro)
+    rescue
+      return false
+    end
     @quantia == outro_dinheiro.quantia
   end
   
