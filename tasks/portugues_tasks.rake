@@ -3,7 +3,7 @@
 #   # Task goes here
 # end
 
-desc "Generate documation for Brazilian Rails plugins"
+desc "Generate documentation for Brazilian Rails plugins"
 namespace :gerar_doc do
   namespace :plugins do
     plugin = 'brazilian-rails'
