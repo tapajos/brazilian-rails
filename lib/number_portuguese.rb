@@ -63,38 +63,39 @@ module Extenso
   #  Extenso.por_extenso(100) ==> "cem"
   #  Extenso.por_extenso(158) ==> "cento e cinquenta e oito"  
   def Extenso.por_extenso(numero)
+    negativo=(numero<0)?"menos ":""
     n=numero.to_i.abs
     return case n
-    when 0..9: @@unidade[n].to_s 
-    when 10..19: @@dezena[n].to_s
+    when 0..9: negativo + @@unidade[n].to_s
+    when 10..19: negativo + @@dezena[n].to_s
     when 20..99:
       v=n % 10
       if  v== 0
-        @@dezena[n].to_s
+        negativo + @@dezena[n].to_s
       else
-        "#{@@dezena[n-v]} e #{por_extenso(v)}"
+        "#{negativo}#{@@dezena[n-v]} e #{por_extenso(v)}"
       end
     when 100
-      "cem"     
+      negativo+"cem"
     when 101..999
       v=n % 100
       if  v== 0
-        @@centena[n].to_s
+        negativo + @@centena[n].to_s
       else
-        "#{@@centena[n-v]} e #{por_extenso(v)}"
+        "#{negativo}#{@@centena[n-v]} e #{por_extenso(v)}"
       end
-    when 1000..999999  
+    when 1000..999999
       m,c=n/1000,n%1000
-      %(#{por_extenso(m)} mil#{c > 0 ? " e #{por_extenso(c)}":''})
+      %(#{negativo}#{por_extenso(m)} mil#{c > 0 ? " e #{por_extenso(c)}":''})
     when 1_000_000..999_999_999
       mi,m=n/1_000_000,n%1_000_000
-      %(#{por_extenso(mi)} milh#{mi > 1 ? 'ões':'ão'}#{m > 0 ? " e #{por_extenso(m)}" : ''})
+      %(#{negativo}#{por_extenso(mi)} milh#{mi > 1 ? 'ões':'ão'}#{m > 0 ? " e #{por_extenso(m)}" : ''})
     when 1_000_000_000..999_999_999_999
       bi,mi=n/1_000_000_000,n%1_000_000_000
-      %(#{por_extenso(bi)} bilh#{bi > 1 ? 'ões':'ão'}#{mi > 0 ? " e #{por_extenso(mi)}" : ''})
+      %(#{negativo}#{por_extenso(bi)} bilh#{bi > 1 ? 'ões':'ão'}#{mi > 0 ? " e #{por_extenso(mi)}" : ''})
     when 1_000_000_000_000..999_999_999_999_999
       tri,bi=n/1_000_000_000_000,n%1_000_000_000_000
-      %(#{por_extenso(tri)} trilh#{tri > 1 ? 'ões':'ão'}#{bi > 0 ? " e #{por_extenso(bi)}" : ''})
+      %(#{negativo}#{por_extenso(tri)} trilh#{tri > 1 ? 'ões':'ão'}#{bi > 0 ? " e #{por_extenso(bi)}" : ''})
     else
       raise "Valor excede o permitido: #{n}"
     end
@@ -110,7 +111,7 @@ module ExtensoReal
   #  1.por_extenso_em_reais ==> 'um real'
   #  (100.58).por_extenso_em_reais ==> 'cem reais e cinquenta e oito centavos'
   def por_extenso_em_reais
-    ExtensoReal.por_extenso_em_reais(self.to_s)
+    ExtensoReal.por_extenso_em_reais(self)
   end
 
   # DEPRECATION WARNING: use por_extenso_em_reais, pois este sera removido no proximo release.
@@ -126,30 +127,36 @@ module ExtensoReal
   #  Extenso.por_extenso_em_reais(100) ==> "cem reais"
   #  Extenso.por_extenso_em_reais(100.58) ==> "cem reais e cinquenta e oito centavos"  
   def ExtensoReal.por_extenso_em_reais(valor)
+    negativo=(valor<0)?" negativo":""
+    negativos=(valor<0)?" negativos":""
+    valor = valor.abs
     return 'grátis' if valor == 0
     case valor
-    when Integer 
+    when Integer
       extenso = Extenso.por_extenso(valor)
       if extenso =~ /^(.*)(ão$|ões$)/
         complemento = 'de '
       else
         complemento = ''
       end
-      %(#{extenso} #{valor <= 1 ? 'real': "#{complemento}reais"})
+      %(#{extenso} #{valor <= 1 ? "real#{negativo}": "#{complemento}reais#{negativos}"})
     when Float
       real,cents=("%.2f" % valor).split(/\./).map{ |m| m.to_i}
       valor_cents=Extenso.por_extenso(cents%100)
-       
       valor_cents+= case cents.to_i%100
       when 0: ""
       when 1: " centavo"
       when 2..99: " centavos"
-      end 
-       
+      end
+
       if real.to_i > 0
-        "#{ExtensoReal.por_extenso_em_reais(real.to_i)}#{cents > 0 ? ' e ' + valor_cents : ''}"
+        "#{ExtensoReal.por_extenso_em_reais(real.to_i)}#{cents > 0 ? ' e ' + valor_cents + negativos : real.to_i > 1 ? negativos : negativo }"
       else
-        "#{valor_cents}"
+        if (cents.to_i%100)==1
+           "#{valor_cents}#{negativo}"
+        else
+           "#{valor_cents}#{negativos}"
+        end
       end
     else
       ExtensoReal.por_extenso_em_reais(valor.to_s.strip.gsub(/[^\d]/,'.').to_f)
