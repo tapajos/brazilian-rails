@@ -121,5 +121,9 @@ class DateTest < Test::Unit::TestCase
 	def test_abbr_daysnames
 		assert_equal ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"], Date::ABBR_DAYNAMES
 	end
+	
+	def test_date_translation_with_strftime
+    assert_equal "Dezembro Dez Sexta-Feira Sex", Date.parse("12/05").strftime("%B %b %A %a")
+  end
 
 end
