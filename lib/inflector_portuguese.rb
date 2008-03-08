@@ -49,7 +49,9 @@ module Inflector
                    :cao => 'caes', 
                    :pao => 'paes',
                    :mao => 'maos',
-                   :alemao => 'alemaes'
+                   :alemao => 'alemaes',
+                   :mail => 'mails',
+                   :email => 'emails'
                    }
                    
     irregulares.each do |key, value|
