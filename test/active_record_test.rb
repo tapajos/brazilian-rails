@@ -1,5 +1,3 @@
-#$: << File.dirname(__FILE__) + '/..' << File.dirname(__FILE__) + '/../lib'
-#%w(test/unit rubygems init mocha).each { |lib| require lib }
 require File.dirname(__FILE__) + '/test_helper'
 
 class ActiveRecordTestable < ActiveRecord::Errors
@@ -26,7 +24,8 @@ class ActiveRecordTest < Test::Unit::TestCase
     assert_equal "muito curto (mínimo %d caracteres)", errors[:too_short]  
     assert_equal "de comprimento errado (deveria ter %d caracteres)", errors[:wrong_length]  
     assert_equal "já está em uso", errors[:taken]  
-    assert_equal "não é um número", errors[:not_a_number]  
+    assert_equal "não é um número", errors[:not_a_number]
+    assert_equal "deve ser menor ou igual a %d", errors[:less_than_or_equal_to]  
   end
 
 end

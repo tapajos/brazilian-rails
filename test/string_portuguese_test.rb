@@ -1,5 +1,3 @@
-#$: << File.dirname(__FILE__) + '/..' << File.dirname(__FILE__) + '/../lib'
-#%w(test/unit rubygems init mocha).each { |lib| require lib }
 require File.dirname(__FILE__) + '/test_helper'
 
 class StringPortugueseTest < Test::Unit::TestCase
