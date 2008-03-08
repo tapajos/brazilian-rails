@@ -13,7 +13,9 @@ module ActiveRecord
       :too_short => "muito curto (mínimo %d caracteres)",
       :wrong_length => "de comprimento errado (deveria ter %d caracteres)",
       :taken => "já está em uso",
-      :not_a_number => "não é um número"
+      :not_a_number => "não é um número",
+      :less_than_or_equal_to => "deve ser menor ou igual a %d"
     }
   end
+  
 end

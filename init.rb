@@ -36,5 +36,4 @@ if File.directory?(FERIADOS_PATH)
 end
 Date::FERIADOS = feriados;
 Date::FERIADOS_METODOS = metodos
-
 $VERBOSE = old_verbose
