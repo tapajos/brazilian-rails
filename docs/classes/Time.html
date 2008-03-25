@@ -86,6 +86,7 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
+      <a href="#M000003">strftime</a>&nbsp;&nbsp;
       <a href="#M000002">to_s_br</a>&nbsp;&nbsp;
       </div>
     </div>
@@ -99,6 +100,19 @@
 
 
 
+    <div id="aliases-list">
+      <h3 class="section-bar">External Aliases</h3>
+
+      <div class="name-list">
+                        <table summary="aliases">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">strftime</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">strftime_nolocale</td>
+        </tr>
+                        </table>
+      </div>
+    </div>
 
 
       
@@ -107,6 +121,39 @@
     <!-- if method_list -->
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="#M000003" class="method-signature">
+          <span class="method-name">strftime</span><span class="method-args">(format)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Formata a hora usando nomes de dias e meses em Portugues Exemplo: hora =
+Time.new hora.strftime(&quot;%B&quot;) ==&gt; &quot;Janeiro&quot; <a
+href="http://forum.rubyonbr.org/forums/1/topics/261">forum.rubyonbr.org/forums/1/topics/261</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000003-source">
+<pre>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/time_portuguese.rb, line 18</span>
+18:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">strftime</span>(<span class="ruby-identifier">format</span>)
+19:     <span class="ruby-identifier">format</span> = <span class="ruby-identifier">format</span>.<span class="ruby-identifier">dup</span>
+20:     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/%a/</span>, <span class="ruby-constant">Date</span><span class="ruby-operator">::</span><span class="ruby-constant">ABBR_DAYNAMES</span>[<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">wday</span>])
+21:     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/%A/</span>, <span class="ruby-constant">Date</span><span class="ruby-operator">::</span><span class="ruby-constant">DAYNAMES</span>[<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">wday</span>])
+22:     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/%b/</span>, <span class="ruby-constant">Date</span><span class="ruby-operator">::</span><span class="ruby-constant">ABBR_MONTHNAMES</span>[<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">mon</span>])
+23:     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/%B/</span>, <span class="ruby-constant">Date</span><span class="ruby-operator">::</span><span class="ruby-constant">MONTHNAMES</span>[<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">mon</span>])
+24:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">strftime_nolocale</span>(<span class="ruby-identifier">format</span>)
+25:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
 
       <div id="method-M000002" class="method-detail">
         <a name="M000002"></a>
@@ -132,10 +179,10 @@ Exemplo:
             onclick="toggleCode('M000002-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000002-source">
 <pre>
-   <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/time_portuguese.rb, line 7</span>
-7:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s_br</span>
-8:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-value str">&quot;%d/%m/%Y %H:%M&quot;</span>)
-9:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/time_portuguese.rb, line 9</span>
+ 9:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s_br</span>
+10:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-value str">&quot;%d/%m/%Y %H:%M&quot;</span>)
+11:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
