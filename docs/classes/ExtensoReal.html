@@ -80,9 +80,9 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000038">por_extenso_em_reais</a>&nbsp;&nbsp;
-      <a href="#M000040">por_extenso_em_reais</a>&nbsp;&nbsp;
-      <a href="#M000039">to_extenso_real</a>&nbsp;&nbsp;
+      <a href="#M000057">por_extenso_em_reais</a>&nbsp;&nbsp;
+      <a href="#M000059">por_extenso_em_reais</a>&nbsp;&nbsp;
+      <a href="#M000058">to_extenso_real</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -111,11 +111,11 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000040" class="method-detail">
-        <a name="M000040"></a>
+      <div id="method-M000059" class="method-detail">
+        <a name="M000059"></a>
 
         <div class="method-heading">
-          <a href="#M000040" class="method-signature">
+          <a href="#M000059" class="method-signature">
           <span class="method-name">por_extenso_em_reais</span><span class="method-args">(valor)</span>
           </a>
         </div>
@@ -133,40 +133,46 @@ Exemplo:
  Extenso.por_extenso_em_reais(100.58) ==&gt; &quot;cem reais e cinquenta e oito centavos&quot;
 </pre>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000040-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000040-source">
+            onclick="toggleCode('M000059-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000059-source">
 <pre>
-     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/number_portuguese.rb, line 128</span>
-128:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">ExtensoReal</span>.<span class="ruby-identifier">por_extenso_em_reais</span>(<span class="ruby-identifier">valor</span>)
-129:     <span class="ruby-keyword kw">return</span> <span class="ruby-value str">'grátis'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">valor</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
-130:     <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">valor</span>
-131:     <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Integer</span> 
-132:       <span class="ruby-identifier">extenso</span> = <span class="ruby-constant">Extenso</span>.<span class="ruby-identifier">por_extenso</span>(<span class="ruby-identifier">valor</span>)
-133:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">extenso</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^(.*)(ão$|ões$)/</span>
-134:         <span class="ruby-identifier">complemento</span> = <span class="ruby-value str">'de '</span>
-135:       <span class="ruby-keyword kw">else</span>
-136:         <span class="ruby-identifier">complemento</span> = <span class="ruby-value str">''</span>
-137:       <span class="ruby-keyword kw">end</span>
-138:       <span class="ruby-node">%(#{extenso} #{valor &lt;= 1 ? 'real': &quot;#{complemento}reais&quot;})</span>
-139:     <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Float</span>
-140:       <span class="ruby-identifier">real</span>,<span class="ruby-identifier">cents</span>=(<span class="ruby-value str">&quot;%.2f&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">valor</span>).<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/\./</span>).<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">to_i</span>}
-141:       <span class="ruby-identifier">valor_cents</span>=<span class="ruby-constant">Extenso</span>.<span class="ruby-identifier">por_extenso</span>(<span class="ruby-identifier">cents</span><span class="ruby-operator">%</span><span class="ruby-value">100</span>)
-142:        
-143:       <span class="ruby-identifier">valor_cents</span><span class="ruby-operator">+=</span> <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">cents</span>.<span class="ruby-identifier">to_i</span><span class="ruby-operator">%</span><span class="ruby-value">100</span>
-144:       <span class="ruby-keyword kw">when</span> <span class="ruby-value">0</span><span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>
-145:       <span class="ruby-keyword kw">when</span> <span class="ruby-value">1</span><span class="ruby-operator">:</span> <span class="ruby-value str">&quot; centavo&quot;</span>
-146:       <span class="ruby-keyword kw">when</span> <span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">99</span><span class="ruby-operator">:</span> <span class="ruby-value str">&quot; centavos&quot;</span>
-147:       <span class="ruby-keyword kw">end</span> 
-148:        
-149:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">real</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
-150:         <span class="ruby-node">&quot;#{ExtensoReal.por_extenso_em_reais(real.to_i)}#{cents &gt; 0 ? ' e ' + valor_cents : ''}&quot;</span>
-151:       <span class="ruby-keyword kw">else</span>
-152:         <span class="ruby-node">&quot;#{valor_cents}&quot;</span>
-153:       <span class="ruby-keyword kw">end</span>
-154:     <span class="ruby-keyword kw">else</span>
-155:       <span class="ruby-constant">ExtensoReal</span>.<span class="ruby-identifier">por_extenso_em_reais</span>(<span class="ruby-identifier">valor</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/[^\d]/</span>,<span class="ruby-value str">'.'</span>).<span class="ruby-identifier">to_f</span>)
-156:     <span class="ruby-keyword kw">end</span>
-157:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/number_portuguese.rb, line 129</span>
+129:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">ExtensoReal</span>.<span class="ruby-identifier">por_extenso_em_reais</span>(<span class="ruby-identifier">valor</span>)
+130:     <span class="ruby-identifier">negativo</span>=(<span class="ruby-identifier">valor</span><span class="ruby-operator">&lt;</span><span class="ruby-value">0</span>)<span class="ruby-operator">?</span><span class="ruby-value str">&quot; negativo&quot;</span><span class="ruby-operator">:</span><span class="ruby-value str">&quot;&quot;</span>
+131:     <span class="ruby-identifier">negativos</span>=(<span class="ruby-identifier">valor</span><span class="ruby-operator">&lt;</span><span class="ruby-value">0</span>)<span class="ruby-operator">?</span><span class="ruby-value str">&quot; negativos&quot;</span><span class="ruby-operator">:</span><span class="ruby-value str">&quot;&quot;</span>
+132:     <span class="ruby-identifier">valor</span> = <span class="ruby-identifier">valor</span>.<span class="ruby-identifier">abs</span>
+133:     <span class="ruby-keyword kw">return</span> <span class="ruby-value str">'grátis'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">valor</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+134:     <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">valor</span>
+135:     <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Integer</span>
+136:       <span class="ruby-identifier">extenso</span> = <span class="ruby-constant">Extenso</span>.<span class="ruby-identifier">por_extenso</span>(<span class="ruby-identifier">valor</span>)
+137:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">extenso</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^(.*)(ão$|ões$)/</span>
+138:         <span class="ruby-identifier">complemento</span> = <span class="ruby-value str">'de '</span>
+139:       <span class="ruby-keyword kw">else</span>
+140:         <span class="ruby-identifier">complemento</span> = <span class="ruby-value str">''</span>
+141:       <span class="ruby-keyword kw">end</span>
+142:       <span class="ruby-node">%(#{extenso} #{valor &lt;= 1 ? &quot;real#{negativo}&quot;: &quot;#{complemento}reais#{negativos}&quot;})</span>
+143:     <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Float</span>
+144:       <span class="ruby-identifier">real</span>,<span class="ruby-identifier">cents</span>=(<span class="ruby-value str">&quot;%.2f&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">valor</span>).<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/\./</span>).<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">to_i</span>}
+145:       <span class="ruby-identifier">valor_cents</span>=<span class="ruby-constant">Extenso</span>.<span class="ruby-identifier">por_extenso</span>(<span class="ruby-identifier">cents</span><span class="ruby-operator">%</span><span class="ruby-value">100</span>)
+146:       <span class="ruby-identifier">valor_cents</span><span class="ruby-operator">+=</span> <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">cents</span>.<span class="ruby-identifier">to_i</span><span class="ruby-operator">%</span><span class="ruby-value">100</span>
+147:       <span class="ruby-keyword kw">when</span> <span class="ruby-value">0</span><span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>
+148:       <span class="ruby-keyword kw">when</span> <span class="ruby-value">1</span><span class="ruby-operator">:</span> <span class="ruby-value str">&quot; centavo&quot;</span>
+149:       <span class="ruby-keyword kw">when</span> <span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">99</span><span class="ruby-operator">:</span> <span class="ruby-value str">&quot; centavos&quot;</span>
+150:       <span class="ruby-keyword kw">end</span>
+151: 
+152:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">real</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+153:         <span class="ruby-node">&quot;#{ExtensoReal.por_extenso_em_reais(real.to_i)}#{cents &gt; 0 ? ' e ' + valor_cents + negativos : real.to_i &gt; 1 ? negativos : negativo }&quot;</span>
+154:       <span class="ruby-keyword kw">else</span>
+155:         <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">cents</span>.<span class="ruby-identifier">to_i</span><span class="ruby-operator">%</span><span class="ruby-value">100</span>)<span class="ruby-operator">==</span><span class="ruby-value">1</span>
+156:            <span class="ruby-node">&quot;#{valor_cents}#{negativo}&quot;</span>
+157:         <span class="ruby-keyword kw">else</span>
+158:            <span class="ruby-node">&quot;#{valor_cents}#{negativos}&quot;</span>
+159:         <span class="ruby-keyword kw">end</span>
+160:       <span class="ruby-keyword kw">end</span>
+161:     <span class="ruby-keyword kw">else</span>
+162:       <span class="ruby-constant">ExtensoReal</span>.<span class="ruby-identifier">por_extenso_em_reais</span>(<span class="ruby-identifier">valor</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/[^\d]/</span>,<span class="ruby-value str">'.'</span>).<span class="ruby-identifier">to_f</span>)
+163:     <span class="ruby-keyword kw">end</span>
+164:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -174,11 +180,11 @@ Exemplo:
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000038" class="method-detail">
-        <a name="M000038"></a>
+      <div id="method-M000057" class="method-detail">
+        <a name="M000057"></a>
 
         <div class="method-heading">
-          <a href="#M000038" class="method-signature">
+          <a href="#M000057" class="method-signature">
           <span class="method-name">por_extenso_em_reais</span><span class="method-args">()</span>
           </a>
         </div>
@@ -195,23 +201,23 @@ Exemplo:
  (100.58).por_extenso_em_reais ==&gt; 'cem reais e cinquenta e oito centavos'
 </pre>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000038-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000038-source">
+            onclick="toggleCode('M000057-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000057-source">
 <pre>
-     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/number_portuguese.rb, line 112</span>
-112:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">por_extenso_em_reais</span>
-113:     <span class="ruby-constant">ExtensoReal</span>.<span class="ruby-identifier">por_extenso_em_reais</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">to_s</span>)
-114:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/number_portuguese.rb, line 113</span>
+113:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">por_extenso_em_reais</span>
+114:     <span class="ruby-constant">ExtensoReal</span>.<span class="ruby-identifier">por_extenso_em_reais</span>(<span class="ruby-keyword kw">self</span>)
+115:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000039" class="method-detail">
-        <a name="M000039"></a>
+      <div id="method-M000058" class="method-detail">
+        <a name="M000058"></a>
 
         <div class="method-heading">
-          <a href="#M000039" class="method-signature">
+          <a href="#M000058" class="method-signature">
           <span class="method-name">to_extenso_real</span><span class="method-args">()</span>
           </a>
         </div>
@@ -219,18 +225,18 @@ Exemplo:
         <div class="method-description">
           <p>
 DEPRECATION WARNING: use <a
-href="ExtensoReal.html#M000038">por_extenso_em_reais</a>, pois este sera
+href="ExtensoReal.html#M000057">por_extenso_em_reais</a>, pois este sera
 removido no proximo release.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000039-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000039-source">
+            onclick="toggleCode('M000058-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000058-source">
 <pre>
-     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/number_portuguese.rb, line 117</span>
-117:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_extenso_real</span>
-118:     <span class="ruby-identifier">warn</span>(<span class="ruby-value str">'DEPRECATION WARNING: use por_extenso_em_reais, pois este sera removido no proximo release.'</span>)
-119:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">por_extenso_em_reais</span>
-120:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/number_portuguese.rb, line 118</span>
+118:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_extenso_real</span>
+119:     <span class="ruby-identifier">warn</span>(<span class="ruby-value str">'DEPRECATION WARNING: use por_extenso_em_reais, pois este sera removido no proximo release.'</span>)
+120:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">por_extenso_em_reais</span>
+121:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>

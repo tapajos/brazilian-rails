@@ -1,15 +1,10 @@
-# desc "Explaining what the task does"
-# task :portugues do
-#   # Task goes here
-# end
-
 desc "Generate documentation for Brazilian Rails plugins"
 namespace :gerar_doc do
   namespace :plugins do
     plugin = 'brazilian-rails'
     doc_base = "doc/plugins/#{plugin}"
     task(plugin => :environment) do
-      FileUtils.remove_dir(doc_base, true)
+      # FileUtils.remove_dir(doc_base, true)
       plugin_base   = "vendor/plugins/#{plugin}"
       options       = []
       files         = Rake::FileList.new
@@ -18,6 +13,8 @@ namespace :gerar_doc do
       options << '--line-numbers' << '--inline-source'
       options << '-T html'
       options << '--charset UTF8'
+      options << '--all'
+      options << '-U'
   
       files.include("#{plugin_base}/lib/**/*.rb")
       if File.exists?("#{plugin_base}/README")

@@ -80,9 +80,9 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000047">por_extenso</a>&nbsp;&nbsp;
-      <a href="#M000049">por_extenso</a>&nbsp;&nbsp;
-      <a href="#M000048">to_extenso</a>&nbsp;&nbsp;
+      <a href="#M000066">por_extenso</a>&nbsp;&nbsp;
+      <a href="#M000068">por_extenso</a>&nbsp;&nbsp;
+      <a href="#M000067">to_extenso</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -104,11 +104,11 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000049" class="method-detail">
-        <a name="M000049"></a>
+      <div id="method-M000068" class="method-detail">
+        <a name="M000068"></a>
 
         <div class="method-heading">
-          <a href="#M000049" class="method-signature">
+          <a href="#M000068" class="method-signature">
           <span class="method-name">por_extenso</span><span class="method-args">(numero)</span>
           </a>
         </div>
@@ -126,47 +126,48 @@ Exemplo:
  Extenso.por_extenso(158) ==&gt; &quot;cento e cinquenta e oito&quot;
 </pre>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000049-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000049-source">
+            onclick="toggleCode('M000068-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000068-source">
 <pre>
      <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/number_portuguese.rb, line 65</span>
  65:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">Extenso</span>.<span class="ruby-identifier">por_extenso</span>(<span class="ruby-identifier">numero</span>)
- 66:     <span class="ruby-identifier">n</span>=<span class="ruby-identifier">numero</span>.<span class="ruby-identifier">to_i</span>.<span class="ruby-identifier">abs</span>
- 67:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">n</span>
- 68:     <span class="ruby-keyword kw">when</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">9</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@@unidade</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">to_s</span> 
- 69:     <span class="ruby-keyword kw">when</span> <span class="ruby-value">10</span><span class="ruby-operator">..</span><span class="ruby-value">19</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@@dezena</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">to_s</span>
- 70:     <span class="ruby-keyword kw">when</span> <span class="ruby-value">20</span><span class="ruby-operator">..</span><span class="ruby-value">99</span><span class="ruby-operator">:</span>
- 71:       <span class="ruby-identifier">v</span>=<span class="ruby-identifier">n</span> <span class="ruby-operator">%</span> <span class="ruby-value">10</span>
- 72:       <span class="ruby-keyword kw">if</span>  <span class="ruby-identifier">v</span><span class="ruby-operator">==</span> <span class="ruby-value">0</span>
- 73:         <span class="ruby-ivar">@@dezena</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">to_s</span>
- 74:       <span class="ruby-keyword kw">else</span>
- 75:         <span class="ruby-node">&quot;#{@@dezena[n-v]} e #{por_extenso(v)}&quot;</span>
- 76:       <span class="ruby-keyword kw">end</span>
- 77:     <span class="ruby-keyword kw">when</span> <span class="ruby-value">100</span>
- 78:       <span class="ruby-value str">&quot;cem&quot;</span>     
- 79:     <span class="ruby-keyword kw">when</span> <span class="ruby-value">101</span><span class="ruby-operator">..</span><span class="ruby-value">999</span>
- 80:       <span class="ruby-identifier">v</span>=<span class="ruby-identifier">n</span> <span class="ruby-operator">%</span> <span class="ruby-value">100</span>
- 81:       <span class="ruby-keyword kw">if</span>  <span class="ruby-identifier">v</span><span class="ruby-operator">==</span> <span class="ruby-value">0</span>
- 82:         <span class="ruby-ivar">@@centena</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">to_s</span>
- 83:       <span class="ruby-keyword kw">else</span>
- 84:         <span class="ruby-node">&quot;#{@@centena[n-v]} e #{por_extenso(v)}&quot;</span>
- 85:       <span class="ruby-keyword kw">end</span>
- 86:     <span class="ruby-keyword kw">when</span> <span class="ruby-value">1000</span><span class="ruby-operator">..</span><span class="ruby-value">999999</span>  
- 87:       <span class="ruby-identifier">m</span>,<span class="ruby-identifier">c</span>=<span class="ruby-identifier">n</span><span class="ruby-operator">/</span><span class="ruby-value">1000</span>,<span class="ruby-identifier">n</span><span class="ruby-operator">%</span><span class="ruby-value">1000</span>
- 88:       <span class="ruby-node">%(#{por_extenso(m)} mil#{c &gt; 0 ? &quot; e #{por_extenso(c)}&quot;:''})</span>
- 89:     <span class="ruby-keyword kw">when</span> <span class="ruby-value">1_000_000</span><span class="ruby-operator">..</span><span class="ruby-value">999_999_999</span>
- 90:       <span class="ruby-identifier">mi</span>,<span class="ruby-identifier">m</span>=<span class="ruby-identifier">n</span><span class="ruby-operator">/</span><span class="ruby-value">1_000_000</span>,<span class="ruby-identifier">n</span><span class="ruby-operator">%</span><span class="ruby-value">1_000_000</span>
- 91:       <span class="ruby-node">%(#{por_extenso(mi)} milh#{mi &gt; 1 ? 'ões':'ão'}#{m &gt; 0 ? &quot; e #{por_extenso(m)}&quot; : ''})</span>
- 92:     <span class="ruby-keyword kw">when</span> <span class="ruby-value">1_000_000_000</span><span class="ruby-operator">..</span><span class="ruby-value">999_999_999_999</span>
- 93:       <span class="ruby-identifier">bi</span>,<span class="ruby-identifier">mi</span>=<span class="ruby-identifier">n</span><span class="ruby-operator">/</span><span class="ruby-value">1_000_000_000</span>,<span class="ruby-identifier">n</span><span class="ruby-operator">%</span><span class="ruby-value">1_000_000_000</span>
- 94:       <span class="ruby-node">%(#{por_extenso(bi)} bilh#{bi &gt; 1 ? 'ões':'ão'}#{mi &gt; 0 ? &quot; e #{por_extenso(mi)}&quot; : ''})</span>
- 95:     <span class="ruby-keyword kw">when</span> <span class="ruby-value">1_000_000_000_000</span><span class="ruby-operator">..</span><span class="ruby-value">999_999_999_999_999</span>
- 96:       <span class="ruby-identifier">tri</span>,<span class="ruby-identifier">bi</span>=<span class="ruby-identifier">n</span><span class="ruby-operator">/</span><span class="ruby-value">1_000_000_000_000</span>,<span class="ruby-identifier">n</span><span class="ruby-operator">%</span><span class="ruby-value">1_000_000_000_000</span>
- 97:       <span class="ruby-node">%(#{por_extenso(tri)} trilh#{tri &gt; 1 ? 'ões':'ão'}#{bi &gt; 0 ? &quot; e #{por_extenso(bi)}&quot; : ''})</span>
- 98:     <span class="ruby-keyword kw">else</span>
- 99:       <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Valor excede o permitido: #{n}&quot;</span>
-100:     <span class="ruby-keyword kw">end</span>
-101:   <span class="ruby-keyword kw">end</span>
+ 66:     <span class="ruby-identifier">negativo</span>=(<span class="ruby-identifier">numero</span><span class="ruby-operator">&lt;</span><span class="ruby-value">0</span>)<span class="ruby-operator">?</span><span class="ruby-value str">&quot;menos &quot;</span><span class="ruby-operator">:</span><span class="ruby-value str">&quot;&quot;</span>
+ 67:     <span class="ruby-identifier">n</span>=<span class="ruby-identifier">numero</span>.<span class="ruby-identifier">to_i</span>.<span class="ruby-identifier">abs</span>
+ 68:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">n</span>
+ 69:     <span class="ruby-keyword kw">when</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">9</span><span class="ruby-operator">:</span> <span class="ruby-identifier">negativo</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@@unidade</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">to_s</span>
+ 70:     <span class="ruby-keyword kw">when</span> <span class="ruby-value">10</span><span class="ruby-operator">..</span><span class="ruby-value">19</span><span class="ruby-operator">:</span> <span class="ruby-identifier">negativo</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@@dezena</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">to_s</span>
+ 71:     <span class="ruby-keyword kw">when</span> <span class="ruby-value">20</span><span class="ruby-operator">..</span><span class="ruby-value">99</span><span class="ruby-operator">:</span>
+ 72:       <span class="ruby-identifier">v</span>=<span class="ruby-identifier">n</span> <span class="ruby-operator">%</span> <span class="ruby-value">10</span>
+ 73:       <span class="ruby-keyword kw">if</span>  <span class="ruby-identifier">v</span><span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+ 74:         <span class="ruby-identifier">negativo</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@@dezena</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">to_s</span>
+ 75:       <span class="ruby-keyword kw">else</span>
+ 76:         <span class="ruby-node">&quot;#{negativo}#{@@dezena[n-v]} e #{por_extenso(v)}&quot;</span>
+ 77:       <span class="ruby-keyword kw">end</span>
+ 78:     <span class="ruby-keyword kw">when</span> <span class="ruby-value">100</span>
+ 79:       <span class="ruby-identifier">negativo</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;cem&quot;</span>
+ 80:     <span class="ruby-keyword kw">when</span> <span class="ruby-value">101</span><span class="ruby-operator">..</span><span class="ruby-value">999</span>
+ 81:       <span class="ruby-identifier">v</span>=<span class="ruby-identifier">n</span> <span class="ruby-operator">%</span> <span class="ruby-value">100</span>
+ 82:       <span class="ruby-keyword kw">if</span>  <span class="ruby-identifier">v</span><span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+ 83:         <span class="ruby-identifier">negativo</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@@centena</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">to_s</span>
+ 84:       <span class="ruby-keyword kw">else</span>
+ 85:         <span class="ruby-node">&quot;#{negativo}#{@@centena[n-v]} e #{por_extenso(v)}&quot;</span>
+ 86:       <span class="ruby-keyword kw">end</span>
+ 87:     <span class="ruby-keyword kw">when</span> <span class="ruby-value">1000</span><span class="ruby-operator">..</span><span class="ruby-value">999999</span>
+ 88:       <span class="ruby-identifier">m</span>,<span class="ruby-identifier">c</span>=<span class="ruby-identifier">n</span><span class="ruby-operator">/</span><span class="ruby-value">1000</span>,<span class="ruby-identifier">n</span><span class="ruby-operator">%</span><span class="ruby-value">1000</span>
+ 89:       <span class="ruby-node">%(#{negativo}#{por_extenso(m)} mil#{c &gt; 0 ? &quot; e #{por_extenso(c)}&quot;:''})</span>
+ 90:     <span class="ruby-keyword kw">when</span> <span class="ruby-value">1_000_000</span><span class="ruby-operator">..</span><span class="ruby-value">999_999_999</span>
+ 91:       <span class="ruby-identifier">mi</span>,<span class="ruby-identifier">m</span>=<span class="ruby-identifier">n</span><span class="ruby-operator">/</span><span class="ruby-value">1_000_000</span>,<span class="ruby-identifier">n</span><span class="ruby-operator">%</span><span class="ruby-value">1_000_000</span>
+ 92:       <span class="ruby-node">%(#{negativo}#{por_extenso(mi)} milh#{mi &gt; 1 ? 'ões':'ão'}#{m &gt; 0 ? &quot; e #{por_extenso(m)}&quot; : ''})</span>
+ 93:     <span class="ruby-keyword kw">when</span> <span class="ruby-value">1_000_000_000</span><span class="ruby-operator">..</span><span class="ruby-value">999_999_999_999</span>
+ 94:       <span class="ruby-identifier">bi</span>,<span class="ruby-identifier">mi</span>=<span class="ruby-identifier">n</span><span class="ruby-operator">/</span><span class="ruby-value">1_000_000_000</span>,<span class="ruby-identifier">n</span><span class="ruby-operator">%</span><span class="ruby-value">1_000_000_000</span>
+ 95:       <span class="ruby-node">%(#{negativo}#{por_extenso(bi)} bilh#{bi &gt; 1 ? 'ões':'ão'}#{mi &gt; 0 ? &quot; e #{por_extenso(mi)}&quot; : ''})</span>
+ 96:     <span class="ruby-keyword kw">when</span> <span class="ruby-value">1_000_000_000_000</span><span class="ruby-operator">..</span><span class="ruby-value">999_999_999_999_999</span>
+ 97:       <span class="ruby-identifier">tri</span>,<span class="ruby-identifier">bi</span>=<span class="ruby-identifier">n</span><span class="ruby-operator">/</span><span class="ruby-value">1_000_000_000_000</span>,<span class="ruby-identifier">n</span><span class="ruby-operator">%</span><span class="ruby-value">1_000_000_000_000</span>
+ 98:       <span class="ruby-node">%(#{negativo}#{por_extenso(tri)} trilh#{tri &gt; 1 ? 'ões':'ão'}#{bi &gt; 0 ? &quot; e #{por_extenso(bi)}&quot; : ''})</span>
+ 99:     <span class="ruby-keyword kw">else</span>
+100:       <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Valor excede o permitido: #{n}&quot;</span>
+101:     <span class="ruby-keyword kw">end</span>
+102:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -174,11 +175,11 @@ Exemplo:
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000047" class="method-detail">
-        <a name="M000047"></a>
+      <div id="method-M000066" class="method-detail">
+        <a name="M000066"></a>
 
         <div class="method-heading">
-          <a href="#M000047" class="method-signature">
+          <a href="#M000066" class="method-signature">
           <span class="method-name">por_extenso</span><span class="method-args">()</span>
           </a>
         </div>
@@ -196,8 +197,8 @@ Exemplo:
  158.por_extenso ==&gt; 'cento e cinquenta e oito'
 </pre>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000047-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000047-source">
+            onclick="toggleCode('M000066-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000066-source">
 <pre>
     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/number_portuguese.rb, line 49</span>
 49:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">por_extenso</span>
@@ -208,23 +209,23 @@ Exemplo:
         </div>
       </div>
 
-      <div id="method-M000048" class="method-detail">
-        <a name="M000048"></a>
+      <div id="method-M000067" class="method-detail">
+        <a name="M000067"></a>
 
         <div class="method-heading">
-          <a href="#M000048" class="method-signature">
+          <a href="#M000067" class="method-signature">
           <span class="method-name">to_extenso</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-DEPRECATION WARNING: use <a href="Extenso.html#M000047">por_extenso</a>,
+DEPRECATION WARNING: use <a href="Extenso.html#M000066">por_extenso</a>,
 pois este sera removido no proximo release.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000048-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000048-source">
+            onclick="toggleCode('M000067-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000067-source">
 <pre>
     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/number_portuguese.rb, line 54</span>
 54:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_extenso</span>
