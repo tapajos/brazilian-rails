@@ -13,25 +13,23 @@ module DinheiroActiveRecord#:nodoc:
           validate :#{name}_valido?
 
           def #{name}_valido?
-            return true if @valor_original.nil?
             begin
-              Dinheiro.new(@valor_original) 
+              @#{name}.to_s.reais
             rescue Exception => e
               self.errors.add('#{name}', e.message)
             end
           end
 
-          alias_method :#{name}_original=, :#{name}=
           def #{name}=(value)
-            @valor_original = nil
-            if value.kind_of?(Dinheiro)
-              self.#{name}_original = value 
+            if value.nil?
+              write_attribute('#{name}', nil)
+            elsif value.kind_of?(Dinheiro)
+              write_attribute('#{name}', value.valor_decimal)
             else
               begin
-                self.#{name}_original = Dinheiro.new(value)
+                write_attribute('#{name}', value.reais.valor_decimal)
               rescue
-                @valor_original = value
-                self.#{name}_original = nil
+                @#{name} = value
               end
             end
           end
