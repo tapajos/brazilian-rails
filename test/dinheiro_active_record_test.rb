@@ -28,7 +28,6 @@ class DinheiroActiveRecordTest < Test::Unit::TestCase
     @carteira.saldo = 30
     assert @carteira.save
     @carteira.saldo = 'bla'
-    assert_nil @carteira.saldo
     assert !@carteira.save
     assert_equal "O valor deve estar preenchido e no formato correto. Ex.: 100.00 .", @carteira.errors['saldo']    
   end
