@@ -1,0 +1,81 @@
+# Brazilian Rails
+
+## O que é?
+
+Brazilian Rails é um plugin para Rails, que tem como objetivo unir vários recursos de regras e traduções para o desenvolvedor brasileiro.
+
+## Como surgiu?
+
+Em meiados de 1850, numa tentativa desesperada de... 
+:) 
+Brincadeira, na verdade surgiu com o dia a dia acontecendo.
+
+## Como faço para instalar?
+
+É muito difícil...
+
+ script/plugin install svn://rubyforge.org/var/svn/brazilian-rails
+
+_Nota_: Se você usa um certo sistema operacional, lembre de colocar a chamada ruby na frente, ok?
+
+Por padrão, a pluralização vem desabilitada, isso para não atrapalhar os projetos que já existem.
+
+Para ativar a pluralização, basta adicionar a linha abaixo no seu enviroment.rb
+
+ require 'inflector\_portuguese'
+
+## Como funciona ?
+
+Está tudo explicado na nossa [api][].
+
+## Quem está por traz disso tudo?
+
+O [Marcos Tapajós][mt] tomou coragem para publicar todas as funcionalidades em um plugin, com testes unitários para garantir que tudo funcione conforme manda o figurino.
+Os contribuidores que atuam hoje são, [Celestino Gomes][tino], [André Luiz Kupkovski][andre] , [Vinícius Teles][vt], a galera do Grupo Santa Isabel e mais alguns que não se manifestaram...
+
+Vale ressaltar algumas funciolidades adicionadas por contribuição da própria comunidade, como [Shairon Toledo][st] em Extenso e StringPortuguese.
+
+## Como executar os testes:
+
+Para executar os testes do plugin, execute:
+
+ cd <rails application>/vendor/plugins/brazilian-rails
+ rake
+
+Alguns testes demandam a presença de uma base de dados, como é o caso do dinheiro\_active\_record\_test.rb. Para que os testes possam executar com sucesso, copie as migrations que estão no diretório db/migrate do plugin, para o db/migrate de sua aplicação Rails. Em seguida, execute:
+
+ rake db:migrate
+ rake db:test:clone\_structure 
+
+Atenção com a numeração das migrations.
+
+## Algumas funcionalidades:
+
+* Date e Time no formato brasileiro
+* Números por Extenso
+* Dinheiro
+* Feriado
+* Mensagens de erro traduzidas
+* Pluralização em português-Brasil-sil-sil
+* etc
+
+## Duvidas ?
+
+As duvidas podem ser enviadas diretamente a um dos desenvolvedores ou através da página do projeto no [RubyForge][rf]
+
+## Quem investe nesse plugin ?
+
+Este plugin é patrocinado pela [Improve It][ii].
+
+[![Improve It][logo]][ii]
+
+[api]: /api
+
+[ii]:		http://www.improveit.com.br
+[logo]: 	images/improveit.gif "Improve It"
+[tino]: http://www.workingwithrails.com/person/8470-celestino-gomes
+[andre]: http://www.workingwithrails.com/person/9227-andr-luiz-kupkovski
+[st]: www.hashcode.eti.br/
+[rf]: http://rubyforge.org/projects/brazilian-rails
+[mt]:		http://www.improveit.com.br/tapajos
+[vt]:		http://www.improveit.com.br/vinicius
