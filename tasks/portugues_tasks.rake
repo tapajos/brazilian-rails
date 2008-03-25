@@ -2,13 +2,11 @@ desc "Generate documentation for Brazilian Rails plugins"
 namespace :gerar_doc do
   namespace :plugins do
     plugin = 'brazilian-rails'
-    doc_base = "doc/plugins/#{plugin}"
     task(plugin => :environment) do
-      # FileUtils.remove_dir(doc_base, true)
       plugin_base   = "vendor/plugins/#{plugin}"
       options       = []
       files         = Rake::FileList.new
-      options << "-o doc/plugins/#{plugin}"
+      options << "-o #{plugin_base}/doc/api"
       options << "--title '#{plugin.titlecase} Plugin Documentation'"
       options << '--line-numbers' << '--inline-source'
       options << '-T html'
