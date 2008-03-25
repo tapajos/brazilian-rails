@@ -1,0 +1,85 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+      <html xmlns="http://www.w3.org/1999/xhtml">
+    
+  <head>
+        <title>Brazilian Rails</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="stylesheet" href="stylesheets/screen.css" type="text/css" media="screen" />
+      </head>
+    
+  <body>
+<h1>Brazilian Rails</h1>
+
+<h2>O que é?</h2>
+
+<p>Brazilian Rails é um plugin para Rails, que tem como objetivo unir vários recursos de regras e traduções para o desenvolvedor brasileiro.</p>
+
+<h2>Como surgiu?</h2>
+
+<p>Em meiados de 1850, numa tentativa desesperada de... 
+:) 
+Brincadeira, na verdade surgiu com o dia a dia acontecendo.</p>
+
+<h2>Como faço para instalar?</h2>
+
+<p>É muito difícil...</p>
+
+<p>script/plugin install svn://rubyforge.org/var/svn/brazilian-rails</p>
+
+<p><em>Nota</em>: Se você usa um certo sistema operacional, lembre de colocar a chamada ruby na frente, ok?</p>
+
+<p>Por padrão, a pluralização vem desabilitada, isso para não atrapalhar os projetos que já existem.</p>
+
+<p>Para ativar a pluralização, basta adicionar a linha abaixo no seu enviroment.rb</p>
+
+<p>require 'inflector_portuguese'</p>
+
+<h2>Como funciona ?</h2>
+
+<p>Está tudo explicado na nossa <a href="/api">api</a>.</p>
+
+<h2>Quem está por traz disso tudo?</h2>
+
+<p>O <a href="http://www.improveit.com.br/tapajos">Marcos Tapajós</a> tomou coragem para publicar todas as funcionalidades em um plugin, com testes unitários para garantir que tudo funcione conforme manda o figurino.
+Os contribuidores que atuam hoje são, <a href="http://www.workingwithrails.com/person/8470-celestino-gomes">Celestino Gomes</a>, <a href="http://www.workingwithrails.com/person/9227-andr-luiz-kupkovski">André Luiz Kupkovski</a> , <a href="http://www.improveit.com.br/vinicius">Vinícius Teles</a>, a galera do Grupo Santa Isabel e mais alguns que não se manifestaram...</p>
+
+<p>Vale ressaltar algumas funciolidades adicionadas por contribuição da própria comunidade, como <a href="www.hashcode.eti.br/">Shairon Toledo</a> em Extenso e StringPortuguese.</p>
+
+<h2>Como executar os testes:</h2>
+
+<p>Para executar os testes do plugin, execute:</p>
+
+<p>cd <rails application>/vendor/plugins/brazilian-rails
+ rake</p>
+
+<p>Alguns testes demandam a presença de uma base de dados, como é o caso do dinheiro_active_record_test.rb. Para que os testes possam executar com sucesso, copie as migrations que estão no diretório db/migrate do plugin, para o db/migrate de sua aplicação Rails. Em seguida, execute:</p>
+
+<p>rake db:migrate
+ rake db:test:clone_structure </p>
+
+<p>Atenção com a numeração das migrations.</p>
+
+<h2>Algumas funcionalidades:</h2>
+
+<ul>
+<li>Date e Time no formato brasileiro</li>
+<li>Números por Extenso</li>
+<li>Dinheiro</li>
+<li>Feriado</li>
+<li>Mensagens de erro traduzidas</li>
+<li>Pluralização em português-Brasil-sil-sil</li>
+<li>etc</li>
+</ul>
+
+<h2>Duvidas ?</h2>
+
+<p>As duvidas podem ser enviadas diretamente a um dos desenvolvedores ou através da página do projeto no <a href="http://rubyforge.org/projects/brazilian-rails">RubyForge</a></p>
+
+<h2>Quem investe nesse plugin ?</h2>
+
+<p>Este plugin é patrocinado pela <a href="http://www.improveit.com.br">Improve It</a>.</p>
+
+<p><a href="http://www.improveit.com.br"><img src="images/improveit.gif" alt="Improve It" title="Improve It"/></a></p>
+  </body>
+</html>

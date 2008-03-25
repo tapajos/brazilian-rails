@@ -1,0 +1,107 @@
+html * {
+    color:                  #222;
+    font:                   normal normal normal 1em/1em "Trebuchet MS", "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding:				0;
+	background:				none;
+	border:					none;
+	margin:					0;
+}
+
+html {
+	background:				#CCCCFF;
+}
+
+body {
+	width:					42.5em;
+	padding:				0 3em 5em 3em;
+	background: 			#FFF;
+	margin:					0 auto;
+	position:				relative;
+}
+
+h1, h2, h3 {
+	text-transform:			uppercase;
+	margin:					2em 0 1em 0;
+}
+
+h1 {
+	color:					#D74768;
+	font:					normal normal bold 280% "Eurostile", "Trebuchet MS", "Lucida Grande", Helvetica, Arial, sans-serif;
+/*	padding-top:			130px;*/
+/*	background: 			#FFF url("../images/continuous_integration.jpg") no-repeat;*/
+	margin:					0;
+}
+
+h2 {
+	color:					#660066;
+	font:					normal normal bold 130% Georgia, Times, "Times New Roman", serif;
+	border-bottom: 			1px solid #686868;
+}
+
+h3 {
+	color:					#CC6666;
+}
+
+a {
+	color:					#660066;
+}
+
+p {
+	font-size:				95%;
+	line-height:			1.3em;
+	text-align:				justify;
+	padding:				0 1.3em;
+	margin:					.5em 0 1em 0;
+}
+
+pre {
+	padding:				1.25em;
+	background-color: 		#E3DEFF;
+	margin:					.5em 0 1em 0;
+	overflow:				auto;
+}
+
+code {
+	color:					#533D2A;
+	font:					normal normal normal 85%/1.2em "Lucida Console", "Monaco", serif; 
+}
+
+ul {
+	list-style-type: 		square;
+}
+
+ul, ol {
+	padding:				0 3.1em .5em 3.1em;
+}
+
+ul li, ol li {
+	margin-bottom:			1em;
+}
+
+ul p, ol p {
+	padding:				0;
+	margin:					0 0 .3em 0;
+}
+
+ol p {
+	color:					#533D2A;
+	font:					normal normal normal 90%/1.2em "Lucida Console", "Monaco", serif; 
+	padding:				.2em;
+	background-color: 		#E3DEFF;
+}
+
+ol p + p {
+	color:					#222;
+    font:                   normal normal normal 85%/1em "Trebuchet MS", "Lucida Grande", Helvetica, Arial, sans-serif;
+	background:				none;
+}
+
+img {
+	position:				absolute;
+	bottom:					4.3em;
+	right:					4.3em;
+}
+
+strong {
+	font-weight: 			bold;
+}
