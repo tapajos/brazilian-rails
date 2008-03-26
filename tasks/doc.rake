@@ -28,7 +28,7 @@ task :generate_doc do
         document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
         </script>
         <script type="text/javascript">
-        var pageTracker = _gat._getTracker("UA-2115027-1");
+        var pageTracker = _gat._getTracker("UA-3959259-1");
         pageTracker._initData();
         pageTracker._trackPageview();
         </script>
