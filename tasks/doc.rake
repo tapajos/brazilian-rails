@@ -21,19 +21,19 @@ task :generate_doc do
       </head>
     })
   
-  # index.gsub!(/<\/body>/, 
-  #     %{
-  #       <script type="text/javascript">
-  #       var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-  #       document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-  #       </script>
-  #       <script type="text/javascript">
-  #       var pageTracker = _gat._getTracker("UA-2309104-4");
-  #       pageTracker._initData();
-  #       pageTracker._trackPageview();
-  #       </script>
-  #       </body>
-  #       })
+  index.gsub!(/<\/body>/, 
+      %{
+        <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        <script type="text/javascript">
+        var pageTracker = _gat._getTracker("UA-2115027-1");
+        pageTracker._initData();
+        pageTracker._trackPageview();
+        </script>
+        </body>
+        })
   
   File.open("#{doc_path}/index.html", 'w+') do |index_file|
     index_file << index
