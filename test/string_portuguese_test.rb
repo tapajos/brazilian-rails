@@ -1,19 +1,25 @@
 require File.dirname(__FILE__) + '/test_helper'
 
+NOMES_PROPRIOS = {
+  'Paulo Gomes' => 'paulo gomes',
+  'Pedro da Silva' => 'pedro da silva',
+  'Jonas de Souza' => 'jonas de souza',
+  'Maria do Carmo' => 'maria do carmo',
+  'Silva e Souza' => 'silva e souza',
+  'Jardim das Oliveiras' => 'jardim das oliveiras',
+  'José dos Santos' => 'josé dos santos',
+  'Tomé Gomes da Silva de Souza' => 'tomé gomes da silva de souza',
+  'Maria do Carmo e Souza das Couves dos Santos' => 'maria do carmo e souza das couves dos santos',
+  'Átila da Silva' => 'átila da silva',
+  'Érica da Silva' => 'érica da silva',
+  'Íris Santos' => 'íris santos',
+  'Paulo dos Santos' => 'paulo dos saNTos',
+  ' José  da   Silva  ' => ' josé  da   silva  '
+}
+
 class StringPortugueseTest < Test::Unit::TestCase
   def test_nome_proprio
-    assert_equal "Celestino Gomes", "celestino gomes".nome_proprio
-    assert_equal "Celestino da Silva", "celestino da silva".nome_proprio
-    assert_equal "Celestino de Souza", "celestino de souza".nome_proprio
-    assert_equal "Celestino do Carmo", "celestino do carmo".nome_proprio
-    assert_equal "Celestino e Souza", "celestino e souza".nome_proprio
-    assert_equal "Celestino das Couves", "celestino das couves".nome_proprio
-    assert_equal "Celestino dos Santos", "celestino dos santos".nome_proprio
-    assert_equal "Celestino Gomes da Silva de Souza do Carmo e Souza das Couves dos Santos", "celestino gomes da silva de souza do carmo e souza das couves dos santos".nome_proprio
-    assert_equal 'Maria João da Silva', 'MariaJoão da silva'.nome_proprio
-    assert_equal "Átila da Silva", 'átila da silva'.nome_proprio
-    assert_equal "Érica da Silva", 'érica da silva'.nome_proprio
-    assert_equal "Íris Santos", 'íris santos'.nome_proprio
+    NOMES_PROPRIOS.each {|key, value| assert_equal key, value.nome_proprio }
     
     palavras_excluidas = %w(? ! @ # $ % & * \ / ? , . ; ] [ } { = + 0 1 2 3 4 5 6 7 8 9)
     
@@ -33,12 +39,53 @@ class StringPortugueseTest < Test::Unit::TestCase
     assert_equal 'aeiouAEIOUaeiouAEIOUaeiouAEIOUaeiouAEIOUaoAOnNcC', "áéíóúÁÉÍÓÚâêîôûÂÊÎÔÛàèìòùÀÈÌÒÙäëïöüÄËÏÖÜãõÃÕñÑçÇ".remover_acentos
   end
   
+  def test_downcase
+    assert_equal String::MINUSCULAS_COM_ACENTO, String::MAIUSCULAS_COM_ACENTO.downcase
+  end
+  
+  def test_upcase
+    assert_equal String::MAIUSCULAS_COM_ACENTO, String::MINUSCULAS_COM_ACENTO.upcase
+  end
+
   def test_downcase_br
-    assert_equal 'áéíóúâêîôûàèìòùäëïöüãõñç', 'ÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÄËÏÖÜÃÕÑÇ'.downcase_br
+    RAILS_DEFAULT_LOGGER.expects(:warn).with("AVISO: Este metodo sera removido na proxima revisao, usar o metodo downcase.")
+    assert_equal String::MINUSCULAS_COM_ACENTO, String::MAIUSCULAS_COM_ACENTO.downcase_br
   end
   
   def test_upcase_br
-    assert_equal 'ÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÄËÏÖÜÃÕÑÇ', 'áéíóúâêîôûàèìòùäëïöüãõñç'.upcase_br
+    RAILS_DEFAULT_LOGGER.expects(:warn).with("AVISO: Este metodo sera removido na proxima revisao, usar o metodo upcase.")
+    assert_equal String::MAIUSCULAS_COM_ACENTO, String::MINUSCULAS_COM_ACENTO.upcase_br
   end
   
+  def test_titleize
+    assert_equal 'José Silva', 'josé silva'.titleize
+    assert_equal 'José Silva', 'JOSÉ SILVA'.titleize
+    assert_equal 'José Da Silva', 'josé da silva'.titleize
+    assert_equal ' José  Da   Silva  ', ' josé  da   silva  '.titleize
+    assert_equal 'Átila Da Silva', 'átila da silva'.titleize
+  end
+
+  def test_nome_proprio!
+    string = 'joão Dos santos'
+    string.nome_proprio!
+    assert_equal 'João dos Santos', string
+  end
+
+  def test_remover_acentos!
+    string = 'áéíóúÁÉÍÓÚ'
+    string.remover_acentos!
+    assert_equal 'aeiouAEIOU', string
+  end
+
+  def test_upcase!
+    string = 'áéíóúâêîôûàèìòùäëïöüãõñç'
+    string.upcase!
+    assert_equal 'ÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÄËÏÖÜÃÕÑÇ', string
+  end
+
+  def test_downcase!
+    string = 'ÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÄËÏÖÜÃÕÑÇ'
+    string.downcase!
+    assert_equal 'áéíóúâêîôûàèìòùäëïöüãõñç', string
+  end  
 end
