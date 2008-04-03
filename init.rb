@@ -12,10 +12,6 @@ require 'number_portuguese'
 require 'string_portuguese'
 require 'dinheiro_active_record'
 
-Numeric.send(:include, DinheiroUtil)
-Numeric.send(:include, ExtensoReal)
-String.send(:include, DinheiroUtil)
-String.send(:include, StringPortuguese)
 ActiveRecord::Base.send :include, DinheiroActiveRecord
 
 old_verbose = $VERBOSE

@@ -14,9 +14,7 @@ Brincadeira, na verdade surgiu com o dia a dia acontecendo.
 
 É muito difícil...
 
- script/plugin install svn://rubyforge.org/var/svn/brazilian-rails
-
-_Nota_: Se você usa um certo sistema operacional, lembre de colocar a chamada ruby na frente, ok?
+ ruby script/plugin install svn://rubyforge.org/var/svn/brazilian-rails
 
 Por padrão, a pluralização vem desabilitada, isso para não atrapalhar os projetos que já existem.
 
@@ -31,9 +29,12 @@ Está tudo explicado na nossa [api][].
 ## Quem está por traz disso tudo?
 
 O [Marcos Tapajós][mt] tomou coragem para publicar todas as funcionalidades em um plugin, com testes unitários para garantir que tudo funcione conforme manda o figurino.
-Os contribuidores que atuam hoje são, [Celestino Gomes][tino], [André Luiz Kupkovski][andre] , [Vinícius Teles][vt], a galera do Grupo Santa Isabel e mais alguns que não se manifestaram...
 
-Vale ressaltar algumas funciolidades adicionadas por contribuição da própria comunidade, como [Shairon Toledo][st] em Extenso e StringPortuguese.
+Os loucos que mantém tudo funcionando são: [Celestino Gomes][tino], [André Luiz Kupkovski][andre], [A galera da Improve It][ii] e mais alguns que não se manifestaram para pagar esse mico...
+
+Alguns poucos já contribuiram para o plugin, direta e indireramente, como:
+
+[Shairon Toledo][st], [Guilherme Garnier][gg], Bruno Iecker, [Sylvestre Mergulhão][sm], Eduardo Fiorezi e Rafael Cardoso. Desculpe se esqueci de alguém
 
 ## Como executar os testes:
 
@@ -47,7 +48,7 @@ Alguns testes demandam a presença de uma base de dados, como é o caso do dinhe
  rake db:migrate
  rake db:test:clone\_structure 
 
-Atenção com a numeração das migrations.
+CUIDADO: Atenção com a numeração das migrations.
 
 ## Algumas funcionalidades:
 
@@ -73,9 +74,11 @@ Este plugin é patrocinado pela [Improve It][ii].
 
 [ii]:		http://www.improveit.com.br
 [logo]: 	images/improveit.gif "Improve It"
-[tino]: http://www.workingwithrails.com/person/8470-celestino-gomes
+[tino]: http://tinogomes.wordpress.com
 [andre]: http://www.workingwithrails.com/person/9227-andr-luiz-kupkovski
-[st]: www.hashcode.eti.br/
+[st]: http://www.hashcode.eti.br/
 [rf]: http://rubyforge.org/projects/brazilian-rails
-[mt]:		http://www.improveit.com.br/tapajos
-[vt]:		http://www.improveit.com.br/vinicius
+[mt]:	http://www.improveit.com.br/tapajos
+[vt]:	http://www.improveit.com.br/vinicius
+[gg]: http://ggarnier.wordpress.com/
+[sm]: http://mergulhao.info/

@@ -163,3 +163,7 @@ module ExtensoReal
     end
   end
 end
+
+Numeric.send(:include, DinheiroUtil)
+Numeric.send(:include, ExtensoReal)
+
