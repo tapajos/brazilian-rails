@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: String</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">String</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/vendor/plugins/brazilian-rails/lib/string_portuguese_rb.html">
+                vendor/plugins/brazilian-rails/lib/string_portuguese.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+ATENÇÃO,
+</p>
+<p>
+Os métodos <a href="String.html#M000059">upcase_br</a> e <a
+href="String.html#M000061">downcase_br</a> serão removidos na próxima
+versão do plugin, então, fique experto! :)
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000060">downcase</a>&nbsp;&nbsp;
+      <a href="#M000066">downcase!</a>&nbsp;&nbsp;
+      <a href="#M000061">downcase_br</a>&nbsp;&nbsp;
+      <a href="#M000056">nome_proprio</a>&nbsp;&nbsp;
+      <a href="#M000063">nome_proprio!</a>&nbsp;&nbsp;
+      <a href="#M000057">remover_acentos</a>&nbsp;&nbsp;
+      <a href="#M000064">remover_acentos!</a>&nbsp;&nbsp;
+      <a href="#M000062">titleize</a>&nbsp;&nbsp;
+      <a href="#M000067">titleize!</a>&nbsp;&nbsp;
+      <a href="#M000058">upcase</a>&nbsp;&nbsp;
+      <a href="#M000065">upcase!</a>&nbsp;&nbsp;
+      <a href="#M000059">upcase_br</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="DinheiroUtil.html">DinheiroUtil</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MINUSCULAS_COM_ACENTO</td>
+          <td>=</td>
+          <td class="context-item-value">'áéíóúâêîôûàèìòùäëïöüãõñç'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAIUSCULAS_COM_ACENTO</td>
+          <td>=</td>
+          <td class="context-item-value">'ÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÄËÏÖÜÃÕÑÇ'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MINUSCULAS</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;abcdefghijklmnopqrstuvwxyz#{MINUSCULAS_COM_ACENTO}&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAIUSCULAS</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ#{MAIUSCULAS_COM_ACENTO}&quot;</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000060" class="method-detail">
+        <a name="M000060"></a>
+
+        <div class="method-heading">
+          <a href="#M000060" class="method-signature">
+          <span class="method-name">downcase</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Retorna uma string com caracteres minúsculos
+</p>
+<p>
+Exemplo:
+</p>
+<pre>
+ 'TEXTO COM ACENTUAÇÃO'.downcase ==&gt; 'texto com acentuação'
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000060-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000060-source">
+<pre>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 55</span>
+55:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">downcase</span>
+56:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-constant">MAIUSCULAS</span>, <span class="ruby-constant">MINUSCULAS</span>)
+57:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000066" class="method-detail">
+        <a name="M000066"></a>
+
+        <div class="method-heading">
+          <a href="#M000066" class="method-signature">
+          <span class="method-name">downcase!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Converte para caracteres minúsculos na própria instância
+</p>
+<p>
+Exemplo:
+</p>
+<pre>
+ texto = 'TEXTO COM ACENTUAÇÃO'
+ texto.downcase
+ texto ==&gt; 'texto com acentuação'
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000066-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000066-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 117</span>
+117:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">downcase!</span>
+118:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">downcase</span>
+119:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/^.*$/</span>, <span class="ruby-identifier">texto</span>)
+120:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000061" class="method-detail">
+        <a name="M000061"></a>
+
+        <div class="method-heading">
+          <a href="#M000061" class="method-signature">
+          <span class="method-name">downcase_br</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <pre>
+ Alias para downcase
+</pre>
+<p>
+AVISO: Este metodo sera removido na proxima revisao, usar o metodo <a
+href="String.html#M000060">downcase</a>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000061-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000061-source">
+<pre>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 62</span>
+62:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">downcase_br</span>
+63:     <span class="ruby-constant">RAILS_DEFAULT_LOGGER</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;AVISO: Este metodo sera removido na proxima revisao, usar o metodo downcase.&quot;</span>
+64:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">downcase</span>
+65:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000056" class="method-detail">
+        <a name="M000056"></a>
+
+        <div class="method-heading">
+          <a href="#M000056" class="method-signature">
+          <span class="method-name">nome_proprio</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Normaliza nomes proprios
+</p>
+<p>
+Exemplo:
+</p>
+<pre>
+ 'maria de souza dos santos e silva da costa'.nome_proprio ==&gt; 'Maria de Souza dos Santos e Silva da Costa'
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000056-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000056-source">
+<pre>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 18</span>
+18:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">nome_proprio</span>
+19:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">titleize</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/ D(a|e|o|as|os) /</span>, <span class="ruby-value str">' d\1 '</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/ E /</span>, <span class="ruby-value str">' e '</span>)
+20:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000063" class="method-detail">
+        <a name="M000063"></a>
+
+        <div class="method-heading">
+          <a href="#M000063" class="method-signature">
+          <span class="method-name">nome_proprio!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Normaliza nomes proprios na própria instância.
+</p>
+<p>
+Exemplo:
+</p>
+<pre>
+ texto = 'maria de souza dos santos e silva da costa'
+ texto.nome_proprio!
+ texto ==&gt; 'Maria de Souza dos Santos e Silva da Costa'
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000063-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000063-source">
+<pre>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 84</span>
+84:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">nome_proprio!</span>
+85:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">nome_proprio</span>
+86:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/^.*$/</span>, <span class="ruby-identifier">texto</span>)
+87:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000057" class="method-detail">
+        <a name="M000057"></a>
+
+        <div class="method-heading">
+          <a href="#M000057" class="method-signature">
+          <span class="method-name">remover_acentos</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove as letras acentuadas
+</p>
+<p>
+Exemplo:
+</p>
+<pre>
+ 'texto está com acentuação'.remover_acentos ==&gt; 'texto esta com acentuacao'
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000057-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000057-source">
+<pre>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 26</span>
+26:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remover_acentos</span>
+27:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>
+28:     <span class="ruby-identifier">texto</span> = <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/[á|à|ã|â|ä]/</span>, <span class="ruby-value str">'a'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(é|è|ê|ë)/</span>, <span class="ruby-value str">'e'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(í|ì|î|ï)/</span>, <span class="ruby-value str">'i'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(ó|ò|õ|ô|ö)/</span>, <span class="ruby-value str">'o'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(ú|ù|û|ü)/</span>, <span class="ruby-value str">'u'</span>)
+29:     <span class="ruby-identifier">texto</span> = <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(Á|À|Ã|Â|Ä)/</span>, <span class="ruby-value str">'A'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(É|È|Ê|Ë)/</span>, <span class="ruby-value str">'E'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(Í|Ì|Î|Ï)/</span>, <span class="ruby-value str">'I'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(Ó|Ò|Õ|Ô|Ö)/</span>, <span class="ruby-value str">'O'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(Ú|Ù|Û|Ü)/</span>, <span class="ruby-value str">'U'</span>)
+30:     <span class="ruby-identifier">texto</span> = <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/ñ/</span>, <span class="ruby-value str">'n'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/Ñ/</span>, <span class="ruby-value str">'N'</span>)
+31:     <span class="ruby-identifier">texto</span> = <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/ç/</span>, <span class="ruby-value str">'c'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/Ç/</span>, <span class="ruby-value str">'C'</span>)
+32:     <span class="ruby-identifier">texto</span>
+33:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000064" class="method-detail">
+        <a name="M000064"></a>
+
+        <div class="method-heading">
+          <a href="#M000064" class="method-signature">
+          <span class="method-name">remover_acentos!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove as letras acentuadas na própria instância.
+</p>
+<p>
+Exemplo:
+</p>
+<pre>
+ texto = 'texto está com acentuação'
+ texto.remover_acentos!
+ texto ==&gt; 'texto esta com acentuacao'
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000064-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000064-source">
+<pre>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 95</span>
+95:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remover_acentos!</span>
+96:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">remover_acentos</span>
+97:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/^.*$/</span>, <span class="ruby-identifier">texto</span>)
+98:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000062" class="method-detail">
+        <a name="M000062"></a>
+
+        <div class="method-heading">
+          <a href="#M000062" class="method-signature">
+          <span class="method-name">titleize</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Passa a primeira letra de cada palavra para maiúscula e as demais para
+minúsculas.
+</p>
+<p>
+Exemplo:
+</p>
+<pre>
+ 'o livro esta sobre a mesa!'.titleize ==&gt; 'O Livro Esta Sobre A Mesa!'
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000062-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000062-source">
+<pre>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 71</span>
+71:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">titleize</span>
+72:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">downcase</span>
+73:     <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">chars</span>[<span class="ruby-value">0</span>] = <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">chars</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">upcase</span>
+74:     <span class="ruby-identifier">texto</span> = <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-node">/\s[a-z#{String::MINUSCULAS_COM_ACENTO}]/</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">upcase</span> }
+75:     <span class="ruby-identifier">texto</span>
+76:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000067" class="method-detail">
+        <a name="M000067"></a>
+
+        <div class="method-heading">
+          <a href="#M000067" class="method-signature">
+          <span class="method-name">titleize!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Passa a primeira letra de cada palavra para maiúscula e as demais para
+minúsculas na própria instância.
+</p>
+<p>
+Exemplo:
+</p>
+<pre>
+ texto = 'o livro esta sobre a mesa!'
+ texto.titleize!
+ texto ==&gt; 'O Livro Esta Sobre A Mesa!'
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000067-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000067-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 128</span>
+128:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">titleize!</span>
+129:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">titleize</span>
+130:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/^.*$/</span>, <span class="ruby-identifier">texto</span>)
+131:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000058" class="method-detail">
+        <a name="M000058"></a>
+
+        <div class="method-heading">
+          <a href="#M000058" class="method-signature">
+          <span class="method-name">upcase</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Retorna uma string com caracteres maiusculos
+</p>
+<p>
+Exemplo:
+</p>
+<pre>
+ 'texto com acentuação'.upcase ==&gt; 'TEXTO COM ACENTUAÇÃO'
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000058-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000058-source">
+<pre>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 39</span>
+39:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">upcase</span>
+40:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-constant">MINUSCULAS</span>, <span class="ruby-constant">MAIUSCULAS</span>)
+41:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000065" class="method-detail">
+        <a name="M000065"></a>
+
+        <div class="method-heading">
+          <a href="#M000065" class="method-signature">
+          <span class="method-name">upcase!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Converte para caracteres maiusculos na própria instância
+</p>
+<p>
+Exemplo:
+</p>
+<pre>
+ texto = 'texto com acentuação'
+ texto.upcase
+ texto ==&gt; 'TEXTO COM ACENTUAÇÃO'
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000065-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000065-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 106</span>
+106:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">upcase!</span>
+107:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">upcase</span>
+108:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/^.*$/</span>, <span class="ruby-identifier">texto</span>)
+109:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000059" class="method-detail">
+        <a name="M000059"></a>
+
+        <div class="method-heading">
+          <a href="#M000059" class="method-signature">
+          <span class="method-name">upcase_br</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias para <a href="String.html#M000058">upcase</a>
+</p>
+<p>
+AVISO: Este metodo sera removido na proxima revisao, usar o metodo <a
+href="String.html#M000058">upcase</a>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000059-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000059-source">
+<pre>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 46</span>
+46:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">upcase_br</span>
+47:     <span class="ruby-constant">RAILS_DEFAULT_LOGGER</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;AVISO: Este metodo sera removido na proxima revisao, usar o metodo upcase.&quot;</span>
+48:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">upcase</span>
+49:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
