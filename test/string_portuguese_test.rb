@@ -63,7 +63,8 @@ class StringPortugueseTest < Test::Unit::TestCase
     assert_equal 'José Da Silva', 'josé da silva'.titleize
     assert_equal ' José  Da   Silva  ', ' josé  da   silva  '.titleize
     assert_equal 'Átila Da Silva', 'átila da silva'.titleize
-  end
+    assert_equal "Á É Í Ó Ú À È Ì Ò Ù Ã Õ Â Ê Î Ô Û Ä Ë Ï Ö Ü", 'á é í ó ú à è ì ò ù ã õ â ê î ô û ä ë ï ö ü'.titleize
+end
 
   def test_nome_proprio!
     string = 'joão Dos santos'
