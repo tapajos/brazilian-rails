@@ -75,7 +75,7 @@ class DateTest < Test::Unit::TestCase
 		assert_equal [nil,
 									 "Janeiro",
 									 "Fevereiro",
-									 "Marco",
+									 "Março",
 									 "Abril",
 									 "Maio",
 									 "Junho",
@@ -91,11 +91,11 @@ class DateTest < Test::Unit::TestCase
 	def test_days_names
 		assert_equal ["Domingo",
 									 "Segunda-Feira",
-									 "Terca-Feira",
+									 "Terça-Feira",
 									 "Quarta-Feira",
 									 "Quinta-Feira",
 									 "Sexta-Feira",
-									 "Sabado"],
+									 "Sábado"],
 									Date::DAYNAMES
 	end
 
