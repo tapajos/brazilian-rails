@@ -135,4 +135,3 @@ class String
   include DinheiroUtil
   
 end
-

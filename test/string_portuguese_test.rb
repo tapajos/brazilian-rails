@@ -17,7 +17,7 @@ NOMES_PROPRIOS = {
   ' José  da   Silva  ' => ' josé  da   silva  '
 }
 
-class StringPortugueseTest < Test::Unit::TestCase
+class StringPortugueseTest < Test::Unit::TestCase  
   def test_letras_maiusculas
     assert_equal 'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÄËÏÖÜÃÕÑÇ', String::MAIUSCULAS
   end
@@ -78,12 +78,10 @@ class StringPortugueseTest < Test::Unit::TestCase
   end
 
   def test_downcase_br
-    RAILS_DEFAULT_LOGGER.expects(:warn).with("AVISO: Este metodo sera removido na proxima revisao, usar o metodo downcase.")
     assert_equal String::MINUSCULAS, String::MAIUSCULAS.downcase_br
   end
   
   def test_upcase_br
-    RAILS_DEFAULT_LOGGER.expects(:warn).with("AVISO: Este metodo sera removido na proxima revisao, usar o metodo upcase.")
     assert_equal String::MAIUSCULAS, String::MINUSCULAS.upcase_br
   end
   
