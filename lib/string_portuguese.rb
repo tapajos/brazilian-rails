@@ -1,7 +1,9 @@
-# ATENÇÃO,
+# ÚLTIMO AVISO! 
 #
 # Os métodos upcase_br e downcase_br serão removidos na próxima versão do plugin,
 # então, fique experto! :)
+#
+# Quem avisa amigo é!
 
 class String
 

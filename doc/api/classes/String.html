@@ -80,12 +80,15 @@
 
     <div id="description">
       <p>
-ATENÇÃO,
+ÚLTIMO AVISO!
 </p>
 <p>
 Os métodos <a href="String.html#M000059">upcase_br</a> e <a
 href="String.html#M000061">downcase_br</a> serão removidos na próxima
 versão do plugin, então, fique experto! :)
+</p>
+<p>
+Quem avisa amigo é!
 </p>
 
     </div>
@@ -188,10 +191,10 @@ Exemplo:
             onclick="toggleCode('M000060-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000060-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 55</span>
-55:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">downcase</span>
-56:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-constant">MAIUSCULAS</span>, <span class="ruby-constant">MINUSCULAS</span>)
-57:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 57</span>
+57:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">downcase</span>
+58:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-constant">MAIUSCULAS</span>, <span class="ruby-constant">MINUSCULAS</span>)
+59:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -222,11 +225,11 @@ Exemplo:
             onclick="toggleCode('M000066-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000066-source">
 <pre>
-     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 117</span>
-117:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">downcase!</span>
-118:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">downcase</span>
-119:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/^.*$/</span>, <span class="ruby-identifier">texto</span>)
-120:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 119</span>
+119:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">downcase!</span>
+120:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">downcase</span>
+121:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/^.*$/</span>, <span class="ruby-identifier">texto</span>)
+122:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -253,11 +256,11 @@ href="String.html#M000060">downcase</a>.
             onclick="toggleCode('M000061-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000061-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 62</span>
-62:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">downcase_br</span>
-63:     <span class="ruby-constant">RAILS_DEFAULT_LOGGER</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;AVISO: Este metodo sera removido na proxima revisao, usar o metodo downcase.&quot;</span>
-64:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">downcase</span>
-65:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 64</span>
+64:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">downcase_br</span>
+65:     <span class="ruby-constant">RAILS_DEFAULT_LOGGER</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;AVISO: Este metodo sera removido na proxima revisao, usar o metodo downcase.&quot;</span>
+66:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">downcase</span>
+67:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -286,10 +289,10 @@ Exemplo:
             onclick="toggleCode('M000056-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000056-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 18</span>
-18:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">nome_proprio</span>
-19:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">titleize</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/ D(a|e|o|as|os) /</span>, <span class="ruby-value str">' d\1 '</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/ E /</span>, <span class="ruby-value str">' e '</span>)
-20:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 20</span>
+20:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">nome_proprio</span>
+21:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">titleize</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/ D(a|e|o|as|os) /</span>, <span class="ruby-value str">' d\1 '</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/ E /</span>, <span class="ruby-value str">' e '</span>)
+22:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -320,11 +323,11 @@ Exemplo:
             onclick="toggleCode('M000063-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000063-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 84</span>
-84:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">nome_proprio!</span>
-85:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">nome_proprio</span>
-86:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/^.*$/</span>, <span class="ruby-identifier">texto</span>)
-87:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 86</span>
+86:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">nome_proprio!</span>
+87:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">nome_proprio</span>
+88:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/^.*$/</span>, <span class="ruby-identifier">texto</span>)
+89:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -353,15 +356,15 @@ Exemplo:
             onclick="toggleCode('M000057-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000057-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 26</span>
-26:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remover_acentos</span>
-27:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>
-28:     <span class="ruby-identifier">texto</span> = <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/[á|à|ã|â|ä]/</span>, <span class="ruby-value str">'a'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(é|è|ê|ë)/</span>, <span class="ruby-value str">'e'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(í|ì|î|ï)/</span>, <span class="ruby-value str">'i'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(ó|ò|õ|ô|ö)/</span>, <span class="ruby-value str">'o'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(ú|ù|û|ü)/</span>, <span class="ruby-value str">'u'</span>)
-29:     <span class="ruby-identifier">texto</span> = <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(Á|À|Ã|Â|Ä)/</span>, <span class="ruby-value str">'A'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(É|È|Ê|Ë)/</span>, <span class="ruby-value str">'E'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(Í|Ì|Î|Ï)/</span>, <span class="ruby-value str">'I'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(Ó|Ò|Õ|Ô|Ö)/</span>, <span class="ruby-value str">'O'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(Ú|Ù|Û|Ü)/</span>, <span class="ruby-value str">'U'</span>)
-30:     <span class="ruby-identifier">texto</span> = <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/ñ/</span>, <span class="ruby-value str">'n'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/Ñ/</span>, <span class="ruby-value str">'N'</span>)
-31:     <span class="ruby-identifier">texto</span> = <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/ç/</span>, <span class="ruby-value str">'c'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/Ç/</span>, <span class="ruby-value str">'C'</span>)
-32:     <span class="ruby-identifier">texto</span>
-33:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 28</span>
+28:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remover_acentos</span>
+29:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>
+30:     <span class="ruby-identifier">texto</span> = <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/[á|à|ã|â|ä]/</span>, <span class="ruby-value str">'a'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(é|è|ê|ë)/</span>, <span class="ruby-value str">'e'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(í|ì|î|ï)/</span>, <span class="ruby-value str">'i'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(ó|ò|õ|ô|ö)/</span>, <span class="ruby-value str">'o'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(ú|ù|û|ü)/</span>, <span class="ruby-value str">'u'</span>)
+31:     <span class="ruby-identifier">texto</span> = <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(Á|À|Ã|Â|Ä)/</span>, <span class="ruby-value str">'A'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(É|È|Ê|Ë)/</span>, <span class="ruby-value str">'E'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(Í|Ì|Î|Ï)/</span>, <span class="ruby-value str">'I'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(Ó|Ò|Õ|Ô|Ö)/</span>, <span class="ruby-value str">'O'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(Ú|Ù|Û|Ü)/</span>, <span class="ruby-value str">'U'</span>)
+32:     <span class="ruby-identifier">texto</span> = <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/ñ/</span>, <span class="ruby-value str">'n'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/Ñ/</span>, <span class="ruby-value str">'N'</span>)
+33:     <span class="ruby-identifier">texto</span> = <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/ç/</span>, <span class="ruby-value str">'c'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/Ç/</span>, <span class="ruby-value str">'C'</span>)
+34:     <span class="ruby-identifier">texto</span>
+35:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -392,11 +395,11 @@ Exemplo:
             onclick="toggleCode('M000064-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000064-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 95</span>
-95:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remover_acentos!</span>
-96:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">remover_acentos</span>
-97:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/^.*$/</span>, <span class="ruby-identifier">texto</span>)
-98:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 97</span>
+ 97:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remover_acentos!</span>
+ 98:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">remover_acentos</span>
+ 99:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/^.*$/</span>, <span class="ruby-identifier">texto</span>)
+100:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -426,13 +429,13 @@ Exemplo:
             onclick="toggleCode('M000062-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000062-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 71</span>
-71:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">titleize</span>
-72:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">downcase</span>
-73:     <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">chars</span>[<span class="ruby-value">0</span>] = <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">chars</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">upcase</span>
-74:     <span class="ruby-identifier">texto</span> = <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-node">/\s[a-z#{String::MINUSCULAS_COM_ACENTO}]/</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">upcase</span> }
-75:     <span class="ruby-identifier">texto</span>
-76:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 73</span>
+73:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">titleize</span>
+74:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">downcase</span>
+75:     <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">chars</span>[<span class="ruby-value">0</span>] = <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">chars</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">upcase</span>
+76:     <span class="ruby-identifier">texto</span> = <span class="ruby-identifier">texto</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-node">/\s[a-z#{String::MINUSCULAS_COM_ACENTO}]/</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">upcase</span> }
+77:     <span class="ruby-identifier">texto</span>
+78:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -464,11 +467,11 @@ Exemplo:
             onclick="toggleCode('M000067-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000067-source">
 <pre>
-     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 128</span>
-128:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">titleize!</span>
-129:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">titleize</span>
-130:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/^.*$/</span>, <span class="ruby-identifier">texto</span>)
-131:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 130</span>
+130:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">titleize!</span>
+131:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">titleize</span>
+132:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/^.*$/</span>, <span class="ruby-identifier">texto</span>)
+133:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -497,10 +500,10 @@ Exemplo:
             onclick="toggleCode('M000058-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000058-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 39</span>
-39:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">upcase</span>
-40:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-constant">MINUSCULAS</span>, <span class="ruby-constant">MAIUSCULAS</span>)
-41:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 41</span>
+41:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">upcase</span>
+42:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-constant">MINUSCULAS</span>, <span class="ruby-constant">MAIUSCULAS</span>)
+43:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -531,11 +534,11 @@ Exemplo:
             onclick="toggleCode('M000065-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000065-source">
 <pre>
-     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 106</span>
-106:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">upcase!</span>
-107:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">upcase</span>
-108:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/^.*$/</span>, <span class="ruby-identifier">texto</span>)
-109:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 108</span>
+108:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">upcase!</span>
+109:     <span class="ruby-identifier">texto</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">upcase</span>
+110:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/^.*$/</span>, <span class="ruby-identifier">texto</span>)
+111:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -562,11 +565,11 @@ href="String.html#M000058">upcase</a>.
             onclick="toggleCode('M000059-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000059-source">
 <pre>
-    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 46</span>
-46:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">upcase_br</span>
-47:     <span class="ruby-constant">RAILS_DEFAULT_LOGGER</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;AVISO: Este metodo sera removido na proxima revisao, usar o metodo upcase.&quot;</span>
-48:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">upcase</span>
-49:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File vendor/plugins/brazilian-rails/lib/string_portuguese.rb, line 48</span>
+48:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">upcase_br</span>
+49:     <span class="ruby-constant">RAILS_DEFAULT_LOGGER</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;AVISO: Este metodo sera removido na proxima revisao, usar o metodo upcase.&quot;</span>
+50:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">upcase</span>
+51:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
