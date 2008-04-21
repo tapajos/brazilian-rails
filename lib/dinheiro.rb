@@ -179,6 +179,11 @@ class Dinheiro
   # Alias para o metodo to_extenso.
   alias_method :por_extenso_em_reais, :to_extenso
   
+  # Verifica se o valor é zero.
+  def zero?
+    to_f.zero?
+  end
+  
   # Retorna um Float.
   def to_f
     to_s.gsub('.', '').gsub(',', '.').to_f

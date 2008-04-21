@@ -447,6 +447,14 @@ class DinheiroTest < Test::Unit::TestCase
     assert_equal Dinheiro.new(200), BigDecimal.new("100").reais + "100".reais
   end
   
+  def testa_zero_quando_eh_zero
+    assert Dinheiro.new(0).zero?
+  end
+  
+  def testa_zero_quando_nao_eh_zero
+    assert !Dinheiro.new(1).zero?
+  end
+  
   private
   
   def verifica_se_transforma_em_string_corretamente(quantia_esperada, quantia)
