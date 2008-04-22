@@ -14,7 +14,15 @@ Brincadeira, na verdade surgiu com o dia a dia acontecendo.
 
 É muito difícil...
 
- ruby script/plugin install svn://rubyforge.org/var/svn/brazilian-rails
+ No Rails edge (futuro 2.1):
+
+	ruby script/plugin install git://github.com/tapajos/brazilian-rails.git
+
+ Nas versões anteriores:
+
+	ruby script/plugin install svn://rubyforge.org/var/svn/brazilian-rails
+
+O repositório SVN é apenas um espelho da versão git para facilitar a instalação nas versões anteriores.
 
 Por padrão, a pluralização vem desabilitada, isso para não atrapalhar os projetos que já existem.
 
