@@ -1,4 +1,5 @@
 require File.dirname(__FILE__) + '/test_helper'
+require 'mocha'
 
 class ActionViewTest < Test::Unit::TestCase
   
@@ -171,7 +172,9 @@ class ActionViewTest < Test::Unit::TestCase
   end
   
   def test_select_uf
-    assert_equal %(<select id=\"lancamento_estado\" name=\"lancamento[estado]\"><option value=\"AC\">AC</option>\n<option value=\"AL\">AL</option>\n<option value=\"AP\">AP</option>\n<option value=\"AM\">AM</option>\n<option value=\"BA\">BA</option>\n<option value=\"CE\">CE</option>\n<option value=\"DF\">DF</option>\n<option value=\"ES\">ES</option>\n<option value=\"GO\">GO</option>\n<option value=\"MA\">MA</option>\n<option value=\"MT\">MT</option>\n<option value=\"MS\">MS</option>\n<option value=\"MG\">MG</option>\n<option value=\"PA\">PA</option>\n<option value=\"PB\">PB</option>\n<option value=\"PR\">PR</option>\n<option value=\"PE\">PE</option>\n<option value=\"PI\">PI</option>\n<option value=\"RJ\">RJ</option>\n<option value=\"RN\">RN</option>\n<option value=\"RS\">RS</option>\n<option value=\"RO\">RO</option>\n<option value=\"RR\">RR</option>\n<option value=\"SC\">SC</option>\n<option value=\"SP\">SP</option>\n<option value=\"SE\">SE</option>\n<option value=\"TO\">TO</option></select>), select_uf(:lancamento, :estado)
+    options = {:options1 => "1"}
+    html_options = {:name => "name"}
+    expects(:select).with(:lancamento, :estado, ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'], {:options1 => '1'}, {:name => 'name'}).returns("select")
+    assert_equal "select", select_uf(:lancamento, :estado, options, html_options)
   end
-
 end
