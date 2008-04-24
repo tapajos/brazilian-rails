@@ -101,8 +101,8 @@ module ActionView::Helpers::FormOptionsHelper
   
   # Helper para montar um select para seleção de estados brasileiros, usando 
   # option_uf_for_select para gerar a lista de opções.
-  def select_uf(object, method, options = {}, hml_options = {})
-    select object, method, ESTADOS_BRASILEIROS.collect {|estado, sigla| sigla}
+  def select_uf(object, method, options = {}, html_options = {})
+     select object, method, ESTADOS_BRASILEIROS.collect {|estado, sigla| sigla}, options, html_options
   end
 
   # Retorna uma string com a lista de estados brasileiros para usar em uma tag select,
