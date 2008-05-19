@@ -22,13 +22,13 @@ module ActiveRecord
   #    :even => "deve ser par"
   class Errors
     @@default_error_messages = {
-      :inclusion => "não está incluído na lista",
-      :exclusion => "é reservado",
-      :invalid => "é inválido",
+      :inclusion => "não está incluído(a) na lista",
+      :exclusion => "é reservado(a)",
+      :invalid => "é inválido(a)",
       :confirmation => "não corresponde à confirmação",
-      :accepted  => "deve ser aceito",
-      :empty => "deve ser preenchido",
-      :blank => "deve ser preenchido",
+      :accepted  => "deve ser aceito(a)",
+      :empty => "deve ser preenchido(a)",
+      :blank => "deve ser preenchido(a)",
       :too_long => "deve ter até %d caractere(s)",
       :too_short => "deve ter no mínimo %d caractere(s)",
       :wrong_length => "deve ter %d caractere(s)",
