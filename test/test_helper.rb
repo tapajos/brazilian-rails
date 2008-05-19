@@ -17,4 +17,10 @@ class Test::Unit::TestCase
     end  
   end
   
+  def p80 text
+    p '*'*80
+    p text
+    p '*'*80
+  end
+  
 end

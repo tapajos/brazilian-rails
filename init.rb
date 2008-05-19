@@ -1,16 +1,17 @@
-require 'feriado'
-require 'feriado_parser'
-require 'active_record_portuguese'
-require 'action_view_portuguese'
-require 'date_portuguese'
-require 'time_portuguese'
-require 'dinheiro'
-require 'dinheiro_util'
-require 'excecoes'
-require 'nil_class'
-require 'number_portuguese'
-require 'string_portuguese'
-require 'dinheiro_active_record'
+%w(feriado 
+feriado_parser 
+active_record_portuguese
+action_view_portuguese
+date_portuguese
+time_portuguese
+dinheiro
+dinheiro_util
+excecoes
+nil_class
+number_portuguese
+string_portuguese
+dinheiro_active_record
+busca_endereco).each {|req| require req}
 
 ActiveRecord::Base.send :include, DinheiroActiveRecord
 
