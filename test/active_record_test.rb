@@ -10,15 +10,15 @@ end
 
 class ActiveRecordTest < Test::Unit::TestCase
   
-  def test_this_plugin
+  def test_active_record_messages
     errors = ActiveRecordTestable.default_error_messages
-    assert_equal "não está incluído na lista", errors[:inclusion]  
-    assert_equal "é reservado", errors[:exclusion]  
-    assert_equal "é inválido", errors[:invalid]  
+    assert_equal "não está incluído(a) na lista", errors[:inclusion]  
+    assert_equal "é reservado(a)", errors[:exclusion]  
+    assert_equal "é inválido(a)", errors[:invalid]  
     assert_equal "não corresponde à confirmação", errors[:confirmation]  
-    assert_equal "deve ser aceito", errors[:accepted]  
-    assert_equal "deve ser preenchido", errors[:empty]  
-    assert_equal "deve ser preenchido", errors[:blank]  
+    assert_equal "deve ser aceito(a)", errors[:accepted]  
+    assert_equal "deve ser preenchido(a)", errors[:empty]  
+    assert_equal "deve ser preenchido(a)", errors[:blank]  
     assert_equal "deve ter até %d caractere(s)", errors[:too_long]  
     assert_equal "deve ter no mínimo %d caractere(s)", errors[:too_short]  
     assert_equal "deve ter %d caractere(s)", errors[:wrong_length]  
