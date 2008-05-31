@@ -31,11 +31,11 @@ class Feriado
   private
   
   def valida_dia(dia)
-    raise FeriadoDiaInvalidoError if dia.to_i > 31 || dia.to_i == 0
+    raise FeriadoDiaInvalidoError unless (1..31).include?(dia.to_i)
   end
   
   def valida_mes(mes)
-    raise FeriadoMesInvalidoError if mes.to_i > 12 || mes.to_i == 0
+    raise FeriadoMesInvalidoError unless (1..12).include?(mes.to_i)
   end
   
 end

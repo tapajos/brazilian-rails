@@ -21,20 +21,20 @@ class FeriadoTest < Test::Unit::TestCase
   end
   
   def test_initialize_com_dia_invalido
-    assert_raise FeriadoDiaInvalidoError do
-      Feriado.new("nome", "a", "01")  
-    end
-    assert_raise FeriadoDiaInvalidoError do
-      Feriado.new("nome", "32", "01")  
+    ['a', 0, -1, 32, '32', '-1', '0'].each do |invalid_day|
+      assert_raise FeriadoDiaInvalidoError do
+        Feriado.new("nome", invalid_day, "01")
+        raise "Deveria retornar FeriadoDiaInvalidoError para dia #{invalid_day}"
+      end
     end
   end
   
   def test_initialize_com_mes_invalido
-    assert_raise FeriadoMesInvalidoError do
-      Feriado.new("nome", "01", "a")  
-    end
-    assert_raise FeriadoMesInvalidoError do
-      Feriado.new("nome", "01", "13")  
+    ['a', '13', 13, -1, '-1', '0'].each do |invalid_month| 
+      assert_raise FeriadoMesInvalidoError do
+        Feriado.new("nome", "01", invalid_month)  
+        raise "Deveria retornar FeriadoMesInvalidoError para mês #{invalid_month}"
+      end
     end
   end
   
