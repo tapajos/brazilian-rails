@@ -15,7 +15,17 @@ NOMES_PROPRIOS = {
   'Íris Santos' => 'íris santos',
   'Paulo dos Santos' => 'paulo dos saNTos',
   ' José  da   Silva  ' => ' josé  da   silva  '
-}
+} #:nodoc:
+
+NOMES_TITLEIZE =     {
+    'José Silva' => 'josé silva',    
+    'José Silva' => 'JOSÉ SILVA',
+    'José Da Silva' => 'josé da silva',
+    ' José  Da   Silva  ' => ' josé  da   silva  ',
+    'Átila Da Silva' => 'átila da silva',
+    "Á É Í Ó Ú À È Ì Ò Ù Ã Õ Â Ê Î Ô Û Ä Ë Ï Ö Ü" => 'á é í ó ú à è ì ò ù ã õ â ê î ô û ä ë ï ö ü'
+} #:nodoc:
+
 
 class StringPortugueseTest < Test::Unit::TestCase  
   def test_letras_maiusculas
@@ -86,14 +96,15 @@ class StringPortugueseTest < Test::Unit::TestCase
   end
   
   def test_titleize
-    assert_equal 'José Silva', 'josé silva'.titleize
-    assert_equal 'José Silva', 'JOSÉ SILVA'.titleize
-    assert_equal 'José Da Silva', 'josé da silva'.titleize
-    assert_equal ' José  Da   Silva  ', ' josé  da   silva  '.titleize
-    assert_equal 'Átila Da Silva', 'átila da silva'.titleize
-    assert_equal "Á É Í Ó Ú À È Ì Ò Ù Ã Õ Â Ê Î Ô Û Ä Ë Ï Ö Ü", 'á é í ó ú à è ì ò ù ã õ â ê î ô û ä ë ï ö ü'.titleize
+    NOMES_TITLEIZE.each {|k,v| assert_equal k, v.titleize }
   end
 
+  def test_titleize!
+    NOMES_TITLEIZE.each do |k,v| 
+      v.titleize!
+      assert_equal k, v
+    end
+  end
 
   def test_upcase!
     string = String::MINUSCULAS.clone

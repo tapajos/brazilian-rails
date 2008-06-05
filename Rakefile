@@ -1,6 +1,7 @@
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
+require 'rcov/rcovtask'
 
 desc 'Default: run unit tests.'
 task :default => :test
@@ -20,3 +21,14 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+desc "Generate code coverage report for Brazilian Rails plugin."
+Rcov::RcovTask.new do |t|
+  t.test_files = FileList['test/*_test.rb']
+  t.rcov_opts << "-x init.rb"
+  t.rcov_opts << '-x dependency_list.rb'
+  t.rcov_opts << '-x app'
+  t.rcov_opts << '--rails'
+  t.verbose = true
+end
+

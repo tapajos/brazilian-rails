@@ -49,12 +49,9 @@ module Extenso
   def por_extenso
     Extenso.por_extenso(self)
   end
-
-  # DEPRECATION WARNING: use por_extenso, pois este sera removido no proximo release.
-  def to_extenso
-    warn('DEPRECATION WARNING: use por_extenso, pois este sera removido no proximo release.')
-    self.por_extenso
-  end
+  
+  # Alias para o metodo por_extenso
+  alias_method :to_extenso, :por_extenso
   
   # Escreve o numero por extenso.
   # 
@@ -113,13 +110,10 @@ module ExtensoReal
   def por_extenso_em_reais
     ExtensoReal.por_extenso_em_reais(self)
   end
+  
+  # Alias para por_extenso_em_reais
+  alias_method :to_extenso_real, :por_extenso_em_reais
 
-  # DEPRECATION WARNING: use por_extenso_em_reais, pois este sera removido no proximo release.
-  def to_extenso_real
-    warn('DEPRECATION WARNING: use por_extenso_em_reais, pois este sera removido no proximo release.')
-    self.por_extenso_em_reais
-  end
- 
   # Escreve o numero por extenso em reais.
   # 
   # Exemplo:
