@@ -131,13 +131,6 @@ class ActionViewTest < Test::Unit::TestCase
     assert_dom_equal %(<div class=\"errorExplanation\" id=\"errorExplanation\"><h2>2 erros para monkey</h2><p>Foram detectados os seguintes erros:</p><ul><li>User email can't be empty</li><li>Author name can't be empty</li></ul></div>), error_messages_for(:user, :post, :object_name => "monkey")
   end
 
-  def test_form_with_string_multipart
-    assert_dom_equal(
-      %(<form action="create" enctype="multipart/form-data" method="post"><p><label for="post_title">Title</label><br /><input id="post_title" name="post[title]" size="30" type="text" value="Hello World" /></p>\n<p><label for="post_body">Body</label><br /><div class="fieldWithErrors"><textarea cols="40" id="post_body" name="post[body]" rows="20">Back to the hill and over it again!</textarea></div></p><input name="commit" type="submit" value="Create" /></form>),
-      form("post", :multipart => true)
-    )
-  end
-  
   def test_distance_of_time_in_words
     assert_equal "menos de um minuto", distance_of_time_in_words("Sat Sep 08 22:51:58 -0300 2007".to_time, "Sat Sep 08 22:51:59 -0300 2007".to_time)
     assert_equal "menos de 5 segundos", distance_of_time_in_words("Sat Sep 08 22:51:58 -0300 2007".to_time, "Sat Sep 08 22:51:59 -0300 2007".to_time, true)
