@@ -25,10 +25,11 @@ end
 desc "Generate code coverage report for Brazilian Rails plugin."
 Rcov::RcovTask.new do |t|
   t.test_files = FileList['test/*_test.rb']
-  t.rcov_opts << "-x init.rb"
+  t.rcov_opts << '-x init.rb'
   t.rcov_opts << '-x dependency_list.rb'
   t.rcov_opts << '-x app'
   t.rcov_opts << '--rails'
+  r.rcov_opts << '--charset UTF-8'
   t.verbose = true
 end
 
