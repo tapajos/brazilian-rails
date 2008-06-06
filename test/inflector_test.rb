@@ -47,8 +47,12 @@ class InflectorTest < Test::Unit::TestCase
   
   #if word ends in "s" and has one silable, trade "s" with "es"
   def test_plurilize_when_word_ends_in_s
-    words = {'portugues' => "portugueses"}
-    verify_only_pluralize words
+    words = {
+ 	   'portugues' => 'portugueses',
+ 	   'japones' => 'japoneses',
+ 	   'pais' => 'paises'
+    }
+    verify_all words
   end
   
   def test_when_word_ends_in_ao
