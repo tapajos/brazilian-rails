@@ -28,7 +28,7 @@ Por padrão, a pluralização vem desabilitada, isso para não atrapalhar os pro
 
 Para ativar a pluralização:
 
-1. A partir da versão do rails 2.0.2, existe uma task no rake para habilitar/desabilitar, são elas:
+1. A partir da versão do Rails 2.0.2, existe uma task no rake para habilitar/desabilitar, são elas:
 
  rake brazilianrails:inflector:portuguese:enable  # Enable Brazilian Portuguese inflectors.
  rake brazilianrails:inflector:portuguese:disable #Disable Brazilian Portuguese inflectors.
