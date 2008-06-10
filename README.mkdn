@@ -93,7 +93,7 @@ Este plugin é patrocinado pela [Improve It][ii].
 [api]: http://brazilian-rails.rubyforge.org/api
 
 [ii]:		http://www.improveit.com.br
-[logo]: 	doc/images/improveit.gif "Improve It"
+[logo]: 	http://brazilian-rails.rubyforge.org/images/improveit.gif "Improve It"
 [tino]: http://tinogomes.wordpress.com
 [andre]: http://www.workingwithrails.com/person/9227-andr-luiz-kupkovski
 [st]: http://www.hashcode.eti.br/
