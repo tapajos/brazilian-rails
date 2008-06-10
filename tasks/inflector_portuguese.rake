@@ -1,4 +1,4 @@
-if Rails.version >= '2.0.2'
+if Rails::VERSION::STRING >= '2.0.2'
   namespace :brazilianrails do
     namespace :inflector do
       namespace :portuguese do
