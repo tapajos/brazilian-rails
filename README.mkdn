@@ -89,7 +89,7 @@ Este plugin é patrocinado pela [Improve It][ii].
 
 [![Improve It][logo]][ii]
 
-[api]: http://brazilian-rails.rubyforge.org/api
+[api]: http://www.improveit.com.br/brazilian-rails/api
 
 [ii]:		http://www.improveit.com.br
 [logo]: 	http://brazilian-rails.rubyforge.org/images/improveit.gif "Improve It"
