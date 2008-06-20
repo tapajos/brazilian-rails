@@ -29,7 +29,7 @@ Rcov::RcovTask.new do |t|
   t.rcov_opts << '-x dependency_list.rb'
   t.rcov_opts << '-x app'
   t.rcov_opts << '--rails'
-  r.rcov_opts << '--charset UTF-8'
+  t.rcov_opts << '--charset UTF-8'
   t.verbose = true
 end
 

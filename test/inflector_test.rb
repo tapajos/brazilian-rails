@@ -54,6 +54,15 @@ class InflectorTest < Test::Unit::TestCase
     }
     verify_all words
   end
+
+  #if word is accented on last syllable, remove when pluralizing
+  def test_pluralize_when_accented_word_ends_in_s
+    words = {
+      'freguês' => 'fregueses',
+      'ás' => 'ases',
+    }
+    verify_only_pluralize words
+  end
   
   def test_when_word_ends_in_ao
     words = {'portão' => "portões", 
@@ -80,8 +89,11 @@ class InflectorTest < Test::Unit::TestCase
   
   
   def test_when_uncountable
-    words = {'tennis' => "tennis",
-             'torax' => "torax"
+    words = {'tênis' => "tênis",
+             'tórax' => "tórax",
+             'fênix' => "fênix",
+             'lápis' => "lápis",
+             'ônibus' => "ônibus"
             }
     verify_all words
   end

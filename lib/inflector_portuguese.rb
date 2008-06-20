@@ -24,7 +24,10 @@ module Inflector
     inflect.singular(/^(.*)ns$/i, '\1m')
 
     inflect.plural(/^(.*s)$/i, '\1es')
-    inflect.singular(/^(.*s)es$/i, '\1')
+    inflect.plural(/^(.*)ás$/i, '\1ases')
+    inflect.plural(/^(.*)ês$/i, '\1eses')
+    inflect.singular(/^(.*)sses$/i, '\1sse')
+    inflect.singular(/^(.*[^s]s)es$/i, '\1')
     
     inflect.plural(/^(.*)ão$/i, '\1ões')
     inflect.singular(/^(.*)ões$/i, '\1ão')
@@ -56,6 +59,6 @@ module Inflector
       inflect.singular(/^#{value}$/, key.to_s)
     end
     
-    inflect.uncountable %w( tennis torax )
+    inflect.uncountable %w( tórax tênis ônibus lápis fênix )
   end
 end
