@@ -62,7 +62,7 @@ Para executar os testes do plugin, execute:
         cd <rails application>/vendor/plugins/brazilian-rails
         rake
 
-Alguns testes demandam a presença de uma base de dados, como é o caso do dinheiro_active_record_test.rb. Para que os testes possam executar com sucesso, copie as migrations que estão no diretório db/migrate do plugin, para o db/migrate de sua aplicação Rails. Em seguida, execute:
+Alguns testes demandam a presença de uma base de dados, como é o caso do dinheiro\_activ\e_record\_test.rb. Para que os testes possam executar com sucesso, copie as migrations que estão no diretório db/migrate do plugin, para o db/migrate de sua aplicação Rails. Em seguida, execute:
 
         rake db:migrate
         rake db:test:clone_structure 
