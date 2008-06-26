@@ -1,56 +1,56 @@
+# Infelizmente não é possível colocar todas as regras...
+#
+# http://pt.wikipedia.org/wiki/Plural e
+# http://pt.wikipedia.org/wiki/Singular
 module Inflector
   Inflector.inflections do |inflect|
-    inflect.singular(/^(.*)s$/i, '\1')
-    inflect.singular(/^(.*)s$/i, '\1')
-    inflect.singular(/^(.*)s$/i, '\1')
-    inflect.singular(/^(.*)s$/i, '\1')
-    inflect.singular(/^(.*)s$/i, '\1')
- 
-    inflect.plural(/^(.*[z|r])$/i, '\1es')
-    inflect.singular(/^(.*[r|z])es$/i, '\1')
+    inflect.clear
     
-    inflect.plural(/^(.*)al$/i, '\1ais')
-    inflect.plural(/^(.*)el$/i, '\1eis')
-    inflect.plural(/^(.*)ol$/i, '\1ois')
-    inflect.plural(/^(.*)ul$/i, '\1uis')
-    inflect.singular(/^(.*)ais$/i, '\1al')
-    inflect.singular(/^(.*)eis$/i, '\1el')
-    inflect.singular(/^(.*)ois$/i, '\1ol')
-    inflect.singular(/^(.*)uis$/i, '\1ul')
- 
-    inflect.plural(/^(.*)il$/i, '\1is')
+    inflect.plural(/$/i,  's')
+    inflect.plural(/s$/i,  's')
+    inflect.plural(/(z|r)$/i, '\1es')
+    inflect.plural(/al$/i,  'ais')
+    inflect.plural(/el$/i,  'eis')
+    inflect.plural(/ol$/i,  'ois')
+    inflect.plural(/ul$/i,  'uis')
+    inflect.plural(/([^aeou])il$/i,  '\1is')
+    inflect.plural(/m$/i,   'ns')
+    inflect.plural(/([^ê]s)$/i, '\1es')
+    inflect.plural(/(ingl|dinamarqu|fregu|portugu)ês$/i,  '\1eses')
+    inflect.plural(/ão$/i,  'ões')
+    inflect.plural(/ao$/i,  'oes')
+    inflect.plural(/ao$/i,  'oes')
+    inflect.plural(/^(g|)ás$/i,  '\1ases')
     
-    inflect.plural(/^(.*)m$/i, '\1ns')
-    inflect.singular(/^(.*)ns$/i, '\1m')
- 
-    inflect.plural(/^(.*s)$/i, '\1es')
-    inflect.plural(/^(.*)ás$/i, '\1ases')
-    inflect.plural(/^(.*)ês$/i, '\1eses')
-    inflect.singular(/^(.*)sses$/i, '\1sse')
-    inflect.singular(/^(.*[^s]s)es$/i, '\1')
-    
-    inflect.plural(/^(.*)ão$/i, '\1ões')
-    inflect.singular(/^(.*)ões$/i, '\1ão')
- 
-    inflect.plural(/^(.*)ao$/i, '\1oes')
-    inflect.singular(/^(.*)aos$/i, '\1ao')
-    
-    inflect.singular(/^(.*)ães$/i, '\1ão')
-    inflect.singular(/^(.*)ãos$/i, '\1ão')    
-    inflect.singular(/^(.*)oes$/i, '\1ao')
-    inflect.singular(/^(.*)aes$/i, '\1ao')
+
+    inflect.singular(/s$/i, '')
+    inflect.singular(/(r|z)es$/i, '\1')
+    inflect.singular(/ais$/i, 'al')
+    inflect.singular(/eis$/i, 'el')
+    inflect.singular(/ois$/i, 'ol')
+    inflect.singular(/uis$/i, 'ul')
+    inflect.singular(/([r|t])is$/i, '\1il')
+    inflect.singular(/ns$/i, 'm')
+    inflect.singular(/sses$/i, 'sse')
+#    inflect.singular(/^(.*[^s]s)es$/i, '\1')
+    inflect.singular(/ães$/i, 'ão')
+    inflect.singular(/aes$/i, 'ao')
+    inflect.singular(/ãos$/i, 'ão')    
+    inflect.singular(/aos$/i, 'ao')
+    inflect.singular(/ões$/i, 'ão')
+    inflect.singular(/oes$/i, 'ao')
+    inflect.singular(/(ingl|dinamarqu|fregu|portugu)eses$/i,  '\1ês')
+    inflect.singular(/^(g|)ases$/i,  '\1ás')
     
     # #irregulares
-    irregulares = {   "cão" => 'cães',
-                      "pão" => 'pães',
-                      "mão" => 'mãos',
-                      "alemão" => 'alemães',
-                      "cao" => 'caes',
-                      "pao" => 'paes',
-                      "mao" => 'maos',
-                      "alemao" => 'alemaes',
-                      "mail" => 'mails',
-                      "email" => 'emails'
+    irregulares = {   'cão' => 'cães',
+                      'pão' => 'pães',
+                      'mão' => 'mãos',
+                      'alemão' => 'alemães',
+                      'cao' => 'caes',
+                      'pao' => 'paes',
+                      'mao' => 'maos',
+                      'alemao' => 'alemaes',
                       }
 
 
