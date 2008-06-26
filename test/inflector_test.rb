@@ -42,7 +42,7 @@ def verify_if_dont_singularize(words)
 end
 
 class InflectorTest < Test::Unit::TestCase
-  @words = YAML.load_file(File.dirname(__FILE__)+'/dictionary.yaml') 
+  @words = YAML.load_file(File.dirname(__FILE__)+'/inflections.yaml') 
 
   verify_pluralize(@words)
   verify_singularize(@words)
