@@ -20,9 +20,14 @@ Brincadeira, na verdade surgiu com o dia a dia acontecendo.
 
 2. Nas versões anteriores:
 
-	ruby script/plugin install svn://rubyforge.org/var/svn/brazilian-rails
+		ruby script/plugin install svn://rubyforge.org/var/svn/brazilian-rails
+	
+_O repositório SVN é apenas um espelho da versão git para facilitar a instalação nas versões anteriores._
 
-O repositório SVN é apenas um espelho da versão git para facilitar a instalação nas versões anteriores.
+3. Também é possível baixar via tarball pelo endereço:
+
+		http://github.com/tapajos/brazilian-rails/tarball/master
+
 
 Por padrão, a pluralização vem desabilitada, isso para não atrapalhar os projetos que já existem.
 
