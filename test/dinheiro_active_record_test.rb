@@ -1,9 +1,10 @@
 require File.dirname(__FILE__) + '/test_helper'
+require File.dirname(__FILE__) + '/active_record/base_without_table'
 
-class Carteira < ActiveRecord::Base
+class Carteira < ActiveRecord::BaseWithoutTable
+  column :saldo, :decimal
   
   usar_como_dinheiro :saldo
-  
 end
 
 class DinheiroActiveRecordTest < Test::Unit::TestCase
