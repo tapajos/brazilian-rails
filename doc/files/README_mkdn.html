@@ -1,0 +1,109 @@
+
+<html>
+  <head>
+        <title>Brazilian Rails</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+      </head>
+    
+  <body>
+<h1>Brazilian Rails</h1>
+
+<h2>O que é?</h2>
+
+<p>Brazilian Rails é um plugin para Ruby on Rails, que tem como objetivo unir vários recursos de regras e traduções para o desenvolvedor brasileiro.</p>
+
+<h2>Como surgiu?</h2>
+
+<p>Em meiados de 1850, numa tentativa desesperada de... 
+:) 
+Brincadeira, na verdade surgiu com o dia a dia acontecendo.</p>
+
+<h2>Como faço para instalar?</h2>
+
+<p>É muito difícil...</p>
+
+<ol>
+<li><p>No Rails edge (futuro 2.1):</p>
+
+<pre><code>ruby script/plugin install git://github.com/tapajos/brazilian-rails.git
+</code></pre></li>
+<li><p>Nas versões anteriores:</p>
+
+<p>ruby script/plugin install svn://rubyforge.org/var/svn/brazilian-rails</p></li>
+</ol>
+
+<p>O repositório SVN é apenas um espelho da versão git para facilitar a instalação nas versões anteriores.</p>
+
+<p>Por padrão, a pluralização vem desabilitada, isso para não atrapalhar os projetos que já existem.</p>
+
+<p>Para ativar a pluralização:</p>
+
+<ol>
+<li><p>A partir da versão do Rails 2.0.2, existe uma task no rake para habilitar/desabilitar, são elas:</p>
+
+<pre><code>rake brazilianrails:inflector:portuguese:enable  # Enable Brazilian Portuguese inflectors.
+rake brazilianrails:inflector:portuguese:disable #Disable Brazilian Portuguese inflectors.
+rake brazilianrails:inflector:portuguese:check   #Checks if Brazilian Portuguese inflectors is enabled/disabled.
+</code></pre></li>
+<li><p>Antes da versão do Rails 2.0.2, basta adicionar a linha abaixo no seu enviroment.rb, após a o bloco de iniciação da aplicação.</p>
+
+<pre><code>Rails::Initializer.run do |config|
+...
+end
+require 'inflector_portuguese' # &lt;&lt;&lt;==== Adicionar esta linha!!! :)
+</code></pre></li>
+</ol>
+
+<h2>Como funciona ?</h2>
+
+<p>Está tudo explicado na nossa <a href="http://www.improveit.com.br/brazilian-rails/api">api</a>.</p>
+
+<h2>Quem está por traz disso tudo?</h2>
+
+<p>O <a href="http://www.improveit.com.br/tapajos">Marcos Tapajós</a> tomou coragem para publicar todas as funcionalidades em um plugin, com testes unitários para garantir que tudo funcione conforme manda o figurino.</p>
+
+<p>Os loucos que mantém tudo funcionando são: <a href="http://tinogomes.wordpress.com">Celestino Gomes</a>, <a href="http://www.workingwithrails.com/person/9227-andr-luiz-kupkovski">André Luiz Kupkovski</a>, <a href="http://www.improveit.com.br">A galera da Improve It</a> e mais alguns que não se manifestaram para pagar esse mico...</p>
+
+<p>Alguns poucos já contribuiram para o plugin, direta e indireramente, como:</p>
+
+<p><a href="http://www.hashcode.eti.br/">Shairon Toledo</a>, <a href="http://ggarnier.wordpress.com/">Guilherme Garnier</a>, Bruno Iecker, <a href="http://mergulhao.info/">Sylvestre Mergulhão</a>, Eduardo Fiorezi e Rafael Cardoso. Desculpe se esqueci de alguém</p>
+
+<h2>Como executar os testes:</h2>
+
+<p>Para executar os testes do plugin, execute:</p>
+
+<pre><code>    cd &lt;rails application&gt;/vendor/plugins/brazilian-rails
+    rake
+</code></pre>
+
+<p>Alguns testes demandam a presença de uma base de dados, como é o caso do dinheiro_activ\e_record_test.rb. Para que os testes possam executar com sucesso, copie as migrations que estão no diretório db/migrate do plugin, para o db/migrate de sua aplicação Rails. Em seguida, execute:</p>
+
+<pre><code>    rake db:migrate
+    rake db:test:clone_structure
+</code></pre>
+
+<p>CUIDADO: Atenção com a numeração das migrations.</p>
+
+<h2>Algumas funcionalidades:</h2>
+
+<ul>
+<li>Date e Time no formato brasileiro</li>
+<li>Números por Extenso</li>
+<li>Dinheiro</li>
+<li>Feriado</li>
+<li>Mensagens de erro traduzidas</li>
+<li>Pluralização em português-Brasil-sil-sil</li>
+<li>etc</li>
+</ul>
+
+<h2>Duvidas ?</h2>
+
+<p>As duvidas podem ser enviadas diretamente a um dos desenvolvedores ou através da página do projeto no <a href="http://rubyforge.org/projects/brazilian-rails">RubyForge</a></p>
+
+<h2>Quem investe nesse plugin ?</h2>
+
+<p>Este plugin é patrocinado pela <a href="http://www.improveit.com.br">Improve It</a>.</p>
+
+<p><a href="http://www.improveit.com.br"><img src="http://www.improveit.com.br/images/logo/logo_improve_it_screen.gif" alt="Improve It" title="Improve It"/></a></p>
+  </body>
+</html>

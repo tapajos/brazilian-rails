@@ -1,2 +1,0 @@
-Ver detalhes em http://brazilian-rails.rubyforge.org
-Para gerar a documentação para consulta offline basta a task executar: rake gerar_doc:plugins:brazilian-rails

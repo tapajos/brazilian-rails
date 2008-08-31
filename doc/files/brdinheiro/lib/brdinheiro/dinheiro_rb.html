@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: dinheiro.rb</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>dinheiro.rb</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>brdinheiro/lib/brdinheiro/dinheiro.rb
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Thu Jun 26 21:47:23 -0300 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2>Como usar o <a href="../../../../classes/Dinheiro.html">Dinheiro</a> em seu <a href="../../../../classes/ActiveRecord.html">ActiveRecord</a>?</h2>
+<ul>
+<li>Arquivo 001_create_lancamentos.rb:
+
+<pre>
+  class CreateLancamentos &lt; ActiveRecord::Migration
+    def self.up
+      create_table :lancamentos do |t|
+        t.column :descricao,   :string,    :null =&gt; false
+        t.column :valor,       :decimal,   :precision =&gt; 14, :scale =&gt; 2
+        t.column :mensalidade, :decimal,   :precision =&gt; 14, :scale =&gt; 2
+      end
+    end
+
+    def self.down
+      drop_table :lancamentos
+    end
+  end
+</pre>
+</li>
+<li>Arquivo lancamento.rb:
+
+<pre>
+  class Lancamento &lt; ActiveRecord::Base
+    usar_como_dinheiro :valor, :mensalidade
+  end
+</pre>
+</li>
+<li>No console (script/console):
+
+<pre>
+  Loading development environment.
+  &gt;&gt; lancamento = Lancamento.new
+  =&gt; #&lt;Lancamento:0x9652cd8 @attributes={&quot;descricao&quot;=&gt;nil,
+                                         &quot;valor&quot;=&gt;#&lt;BigDecimal:9657008,'0.0',4(4)&gt;,
+                                         &quot;mensalidade&quot;=&gt;#&lt;BigDecimal:9656e8c,'0.0',4(4)&gt;},
+                            @new_record=true&gt;
+  &gt;&gt; lancamento.valor = 100
+  =&gt; 100
+  &gt;&gt; lancamento.valor
+  =&gt; #&lt;Dinheiro:0x9650f3c @quantia=10000&gt;
+  &gt;&gt; lancamento.valor.real
+  =&gt; &quot;R$ 100,00&quot;
+  &gt;&gt; lancamento.valor = 100.50
+  =&gt; 100.5
+  &gt;&gt; lancamento.valor.real
+  =&gt; &quot;R$ 100,50&quot;
+  &gt;&gt; lancamento.valor = &quot;250.50&quot;
+  =&gt; &quot;250.50&quot;
+  &gt;&gt; lancamento.valor.real
+  =&gt; &quot;R$ 250,50&quot;
+  &gt;&gt; lancamento.valor = 354.58.reais
+  =&gt; #&lt;Dinheiro:0x9646384 @quantia=35458&gt;
+  &gt;&gt; lancamento.valor.real
+  =&gt; &quot;R$ 354,58&quot;
+  &gt;&gt; exit
+</pre>
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

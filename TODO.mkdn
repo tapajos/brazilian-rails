@@ -1,0 +1,41 @@
+# Global
+
+* Realocar o que está na raiz e não deveria.
+* Marcar uma tag na versão antiga como versão 1.0
+* Criar uma gem chamada brazilian\_rails que tem todas as outras como dependência e faz o require de todas, da mesma forma que o init.rb faz para o caso de ser usado como plugin.
+* Ajustar o README para além do papo alegre explicar como instalar a gem e como usar como plugin. Fazer com que nesse gem também tenha a explicação de como utilizar cada gem. Para não duplicar seria legal gerar uma task para montar esse README incluindo o de todas as outras gems.
+* Fazer uma aplicação de testes usando como GEM e depois como plugin e ver se está tudo funcionando de verdade.
+* Chamar esse novo release de Brazilian Rails 2.0 e dar esse nome a todas as gems.
+* Gerar toda a documentação
+* Atualizar a documentação no site da Improve It.
+* Fazer o release
+* Fazer post de divulgação
+* Tomar um choop!
+
+# brcep
+
+* Ajustar o README explicando como usar essa gem.
+
+# brdata
+
+* Ajustar o README explicando como usar essa gem.
+
+# brdinheiro
+
+* Ajustar o README explicando como usar essa gem.
+
+# brhelper
+
+* Ajustar o README explicando como usar essa gem.
+
+# brnumeros
+
+* Ajustar o README explicando como usar essa gem.
+
+# brstring
+
+* Ajustar o README explicando como usar essa gem.
+
+# brtraducao
+
+* Ajustar o README explicando como usar essa gem.

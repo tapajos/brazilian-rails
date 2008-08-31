@@ -1,0 +1,8 @@
+Brazilian Rails -- Tradução
+
+Gem que sobrescreve a implementação de inflections para português, para ser 
+usado junto com o Rails
+
+Para habilitar, basta:
+
+require 'brtraducao'

@@ -1,54 +1,64 @@
 # Brazilian Rails
 
+## O que foi?
+
+O Brazilian Rails foi o plugin de internacionalização mais conhecido do Brasil e tinha como objetivo unir vários recursos de regras e traduções para o desenvolvedor brasileiro.
+
 ## O que é?
 
-Brazilian Rails é um plugin para Ruby on Rails, que tem como objetivo unir vários recursos de regras e traduções para o desenvolvedor brasileiro.
+Brazilian Rails é um conjunto de gems para serem usadas com Ruby e com o Ruby on Rails e tem como objetivo unir alguns recursos úteis para os desenvolvedores brasileiros.
 
-## Como surgiu?
+## O que vem pela frente?
 
-Em meiados de 1850, numa tentativa desesperada de... 
-:) 
-Brincadeira, na verdade surgiu com o dia a dia acontecendo.
+Finalizado esse processo de migração para gems iremos iniciar a adaptação das gems para o i18n, que será a forma correta de fazer internacionalização no Rails 2.2.
+
+Além do i18n gostaríamos de anexar mais funcionalidades ao Brazilian Rails. Existem vários plugins espalhados, que são úteis a comunidade brasileira, e gostaria de convocar seus colaboradores a entrar em contato comigo para que juntos nós migremos para gems dentro do Brazilian Rails.
+
+## Já usava como plugin, o que eu tenho que fazer?
+
+_NADA!_ Essa gem foi cuidadosamente pensada permitir seu uso como plugin sem precisar fazer mais nada, preservando-se a mesma forma de instalação anterior.
+
+## Cade o SVN?
+
+Foi desativado por completo. Agora só teremos suporte GIT.
+
+## Quais as gems que compõe o Brazilian Rails?
+
+1. brcep
+* brdata
+* brdinheiro
+* brhelper
+* brnumeros
+* brstring
+* brtraducao
 
 ## Como faço para instalar?
 
 É muito difícil...
 
-1. No Rails edge (futuro 2.1):
+### Como plugin:
 
         ruby script/plugin install git://github.com/tapajos/brazilian-rails.git
 
-2. Nas versões anteriores:
-
-		ruby script/plugin install svn://rubyforge.org/var/svn/brazilian-rails
-	
-_O repositório SVN é apenas um espelho da versão git para facilitar a instalação nas versões anteriores._
-
-3. Também é possível baixar via tarball pelo endereço:
-
-		http://github.com/tapajos/brazilian-rails/tarball/master
-
-
 Por padrão, a pluralização vem desabilitada, isso para não atrapalhar os projetos que já existem.
 
-Para ativar a pluralização:
+### Como gem:
 
-1. A partir da versão do Rails 2.0.2, existe uma task no rake para habilitar/desabilitar, são elas:
+        gem install brazilian-rails
+        
+Depois que todas as gems forem instaladas você pode utiliza-las fazendo o require das gem que te interessam ou usar o require abaixo para carregar todas:
 
-        rake brazilianrails:inflector:portuguese:enable  # Enable Brazilian Portuguese inflectors.
-        rake brazilianrails:inflector:portuguese:disable #Disable Brazilian Portuguese inflectors.
-        rake brazilianrails:inflector:portuguese:check   #Checks if Brazilian Portuguese inflectors is enabled/disabled.
-
-2. Antes da versão do Rails 2.0.2, basta adicionar a linha abaixo no seu enviroment.rb, após a o bloco de iniciação da aplicação.
-
-        Rails::Initializer.run do |config|
-        ...
-        end
-        require 'inflector_portuguese' # <<<==== Adicionar esta linha!!! :)
+        require 'brazilian_rails'
 
 ## Como funciona ?
 
 Está tudo explicado na nossa [api][].
+
+## Achei um BUG, o que eu faço?
+
+Por favor, nos avise! Isso é fácil e rápido. Isso pode ser feito em:
+
+    http://brazilian-rails.lighthouseapp.com
 
 ## Quem está por traz disso tudo?
 
@@ -56,23 +66,9 @@ O [Marcos Tapajós][mt] tomou coragem para publicar todas as funcionalidades em 
 
 Os loucos que mantém tudo funcionando são: [Celestino Gomes][tino], [André Luiz Kupkovski][andre], [A galera da Improve It][ii] e mais alguns que não se manifestaram para pagar esse mico...
 
-Alguns poucos já contribuiram para o plugin, direta e indireramente, como:
+Alguns poucos já contribuiram, direta e indireramente, como:
 
-[Shairon Toledo][st], [Guilherme Garnier][gg], Bruno Iecker, [Sylvestre Mergulhão][sm], Eduardo Fiorezi e Rafael Cardoso. Desculpe se esqueci de alguém
-
-## Como executar os testes:
-
-Para executar os testes do plugin, execute:
-
-        cd <rails application>/vendor/plugins/brazilian-rails
-        rake
-
-Alguns testes demandam a presença de uma base de dados, como é o caso do dinheiro\_activ\e_record\_test.rb. Para que os testes possam executar com sucesso, copie as migrations que estão no diretório db/migrate do plugin, para o db/migrate de sua aplicação Rails. Em seguida, execute:
-
-        rake db:migrate
-        rake db:test:clone_structure 
-
-CUIDADO: Atenção com a numeração das migrations.
+[Shairon Toledo][st], [Guilherme Garnier][gg], Bruno Iecker, [Sylvestre Mergulhão][sm], Eduardo Fiorezi, Rafael Cardoso e Edson César. Desculpe se esqueci de alguém
 
 ## Algumas funcionalidades:
 
@@ -86,13 +82,15 @@ CUIDADO: Atenção com a numeração das migrations.
 
 ## Duvidas ?
 
-As duvidas podem ser enviadas diretamente a um dos desenvolvedores ou através da página do projeto no [RubyForge][rf]
+As duvidas podem ser enviadas diretamente a um dos desenvolvedores ou através da página do projeto no [LightHouse][lh]
 
 ## Quem investe nesse plugin ?
 
 Este plugin é patrocinado pela [Improve It][ii].
 
 [![Improve It][logo]][ii]
+
+[lh]: http://brazilian-rails.lighthouseapp.com
 
 [api]: http://www.improveit.com.br/brazilian-rails/api
 

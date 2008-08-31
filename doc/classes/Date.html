@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Date</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Date</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/brdata/lib/brdata/date_portuguese_rb.html">
+                brdata/lib/brdata/date_portuguese.rb
+                </a>
+        <br />
+                <a href="../files/brdata/lib/brdata/feriado_rb.html">
+                brdata/lib/brdata/feriado.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000053">corpus_christi</a>&nbsp;&nbsp;
+      <a href="#M000051">feriado?</a>&nbsp;&nbsp;
+      <a href="#M000052">pascoa</a>&nbsp;&nbsp;
+      <a href="#M000049">to_s_br</a>&nbsp;&nbsp;
+      <a href="#M000050">valid?</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FERIADOS</td>
+          <td>=</td>
+          <td class="context-item-value">[]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FERIADOS_METODOS</td>
+          <td>=</td>
+          <td class="context-item-value">[]</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000050" class="method-detail">
+        <a name="M000050"></a>
+
+        <div class="method-heading">
+          <a href="#M000050" class="method-signature">
+          <span class="method-name">valid?</span><span class="method-args">(date)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Valida se uma string eh uma data valida
+</p>
+<p>
+Exemplo:
+</p>
+<pre>
+ Date.valid?('01/01/2007') ==&gt; true
+ Date.valid?('32/01/2007') ==&gt; false
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000050-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000050-source">
+<pre>
+    <span class="ruby-comment cmt"># File brdata/lib/brdata/date_portuguese.rb, line 31</span>
+31:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">valid?</span>(<span class="ruby-identifier">date</span>)
+32:     <span class="ruby-keyword kw">begin</span>
+33:       <span class="ruby-identifier">date</span> = <span class="ruby-identifier">date</span>.<span class="ruby-identifier">to_date</span>
+34:       <span class="ruby-constant">Date</span>.<span class="ruby-identifier">valid_civil?</span>(<span class="ruby-identifier">date</span>.<span class="ruby-identifier">year</span>, <span class="ruby-identifier">date</span>.<span class="ruby-identifier">month</span>, <span class="ruby-identifier">date</span>.<span class="ruby-identifier">day</span>)        
+35:     <span class="ruby-keyword kw">rescue</span>
+36:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+37:     <span class="ruby-keyword kw">end</span>
+38:     <span class="ruby-keyword kw">true</span>
+39:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000053" class="method-detail">
+        <a name="M000053"></a>
+
+        <div class="method-heading">
+          <a href="#M000053" class="method-signature">
+          <span class="method-name">corpus_christi</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Retorna a <a href="Date.html#M000053">corpus_christi</a> no ano da data
+atual
+</p>
+<p>
+Exemplo:
+</p>
+<pre>
+ data = Date.new(2007, 12, 25)
+ data.corpus_christi ==&gt; &quot;2007-06-07&quot;
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000053-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000053-source">
+<pre>
+    <span class="ruby-comment cmt"># File brdata/lib/brdata/feriado.rb, line 84</span>
+84:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">corpus_christi</span>
+85:     <span class="ruby-constant">Date</span>.<span class="ruby-identifier">parse</span>((<span class="ruby-identifier">pascoa</span>.<span class="ruby-identifier">to_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">60</span>.<span class="ruby-identifier">days</span>).<span class="ruby-identifier">to_date</span>.<span class="ruby-identifier">to_s</span>)
+86:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000051" class="method-detail">
+        <a name="M000051"></a>
+
+        <div class="method-heading">
+          <a href="#M000051" class="method-signature">
+          <span class="method-name">feriado?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Retorna a true se a data for um feriado
+</p>
+<p>
+Exemplo:
+</p>
+<pre>
+ data = Date.new(2007, 12, 25)
+ data.feriado? ==&gt; true
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000051-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000051-source">
+<pre>
+    <span class="ruby-comment cmt"># File brdata/lib/brdata/feriado.rb, line 53</span>
+53:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">feriado?</span>
+54:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">FERIADOS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-constant">Feriado</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;novo_feriado&quot;</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">day</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">month</span>))
+55:     <span class="ruby-constant">FERIADOS_METODOS</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">metodo</span><span class="ruby-operator">|</span>
+56:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">send</span>(<span class="ruby-identifier">metodo</span>)
+57:     <span class="ruby-keyword kw">end</span>
+58:     <span class="ruby-keyword kw">false</span>
+59:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000052" class="method-detail">
+        <a name="M000052"></a>
+
+        <div class="method-heading">
+          <a href="#M000052" class="method-signature">
+          <span class="method-name">pascoa</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Retorna a <a href="Date.html#M000052">pascoa</a> no ano da data atual
+</p>
+<p>
+Exemplo:
+</p>
+<pre>
+ data = Date.new(2007, 12, 25)
+ data.pascoa ==&gt; &quot;2007-4-8&quot;
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000052-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000052-source">
+<pre>
+    <span class="ruby-comment cmt"># File brdata/lib/brdata/feriado.rb, line 66</span>
+66:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pascoa</span>
+67:     <span class="ruby-identifier">g</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">year</span> <span class="ruby-operator">%</span> <span class="ruby-value">19</span>
+68:     <span class="ruby-identifier">c</span> = (<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">year</span> <span class="ruby-operator">/</span> <span class="ruby-value">100</span>).<span class="ruby-identifier">floor</span>
+69:     <span class="ruby-identifier">h</span> = (<span class="ruby-identifier">c</span> <span class="ruby-operator">-</span> ( <span class="ruby-identifier">c</span> <span class="ruby-operator">/</span> <span class="ruby-value">4</span> ).<span class="ruby-identifier">floor</span> <span class="ruby-operator">-</span> ((<span class="ruby-value">8</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">c</span>) <span class="ruby-operator">/</span> <span class="ruby-value">25</span>).<span class="ruby-identifier">floor</span> <span class="ruby-operator">+</span> <span class="ruby-value">19</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">g</span> <span class="ruby-operator">+</span> <span class="ruby-value">15</span>) <span class="ruby-operator">%</span> <span class="ruby-value">30</span>
+70:     <span class="ruby-identifier">i</span> = <span class="ruby-identifier">h</span> <span class="ruby-operator">-</span> (<span class="ruby-identifier">h</span> <span class="ruby-operator">/</span> <span class="ruby-value">28</span>).<span class="ruby-identifier">floor</span> <span class="ruby-operator">*</span> (<span class="ruby-value">1</span> <span class="ruby-operator">-</span> (<span class="ruby-identifier">h</span> <span class="ruby-operator">/</span> <span class="ruby-value">28</span>).<span class="ruby-identifier">floor</span> <span class="ruby-operator">*</span> (<span class="ruby-value">29</span> <span class="ruby-operator">/</span> (<span class="ruby-identifier">h</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)).<span class="ruby-identifier">floor</span> <span class="ruby-operator">*</span> ((<span class="ruby-value">21</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">g</span>) <span class="ruby-operator">/</span> <span class="ruby-value">11</span>).<span class="ruby-identifier">floor</span>)
+71:     <span class="ruby-identifier">j</span> = (<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">year</span> <span class="ruby-operator">+</span> (<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">year</span><span class="ruby-operator">/</span> <span class="ruby-value">4</span>).<span class="ruby-identifier">floor</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">+</span> <span class="ruby-value">2</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">c</span> <span class="ruby-operator">/</span> <span class="ruby-value">4</span>).<span class="ruby-identifier">floor</span>) <span class="ruby-operator">%</span> <span class="ruby-value">7</span>
+72:     <span class="ruby-identifier">l</span> = <span class="ruby-identifier">i</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">j</span>
+73: 
+74:     <span class="ruby-identifier">month</span> = <span class="ruby-value">3</span> <span class="ruby-operator">+</span> ((<span class="ruby-identifier">l</span> <span class="ruby-operator">+</span> <span class="ruby-value">40</span>) <span class="ruby-operator">/</span> <span class="ruby-value">44</span>).<span class="ruby-identifier">floor</span>
+75:     <span class="ruby-identifier">day</span>   = <span class="ruby-identifier">l</span> <span class="ruby-operator">+</span> <span class="ruby-value">28</span> <span class="ruby-operator">-</span> (<span class="ruby-value">31</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">month</span> <span class="ruby-operator">/</span> <span class="ruby-value">4</span> ).<span class="ruby-identifier">floor</span>)
+76:     <span class="ruby-constant">Date</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;#{self.year}-#{month}-#{day}&quot;</span>)
+77:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000049" class="method-detail">
+        <a name="M000049"></a>
+
+        <div class="method-heading">
+          <a href="#M000049" class="method-signature">
+          <span class="method-name">to_s_br</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Retorna a data no padrao brasileiro
+</p>
+<p>
+Exemplo:
+</p>
+<pre>
+ data = Date.new(2007, 9, 27)
+ data.to_s_br ==&gt; &quot;27/09/2007&quot;
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000049-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000049-source">
+<pre>
+    <span class="ruby-comment cmt"># File brdata/lib/brdata/date_portuguese.rb, line 22</span>
+22:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s_br</span>
+23:     <span class="ruby-identifier">strftime</span>(<span class="ruby-value str">&quot;%d/%m/%Y&quot;</span>)
+24:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

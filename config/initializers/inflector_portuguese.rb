@@ -1,1 +1,0 @@
-require 'inflector_portuguese'

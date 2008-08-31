@@ -1,35 +1,96 @@
+require 'rubygems'
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
-require 'rcov/rcovtask'
+require 'rake/packagetask'
+require 'rake/gempackagetask'
+require 'rake/contrib/sshpublisher'
 
-desc 'Default: run unit tests.'
+env = %(PKG_BUILD="#{ENV['PKG_BUILD']}") if ENV['PKG_BUILD']
+
+PROJECTS = %w(brdinheiro brcep brdata brhelper brtraducao brnumeros brstring)
+
+Dir["#{File.dirname(__FILE__)}/*/lib/*/version.rb"].each do |version_path|
+  require version_path
+end
+
+desc 'Run all tests by default'
 task :default => :test
 
-desc 'Test the Brazilian Rails plugin.'
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = true
+%w(test rdoc package release).each do |task_name|
+  desc "Run #{task_name} task for all projects"
+  task task_name do
+    PROJECTS.each do |project|
+      system %(cd #{project} && #{env} #{$0} #{task_name})
+    end
+  end
 end
 
-desc 'Generate documentation for the Brazilian Rails plugin.'
-Rake::RDocTask.new(:rdoc) do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'Brazilian Rails'
+desc "Generate documentation for the Brazilian Rails"
+Rake::RDocTask.new do |rdoc|
+  rdoc.rdoc_dir = 'doc'
+  rdoc.title    = "Brazilian Rails Documentation"
+
   rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('README')
-  rdoc.rdoc_files.include('lib/**/*.rb')
+  rdoc.options << '-A cattr_accessor=object'
+  rdoc.options << '--charset' << 'utf-8'
+  rdoc.options << '-T html'
+  rdoc.options << '--all'
+  rdoc.options << '-U'
+  
+
+  rdoc.template = "#{ENV['template']}.rb" if ENV['template']
+  
+  rdoc.rdoc_files.include("README.mkdn")
+  
+  PROJECTS.each do |project|
+    rdoc.rdoc_files.include("#{project}/README")
+    rdoc.rdoc_files.include("#{project}/CHANGELOG")
+    rdoc.rdoc_files.include("#{project}/lib/**/*.rb")
+  end
+  
 end
 
-desc "Generate code coverage report for Brazilian Rails plugin."
-Rcov::RcovTask.new do |t|
-  t.test_files = FileList['test/*_test.rb']
-  t.rcov_opts << '-x init.rb'
-  t.rcov_opts << '-x dependency_list.rb'
-  t.rcov_opts << '-x app'
-  t.rcov_opts << '--rails'
-  t.rcov_opts << '--charset UTF-8'
-  t.verbose = true
+
+PKG_VERSION = "2.0.0"
+
+# Create compressed packages
+spec = Gem::Specification.new do |s|
+  s.platform = Gem::Platform::RUBY
+  s.name = "brazilian-rails"
+  s.summary = "O Brazilian Rails é um conjunto de gems para facilitar a vida dos programadores brasileiros."
+  s.description = %q{O Brazilian Rails é um conjunto de gems para facilitar a vida dos programadores brasileiros.}
+  s.version = PKG_VERSION
+
+  s.authors = ["Marcos Tapajós", "Celestino Gomes", "Andre Kupkosvki", "Vinícius Teles"]
+  s.email = "tapajos@gmail.com"
+  s.rubyforge_project = "brazilian-rails"
+  s.homepage = "http://www.improveit.com.br/software_livre/brazilian_rails"
+
+  s.has_rdoc = true
+  s.requirements << 'none'
+  s.require_path = 'lib'
+  s.autorequire = PROJECTS
+
+  s.files = [ "README.mkdn", "TODO.mkdn", "lib/brazilian_rails.rb"]
+end
+  
+Rake::GemPackageTask.new(spec) do |p|
+  p.gem_spec = spec
+  p.need_tar = true
+  p.need_zip = true
+end
+
+desc "Publish the release files to RubyForge."
+task :release => [ :package ] do
+  require 'rubyforge'
+  require 'rake/contrib/rubyforgepublisher'
+  
+  packages = %w( gem tgz zip ).collect{ |ext| "pkg/brazilian-rails-#{PKG_VERSION}.#{ext}" }
+  
+  rubyforge = RubyForge.new
+  rubyforge.configure
+  rubyforge.login
+  rubyforge.add_release("brazilian-rails", "brazilian-rails", "REL #{PKG_VERSION}", *packages)
 end
 
