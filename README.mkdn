@@ -58,7 +58,7 @@ Está tudo explicado na nossa [api][].
 
 Por favor, nos avise! Isso é fácil e rápido. Isso pode ser feito em:
 
-    http://brazilian-rails.lighthouseapp.com
+    http://rubyforge.org/projects/brazilian-rails/
 
 ## Quem está por traz disso tudo?
 
@@ -82,7 +82,7 @@ Alguns poucos já contribuiram, direta e indireramente, como:
 
 ## Duvidas ?
 
-As duvidas podem ser enviadas diretamente a um dos desenvolvedores ou através da página do projeto no [LightHouse][lh]
+As duvidas podem ser enviadas diretamente a um dos desenvolvedores ou através da página do projeto no [RubyForge][rf]
 
 ## Quem investe nesse plugin ?
 
@@ -90,7 +90,7 @@ Este plugin é patrocinado pela [Improve It][ii].
 
 [![Improve It][logo]][ii]
 
-[lh]: http://brazilian-rails.lighthouseapp.com
+[rf]: http://rubyforge.org/projects/brazilian-rails/
 
 [api]: http://brazilian-rails.improveit.com.br
 
