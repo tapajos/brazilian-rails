@@ -52,7 +52,7 @@ Rake::RDocTask.new do |rdoc|
 end
 
 
-PKG_VERSION = "2.0.0"
+PKG_VERSION = "2.0.1"
 
 # Create compressed packages
 spec = Gem::Specification.new do |s|
@@ -70,8 +70,13 @@ spec = Gem::Specification.new do |s|
   s.has_rdoc = true
   s.requirements << 'none'
   s.require_path = 'lib'
+  
+  PROJECTS.each do |project|
+    s.add_dependency(project, ">= #{PKG_VERSION}")  
+  end
+  
   s.autorequire = PROJECTS
-
+  
   s.files = [ "README.mkdn", "TODO.mkdn", "lib/brazilian_rails.rb"]
 end
   
