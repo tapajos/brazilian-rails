@@ -81,5 +81,5 @@ task :release => [ :package ] do
   rubyforge = RubyForge.new
   rubyforge.configure
   rubyforge.login
-  rubyforge.add_release(PKG_NAME, PKG_NAME, "REL #{PKG_VERSION}", *packages)
+  rubyforge.add_release("brazilian-rails", PKG_NAME, "REL #{PKG_VERSION}", *packages)
 end
