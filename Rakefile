@@ -77,7 +77,7 @@ spec = Gem::Specification.new do |s|
   
   s.autorequire = PROJECTS
   
-  s.files = [ "README.mkdn", "TODO.mkdn", "lib/brazilian_rails.rb"]
+  s.files = [ "README.mkdn", "lib/brazilian_rails.rb"]
 end
   
 Rake::GemPackageTask.new(spec) do |p|
