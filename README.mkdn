@@ -68,7 +68,7 @@ Os loucos que mantém tudo funcionando são: [Celestino Gomes][tino], [André Lu
 
 Alguns poucos já contribuiram, direta e indireramente, como:
 
-[Shairon Toledo][st], [Guilherme Garnier][gg], Bruno Iecker, [Sylvestre Mergulhão][sm], Eduardo Fiorezi, Rafael Cardoso, Edson César e Kivanio Barbosa[kb]. Desculpe se esqueci de alguém
+[Shairon Toledo][st], [Guilherme Garnier][gg], Bruno Iecker, [Sylvestre Mergulhão][sm], Eduardo Fiorezi, Rafael Cardoso, Edson César e [Kivanio Barbosa][kb]. Desculpe se esqueci de alguém
 
 ## Algumas funcionalidades:
 
