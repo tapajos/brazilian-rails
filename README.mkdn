@@ -48,7 +48,7 @@ Por padrão, a pluralização vem desabilitada, isso para não atrapalhar os pro
         
 Depois que todas as gems forem instaladas você pode utiliza-las fazendo o require das gem que te interessam ou usar o require abaixo para carregar todas:
 
-        require 'brazilian_rails'
+        require 'brazilian-rails'
 
 ## Como funciona ?
 

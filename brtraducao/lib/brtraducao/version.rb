@@ -4,6 +4,6 @@ module BrTraducao
     
     
 
-    STRING = "2.0.3"
+    STRING = "2.0.4"
   end
 end
