@@ -4,6 +4,6 @@ module BrString
     
     
 
-    STRING = "2.0.4"
+    STRING = "2.0.5"
   end
 end

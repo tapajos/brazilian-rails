@@ -52,7 +52,7 @@ Rake::RDocTask.new do |rdoc|
 end
 
 
-PKG_VERSION = "2.0.4"
+PKG_VERSION = "2.0.5"
 
 # Create compressed packages
 spec = Gem::Specification.new do |s|
@@ -72,7 +72,7 @@ spec = Gem::Specification.new do |s|
   s.require_path = 'lib'
   
   PROJECTS.each do |project|
-    s.add_dependency(project, ">= #{PKG_VERSION}")  
+    s.add_dependency(project, ">= 2.0.0")  
   end
   
   s.autorequire = PROJECTS
