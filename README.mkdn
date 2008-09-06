@@ -24,7 +24,7 @@ Foi desativado por completo. Agora só teremos suporte GIT.
 
 ## Quais as gems que compõe o Brazilian Rails?
 
-1. brcep
+* brcep
 * brdata
 * brdinheiro
 * brhelper
