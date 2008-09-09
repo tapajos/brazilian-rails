@@ -4,6 +4,6 @@ module BrData
     
     
 
-    STRING = "2.0.4"
+    STRING = "2.0.6"
   end
 end

@@ -52,7 +52,7 @@ Rake::RDocTask.new do |rdoc|
 end
 
 
-PKG_VERSION = "2.0.4"
+PKG_VERSION = "2.0.6"
 
 # Create compressed packages
 spec = Gem::Specification.new do |s|
@@ -77,7 +77,7 @@ spec = Gem::Specification.new do |s|
   
   s.autorequire = PROJECTS
   
-  s.files = [ "README.mkdn", "lib/brazilian_rails.rb"]
+  s.files = [ "README.mkdn", "lib/brazilian-rails.rb"]
 end
   
 Rake::GemPackageTask.new(spec) do |p|
