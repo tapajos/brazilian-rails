@@ -20,13 +20,16 @@ RUBY_FORGE_PROJECT = "brcpfcnpj"
 RUBY_FORGE_USER    = "tapajos"
 
 desc "Default Task"
-task :default => [ :test ]
+task :default => [ :spec ]
 
 desc "Run all specs"
 Spec::Rake::SpecTask.new do |t|
   t.spec_files = FileList['spec/**/*_spec.rb']
 end  
 
+task :test do
+  system("rake spec")
+end
 
 #Generate the RDoc documentation
 Rake::RDocTask.new { |rdoc|

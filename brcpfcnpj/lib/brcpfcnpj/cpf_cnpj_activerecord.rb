@@ -6,7 +6,10 @@ module CpfCnpjActiveRecord #:nodoc:
     def usar_como_cpf(*args) #:nodoc:
       unless args.size.zero?
         args.each do |name|
-          composed_of name, :class_name => 'Cpf', :mapping => [name.to_s, "cpf"], :allow_nil => true
+          composed_of name, :class_name => 'Cpf', 
+            :mapping => [name.to_s, "cpf"], :allow_nil => true do
+              Cpf.new(name[:numero])
+            end
 
           name = name.to_s
           module_eval <<-ADICIONANDO_METODOS_PARA_CPF
@@ -16,10 +19,10 @@ module CpfCnpjActiveRecord #:nodoc:
             if !#{name}.nil? && !#{name}.valido?
               self.errors.add('#{name}', 'numero invalido')
             end
-          end
-
+          end  
+          
           def #{name}=(value)
-            if value.nil?
+            if value.nil?            
               write_attribute('#{name}', nil)
             elsif value.kind_of?(Cpf) 
               write_attribute('#{name}', value.numero)

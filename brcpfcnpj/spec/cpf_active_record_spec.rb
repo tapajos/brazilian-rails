@@ -37,7 +37,7 @@ describe "Using a model attribute as Cpf" do
   
   it "should have an error in the cpf field when invalid" do
     @person.cpf = "232df"
-    @person.save
+    @person.save.should be_false
     @person.errors['cpf'].should == "numero invalido"   
   end
   
@@ -54,6 +54,13 @@ describe "Using a model attribute as Cpf" do
   it "should be able to receive parameters at initialization" do
     @person = Person.new(:cpf => "111.44477735")
     @person.cpf.numero.should == "111.444.777-35"  
+  end
+  
+  it "should change the current attribute's value" do
+    @person.cpf = Cpf.new("13434")
+    lambda {
+      @person.cpf = Cpf.new("111.444.777-35")    
+    }.should change(@person, :cpf)
   end
 end
 
