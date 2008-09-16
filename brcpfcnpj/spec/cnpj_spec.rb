@@ -36,6 +36,9 @@ describe Cnpj do
     cnpj.numero.should == "69.103.604/0001-60"
   end
   
+  it "should be equal to another instance with the same number" do
+    Cnpj.new("69103604000160").should == Cnpj.new("69.103.604/0001-60")
+  end  
 end 
   
   

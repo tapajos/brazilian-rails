@@ -30,6 +30,16 @@ describe "Using a model attribute as Cpf" do
     @person.should_not be_valid
   end
   
+  it "should be valid with an empty string in the constructor of an instance of Cpf" do
+    @person.cpf = Cpf.new("")
+    @person.should be_valid
+  end
+  
+  it "should be valid with an empty string as the cpf number" do
+    @person.cpf = ""
+    @person.should be_valid
+  end
+  
   it "should not save the instance with an invalid cpf" do
     @person.cpf = "sdwewe"
     @person.save.should be_false

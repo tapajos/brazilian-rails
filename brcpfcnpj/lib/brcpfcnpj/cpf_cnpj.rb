@@ -10,7 +10,11 @@ module CpfCnpj
   end
   
   def to_s
-    @numero
+    @numero || ""
+  end
+  
+  def ==(outro_doc)
+    self.numero == outro_doc.numero
   end
   
   # Verifica se o numero possui o formato correto e se 

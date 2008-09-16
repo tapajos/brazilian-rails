@@ -36,4 +36,8 @@ describe Cpf do
     cpf.numero.should == "111.444.777-35"
   end
   
+  it "should be equal to another instance with the same number" do
+    Cpf.new("11144477735").should == Cpf.new("111.444.777-35")
+  end
+  
 end
