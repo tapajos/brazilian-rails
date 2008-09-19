@@ -38,5 +38,7 @@ feriados, metodos = FeriadoParser.parser(File.dirname(__FILE__) + "/brdata/confi
 #   feriados += f
 #   metodos += m
 # end
-Date::FERIADOS = feriados;
-Date::FERIADOS_METODOS = metodos
+Date::FERIADOS.clear
+Date::FERIADOS_METODOS.clear
+feriados.each { |f| Date::FERIADOS << f }
+metodos.each { |m| Date::FERIADOS_METODOS << m }

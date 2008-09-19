@@ -8,7 +8,7 @@ require 'rake/contrib/sshpublisher'
 
 env = %(PKG_BUILD="#{ENV['PKG_BUILD']}") if ENV['PKG_BUILD']
 
-PROJECTS = %w(brdinheiro brcep brdata brhelper brtraducao brnumeros brstring)
+PROJECTS = %w(brnumeros brdinheiro brcep brdata brhelper brtraducao brstring)
 
 Dir["#{File.dirname(__FILE__)}/*/lib/*/version.rb"].each do |version_path|
   require version_path
@@ -24,6 +24,31 @@ task :default => :test
       system %(cd #{project} && #{env} #{$0} #{task_name})
     end
   end
+end
+
+desc "install all gems"
+task :install_all do
+  PROJECTS.each do |project|
+    Dir.entries("#{project}/pkg").select{ |d| d =~ /\.gem$/ }.each do |gem_file|
+      system %(sudo gem install #{project}/pkg/#{gem_file})
+    end
+  end
+  Dir.entries("./pkg").select{ |d| d =~ /\.gem$/ }.each do |gem_file|
+    system %(sudo gem install ./pkg/#{gem_file})
+  end
+end
+
+desc "remove old gem packages"
+task :clean_packages do
+  require 'fileutils'
+  PROJECTS.each do |project|
+    Dir.entries("#{project}/pkg").select{ |d| d =~ /#{project}/ }.each do |file|
+      FileUtils.rm_rf(File.join(project,"pkg",file))
+    end
+  end
+  Dir.entries("./pkg").select{ |d| d =~ /brazilian/ }.each do |file|
+    FileUtils.rm_rf(File.join("./pkg", file))
+  end  
 end
 
 desc "Generate documentation for the Brazilian Rails"
@@ -52,7 +77,7 @@ Rake::RDocTask.new do |rdoc|
 end
 
 
-PKG_VERSION = "2.0.6"
+PKG_VERSION = "2.0.7"
 
 # Create compressed packages
 spec = Gem::Specification.new do |s|
