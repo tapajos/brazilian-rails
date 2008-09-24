@@ -1,9 +1,5 @@
 module BrCpfCnpj
   module VERSION #:nodoc:
-    
-    
-    
-
-    STRING = "2.0.6"
+    STRING = "2.0.7"
   end
 end
