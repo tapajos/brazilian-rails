@@ -8,7 +8,7 @@ require 'rake/contrib/sshpublisher'
 
 env = %(PKG_BUILD="#{ENV['PKG_BUILD']}") if ENV['PKG_BUILD']
 
-PROJECTS = %w(brnumeros brdinheiro brcep brdata brhelper brtraducao brstring)
+PROJECTS = %w(brnumeros brdinheiro brcep brdata brhelper brtraducao brstring brcpfcnpj)
 
 Dir["#{File.dirname(__FILE__)}/*/lib/*/version.rb"].each do |version_path|
   require version_path
@@ -87,7 +87,7 @@ spec = Gem::Specification.new do |s|
   s.description = %q{O Brazilian Rails é um conjunto de gems para facilitar a vida dos programadores brasileiros.}
   s.version = PKG_VERSION
 
-  s.authors = ["Marcos Tapajós", "Celestino Gomes", "Andre Kupkosvki", "Vinícius Teles"]
+  s.authors = ["Marcos Tapajós", "Celestino Gomes", "Andre Kupkosvki", "Vinícius Teles", "Cássio Marques"]
   s.email = "tapajos@gmail.com"
   s.rubyforge_project = "brazilian-rails"
   s.homepage = "http://www.improveit.com.br/software_livre/brazilian_rails"

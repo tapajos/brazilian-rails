@@ -31,6 +31,7 @@ Foi desativado por completo. Agora só teremos suporte GIT.
 * brnumeros
 * brstring
 * brtraducao
+* brcpfcnpj
 
 ## Como faço para instalar?
 
@@ -68,13 +69,14 @@ Os loucos que mantém tudo funcionando são: [Celestino Gomes][tino], [André Lu
 
 Alguns poucos já contribuiram, direta e indireramente, como:
 
-[Shairon Toledo][st], [Guilherme Garnier][gg], Bruno Iecker, [Sylvestre Mergulhão][sm], Eduardo Fiorezi, Rafael Cardoso, Edson César e [Kivanio Barbosa][kb]. Desculpe se esqueci de alguém
+[Shairon Toledo][st], [Guilherme Garnier][gg], Bruno Iecker, [Sylvestre Mergulhão][sm], Eduardo Fiorezi, Rafael Cardoso, Edson César, [Kivanio Barbosa][kb] e [Cássio Marques][cm]. Desculpe se esqueci de alguém
 
 ## Algumas funcionalidades:
 
 * Date e Time no formato brasileiro
 * Números por Extenso
 * Dinheiro
+* Cpf e Cnpj
 * Feriado
 * Mensagens de erro traduzidas
 * Pluralização em português-Brasil-sil-sil
@@ -94,14 +96,15 @@ Este plugin é patrocinado pela [Improve It][ii].
 
 [api]: http://brazilian-rails.improveit.com.br
 
-[ii]:		http://www.improveit.com.br
-[logo]: 	http://www.improveit.com.br/images/logo/logo_improve_it_screen.gif "Improve It"
+[ii]: http://www.improveit.com.br
+[logo]: http://www.improveit.com.br/images/logo/logo_improve_it_screen.gif "Improve It"
 [tino]: http://tinogomes.wordpress.com
 [andre]: http://www.workingwithrails.com/person/9227-andr-luiz-kupkovski
 [st]: http://www.hashcode.eti.br/
 [rf]: http://rubyforge.org/projects/brazilian-rails
-[mt]:	http://www.improveit.com.br/tapajos
-[vt]:	http://www.improveit.com.br/vinicius
+[mt]: http://www.improveit.com.br/tapajos
+[vt]: http://www.improveit.com.br/vinicius
 [gg]: http://ggarnier.wordpress.com/
 [sm]: http://mergulhao.info/
 [kb]: http://www.kivanio.com.br/
+[cm]: http://cassiomarques.wordpress.com
