@@ -4,6 +4,6 @@ module BrDinheiro
     
     
 
-    STRING = "2.0.7"
+    STRING = "2.0.9"
   end
 end
