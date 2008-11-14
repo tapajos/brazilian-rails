@@ -1,5 +1,6 @@
 require 'net/http'
 require 'rexml/document'
+require 'active_support'
 
 #Este recurso usa o webservice da http://www.bronzebusiness.com.br/webservices/wscep.asmx para
 #realizar as consultas de cep, então, somente funcionará para serviços com acesso a internet e
