@@ -28,6 +28,8 @@ class BuscaEndereco
   # Exemplo:
   #  BuscaEndereco.por_cep(22640100) ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
   def self.por_cep(numero)
+    raise "O CEP informado possui um formato inválido." if numero.to_s.gsub(/\./, '').gsub(/\-/, '').length != 8
+
     cep = numero.to_s.gsub(/\./, '').gsub(/\-/, '').to_i
     response = Net::HTTP.Proxy(self.proxy_addr,self.proxy_port).get_response(URI.parse("#{URL_WEB_SERVICE}#{cep}"))
     

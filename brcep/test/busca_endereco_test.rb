@@ -3,8 +3,7 @@ require 'rubygems'
 require 'net/http'
 require 'mocha'
 
-
-INVALID_ZIPS = [0, '0', '00', '000', '0000', '00000', '000000', '0000000', '00000000']
+INVALID_ZIPS = [ 0, '0', '00', '000', '0000', '00000', '000000', '0000000' ]
 VALID_ZIPS = [22640100, '22640100', '22.640-100', '22.640-100']
 
 class MockSuccess < Net::HTTPSuccess
@@ -33,8 +32,7 @@ class BuscaEnderecoTest < Test::Unit::TestCase
 
   def test_raise_for_invalid_zip_code
     INVALID_ZIPS.each do |invalid_zip|
-      mock_get_response('invalid')
-      assert_raise RuntimeError, "Cep #{invalid_zip} não encontrado." do
+      assert_raise RuntimeError, "O CEP informado possui um formato inválido." do
         BuscaEndereco.por_cep(invalid_zip)
       end
     end
@@ -74,4 +72,3 @@ class BuscaEnderecoTest < Test::Unit::TestCase
     File.join(File.dirname(__FILE__), 'mocks', "zip_#{nome}.xml")
   end
 end
-
