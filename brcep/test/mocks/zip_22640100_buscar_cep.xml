@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+
+<webservicecep>
+  <cep>22640100</cep>
+  <uf>RJ</uf>
+  <cidade>Rio de Janeiro</cidade>
+  <bairro>Barra da Tijuca</bairro>
+  <tipo_logradouro>Avenida</tipo_logradouro>
+  <logradouro>das Américas</logradouro>
+  <resultado>1</resultado>
+  <resultado_txt>sucesso. cep encontrado</resultado_txt>
+</webservicecep>
