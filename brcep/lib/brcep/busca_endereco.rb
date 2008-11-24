@@ -3,9 +3,11 @@ require 'rexml/document'
 require 'active_support'
 require 'brstring'
 
-#Este recurso usa o webservice da http://www.bronzebusiness.com.br/webservices/wscep.asmx para
-#realizar as consultas de cep, então, somente funcionará para serviços com acesso a internet e
-#disponibilidade do serviço da Bronze Business.
+# Este recurso tem como finalidade encontrar um endereço através de um CEP, e
+# para isso ele utiliza o web service da Bronze Business (http://www.bronzebusiness.com.br/webservices/wscep.asmx)
+# e o web service do Buscar CEP (http://www.buscarcep.com.br). O segundo só é utilizado quando
+# o primeiro está indisponível ou quando ele não encontra o endereço associado ao CEP informado.
+# Obviamente, para utilizar este serviço é necessário uma conexão com a Internet.
 # 
 #Como fazer a busca de endereço por cep?
 #
