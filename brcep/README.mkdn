@@ -1,0 +1,25 @@
+# BrCep
+
+## O que é?
+
+O BrCep é um gem que tem como objetivo buscar um endereço com base no seu CEP. Para isso ele utiliza dois web services:
+
+* Bronze Business
+* Buscar CEP
+
+Primeiro o endereço é procurado no web service da Bronze Business, e caso não acho o endereço lá, ou caso este web service esteja indisponível, o endereço será então procurado no web service do Buscar CEP. Portanto, o endereço tem duas chances para ser encontrado, sendo mais difícil o serviço de busca de endereço por CEP estar indisponível ou não encontrar o endereço.
+
+## Como usar?
+
+        BuscaEndereco.por_cep(22640100)     ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
+        BuscaEndereco.por_cep('22640100')   ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
+        BuscaEndereco.por_cep('22640-100')  ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
+        BuscaEndereco.por_cep('22.640-100') ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
+
+## O que acontece se o CEP informado tiver um formato inválido?
+
+        BuscaEndereco.por_cep('00000000')   ==> RuntimeError 'O CEP informado possui um formato inválido.'
+
+## E se os dois web services estiverem indisponíveis?
+
+        BuscaEndereco.por_cep('22.640-100') ==> RuntimeError, "A busca de endereço por CEP está indisponível no momento."
