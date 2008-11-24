@@ -27,3 +27,5 @@ Primeiro o endereço é procurado no web service da Bronze Business, e caso não
 ## E se por acaso o CEP não for encontrado em nenhum dos dois web services:
 
         BuscaEndereco.por_cep('12345678') ==> RuntimeError, "CEP 12345678 não encontrado."
+
+P.S.: Nesse caso o endereço não foi encontrado porque não existe um endereço associado ao CEP 12345678. No entanto, pode haver situações em que CEPs que possuem endereços associados não tenham os seus endereços encontrados, no entanto, até o momemnto os dois web services utilizados cobrem todas os CEPs testados na prática.
