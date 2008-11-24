@@ -6,6 +6,7 @@ require 'mocha'
 INVALID_ZIPS = [0, '0', '00', '000', '0000', '00000', '000000', '0000000', '00000000']
 VALID_ZIPS = [22640100, '22640100', '22.640100', '22640-100', '22.640-100']
 VALID_CEPS_NOT_FOUND_ON_BRONZE_BUSINESS = [20230024, '20230024', '20.230024', '20230-024', '20.230-024']
+ZIPS_WITH_NO_ADDRESS_ASSOCIATED = [12345678, '12345678', '12.345678', '12345-678', '12.345-678']
 
 class MockSuccess < Net::HTTPSuccess
   def initialize; end
@@ -77,6 +78,16 @@ class BuscaEnderecoTest < Test::Unit::TestCase
     end
   end
 
+  def test_should_raise_exception_when_search_for_zip_with_no_associated_address
+    ZIPS_WITH_NO_ADDRESS_ASSOCIATED.each do |zip_with_no_address_associated|
+      assert_raise RuntimeError, "CEP #{limpa_cep(zip_with_no_address_associated)} não encontrado." do
+        mock_get_response_when_theres_no_address_associated_with_zip
+
+        BuscaEndereco.por_cep(zip_with_no_address_associated)
+      end
+    end
+  end
+
   private
 
   def mock_get_response_from_bronze_business(zip_number)
@@ -103,6 +114,19 @@ class BuscaEnderecoTest < Test::Unit::TestCase
   def mock_get_response_from_buscar_cep_when_address_not_found_on_bronze_business(zip_number)
     xml_data_from_bronze_business = xml_data_from zip_name("not_found", "bronze_business")
     xml_data_from_buscar_cep = xml_data_from zip_name(zip_number, "buscar_cep")
+
+    http_success_response_from_buscar_cep = MockSuccess.new
+    http_success_response_from_buscar_cep.expects(:body).returns(xml_data_from_buscar_cep)
+    Net::HTTP.expects(:get_response).returns(http_success_response_from_buscar_cep)
+
+    http_success_response_from_bronze_business = MockSuccess.new
+    http_success_response_from_bronze_business.expects(:body).returns(xml_data_from_bronze_business)
+    Net::HTTP.expects(:get_response).returns(http_success_response_from_bronze_business)
+  end
+
+  def mock_get_response_when_theres_no_address_associated_with_zip
+    xml_data_from_bronze_business = xml_data_from zip_name("not_found", "bronze_business")
+    xml_data_from_buscar_cep = xml_data_from zip_name("not_found", "buscar_cep")
 
     http_success_response_from_buscar_cep = MockSuccess.new
     http_success_response_from_buscar_cep.expects(:body).returns(xml_data_from_buscar_cep)

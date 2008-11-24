@@ -7,7 +7,7 @@ O BrCep é um gem que tem como objetivo buscar um endereço com base no seu CEP.
 * Bronze Business
 * Buscar CEP
 
-Primeiro o endereço é procurado no web service da Bronze Business, e caso não acho o endereço lá, ou caso este web service esteja indisponível, o endereço será então procurado no web service do Buscar CEP. Portanto, o endereço tem duas chances para ser encontrado, sendo mais difícil o serviço de busca de endereço por CEP estar indisponível ou não encontrar o endereço.
+Primeiro o endereço é procurado no web service da Bronze Business, e caso não ache o endereço lá, ou caso este web service esteja indisponível, o endereço será então procurado no web service do Buscar CEP. Portanto, o endereço tem duas chances para ser encontrado, sendo mais difícil o serviço de busca de endereço por CEP estar indisponível ou não encontrar o endereço.
 
 ## Como usar?
 
@@ -23,3 +23,7 @@ Primeiro o endereço é procurado no web service da Bronze Business, e caso não
 ## E se os dois web services estiverem indisponíveis?
 
         BuscaEndereco.por_cep('22.640-100') ==> RuntimeError, "A busca de endereço por CEP está indisponível no momento."
+
+## E se por acaso o CEP não for encontrado em nenhum dos dois web services:
+
+        BuscaEndereco.por_cep('12345678') ==> RuntimeError, "CEP 12345678 não encontrado."
