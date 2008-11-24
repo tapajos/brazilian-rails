@@ -13,7 +13,7 @@ require 'brstring'
 # BuscaEndereco.por_cep('22640100')   ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
 # BuscaEndereco.por_cep('22640-100')  ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
 # BuscaEndereco.por_cep('22.640-100') ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
-# BuscaEndereco.por_cep('00000000')   ==> RuntimeError 'Cep 00000000 não encontrado.'
+# BuscaEndereco.por_cep('00000000')   ==> RuntimeError 'O CEP informado possui um formato inválido.'
 # 
 #Se necessário usar proxy, faça (de preferência em environment.rb):
 # BuscaEndereco.proxy_addr= 'endereco.do.proxy'
@@ -25,58 +25,55 @@ class BuscaEndereco
   URL_WEB_SERVICE_BRONZE_BUSINESS = 'http://www.bronzebusiness.com.br/webservices/wscep.asmx/cep?strcep=' #:nodoc:
   URL_WEB_SERVICE_BUSCAR_CEP = 'http://www.buscarcep.com.br/?cep=' #:nodoc:
 
-  # Campos do XML retornado pelos web services
-  CAMPOS_XML_BRONZE_BUSINESS = %w(logradouro nome bairro UF cidade) #:nodoc:
-  CAMPOS_XML_BUSCAR_CEP = %w(tipo_logradouro logradouro bairro uf cidade) #:nodoc:
+  # Elementos do XML retornado pelos web services
+  ELEMENTOS_XML_BRONZE_BUSINESS = %w(logradouro nome bairro UF cidade) #:nodoc:
+  ELEMENTOS_XML_BUSCAR_CEP = %w(tipo_logradouro logradouro bairro uf cidade) #:nodoc:
   
-  # Retorna um array com os dados de endereçamento para o cep informado ou um erro para cep inexistente.
+  # Retorna um array com os dados de endereçamento para o cep informado ou um erro quando o serviço está indisponível,
+  # quando o cep informado possui um formato inválido ou quando o endereço não foi encontrado.
   #
   # Exemplo:
   #  BuscaEndereco.por_cep(22640100) ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
   def self.por_cep(numero)
-    raise "O CEP informado possui um formato inválido." if numero.to_s.gsub(/\./, '').gsub(/\-/, '').length != 8
+    # to_i.to_s adicionado no fim para que o CEP '00000000' não passe pela exceção
+    raise "O CEP informado possui um formato inválido." if numero.to_s.gsub(/\./, '').gsub(/\-/, '').to_i.to_s.length != 8
 
     @@cep = numero.to_s.gsub(/\./, '').gsub(/\-/, '').to_i
 
     @@retorno = []
 
-    if web_service_da_bronze_business_esta_funcionando?
+    begin
       usar_web_service_da_bronze_business
-    elsif web_service_do_buscar_cep_esta_funcionando?
+    rescue
       usar_web_service_do_buscar_cep
-    else
-      raise "A busca de endereço por CEP está indisponível no momento."
     end
     
     @@retorno << @@cep
   end
 
   private
-  def self.web_service_da_bronze_business_esta_funcionando?
-    @@response = Net::HTTP.Proxy(self.proxy_addr, self.proxy_port).get_response(URI.parse("#{URL_WEB_SERVICE_BRONZE_BUSINESS}#{@@cep}"))
-    @@response.kind_of?(Net::HTTPSuccess)
-  end
-
+  
   def self.usar_web_service_da_bronze_business
-    @@doc = REXML::Document.new(@@response.body)
-    processar_xml CAMPOS_XML_BRONZE_BUSINESS
-  end
+    @@response = Net::HTTP.Proxy(self.proxy_addr, self.proxy_port).get_response(URI.parse("#{URL_WEB_SERVICE_BRONZE_BUSINESS}#{@@cep}"))
+    raise "A busca de endereço por CEP através do web service da Bronze Business está indisponível." unless @@response.kind_of?(Net::HTTPSuccess)
 
-  def self.web_service_do_buscar_cep_esta_funcionando?
-    @@response = Net::HTTP.Proxy(self.proxy_addr, self.proxy_port).get_response(URI.parse("#{URL_WEB_SERVICE_BUSCAR_CEP}#{@@cep}&formato=xml"))
-    @@response.kind_of?(Net::HTTPSuccess)
+    @@doc = REXML::Document.new(@@response.body)
+    processar_xml ELEMENTOS_XML_BRONZE_BUSINESS
   end
 
   def self.usar_web_service_do_buscar_cep
+    @@response = Net::HTTP.Proxy(self.proxy_addr, self.proxy_port).get_response(URI.parse("#{URL_WEB_SERVICE_BUSCAR_CEP}#{@@cep}&formato=xml"))
+    raise "A busca de endereço por CEP está indisponível no momento." unless @@response.kind_of?(Net::HTTPSuccess)
+    
     @@doc = REXML::Document.new(@@response.body)
-    processar_xml CAMPOS_XML_BUSCAR_CEP
+    processar_xml ELEMENTOS_XML_BUSCAR_CEP
   end
 
-  def self.processar_xml(campos_do_xml)
-    campos_do_xml.each do |e|
+  def self.processar_xml(elementos_do_xml)
+    elementos_do_xml.each do |e|
       elemento = REXML::XPath.match(@@doc, "//#{e}").first
 
-      raise "Cep #{@@cep} não encontrado." if elemento.nil?
+      raise "CEP #{@@cep} não encontrado." if elemento.nil?
 
       # Remove os acentos já que o Buscar Cep retorna o endereço com acento e a Bronze Business não
       @@retorno << elemento.text.remover_acentos

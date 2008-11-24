@@ -3,8 +3,9 @@ require 'rubygems'
 require 'net/http'
 require 'mocha'
 
-INVALID_ZIPS = [0, '0', '00', '000', '0000', '00000', '000000', '0000000']
-VALID_ZIPS = [22640100, '22640100', '22.640-100', '22.640-100']
+INVALID_ZIPS = [0, '0', '00', '000', '0000', '00000', '000000', '0000000', '00000000']
+VALID_ZIPS = [22640100, '22640100', '22.640100', '22640-100', '22.640-100']
+VALID_CEPS_NOT_FOUND_ON_BRONZE_BUSINESS = [20230024, '20230024', '20.230024', '20230-024', '20.230-024']
 
 class MockSuccess < Net::HTTPSuccess
   def initialize; end
@@ -44,21 +45,36 @@ class BuscaEnderecoTest < Test::Unit::TestCase
   def test_valid_code_on_bronze_business
     VALID_ZIPS.each do |valid_zip|
       mock_get_response_from_bronze_business(limpa_cep(valid_zip))
+      
       assert_equal ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro',
         limpa_cep(valid_zip)], BuscaEndereco.por_cep(valid_zip)
     end
   end
 
-  def test_valid_code_on_buscar_cep
-    mock_get_response_from_buscar_cep(limpa_cep(VALID_ZIPS.first))
-    assert_equal ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro',
-      limpa_cep(VALID_ZIPS.first)], BuscaEndereco.por_cep(VALID_ZIPS.first)
+  def test_valid_code_on_buscar_cep_when_bronze_business_is_unavailable
+    VALID_ZIPS.each do |valid_zip|
+      mock_get_response_from_buscar_cep_when_bronze_business_is_unavailable(limpa_cep(valid_zip))
+
+      assert_equal ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro',
+        limpa_cep(valid_zip)], BuscaEndereco.por_cep(valid_zip)
+    end
+  end
+
+  def test_valid_code_on_buscar_cep_when_address_not_found_on_bronze_business
+    VALID_CEPS_NOT_FOUND_ON_BRONZE_BUSINESS.each do |cep_not_found_on_bronze_business|
+      mock_get_response_from_buscar_cep_when_address_not_found_on_bronze_business(limpa_cep(cep_not_found_on_bronze_business))
+
+      assert_equal ['Rua', 'Washington Luis', 'Centro', 'RJ', 'Rio de Janeiro', limpa_cep(cep_not_found_on_bronze_business)],
+        BuscaEndereco.por_cep(cep_not_found_on_bronze_business)
+    end
   end
 
   def test_should_return_the_same_address_on_both_web_services
-    mock_get_response_from_bronze_business(limpa_cep(VALID_ZIPS.first))
-    mock_get_response_from_buscar_cep(limpa_cep(VALID_ZIPS.first))
-    assert_equal  BuscaEndereco.por_cep(VALID_ZIPS.first), BuscaEndereco.por_cep(VALID_ZIPS.first)
+    VALID_ZIPS.each do |valid_zip|
+      mock_get_response_from_bronze_business(limpa_cep(valid_zip))
+      mock_get_response_from_buscar_cep_when_bronze_business_is_unavailable(limpa_cep(valid_zip))
+      assert_equal BuscaEndereco.por_cep(valid_zip), BuscaEndereco.por_cep(valid_zip)
+    end
   end
 
   private
@@ -66,13 +82,13 @@ class BuscaEnderecoTest < Test::Unit::TestCase
   def mock_get_response_from_bronze_business(zip_number)
     xml_data = xml_data_from zip_name(zip_number, "bronze_business")
 
-    http_response = MockSuccess.new
-    http_response.expects(:body).returns(xml_data)
+    http_success_response = MockSuccess.new
+    http_success_response.expects(:body).returns(xml_data)
 
-    Net::HTTP.expects(:get_response).returns(http_response)
+    Net::HTTP.expects(:get_response).returns(http_success_response)
   end
 
-  def mock_get_response_from_buscar_cep(zip_number)
+  def mock_get_response_from_buscar_cep_when_bronze_business_is_unavailable(zip_number)
     xml_data = xml_data_from zip_name(zip_number, "buscar_cep")
 
     http_success_response = MockSuccess.new
@@ -82,6 +98,19 @@ class BuscaEnderecoTest < Test::Unit::TestCase
 
     http_error_response = MockServerError.new
     Net::HTTP.expects(:get_response).returns(http_error_response)
+  end
+
+  def mock_get_response_from_buscar_cep_when_address_not_found_on_bronze_business(zip_number)
+    xml_data_from_bronze_business = xml_data_from zip_name("not_found", "bronze_business")
+    xml_data_from_buscar_cep = xml_data_from zip_name(zip_number, "buscar_cep")
+
+    http_success_response_from_buscar_cep = MockSuccess.new
+    http_success_response_from_buscar_cep.expects(:body).returns(xml_data_from_buscar_cep)
+    Net::HTTP.expects(:get_response).returns(http_success_response_from_buscar_cep)
+
+    http_success_response_from_bronze_business = MockSuccess.new
+    http_success_response_from_bronze_business.expects(:body).returns(xml_data_from_bronze_business)
+    Net::HTTP.expects(:get_response).returns(http_success_response_from_bronze_business)
   end
 
   def xml_data_from xml_mock
