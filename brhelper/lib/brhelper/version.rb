@@ -4,6 +4,6 @@ module BrHelper
     
     
 
-    STRING = "2.0.10"
+    STRING = "2.0.11"
   end
 end
