@@ -15,10 +15,10 @@ module ActionView::Helpers::ActiveRecordHelper
           html[key] = 'errorExplanation'
         end
       end
-      header_message = "#{pluralize(count, 'erro')} para #{(options[:object_name] || params.first).to_s.gsub('_', ' ')}"
+      options[:header_message] ||= "#{pluralize(count, 'erro')} para #{(options[:object_name] || params.first).to_s.gsub('_', ' ')}"
       error_messages = objects.map { |object| object.errors.full_messages.map {|msg| content_tag(:li, msg) } }
       content_tag(:div,
-        content_tag(options[:header_tag] || :h2, header_message) <<
+        content_tag(options[:header_tag] || :h2, options[:header_message]) <<
           content_tag(:p, 'Foram detectados os seguintes erros:') <<
           content_tag(:ul, error_messages),
         html
