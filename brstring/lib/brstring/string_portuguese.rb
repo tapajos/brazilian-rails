@@ -124,9 +124,8 @@ class String
   def self.titleize(texto)
     return texto if texto.blank?
     texto = texto.downcase
-    texto = texto.chars.to_a
-    texto[0] = texto.first.upcase
-    texto = texto.to_s
+    texto = texto.downcase
+    texto.mb_chars[0] = texto.mb_chars.first.upcase
     texto = texto.gsub(/\s[a-z#{String::MINUSCULAS_COM_ACENTO}]/) {|a| a.upcase }
     texto
   end
