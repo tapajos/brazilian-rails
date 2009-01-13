@@ -6,9 +6,8 @@ module CpfCnpjActiveRecord #:nodoc:
     def usar_como_cpf(*args) #:nodoc:
       unless args.size.zero?
         args.each do |name|
-          composed_of name, :class_name => 'Cpf', :mapping => [name.to_s, "numero"], :allow_nil => true do
-            Cpf.new(name[:numero])
-          end
+          composed_of name, :class_name => 'Cpf', :mapping => [name.to_s, "numero"], :allow_nil => true,
+            :constructor => Proc.new { |numero| Cpf.new(numero) }
           name = name.to_s
           module_eval <<-ADICIONANDO_METODOS_PARA_CPF
           validate :#{name}_valido?
@@ -41,10 +40,8 @@ module CpfCnpjActiveRecord #:nodoc:
     def usar_como_cnpj(*args) #:nodoc:
       unless args.size.zero?
         args.each do |name|
-          composed_of name, :class_name => 'Cnpj', :mapping => [name.to_s, "numero"], :allow_nil => true do
-            Cnpj.new(name[:numero])
-          end
-
+          composed_of name, :class_name => 'Cnpj', :mapping => [name.to_s, "numero"], :allow_nil => true,
+            :constructor => Proc.new { |numero| Cnpj.new(numero) }
           name = name.to_s
           module_eval <<-ADICIONANDO_METODOS_PARA_CNPJ
           validate :#{name}_valido?
