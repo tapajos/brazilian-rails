@@ -3,7 +3,6 @@ require File.dirname(__FILE__) + '/active_record/base_without_table'
 
 class Pessoa < ActiveRecord::Base
   usar_como_cpf :cpf
-  validates_uniqueness_of :cpf
 end
 
 describe "Using a model attribute as Cpf" do
@@ -75,22 +74,36 @@ describe "Using a model attribute as Cpf" do
   end
 end
 
-describe "using validations" do
-  it "should validate presence of cpf" do
-    Pessoa.validates_presence_of :cpf
-    p = Pessoa.new(:nome => "Fulano")
-    p.should_not be_valid
-    p.errors.on(:cpf).should eql("can't be blank")
-  end
+describe "when validating" do
+  describe "presence" do
+    it "should validate presence of cpf" do
+      Pessoa.validates_presence_of :cpf
+      p = Pessoa.new(:nome => "Fulano")
+      p.should_not be_valid
+      p.errors.on(:cpf).should eql("can't be blank")
+    end
 
-  it "should validate uniqueness of cpf" do
-    p1 = Pessoa.new(:nome => "Fulano", :cpf => "11144477735")
-    p1.save
-    puts p1.inspect
-    p2 = Pessoa.new(:nome => "Beltrano", :cpf => "11144477735")
-    p2.valid?
-    p p2.errors
-    p2.should_not be_valid
-    p2.errors.on(:cpf).should_not be_nil
+    it "should be vlaid with a cpf" do
+      Pessoa.new(:nome => "Fulano", :cpf => "11144477735").should be_valid
+    end
+  end
+  
+  describe "uniqueness" do
+    before(:each) do
+      Pessoa.validates_uniqueness_of :cpf
+      @p1 = Pessoa.new(:nome => "Beltrano", :cpf => "11144477735")
+      @p1.save
+    end
+
+    it "should validate uniqueness of cpf" do
+      p2 = Pessoa.new(:nome => "Beltrano", :cpf => "11144477735")
+      p2.should_not be_valid
+      p2.errors.on(:cpf).should_not be_nil
+    end
+
+    it "should be valid using a new cpf" do
+      p2 = Pessoa.new(:nome => "Fulano", :cpf => "00123456797")
+      p2.should be_valid
+    end
   end
 end

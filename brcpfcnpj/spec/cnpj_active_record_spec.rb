@@ -1,14 +1,14 @@
 require File.dirname(__FILE__) + '/spec_helper'
 require File.dirname(__FILE__) + '/active_record/base_without_table'
 
-class Person < ActiveRecord::BaseWithoutTable
+class Empresa < ActiveRecord::Base
   usar_como_cnpj :cnpj
 end
 
 describe "Using a model attribute as Cnpj" do
 
   before(:each) do
-    @company = Person.new
+    @company = Empresa.new
   end
   
   it "should format the received number" do
@@ -62,9 +62,42 @@ describe "Using a model attribute as Cnpj" do
   end
   
   it "should be able to receive parameters at initialization" do
-    @company = Person.new(:cnpj => "69103604000160")
+    @company = Empresa.new(:cnpj => "69103604000160")
     @company.cnpj.numero.should == "69.103.604/0001-60"  
   end
 end
 
+describe "when validating" do
+  describe "presence" do
+    it "should validate presence of cnpj" do
+      Empresa.validates_presence_of :cnpj
+      e = Empresa.new(:nome => "Bla")
+      e.should_not be_valid
+      e.errors.on(:cnpj).should eql("can't be blank")
+    end
+
+    it "should be valid with a cnpj" do
+      Empresa.new(:nome => "Bla", :cnpj => "00012345000165").should be_valid
+    end
+  end
+
+  describe "uniqueness" do
+    before(:each) do
+      Empresa.validates_uniqueness_of :cnpj
+      @e1 = Empresa.new(:nome => "Bla", :cnpj => "69103604000160")
+      @e1.save
+    end
+
+    it "should validate uniqueness of cnpj" do
+      e2 = Empresa.new(:nome => "Ble", :cnpj => "69103604000160")
+      e2.should_not be_valid
+      e2.errors.on(:cnpj).should_not be_nil
+    end
+
+    it "should be valid using a new cnpj" do
+      e2 = Empresa.new(:nome => "Ble", :cnpj => "00012345000165")
+      e2.should be_valid                 
+    end
+  end
+end
 
