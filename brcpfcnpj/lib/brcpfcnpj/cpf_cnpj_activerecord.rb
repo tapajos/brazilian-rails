@@ -25,7 +25,7 @@ module CpfCnpjActiveRecord #:nodoc:
       constructor = Proc.new { |numero| eval(klass).new(numero) }
       converter   = Proc.new { |value| eval(klass).new(value) }
       begin 
-        composed_of name, options.merge ( { :constructor => constructor, :converter => converter } )
+        composed_of name, options.merge( { :constructor => constructor, :converter => converter } )
       rescue Exception 
         composed_of name, options { eval(klass).new(name[:numero]) }
       end
