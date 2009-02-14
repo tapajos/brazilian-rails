@@ -30,8 +30,9 @@ Foi desativado por completo. Agora só teremos suporte GIT.
 * brhelper
 * brnumeros
 * brstring
-* brtraducao
 * brcpfcnpj
+
+**OBS**: A gem brtraducao foi removida do Brazilian Rails devido a adição do suporte i18n do Rails. Ele continua podendo ser usada, porém não faz mais parte desse projeto. Clique [aqui][brtraducoes] para maiores detalhes.
 
 ## Como faço para instalar?
 
@@ -108,3 +109,4 @@ Este plugin é patrocinado pela [Improve It][ii].
 [sm]: http://mergulhao.info/
 [kb]: http://www.kivanio.com.br/
 [cm]: http://cassiomarques.wordpress.com
+[brtraducoes]: http://blog.improveit.com.br/articles/2009/02/13/o-brazilian-rails-e-o-suporte-i18n
