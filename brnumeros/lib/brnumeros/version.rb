@@ -4,6 +4,6 @@ module BrNumeros
     
     
 
-    STRING = "2.0.14"
+    STRING = "2.1.0"
   end
 end
