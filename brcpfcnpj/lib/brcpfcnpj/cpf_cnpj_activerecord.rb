@@ -41,7 +41,7 @@ module CpfCnpjActiveRecord #:nodoc:
           end
         end
         def #{name}=(value)
-          if value.nil?            
+          if value.blank?            
             write_attribute('#{name}', nil)
           elsif value.kind_of?(#{eval(klass)}) 
             write_attribute('#{name}', value.numero)

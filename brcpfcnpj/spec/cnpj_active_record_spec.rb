@@ -68,12 +68,22 @@ describe "Using a model attribute as Cnpj" do
 end
 
 describe "when validating" do
+  before do
+    Empresa.validates_presence_of :cnpj
+  end
+
   describe "presence" do
-    it "should validate presence of cnpj" do
-      Empresa.validates_presence_of :cnpj
+    it "should be invalid with a new cnpj number" do
       e = Empresa.new(:nome => "Bla")
       e.should_not be_valid
       e.errors.on(:cnpj).should eql("can't be blank")
+    end
+
+
+    it "should be invalid using an empty string as the cnpj number" do
+      e = Empresa.new(:nome => "Bla", :cnpj => "")
+      e.should_not be_valid
+      e.errors.on(:cnpj).should_not be_nil
     end
 
     it "should be valid with a cnpj" do

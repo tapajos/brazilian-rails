@@ -76,14 +76,23 @@ end
 
 describe "when validating" do
   describe "presence" do
-    it "should validate presence of cpf" do
+    before do
       Pessoa.validates_presence_of :cpf
-      p = Pessoa.new(:nome => "Fulano")
+    end
+
+    it "should be invalid with a nil cpf number" do
+      p = Pessoa.new(:nome => "Fulano", :cpf => nil)
       p.should_not be_valid
       p.errors.on(:cpf).should eql("can't be blank")
     end
 
-    it "should be vlaid with a cpf" do
+    it "should be invalid with an empty string as the cpf number" do
+      p = Pessoa.new(:nome => "Fulano", :cpf => "")
+      p.should_not be_valid
+      p.errors.on(:cpf).should_not be_nil
+    end
+
+    it "should be valid with a cpf" do
       Pessoa.new(:nome => "Fulano", :cpf => "11144477735").should be_valid
     end
   end
