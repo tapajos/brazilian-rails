@@ -25,6 +25,12 @@ describe Cpf do
       cpf.should be_valido
     end
   end
+
+  it "should be invalid with a number longer than 11 chars, even if the first 11 char represent a valid cpf number" do
+    %w(111.444.777-3500 11144477735AB).each do |n|
+      Cpf.new(n).should_not be_valido
+    end
+  end
   
   it "should return the formated cpf" do
     cpf = Cpf.new("11144477735")

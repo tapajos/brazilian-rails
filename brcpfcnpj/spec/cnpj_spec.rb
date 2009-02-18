@@ -17,6 +17,12 @@ describe Cnpj do
       cnpj.should_not be_valido
     end
   end
+
+  it "should be invalid with a number longer than 14 chars, even if the first 14 represent a valid number" do
+    %w(691036040001-601 69103604000160a 69103604000160ABC 6910360400016000).each do |n|
+      Cnpj.new(n).should_not be_valido
+    end
+  end
   
   it "should be valid with correct number" do
     numeros = %w(69103604000160 69.103.604/0001-60 01518211/000264 01.5182110002-64)
