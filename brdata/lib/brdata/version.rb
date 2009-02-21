@@ -1,9 +1,9 @@
 module BrData
   module VERSION #:nodoc:
-    
-    
-    
+    MAJOR = 2
+    MINOR = 1
+    TINY = 2
 
-    STRING = "2.1.1"
+    STRING = "#{MAJOR}.#{MINOR}.#{TINY}"
   end
 end
