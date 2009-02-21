@@ -62,7 +62,7 @@ class TimeTest < Test::Unit::TestCase
   end
   
   def test_time_translation_with_strftime
-    assert_equal "Dezembro Dez Sexta-Feira Sex", Time.parse("12/05").strftime("%B %b %A %a")
+    assert_equal "Dezembro Dez Sexta-Feira Sex", Time.parse("12/05/2008").strftime("%B %b %A %a")
   end
 
 end
