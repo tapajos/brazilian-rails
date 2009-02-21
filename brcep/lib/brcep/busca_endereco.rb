@@ -1,7 +1,5 @@
 require 'net/http'
 require 'rexml/document'
-require 'active_support'
-require 'brstring'
 
 # Este recurso tem como finalidade encontrar um endereço através de um CEP, e
 # para isso ele utiliza o web service da Bronze Business (http://www.bronzebusiness.com.br/webservices/wscep.asmx)
@@ -22,7 +20,26 @@ require 'brstring'
 # BuscaEndereco.proxy_port= 999 # porta a ser utilizada
 #
 class BuscaEndereco
-  cattr_accessor :proxy_addr, :proxy_port
+  @@proxy_addr = nil
+  @@proxy_port = nil
+  
+  class << self
+    def proxy_addr
+      @@proxy_addr
+    end
+    
+    def proxy_addr=(addr)
+      @@proxy_addr = addr
+    end
+    
+    def proxy_port
+      @@proxy_port
+    end
+    
+    def proxy_port=(port)
+      @@proxy_port = port
+    end
+  end
 
   URL_WEB_SERVICE_BRONZE_BUSINESS = 'http://www.bronzebusiness.com.br/webservices/wscep.asmx/cep?strcep=' #:nodoc:
   URL_WEB_SERVICE_BUSCAR_CEP = 'http://www.buscarcep.com.br/?cep=' #:nodoc:
@@ -78,7 +95,7 @@ class BuscaEndereco
       raise "CEP #{@@cep} não encontrado." if elemento.nil?
 
       # Remove os acentos já que o Buscar Cep retorna o endereço com acento e a Bronze Business não
-      @@retorno << elemento.text.remover_acentos
+      @@retorno << elemento.text
     end
   end
 end

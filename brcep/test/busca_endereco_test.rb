@@ -56,7 +56,7 @@ class BuscaEnderecoTest < Test::Unit::TestCase
     VALID_ZIPS.each do |valid_zip|
       mock_get_response_from_buscar_cep_when_bronze_business_is_unavailable(limpa_cep(valid_zip))
 
-      assert_equal ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro',
+      assert_equal ['Avenida', 'das Américas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro',
         limpa_cep(valid_zip)], BuscaEndereco.por_cep(valid_zip)
     end
   end
@@ -65,16 +65,8 @@ class BuscaEnderecoTest < Test::Unit::TestCase
     VALID_CEPS_NOT_FOUND_ON_BRONZE_BUSINESS.each do |cep_not_found_on_bronze_business|
       mock_get_response_from_buscar_cep_when_address_not_found_on_bronze_business(limpa_cep(cep_not_found_on_bronze_business))
 
-      assert_equal ['Rua', 'Washington Luis', 'Centro', 'RJ', 'Rio de Janeiro', limpa_cep(cep_not_found_on_bronze_business)],
+      assert_equal ['Rua', 'Washington Luís', 'Centro', 'RJ', 'Rio de Janeiro', limpa_cep(cep_not_found_on_bronze_business)],
         BuscaEndereco.por_cep(cep_not_found_on_bronze_business)
-    end
-  end
-
-  def test_should_return_the_same_address_on_both_web_services
-    VALID_ZIPS.each do |valid_zip|
-      mock_get_response_from_bronze_business(limpa_cep(valid_zip))
-      mock_get_response_from_buscar_cep_when_bronze_business_is_unavailable(limpa_cep(valid_zip))
-      assert_equal BuscaEndereco.por_cep(valid_zip), BuscaEndereco.por_cep(valid_zip)
     end
   end
 
