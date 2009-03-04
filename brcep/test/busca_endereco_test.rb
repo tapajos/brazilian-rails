@@ -3,8 +3,9 @@ require 'rubygems'
 require 'net/http'
 require 'mocha'
 
-INVALID_ZIPS = [0, '0', '00', '000', '0000', '00000', '000000', '0000000', '00000000']
+INVALID_ZIPS = [0, '0', '00', '000', '0000', '00000', '000000', '0000000', '00000000', '4006000']
 VALID_ZIPS = [22640100, '22640100', '22.640100', '22640-100', '22.640-100']
+VALID_ZIPS_WITH_ZERO_AT_BEGINNING = ['04006000', '04006-000', '04.006-000']
 VALID_CEPS_NOT_FOUND_ON_BRONZE_BUSINESS = [20230024, '20230024', '20.230024', '20230-024', '20.230-024']
 ZIPS_WITH_NO_ADDRESS_ASSOCIATED = [12345678, '12345678', '12.345678', '12345-678', '12.345-678']
 
@@ -20,7 +21,7 @@ class MockServerError < Net::HTTPServerError
 end
 
 def limpa_cep(numero)
-  numero.to_s.gsub(/\./, '').gsub(/\-/, '').to_i
+  numero.to_s.gsub(/\./, '').gsub(/\-/, '')
 end
 
 class BuscaEnderecoTest < Test::Unit::TestCase
@@ -46,8 +47,17 @@ class BuscaEnderecoTest < Test::Unit::TestCase
   def test_valid_code_on_bronze_business
     VALID_ZIPS.each do |valid_zip|
       mock_get_response_from_bronze_business(limpa_cep(valid_zip))
-      
+
       assert_equal ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro',
+        limpa_cep(valid_zip)], BuscaEndereco.por_cep(valid_zip)
+    end
+  end
+
+  def test_valid_code_with_zero_at_beginning_on_bronze_business
+    VALID_ZIPS_WITH_ZERO_AT_BEGINNING.each do |valid_zip|
+      mock_get_response_from_bronze_business(limpa_cep(valid_zip))
+
+      assert_equal ['Rua', 'Doutor Tomaz Carvalhal', 'Paraiso', 'SP', 'Sao Paulo',
         limpa_cep(valid_zip)], BuscaEndereco.por_cep(valid_zip)
     end
   end

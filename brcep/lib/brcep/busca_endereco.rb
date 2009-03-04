@@ -9,12 +9,15 @@ require 'rexml/document'
 # 
 #Como fazer a busca de endereço por cep?
 #
-# BuscaEndereco.por_cep(22640100)     ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
-# BuscaEndereco.por_cep('22640100')   ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
-# BuscaEndereco.por_cep('22640-100')  ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
-# BuscaEndereco.por_cep('22.640-100') ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
-# BuscaEndereco.por_cep('00000000')   ==> RuntimeError 'O CEP informado possui um formato inválido.'
-# 
+# BuscaEndereco.por_cep(22640100)     ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', '22640100']
+# BuscaEndereco.por_cep('22640100')   ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', '22640100']
+# BuscaEndereco.por_cep('22640-100')  ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', '22640100']
+# BuscaEndereco.por_cep('22.640-100') ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', '22640100']
+# BuscaEndereco.por_cep('04006000')   ==> ["Rua", "Doutor Tomaz Carvalhal", "Paraiso", "SP", "Sao Paulo", "04006000"]
+#
+# É feita uma validação para ver se o cep possui 8 caracteres após a remoção de '.' e '-'.
+# BuscaEndereco.por_cep('0000000')   ==> RuntimeError 'O CEP informado possui um formato inválido.'
+#
 #Se necessário usar proxy, faça (de preferência em environment.rb):
 # BuscaEndereco.proxy_addr= 'endereco.do.proxy'
 # BuscaEndereco.proxy_port= 999 # porta a ser utilizada
@@ -54,10 +57,8 @@ class BuscaEndereco
   # Exemplo:
   #  BuscaEndereco.por_cep(22640100) ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
   def self.por_cep(numero)
-    # to_i.to_s adicionado no fim para que o CEP '00000000' não passe pela exceção
-    raise "O CEP informado possui um formato inválido." if numero.to_s.gsub(/\./, '').gsub(/\-/, '').to_i.to_s.length != 8
-
-    @@cep = numero.to_s.gsub(/\./, '').gsub(/\-/, '').to_i
+    @@cep = numero.to_s.gsub(/\./, '').gsub(/\-/, '')
+    raise "O CEP informado possui um formato inválido." if @@cep.length != 8
 
     @@retorno = []
 

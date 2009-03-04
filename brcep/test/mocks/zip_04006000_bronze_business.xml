@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet xmlns="http://tempuri.org/">
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="tbCEP">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="logradouro" type="xs:string" minOccurs="0" />
+                <xs:element name="nome" type="xs:string" minOccurs="0" />
+                <xs:element name="bairro" type="xs:string" minOccurs="0" />
+                <xs:element name="UF" type="xs:string" minOccurs="0" />
+                <xs:element name="cidade" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+    <NewDataSet xmlns="">
+      <tbCEP diffgr:id="tbCEP1" msdata:rowOrder="0">
+        <logradouro>Rua</logradouro>
+        <nome>Doutor Tomaz Carvalhal</nome>
+        <bairro>Paraiso</bairro>
+        <UF>SP</UF>
+        <cidade>Sao Paulo</cidade>
+      </tbCEP>
+    </NewDataSet>
+  </diffgr:diffgram>
+</DataSet>
