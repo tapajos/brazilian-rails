@@ -10,9 +10,7 @@ Brazilian Rails é um conjunto de gems para serem usadas com Ruby e com o Ruby o
 
 ## O que vem pela frente?
 
-Finalizado esse processo de migração para gems iremos iniciar a adaptação das gems para o i18n, que será a forma correta de fazer internacionalização no Rails 2.2.
-
-Além do i18n gostaríamos de anexar mais funcionalidades ao Brazilian Rails. Existem vários plugins espalhados, que são úteis a comunidade brasileira, e gostaria de convocar seus colaboradores a entrar em contato comigo para que juntos nós migremos para gems dentro do Brazilian Rails.
+Existem vários plugins espalhados, que são úteis a comunidade brasileira, e gostaria de convocar seus colaboradores a entrar em contato comigo para que juntos nós migremos para gems dentro do Brazilian Rails.
 
 ## Já usava como plugin, o que eu tenho que fazer?
 
@@ -31,8 +29,11 @@ Foi desativado por completo. Agora só teremos suporte GIT.
 * brnumeros
 * brstring
 * brcpfcnpj
+* brI18n
 
 **OBS**: A gem brtraducao foi removida do Brazilian Rails devido a adição do suporte i18n do Rails. Ele continua podendo ser usada, porém não faz mais parte desse projeto. Clique [aqui][brtraducoes] para maiores detalhes.
+
+**OBS**: A gem brI18n foi criada para acomodar as traduções usando suporte i18n das versões mais recentes do Rails.
 
 ## Como faço para instalar?
 
@@ -51,6 +52,12 @@ Por padrão, a pluralização vem desabilitada, isso para não atrapalhar os pro
 Depois que todas as gems forem instaladas você pode utiliza-las fazendo o require das gem que te interessam ou usar o require abaixo para carregar todas:
 
         require 'brazilian-rails'
+
+### I18n
+
+Por padrão a gem não carrega o suporte de traduções do Rails, para usa-la você deve fazer o require abaixo:
+
+        require 'brI18n'
 
 ## Como funciona ?
 
