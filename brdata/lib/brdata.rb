@@ -3,7 +3,6 @@ $:.unshift(File.dirname(__FILE__)) unless
 
 require 'rubygems'  
 require 'action_controller'
-require 'action_controller/vendor/html-scanner'
 require 'active_support'
 require 'action_view'
   
