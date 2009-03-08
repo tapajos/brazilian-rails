@@ -5,35 +5,36 @@ require 'rake/rdoctask'
 require 'rake/packagetask'
 require 'rake/gempackagetask'
 require 'rake/contrib/sshpublisher'
-
-require File.join(File.dirname(__FILE__), 'lib', 'brcep', 'version')
+require 'spec'
+require 'spec/rake/spectask'
+require File.join(File.dirname(__FILE__), 'lib', 'brcobranca', 'version')
 
 PKG_BUILD     = ENV['PKG_BUILD'] ? '.' + ENV['PKG_BUILD'] : ''
-PKG_NAME      = 'brcep'
-PKG_VERSION   = BrCep::VERSION::STRING + PKG_BUILD
+PKG_NAME      = 'brcobranca'
+PKG_VERSION   = BrCobranca::VERSION::STRING + PKG_BUILD
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 
 RELEASE_NAME  = "REL #{PKG_VERSION}"
 
-RUBY_FORGE_PROJECT = "brcep"
+RUBY_FORGE_PROJECT = "brcobranca"
 RUBY_FORGE_USER    = "tapajos"
 
 desc "Default Task"
-task :default => [ :test ]
+task :default => [ :spec ]
 
-# Run the unit tests
-Rake::TestTask.new { |t|
-  t.libs << "test"
-  t.pattern = 'test/*_test.rb'
-  t.verbose = true
-  t.warning = false
-}
+desc "Run all specs"
+Spec::Rake::SpecTask.new do |t|
+  t.spec_files = FileList['spec/**/*_spec.rb']
+end  
 
+task :test do
+  system("rake spec")
+end
 
 #Generate the RDoc documentation
 Rake::RDocTask.new { |rdoc|
   rdoc.rdoc_dir = 'doc'
-  rdoc.title    = "Brazilian Rails -- CEP"
+  rdoc.title    = "Brazilian Rails -- Data"
   rdoc.options << '--line-numbers' << '--inline-source' << '-A cattr_accessor=object'
   rdoc.options << '--charset' << 'utf-8'
   rdoc.template = "#{ENV['template']}.rb" if ENV['template']
@@ -46,19 +47,21 @@ Rake::RDocTask.new { |rdoc|
 spec = Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.name = PKG_NAME
-  s.summary = "brcep é uma das gems que compoem o Brazilian Rails"
-  s.description = %q{brcep é uma das gems que compoem o Brazilian Rails}
+  s.summary = "brcobranca é uma das gems que compoem o Brazilian Rails"
+  s.description = %q{brcobranca é uma das gems que compoem o Brazilian Rails}
   s.version = PKG_VERSION
 
-  s.authors = ["Marcos Tapajós", "Celestino Gomes", "Andre Kupkosvki", "Vinícius Teles"]
+  s.authors = ["Marcos Tapajós", "Celestino Gomes", "Andre Kupkosvki", "Vinícius Teles", "Cássio Marques"]
   s.email = "tapajos@gmail.com"
-  s.rubyforge_project = "brcep"
+  s.rubyforge_project = "brcobranca"
   s.homepage = "http://www.improveit.com.br/software_livre/brazilian_rails"
+
+  s.add_dependency('actionpack', '>= 1.13.6')
+  s.add_dependency('activesupport', '>= 1.4.2')
 
   s.has_rdoc = true
   s.requirements << 'none'
   s.require_path = 'lib'
-  # s.autorequire = 'brcep'
 
   s.files = [ "Rakefile", "README", "CHANGELOG", "MIT-LICENSE" ]
   s.files = s.files + Dir.glob( "lib/**/*" ).delete_if { |item| item.include?( "\.svn" ) }
@@ -70,6 +73,18 @@ Rake::GemPackageTask.new(spec) do |p|
   p.need_tar = true
   p.need_zip = true
 end
+
+
+# desc "Publish the API documentation"
+# task :pgem => [:package] do 
+#   Rake::SshFilePublisher.new("wrath.rubyonrails.org", "public_html/gems/gems", "pkg", "#{PKG_FILE_NAME}.gem").upload
+# end
+# 
+# desc "Publish the API documentation"
+# task :pdoc => [:rdoc] do 
+#   Rake::SshDirPublisher.new("wrath.rubyonrails.org", "public_html/am", "doc").upload
+# end
+# 
 
 desc "Publish the release files to RubyForge."
 task :release => [ :package ] do
