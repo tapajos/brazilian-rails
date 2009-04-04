@@ -26,6 +26,11 @@ class DateTest < Test::Unit::TestCase
     assert_equal "13/12/2007", "13/12/2007".to_date.to_s_br
   end
   
+  #to_s_br when date is nil
+  def test_date_to_s_br_when_date_is_nil
+    assert_equal "", nil.to_s_br
+  end
+
   #valid?
   def test_valid_when_date_format_is_traditional_and_valid_format_and_valid_civil
     assert Date.valid?("2007/01/02"), "Should be a valid date"
