@@ -103,7 +103,7 @@ pt-BR:
     errors: 
       template: 
         header: 
-          one: "Nãa pôde ser salvo: 1 erro"
+          one: "Não pôde ser salvo: 1 erro"
           other: "Não pôde ser salvo: {{count}} erros."
         body: "Por favor, cheque os seguintes campos:"
       messages: 
