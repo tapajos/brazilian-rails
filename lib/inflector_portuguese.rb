@@ -3,7 +3,7 @@
 # http://pt.wikipedia.org/wiki/Plural e
 # http://pt.wikipedia.org/wiki/Singular
 module Inflector
-  Inflector.inflections do |inflect|
+  ActiveSupport::Inflector.inflections do |inflect|
     inflect.clear
     
     inflect.plural(/$/,  's')
