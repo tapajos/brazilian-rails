@@ -67,7 +67,7 @@ Está tudo explicado na nossa [api][].
 
 Por favor, nos avise! Isso é fácil e rápido. Isso pode ser feito em:
 
-    http://rubyforge.org/projects/brazilian-rails/
+    http://github.com/tapajos/brazilian-rails/issues
 
 ## Quem está por traz disso tudo?
 
