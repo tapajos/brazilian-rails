@@ -1,3 +1,4 @@
+# encoding: UTF-8
 def cria_excecao(classe, mensagem)
   eval "class #{classe}; def initialize; super('#{mensagem}'); end; end"
 end

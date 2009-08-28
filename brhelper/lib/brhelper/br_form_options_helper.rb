@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module ActionView::Helpers::FormOptionsHelper
   ESTADOS_BRASILEIROS = [["Acre", "AC"],
     ["Alagoas", "AL"],

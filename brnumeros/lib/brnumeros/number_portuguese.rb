@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module Extenso 
   @@unidade = {
     0 => "zero",  
@@ -60,12 +61,12 @@ module Extenso
   #  Extenso.por_extenso(100) ==> "cem"
   #  Extenso.por_extenso(158) ==> "cento e cinquenta e oito"  
   def Extenso.por_extenso(numero)
-    negativo=(numero<0)?"menos ":""
+    negativo=(numero<0)? "menos " : ""
     n=numero.to_i.abs
     return case n
-    when 0..9: negativo + @@unidade[n].to_s
-    when 10..19: negativo + @@dezena[n].to_s
-    when 20..99:
+    when 0..9 then negativo + @@unidade[n].to_s
+    when 10..19 then negativo + @@dezena[n].to_s
+    when 20..99
       v=n % 10
       if  v== 0
         negativo + @@dezena[n].to_s
@@ -121,8 +122,8 @@ module ExtensoReal
   #  Extenso.por_extenso_em_reais(100) ==> "cem reais"
   #  Extenso.por_extenso_em_reais(100.58) ==> "cem reais e cinquenta e oito centavos"  
   def ExtensoReal.por_extenso_em_reais(valor)
-    negativo=(valor<0)?" negativo":""
-    negativos=(valor<0)?" negativos":""
+    negativo=(valor<0)? " negativo" : ""
+    negativos=(valor<0)? " negativos" : ""
     valor = valor.abs
     return 'grátis' if valor == 0
     case valor
@@ -138,9 +139,9 @@ module ExtensoReal
       real,cents=("%.2f" % valor).split(/\./).map{ |m| m.to_i}
       valor_cents=Extenso.por_extenso(cents%100)
       valor_cents+= case cents.to_i%100
-      when 0: ""
-      when 1: " centavo"
-      when 2..99: " centavos"
+      when 0 then ""
+      when 1 then " centavo"
+      when 2..99 then " centavos"
       end
 
       if real.to_i > 0

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module ActionView::Helpers::DateHelper
   # Traduz o método distance_of_time_in_words para retornar esse valor em português
   #
