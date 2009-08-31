@@ -1,4 +1,16 @@
 module DinheiroUtil
+
+  # Ao incluir o modulo, cria aliases para_dinheiro
+  def self.included(base)
+    base.class_eval do
+      # Alias para para_dinheiro
+      alias_method :real, :para_dinheiro
+
+      # Alias para para_dinheiro
+      alias_method :reais, :para_dinheiro
+    end
+  end
+
   # Transforma numero em dinheiro
   #
   # Exemplo:
@@ -6,13 +18,7 @@ module DinheiroUtil
   def para_dinheiro
     Dinheiro.new(self)
   end
-  
-  # Alias para para_dinheiro
-  alias_method :reais, :para_dinheiro
-  
-  # Alias para para_dinheiro
-  alias_method :real, :para_dinheiro
-  
+
   # Retorna string formatada com simbolo monetario
   #
   # Exemplo:
