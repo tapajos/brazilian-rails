@@ -5,7 +5,11 @@ class TimeTest < Test::Unit::TestCase
   
   #to_s
   def test_time_to_s_with_traditional_format
-    assert_equal "Mon Sep 24 16:03:05 UTC 2007", "Mon Sep 24 16:03:05 UTC 2007".to_time.to_s
+    if RUBY_VERSION < '1.9'
+      assert_equal "Mon Sep 24 16:03:05 UTC 2007", "Mon Sep 24 16:03:05 UTC 2007".to_time.to_s
+    else
+      assert_equal "2007-09-24 16:03:05 UTC", "2007-09-24 16:03:05 UTC".to_time.to_s
+    end
   end
   
   #to_s_br
@@ -63,7 +67,7 @@ class TimeTest < Test::Unit::TestCase
   end
   
   def test_time_translation_with_strftime
-    assert_equal "Dezembro Dez Sexta-Feira Sex", Time.parse("12/05/2008").strftime("%B %b %A %a")
+    assert_equal "Dezembro Dez Sexta-Feira Sex", Time.parse("2008-12-05").strftime("%B %b %A %a")
   end
 
 end
