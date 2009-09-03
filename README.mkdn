@@ -35,6 +35,10 @@ Foi desativado por completo. Agora só teremos suporte GIT.
 
 **OBS**: A gem brI18n foi criada para acomodar as traduções usando suporte i18n das versões mais recentes do Rails.
 
+## Suporte à Ruby 1.9 (experimental)
+
+As gems foram portadas para Ruby 1.9, porém o suporte ainda é experimental, e contamos com a comunidade para ajudar a melhorar o suporte. Todas as gems funcionam corretamente, mas caso decida usar a nova versão do Ruby, tome um cuidado especial com a gem brdata. O método Date#parse se comporta de maneira diferente nas versões 1.8 e 1.9 do Ruby, o que pode ocasionar alguns erros.
+
 ## Como faço para instalar?
 
 É muito difícil...
@@ -77,7 +81,7 @@ Os loucos que mantém tudo funcionando são: [Celestino Gomes][tino], [André Lu
 
 Alguns poucos já contribuiram, direta e indireramente, como:
 
-[Shairon Toledo][st], [Guilherme Garnier][gg], Bruno Iecker, [Sylvestre Mergulhão][sm], Eduardo Fiorezi, Rafael Cardoso, Edson César, [Kivanio Barbosa][kb] e [Cássio Marques][cm]. Desculpe se esqueci de alguém
+[Shairon Toledo][st], [Guilherme Garnier][gg], Bruno Iecker, [Sylvestre Mergulhão][sm], Eduardo Fiorezi, Rafael Cardoso, Edson César, [Kivanio Barbosa][kb], [Cássio Marques][cm] e [Fernando Luizão][fl]. Desculpe se esqueci de alguém
 
 ## Algumas funcionalidades:
 
@@ -116,4 +120,5 @@ Este plugin é patrocinado pela [Improve It][ii].
 [sm]: http://mergulhao.info/
 [kb]: http://www.kivanio.com.br/
 [cm]: http://cassiomarques.wordpress.com
+[fl]: http://fernandoluizao.wordpress.com
 [brtraducoes]: http://blog.improveit.com.br/articles/2009/02/13/o-brazilian-rails-e-o-suporte-i18n
