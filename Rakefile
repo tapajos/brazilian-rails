@@ -78,7 +78,7 @@ Rake::RDocTask.new do |rdoc|
 end
 
 
-PKG_VERSION = "2.1.8"
+PKG_VERSION = "2.1.9"
 
 # Create compressed packages
 spec = Gem::Specification.new do |s|
