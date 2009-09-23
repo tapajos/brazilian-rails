@@ -53,9 +53,11 @@ Por padrão, a pluralização vem desabilitada, isso para não atrapalhar os pro
 
         gem install brazilian-rails
         
-Depois que todas as gems forem instaladas você pode utiliza-las fazendo o require das gem que te interessam ou usar o require abaixo para carregar todas:
+Depois que todas as gems forem instaladas você pode utiliza-las individualmente ou carregando todas, como no trecho abaixo.
 
-        require 'brazilian-rails'
+        Rails::Initializer.run do |config|
+          config.gem 'brazilian-rails'
+        end
 
 ### I18n
 
