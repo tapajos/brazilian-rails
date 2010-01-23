@@ -4,7 +4,7 @@ $:.unshift(File.dirname(__FILE__)) unless
 $KCODE = 'utf-8' if RUBY_VERSION < '1.9'
 
 require 'rubygems'  
-require 'activesupport'
+require 'active_support'
   
 %w(version
 string_portuguese).each {|req| require File.dirname(__FILE__) + "/brstring/#{req}"}
