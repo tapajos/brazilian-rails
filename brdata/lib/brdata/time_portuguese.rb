@@ -5,7 +5,7 @@ module ActiveSupport::CoreExtensions::String::Conversions
   # "27/09/2007 01:23".to_date
   
   def to_time
-    if /(\d{1,2})\W(\d{1,2})\W(\d{4})(\s((\d{2}):(\d{2})))?/ =~ self
+    if /(\d{1,2})\W(\d{1,2})\W(\d{4})(\s((\d{1,2}):(\d{2})))?/ =~ self
       ::Time.mktime($3.to_i, $2.to_i, $1.to_i, $6.to_i, $7.to_i)
     else
       ::Time.parse self

@@ -16,6 +16,10 @@ class TimeTest < Test::Unit::TestCase
     assert_equal "2007-12-13 01:23:00", "13/12/2007 01:23".to_time.to_s(:db)
   end
   
+  def test_create_time_with_brazilian_time_format_with_time_with_single_number
+    assert_equal "2007-02-01 01:23:00", "1/2/2007 1:23".to_time.to_s(:db)
+  end
+  
   
   #to_s
   def test_time_to_s_with_traditional_format
