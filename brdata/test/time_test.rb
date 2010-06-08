@@ -3,6 +3,20 @@ require File.dirname(__FILE__) + '/test_helper'
 
 class TimeTest < Test::Unit::TestCase
   
+  # to_time
+  def test_create_time_with_traditional_time_format
+    assert_equal "2007-01-02 01:23:00", "2007/01/02 01:23".to_time.to_s(:db)
+  end
+
+  def test_create_time_with_brazilian_time_format_without_time
+    assert_equal "2007-12-13 00:00:00", "13/12/2007".to_time.to_s(:db)
+  end
+  
+  def test_create_time_with_brazilian_time_format_with_time
+    assert_equal "2007-12-13 01:23:00", "13/12/2007 01:23".to_time.to_s(:db)
+  end
+  
+  
   #to_s
   def test_time_to_s_with_traditional_format
     if RUBY_VERSION < '1.9'
