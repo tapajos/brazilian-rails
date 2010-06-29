@@ -5,7 +5,9 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 require 'rake/packagetask'
 require 'rake/gempackagetask'
-require 'rake/contrib/sshpublisher'
+
+
+
 require File.join(File.dirname(__FILE__), 'lib', 'brdata', 'version')
 
 PKG_BUILD     = ENV['PKG_BUILD'] ? '.' + ENV['PKG_BUILD'] : ''
@@ -70,31 +72,11 @@ end
   
 Rake::GemPackageTask.new(spec) do |p|
   p.gem_spec = spec
-  p.need_tar = true
-  p.need_zip = true
 end
 
 
-# desc "Publish the API documentation"
-# task :pgem => [:package] do 
-#   Rake::SshFilePublisher.new("wrath.rubyonrails.org", "public_html/gems/gems", "pkg", "#{PKG_FILE_NAME}.gem").upload
-# end
-# 
-# desc "Publish the API documentation"
-# task :pdoc => [:rdoc] do 
-#   Rake::SshDirPublisher.new("wrath.rubyonrails.org", "public_html/am", "doc").upload
-# end
-# 
 
 desc "Publish the release files to RubyForge."
 task :release => [ :package ] do
-  require 'rubyforge'
-  require 'rake/contrib/rubyforgepublisher'
-  
-  packages = %w( gem tgz zip ).collect{ |ext| "pkg/#{PKG_NAME}-#{PKG_VERSION}.#{ext}" }
-  
-  rubyforge = RubyForge.new
-  rubyforge.configure
-  rubyforge.login
-  rubyforge.add_release("brazilian-rails", PKG_NAME, "REL #{PKG_VERSION}", *packages)
+  `gem push pkg/#{PKG_NAME}-#{PKG_VERSION}.gem`
 end

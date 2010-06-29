@@ -5,7 +5,7 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 require 'rake/packagetask'
 require 'rake/gempackagetask'
-require 'rake/contrib/sshpublisher'
+
 
 env = %(PKG_BUILD="#{ENV['PKG_BUILD']}") if ENV['PKG_BUILD']
 
@@ -78,7 +78,7 @@ Rake::RDocTask.new do |rdoc|
 end
 
 
-PKG_VERSION = "2.1.10"
+PKG_VERSION = "2.1.11"
 
 # Create compressed packages
 spec = Gem::Specification.new do |s|
@@ -108,20 +108,10 @@ end
   
 Rake::GemPackageTask.new(spec) do |p|
   p.gem_spec = spec
-  p.need_tar = true
-  p.need_zip = true
 end
 
 desc "Publish the release files to RubyForge."
 task :release => [ :package ] do
-  require 'rubyforge'
-  require 'rake/contrib/rubyforgepublisher'
-  
-  packages = %w( gem tgz zip ).collect{ |ext| "pkg/brazilian-rails-#{PKG_VERSION}.#{ext}" }
-  
-  rubyforge = RubyForge.new
-  rubyforge.configure
-  rubyforge.login
-  rubyforge.add_release("brazilian-rails", "brazilian-rails", "REL #{PKG_VERSION}", *packages)
+  `gem push  pkg/brazilian-rails-#{PKG_VERSION}.gem`
 end
 
