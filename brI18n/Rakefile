@@ -6,8 +6,6 @@ require 'rake/rdoctask'
 require 'rake/packagetask'
 require 'rake/gempackagetask'
 
-
-
 require File.join(File.dirname(__FILE__), 'lib', 'brI18n', 'version')
 
 PKG_BUILD     = ENV['PKG_BUILD'] ? '.' + ENV['PKG_BUILD'] : ''
@@ -68,7 +66,7 @@ spec = Gem::Specification.new do |s|
   s.files = s.files + Dir.glob( "lib/**/*" ).delete_if { |item| item.include?( "\.svn" ) }
   s.files = s.files + Dir.glob( "test/**/*" ).delete_if { |item| item.include?( "\.svn" ) }
 end
-  
+
 Rake::GemPackageTask.new(spec) do |p|
   p.gem_spec = spec
 end
