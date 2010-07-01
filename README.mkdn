@@ -31,7 +31,7 @@ Foi desativado por completo. Agora só teremos suporte GIT.
 * brcpfcnpj
 * brI18n
 
-**OBS**: A gem brtraducao foi removida do Brazilian Rails devido a adição do suporte i18n do Rails. Ele continua podendo ser usada, porém não faz mais parte desse projeto. Clique [aqui][brtraducoes] para maiores detalhes.
+**OBS**: A gem brtraducao foi removida do Brazilian Rails devido a adição do suporte i18n do Rails. Ele continua podendo ser usada, porém não faz mais parte desse projeto. Para maiores detalhes, leia o post [O Brazilian Rails e o suporte i18n][brtraducoes]
 
 **OBS**: A gem brI18n foi criada para acomodar as traduções usando suporte i18n das versões mais recentes do Rails.
 
@@ -45,27 +45,27 @@ As gems foram portadas para Ruby 1.9, porém o suporte ainda é experimental, e 
 
 ### Como plugin:
 
-        ruby script/plugin install git://github.com/tapajos/brazilian-rails.git
+  ruby script/plugin install git://github.com/tapajos/brazilian-rails.git
 
 Por padrão, a pluralização vem desabilitada, isso para não atrapalhar os projetos que já existem.
 
 ### Como gem:
 
-        gem install brazilian-rails
-        
+  gem install brazilian-rails
+
 Depois que todas as gems forem instaladas você pode utiliza-las individualmente ou carregando todas, como no trecho abaixo.
 
-        Rails::Initializer.run do |config|
-          config.gem 'brazilian-rails'
-        end
+  Rails::Initializer.run do |config|
+    config.gem 'brazilian-rails'
+  end
 
 ### I18n
 
 Por padrão a gem não carrega o suporte de traduções do Rails, para usa-la você deve fazer o require abaixo:
 
-        require 'brI18n'
+  require 'brI18n'
 
-## Como funciona ?
+## Como funciona?
 
 Está tudo explicado na nossa [api][].
 
@@ -73,7 +73,14 @@ Está tudo explicado na nossa [api][].
 
 Por favor, nos avise! Isso é fácil e rápido. Isso pode ser feito em:
 
-    http://github.com/tapajos/brazilian-rails/issues
+[http://github.com/tapajos/brazilian-rails/issues][issues]
+
+## Como contribuir?
+
+1. Fazer um fork do projeto
+1. Fazer os devidos ajustes com os respectivos testes (TestUnit se possível e tente fazer commits atômicos)
+1. Incrementar o número da versão de cada lib/version.rb e a constante PKG_VERSION no Rakefile do brazilian-rails
+1. Fazer pull request
 
 ## Quem está por traz disso tudo?
 
@@ -96,20 +103,18 @@ Alguns poucos já contribuiram, direta e indireramente, como:
 * Pluralização em português-Brasil-sil-sil
 * etc
 
-## Duvidas ?
+## Duvidas?
 
 As duvidas podem ser enviadas diretamente a um dos desenvolvedores ou através da página do projeto no [RubyForge][rf]
 
-## Quem investe nesse plugin ?
+## Quem investe nesse plugin?
 
 Este plugin é patrocinado pela [Improve It][ii].
 
 [![Improve It][logo]][ii]
 
 [rf]: http://rubyforge.org/projects/brazilian-rails/
-
 [api]: http://brazilian-rails.improveit.com.br
-
 [ii]: http://www.improveit.com.br
 [logo]: http://www.improveit.com.br/images/logo/logo_improve_it_screen.gif "Improve It"
 [tino]: http://tinogomes.wordpress.com
@@ -124,3 +129,4 @@ Este plugin é patrocinado pela [Improve It][ii].
 [cm]: http://cassiomarques.wordpress.com
 [fl]: http://fernandoluizao.wordpress.com
 [brtraducoes]: http://blog.improveit.com.br/articles/2009/02/13/o-brazilian-rails-e-o-suporte-i18n
+[issues]: http://github.com/tapajos/brazilian-rails/issues
