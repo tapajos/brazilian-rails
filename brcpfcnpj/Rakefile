@@ -6,10 +6,6 @@ require 'rake/rdoctask'
 require 'rake/packagetask'
 require 'rake/gempackagetask'
 
-
-
-require 'spec'
-require 'spec/rake/spectask'
 require File.join(File.dirname(__FILE__), 'lib', 'brcpfcnpj', 'version')
 
 PKG_BUILD     = ENV['PKG_BUILD'] ? '.' + ENV['PKG_BUILD'] : ''
@@ -22,16 +18,23 @@ RELEASE_NAME  = "REL #{PKG_VERSION}"
 RUBY_FORGE_PROJECT = "brcpfcnpj"
 RUBY_FORGE_USER    = "tapajos"
 
-desc "Default Task"
-task :default => [ :spec ]
+begin
+  require 'spec'
+  require 'spec/rake/spectask'
 
-desc "Run all specs"
-Spec::Rake::SpecTask.new do |t|
-  t.spec_files = FileList['spec/**/*_spec.rb']
-end  
+  desc "Default Task"
+  task :default => [ :spec ]
 
-task :test do
-  system("rake spec")
+  desc "Run all specs"
+  Spec::Rake::SpecTask.new do |t|
+    t.spec_files = FileList['spec/**/*_spec.rb']
+  end
+
+  task :test do
+    system("rake spec")
+  end
+rescue LoadError
+  puts "To execute tests for brcnpjcpf gem, you want to install spec gem before"
 end
 
 #Generate the RDoc documentation
@@ -70,7 +73,7 @@ spec = Gem::Specification.new do |s|
   s.files = s.files + Dir.glob( "lib/**/*" ).delete_if { |item| item.include?( "\.svn" ) }
   s.files = s.files + Dir.glob( "test/**/*" ).delete_if { |item| item.include?( "\.svn" ) }
 end
-  
+
 Rake::GemPackageTask.new(spec) do |p|
   p.gem_spec = spec
 end
