@@ -25,7 +25,7 @@ describe Cnpj do
   end
   
   it "should be valid with correct number" do
-    numeros = %w(69103604000160 69.103.604/0001-60 01518211/000264 01.5182110002-64)
+    numeros = %w(69103604000160 69.103.604/0001-60 01518211/000264 01.5182110002-64 00.000.000/1447-89)
     numeros.each do |n|
       cnpj = Cnpj.new(n)
       cnpj.should be_valido

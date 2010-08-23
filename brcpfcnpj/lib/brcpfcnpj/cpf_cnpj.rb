@@ -46,7 +46,7 @@ module CpfCnpj
     elsif self.instance_of? Cnpj
       return false if limpo.length != 14
     end     
-    return false if limpo.scan(/\d/).sort.join == limpo
+    return false if limpo.scan(/\d/).uniq.length == 1
     primeiro_verificador = primeiro_digito_verificador
     segundo_verificador = segundo_digito_verificador(primeiro_verificador)
     verif = primeiro_verificador + segundo_verificador
