@@ -5,9 +5,9 @@ $:.unshift(File.dirname(__FILE__)) unless
 
 module BrI18n
   
-  I18N_FILES = File.expand_path(File.dirname(__FILE__) + "/files")
+  LOCALES = File.expand_path(File.dirname(__FILE__) + "/locales")
   
 end
 
-I18n.load_path += Dir.glob("#{BrI18n::I18N_FILES}/*")
+I18n.load_path += Dir.glob("#{BrI18n::LOCALES}/*")
 I18n.default_locale = 'pt-BR'
