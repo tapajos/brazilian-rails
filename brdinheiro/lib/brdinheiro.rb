@@ -27,3 +27,4 @@ ActiveRecord::Base.send :include, DinheiroActiveRecord
 
 module BrDinheiro
 end
+

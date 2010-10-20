@@ -1,4 +1,4 @@
-module ActiveSupport::CoreExtensions::String::Conversions
+module String::Conversions
   # Cria a data no padrao brasileiro e permanece aceitando no formato tradicional.
   #
   # Exemplo:
@@ -13,7 +13,7 @@ module ActiveSupport::CoreExtensions::String::Conversions
 end
 
 class Date
-  
+
   # Retorna a data no padrao brasileiro
   #
   # Exemplo:
@@ -22,7 +22,7 @@ class Date
   def to_s_br
     strftime("%d/%m/%Y")
   end
-  
+
   # Valida se uma string eh uma data valida
   #
   # Exemplo:
@@ -31,13 +31,13 @@ class Date
   def self.valid?(date)
     begin
       date = date.to_date
-      Date.valid_civil?(date.year, date.month, date.day)        
+      Date.valid_civil?(date.year, date.month, date.day)
     rescue
       return false
     end
     true
   end
-  
+
 end
 
 class NilClass
@@ -45,3 +45,4 @@ class NilClass
     ""
   end
 end
+
