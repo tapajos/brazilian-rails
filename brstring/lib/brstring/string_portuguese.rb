@@ -96,7 +96,7 @@ class String
   # Exemplo:
   #  String.downcase('TEXTO COM ACENTUAÇÃO') ==> 'texto com acentuação'
   def self.downcase(texto)
-    return texto if texto.blank?
+    return texto if texto.empty?
     texto.tr(MAIUSCULAS, MINUSCULAS)
   end
 
@@ -148,6 +148,7 @@ class String
   def titleize!
     self.gsub!(/^.*$/, String.titleize(self)) if self
   end
-  
+
 
 end
+
