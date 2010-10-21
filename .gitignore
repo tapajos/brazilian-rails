@@ -1,6 +1,7 @@
 .DS_Store
 **/pkg
 **/doc
+**/tmp/*
 pkg
 doc
 *~
