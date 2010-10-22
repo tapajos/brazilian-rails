@@ -7,7 +7,7 @@ module ActionView::Helpers::FormOptionsHelper
     ["Bahia", "BA"],
     ["Ceará", "CE"],
     ["Distrito Federal", "DF"],
-    ["Espírito Santos", "ES"],
+    ["Espírito Santo", "ES"],
     ["Goiás", "GO"],
     ["Maranhão", "MA"],
     ["Mato Grosso", "MT"],
