@@ -7,3 +7,4 @@ module BrString
     STRING = "#{MAJOR}.#{MINOR}.#{TINY}"
   end
 end
+

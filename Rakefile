@@ -65,7 +65,7 @@ task :clean_packages do
   end
   Dir.entries("./pkg").select{ |d| d =~ /brazilian/ }.each do |file|
     FileUtils.rm_rf(File.join("./pkg", file))
-  end  
+  end
 end
 
 desc "Generate documentation for the Brazilian Rails"
@@ -79,18 +79,18 @@ Rake::RDocTask.new do |rdoc|
   rdoc.options << '-T html'
   rdoc.options << '--all'
   rdoc.options << '-U'
-  
+
 
   rdoc.template = "#{ENV['template']}.rb" if ENV['template']
-  
+
   rdoc.rdoc_files.include("README.mkdn")
-  
+
   PROJECTS.each do |project|
     rdoc.rdoc_files.include("#{project}/README")
     rdoc.rdoc_files.include("#{project}/CHANGELOG")
     rdoc.rdoc_files.include("#{project}/lib/**/*.rb")
   end
-  
+
 end
 
 
@@ -112,16 +112,16 @@ spec = Gem::Specification.new do |s|
   s.has_rdoc = true
   s.requirements << 'none'
   s.require_path = 'lib'
-  
+
   PROJECTS.each do |project|
-    s.add_dependency(project, ">= #{PKG_VERSION}")  
+    s.add_dependency(project, ">= #{PKG_VERSION}")
   end
-  
+
   s.autorequire = PROJECTS
-  
+
   s.files = [ "README.mkdn", "lib/brazilian-rails.rb"]
 end
-  
+
 Rake::GemPackageTask.new(spec) do |p|
   p.gem_spec = spec
 end

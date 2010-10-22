@@ -7,3 +7,4 @@ module BrCep
     STRING = "#{MAJOR}.#{MINOR}.#{TINY}"
   end
 end
+

@@ -7,3 +7,4 @@ module BrDinheiro
     STRING = "#{MAJOR}.#{MINOR}.#{TINY}"
   end
 end
+

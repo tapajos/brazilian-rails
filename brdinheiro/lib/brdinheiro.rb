@@ -10,7 +10,7 @@ nil_class).each {|req| require File.dirname(__FILE__) + "/brdinheiro/#{req}"}
 %w(bigdecimal
 rubygems
 active_record
-active_support).each {|req| require req }
+active_support/all).each {|req| require req }
 
 begin
   require 'brnumeros'
@@ -27,3 +27,4 @@ ActiveRecord::Base.send :include, DinheiroActiveRecord
 
 module BrDinheiro
 end
+

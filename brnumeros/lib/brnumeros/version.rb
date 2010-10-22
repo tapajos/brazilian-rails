@@ -7,3 +7,4 @@ module BrNumeros
     STRING = "#{MAJOR}.#{MINOR}.#{TINY}"
   end
 end
+
