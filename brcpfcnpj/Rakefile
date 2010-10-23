@@ -1,21 +1,16 @@
 # encoding: UTF-8
-require 'rubygems'
-require 'rake'
-require 'rake/rdoctask'
-require 'rake/packagetask'
-require 'rake/gempackagetask'
+require "rubygems"
+require "rake"
+require "rake/rdoctask"
+require "rake/packagetask"
+require "rake/gempackagetask"
 
-require File.join(File.dirname(__FILE__), 'lib', 'brcpfcnpj', 'version')
+require File.join(File.dirname(__FILE__), "lib", "brcpfcnpj", "version")
 
-PKG_BUILD     = ENV['PKG_BUILD'] ? '.' + ENV['PKG_BUILD'] : ''
-PKG_NAME      = 'brcpfcnpj'
+PKG_BUILD     = ENV["PKG_BUILD"] ? "." + ENV["PKG_BUILD"] : ""
+PKG_NAME      = "brcpfcnpj"
 PKG_VERSION   = BrCpfCnpj::VERSION::STRING + PKG_BUILD
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
-
-RELEASE_NAME  = "REL #{PKG_VERSION}"
-
-RUBY_FORGE_PROJECT = "brcpfcnpj"
-RUBY_FORGE_USER    = "tapajos"
 
 begin
   require "rspec/core/rake_task"
@@ -33,15 +28,14 @@ end
 
 #Generate the RDoc documentation
 Rake::RDocTask.new { |rdoc|
-  rdoc.rdoc_dir = 'doc'
+  rdoc.rdoc_dir = "doc"
   rdoc.title    = "Brazilian Rails -- Data"
-  rdoc.options << '--line-numbers' << '--inline-source' << '-A cattr_accessor=object'
-  rdoc.options << '--charset' << 'utf-8'
-  rdoc.template = "#{ENV['template']}.rb" if ENV['template']
-  rdoc.rdoc_files.include('README', 'CHANGELOG')
-  rdoc.rdoc_files.include('lib/**/*')
+  rdoc.options << "--line-numbers" << "--inline-source" << "-A cattr_accessor=object"
+  rdoc.options << "--charset" << "utf-8"
+  rdoc.template = "#{ENV["template"]}.rb" if ENV["template"]
+  rdoc.rdoc_files.include("README", "CHANGELOG")
+  rdoc.rdoc_files.include("lib/**/*")
 }
-
 
 # Create compressed packages
 spec = Gem::Specification.new do |s|
@@ -51,17 +45,20 @@ spec = Gem::Specification.new do |s|
   s.description = %q{brcpfcnpj é uma das gems que compoem o Brazilian Rails}
   s.version = PKG_VERSION
 
-  s.authors = ["Marcos Tapajós", "Celestino Gomes", "Andre Kupkosvki", "Vinícius Teles", "Cássio Marques"]
-  s.email = "tapajos@gmail.com"
+  s.authors = ["Marcos Tapajós", "Celestino Gomes", "Andre Kupkosvki", "Vinícius Teles", "Felipe Barreto", "Rafael Walter", "Cassio Marques"]
+  s.email = %w"tapajos@gmail.com tinorj@gmail.com kupkovski@gmail.com vinicius.m.teles@gmail.com felipebarreto@gmail.com rafawalter@gmail.com cassiommc@gmail.com"
   s.rubyforge_project = "brcpfcnpj"
   s.homepage = "http://www.improveit.com.br/software_livre/brazilian_rails"
 
-  s.add_dependency('actionpack', '>= 1.13.6')
-  s.add_dependency('activesupport', '>= 1.4.2')
+  s.add_dependency("actionpack", ">= 3.0.0")
+  s.add_dependency("activesupport", ">= 3.0.0")
+
+  s.add_development_dependency "rake"
+  s.add_development_dependency "rspec", ">= 2.0.0"
 
   s.has_rdoc = true
-  s.requirements << 'none'
-  s.require_path = 'lib'
+  s.requirements << "none"
+  s.require_path = "lib"
 
   s.files = [ "Rakefile", "README", "CHANGELOG", "MIT-LICENSE" ]
   s.files = s.files + Dir.glob( "lib/**/*" ).delete_if { |item| item.include?( "\.svn" ) }
@@ -72,9 +69,7 @@ Rake::GemPackageTask.new(spec) do |p|
   p.gem_spec = spec
 end
 
-
-
 desc "Publish the release files to RubyForge."
 task :release => [ :package ] do
-  `gem push pkg/#{PKG_NAME}-#{PKG_VERSION}.gem`
+  `gem push pkg/#{PKG_FILE_NAME}.gem`
 end
