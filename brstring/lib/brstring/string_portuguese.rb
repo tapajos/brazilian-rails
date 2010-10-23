@@ -69,7 +69,7 @@ class String
   # Exemplo:
   #  String.upcase('texto com acentuação' ==> 'TEXTO COM ACENTUAÇÃO'
   def self.upcase(texto)
-    return texto if texto.blank?
+    return texto if texto.nil? or texto.empty?
     texto.tr(MINUSCULAS, MAIUSCULAS)
   end
 
@@ -96,7 +96,7 @@ class String
   # Exemplo:
   #  String.downcase('TEXTO COM ACENTUAÇÃO') ==> 'texto com acentuação'
   def self.downcase(texto)
-    return texto if texto.blank?
+    return texto if texto.nil? or texto.empty?
     texto.tr(MAIUSCULAS, MINUSCULAS)
   end
 
@@ -123,7 +123,7 @@ class String
   # Exemplo:
   #  String.titleize('o livro esta sobre a mesa!') ==> 'O Livro Esta Sobre A Mesa!'
   def self.titleize(texto)
-    return texto if texto.blank?
+    return texto if texto.nil? or texto.empty?
     texto = texto.downcase
     texto = texto.downcase
     texto.mb_chars[0] = texto.mb_chars.first.upcase
@@ -148,6 +148,7 @@ class String
   def titleize!
     self.gsub!(/^.*$/, String.titleize(self)) if self
   end
-  
+
 
 end
+

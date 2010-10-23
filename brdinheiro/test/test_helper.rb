@@ -1,12 +1,12 @@
 require 'test/unit'
+require File.dirname(__FILE__) + '/../../brnumeros/lib/brnumeros'
 require File.dirname(__FILE__) + '/../lib/brdinheiro'
-
 
 def tornar_metodos_publicos(clazz)
   clazz.class_eval do
     private_instance_methods.each { |instance_method| public instance_method }
-    private_methods.each { |method| public_class_method method } 
-  end  
+    private_methods.each { |method| public_class_method method }
+  end
 end
 
 def p80 text

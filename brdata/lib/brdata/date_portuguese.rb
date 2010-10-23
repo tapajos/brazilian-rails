@@ -1,19 +1,21 @@
-module ActiveSupport::CoreExtensions::String::Conversions
+class String
   # Cria a data no padrao brasileiro e permanece aceitando no formato tradicional.
   #
   # Exemplo:
   # "27/09/2007".to_date
+  alias_method :_original_to_date, :to_date
+
   def to_date
-    if /(\d{1,2})\W(\d{1,2})\W(\d{4})/ =~ self
+    if /^(0[1-9]|[12]\d|3[01])\W(0[1-9]|1[012])\W(\d{4})$/ =~ self
       ::Date.new($3.to_i, $2.to_i, $1.to_i)
     else
-      ::Date.new(*::Date._parse(self, false).values_at(:year, :mon, :mday))
+      _original_to_date
     end
   end
 end
 
 class Date
-  
+
   # Retorna a data no padrao brasileiro
   #
   # Exemplo:
@@ -22,7 +24,7 @@ class Date
   def to_s_br
     strftime("%d/%m/%Y")
   end
-  
+
   # Valida se uma string eh uma data valida
   #
   # Exemplo:
@@ -31,13 +33,13 @@ class Date
   def self.valid?(date)
     begin
       date = date.to_date
-      Date.valid_civil?(date.year, date.month, date.day)        
+      Date.valid_civil?(date.year, date.month, date.day)
     rescue
       return false
     end
     true
   end
-  
+
 end
 
 class NilClass
@@ -45,3 +47,4 @@ class NilClass
     ""
   end
 end
+
