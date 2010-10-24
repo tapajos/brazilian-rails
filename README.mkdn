@@ -43,27 +43,35 @@ As gems foram portadas para Ruby 1.9, porém o suporte ainda é experimental, e 
 
 É muito difícil...
 
-### Como plugin:
+### No Rails 3.x
 
-  ruby script/plugin install git://github.com/tapajos/brazilian-rails.git
+Adicionar ao seu Gemfile:
+
+	gem 'brazilian-rails'
+
+### No Rails 2.x
+
+#### Como plugin:
+
+	ruby script/plugin install git://github.com/tapajos/brazilian-rails.git
 
 Por padrão, a pluralização vem desabilitada, isso para não atrapalhar os projetos que já existem.
 
-### Como gem:
+#### Como gem:
 
-  gem install brazilian-rails
+	gem install brazilian-rails -v 2.1.14
 
 Depois que todas as gems forem instaladas você pode utiliza-las individualmente ou carregando todas, como no trecho abaixo.
 
-  Rails::Initializer.run do |config|
-    config.gem 'brazilian-rails'
-  end
+	Rails::Initializer.run do |config|
+		config.gem 'brazilian-rails', '2.1.14'
+	end
 
 ### I18n
 
 Por padrão a gem não carrega o suporte de traduções do Rails, para usa-la você deve fazer o require abaixo:
 
-  require 'brI18n'
+	require 'brI18n'
 
 ## Como funciona?
 
@@ -84,13 +92,33 @@ Por favor, nos avise! Isso é fácil e rápido. Isso pode ser feito em:
 
 ## Quem está por traz disso tudo?
 
-O [Marcos Tapajós][mt] tomou coragem para publicar todas as funcionalidades em um plugin, com testes unitários para garantir que tudo funcione conforme manda o figurino.
+O [Marcos Tapajós][mt] tomou coragem para publicar todas as funcionalidades em um plugin, com testes unitários para garantir que tudo funcione conforme manda o figurino. Além do Tápa, outros loucos mantém tudo organizado, são: [Celestino Gomes][tino], [André Luiz Kupkovski][andre], [A galera da Improve It][ii] e mais alguns que ficam escondidos para não pagar esse mico...
 
-Os loucos que mantém tudo funcionando são: [Celestino Gomes][tino], [André Luiz Kupkovski][andre], [A galera da Improve It][ii] e mais alguns que não se manifestaram para pagar esse mico...
+Muitos já contribuíram com o projeto.
 
-Alguns poucos já contribuiram, direta e indireramente, como:
+	git log --raw | grep "^Author: " | sed 's/Author: //' | sed 's/<.*$//' | sort | uniq
 
-[Shairon Toledo][st], [Guilherme Garnier][gg], Bruno Iecker, [Sylvestre Mergulhão][sm], Eduardo Fiorezi, Rafael Cardoso, Edson César, [Kivanio Barbosa][kb], [Cássio Marques][cm] e [Fernando Luizão][fl]. Desculpe se esqueci de alguém
+* Cássio Marques
+* Eduardo Fiorezi
+* Eduardo Hertz
+* Everton Ribeiro
+* Fabio Akita
+* Fernando Gomes
+* Fernando Luizao
+* Joao Vitor
+* Julio Santos Monteiro
+* Kivanio Barbosa
+* Marcus Derencius
+* Marcus Sá
+* Mauricio Zaffari
+* Rafael Uchoa
+* Ricardo Shiota Yasuda
+* Sergio Brant
+* albertobraschi
+* cassio
+* dannnylo
+* elomarns
+* frederico
 
 ## Algumas funcionalidades:
 
@@ -119,14 +147,9 @@ Este plugin é patrocinado pela [Improve It][ii].
 [logo]: http://www.improveit.com.br/images/logo/logo_improve_it_screen.gif "Improve It"
 [tino]: http://tinogomes.wordpress.com
 [andre]: http://www.workingwithrails.com/person/9227-andr-luiz-kupkovski
-[st]: http://www.hashcode.eti.br/
 [rf]: http://rubyforge.org/projects/brazilian-rails
 [mt]: http://www.improveit.com.br/tapajos
 [vt]: http://www.improveit.com.br/vinicius
 [gg]: http://ggarnier.wordpress.com/
-[sm]: http://mergulhao.info/
-[kb]: http://www.kivanio.com.br/
-[cm]: http://cassiomarques.wordpress.com
-[fl]: http://fernandoluizao.wordpress.com
 [brtraducoes]: http://blog.improveit.com.br/articles/2009/02/13/o-brazilian-rails-e-o-suporte-i18n
 [issues]: http://github.com/tapajos/brazilian-rails/issues
