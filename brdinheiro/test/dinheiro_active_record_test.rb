@@ -29,7 +29,7 @@ class DinheiroActiveRecordTest < Test::Unit::TestCase
     assert @carteira.save
     @carteira.saldo = 'bla'
     assert_false @carteira.save
-    assert_equal ["O valor deve estar preenchido e no formato correto. Ex.: 100.00 ."], @carteira.errors['saldo']
+    assert_equal ["O valor deve estar preenchido e no formato correto. Ex.: 100,00"], @carteira.errors['saldo']
   end
 
   def teste_se_trata_nulo_corretamente
