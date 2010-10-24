@@ -1,11 +1,11 @@
 # encoding: UTF-8
-require File.dirname(__FILE__) + '/test_helper'
+require File.expand_path(File.join(File.dirname(__FILE__), 'test_helper'))
 require 'mocha'
 
 class ActionViewTest < Test::Unit::TestCase
-  
+
   include ActionView::Helpers::DateHelper
-  
+
   def test_distance_of_time_in_words
     assert_equal "menos de um minuto", distance_of_time_in_words("Sat Sep 08 22:51:58 -0300 2007".to_time, "Sat Sep 08 22:51:59 -0300 2007".to_time)
     assert_equal "menos de 5 segundos", distance_of_time_in_words("Sat Sep 08 22:51:58 -0300 2007".to_time, "Sat Sep 08 22:51:59 -0300 2007".to_time, true)
@@ -27,3 +27,4 @@ class ActionViewTest < Test::Unit::TestCase
     assert_equal "mais de 3 anos", distance_of_time_in_words("Sat Nov 06 20:51:59 -0300 2006".to_time, "Sat Dec 06 20:51:59 -0300 2009".to_time)
   end
 end
+

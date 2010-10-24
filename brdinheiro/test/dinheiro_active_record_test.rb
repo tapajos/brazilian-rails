@@ -1,5 +1,5 @@
-require File.dirname(__FILE__) + '/test_helper'
-require File.dirname(__FILE__) + '/active_record/base_without_table'
+require File.expand_path(File.join(File.dirname(__FILE__), 'test_helper'))
+require File.expand_path(File.join(File.dirname(__FILE__), '/active_record/base_without_table'))
 
 class Carteira < ActiveRecord::BaseWithoutTable
   column :saldo, :decimal
