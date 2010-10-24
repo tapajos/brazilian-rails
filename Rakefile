@@ -47,11 +47,11 @@ desc "install all gems"
 task :install_all do
   PROJECTS.each do |project|
     Dir.entries("#{project}/pkg").select{ |d| d =~ /\.gem$/ }.each do |gem_file|
-      system %(sudo gem install #{project}/pkg/#{gem_file})
+      system %(gem install #{project}/pkg/#{gem_file})
     end
   end
   Dir.entries("./pkg").select{ |d| d =~ /\.gem$/ }.each do |gem_file|
-    system %(sudo gem install ./pkg/#{gem_file})
+    system %(gem install ./pkg/#{gem_file})
   end
 end
 
