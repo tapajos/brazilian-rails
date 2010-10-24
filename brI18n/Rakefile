@@ -71,3 +71,4 @@ desc "Publish the release files to RubyForge."
 task :release => [ :package ] do
   `gem push pkg/#{PKG_FILE_NAME}.gem`
 end
+

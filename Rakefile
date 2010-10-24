@@ -131,3 +131,4 @@ desc "Publish the release files to RubyForge."
 task :release => [ :package ] do
   `gem push pkg/brazilian-rails-#{PKG_VERSION}.gem`
 end
+
