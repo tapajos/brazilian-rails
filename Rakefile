@@ -118,7 +118,7 @@ spec = Gem::Specification.new do |s|
 
   s.add_development_dependency "rake"
 
-  s.autorequire = PROJECTS
+  require = PROJECTS
 
   s.files = [ "README.mkdn", "lib/brazilian-rails.rb"]
 end
@@ -131,3 +131,4 @@ desc "Publish the release files to RubyForge."
 task :release => [ :package ] do
   `gem push pkg/brazilian-rails-#{PKG_VERSION}.gem`
 end
+
