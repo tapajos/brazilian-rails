@@ -1,5 +1,6 @@
 # encoding: UTF-8
-require File.dirname(__FILE__) + '/test_helper'
+
+require File.join(File.expand_path(File.dirname(__FILE__)), "test_helper.rb")
 
 INVALID_ZIPS = [0, '0', '00', '000', '0000', '00000', '000000', '0000000', '00000000', '4006000']
 VALID_ZIPS = [22640100, '22640100', '22.640100', '22640-100', '22.640-100']
