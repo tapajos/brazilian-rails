@@ -10,21 +10,6 @@ VALID_ZIPS_WITH_ZERO_AT_BEGINNING = ['04006000', '04006-000', '04.006-000']
 VALID_CEPS_NOT_FOUND_ON_BRONZE_BUSINESS = [20230024, '20230024', '20.230024', '20230-024', '20.230-024']
 ZIPS_WITH_NO_ADDRESS_ASSOCIATED = [12345678, '12345678', '12.345678', '12345-678', '12.345-678']
 
-class MockSuccess < Net::HTTPSuccess
-  def initialize; end
-end
-
-class MockServerError < Net::HTTPServerError
-  def initialize; 
-    @message = 'HTTPServiceUnavailable'
-    @code = '504'
-  end
-end
-
-def limpa_cep(numero)
-  numero.to_s.gsub(/\./, '').gsub(/\-/, '')
-end
-
 class BuscaEnderecoTest < Test::Unit::TestCase
   def test_raise_without_service_on_both_web_services
     http_error_response = MockServerError.new

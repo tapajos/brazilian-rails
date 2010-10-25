@@ -14,3 +14,20 @@ def p80 text
   p text
   yield if block_given?
 end
+
+
+
+class MockSuccess < Net::HTTPSuccess
+  def initialize; end
+end
+
+class MockServerError < Net::HTTPServerError
+  def initialize; 
+    @message = 'HTTPServiceUnavailable'
+    @code = '504'
+  end
+end
+
+def limpa_cep(numero)
+  numero.to_s.gsub(/\./, '').gsub(/\-/, '')
+end
