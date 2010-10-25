@@ -17,6 +17,14 @@ Dir["#{File.dirname(__FILE__)}/*/lib/*/version.rb"].each do |version_path|
   require version_path
 end
 
+desc "Run all tests"
+Rake::TestTask.new(:test_all) do |t|
+  t.libs << 'lib'
+  t.libs << 'test'
+  t.pattern = '{brI18n,brcep}/test/**/**/*_test.rb'
+  t.verbose = true
+end
+
 desc "Run all tests by default"
 task :default => [:test, :spec]
 
