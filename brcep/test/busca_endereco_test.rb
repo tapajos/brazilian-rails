@@ -1,8 +1,5 @@
 # encoding: UTF-8
 require File.dirname(__FILE__) + '/test_helper'
-require 'rubygems'
-require 'net/http'
-require 'mocha'
 
 INVALID_ZIPS = [0, '0', '00', '000', '0000', '00000', '000000', '0000000', '00000000', '4006000']
 VALID_ZIPS = [22640100, '22640100', '22.640100', '22640-100', '22.640-100']
@@ -10,8 +7,9 @@ VALID_ZIPS_WITH_ZERO_AT_BEGINNING = ['04006000', '04006-000', '04.006-000']
 VALID_CEPS_NOT_FOUND_ON_BRONZE_BUSINESS = [20230024, '20230024', '20.230024', '20230-024', '20.230-024']
 ZIPS_WITH_NO_ADDRESS_ASSOCIATED = [12345678, '12345678', '12.345678', '12345-678', '12.345-678']
 
-class BuscaEnderecoTest < Test::Unit::TestCase
-  def test_raise_without_service_on_both_web_services
+class BuscaEnderecoTest < ActiveSupport::TestCase
+
+  test "Raise without service on both web services" do
     http_error_response = MockServerError.new
   
     Net::HTTP.expects(:get_response).returns(http_error_response)
@@ -22,7 +20,7 @@ class BuscaEnderecoTest < Test::Unit::TestCase
     end
   end
 
-  def test_raise_for_invalid_zip_code
+  test "Raise for invalid zip code" do
     INVALID_ZIPS.each do |invalid_zip|
       assert_raise RuntimeError, "O CEP informado possui um formato inválido." do
         BuscaEndereco.por_cep(invalid_zip)
@@ -30,7 +28,7 @@ class BuscaEnderecoTest < Test::Unit::TestCase
     end
   end    
   
-  def test_valid_code_on_bronze_business
+  test "Valid codes on bronze business" do
     VALID_ZIPS.each do |valid_zip|
       mock_get_response_from_bronze_business(limpa_cep(valid_zip))
 
@@ -39,7 +37,7 @@ class BuscaEnderecoTest < Test::Unit::TestCase
     end
   end
 
-  def test_valid_code_with_zero_at_beginning_on_bronze_business
+  test "Valid code with zero at beginning on bronze business" do
     VALID_ZIPS_WITH_ZERO_AT_BEGINNING.each do |valid_zip|
       mock_get_response_from_bronze_business(limpa_cep(valid_zip))
 
@@ -48,7 +46,7 @@ class BuscaEnderecoTest < Test::Unit::TestCase
     end
   end
 
-  def test_valid_code_on_buscar_cep_when_bronze_business_is_unavailable
+  test "Valid codes on buscar cep when bronze business is unavailable" do
     VALID_ZIPS.each do |valid_zip|
       mock_get_response_from_buscar_cep_when_bronze_business_is_unavailable(limpa_cep(valid_zip))
 
@@ -57,7 +55,7 @@ class BuscaEnderecoTest < Test::Unit::TestCase
     end
   end
 
-  def test_valid_code_on_buscar_cep_when_address_not_found_on_bronze_business
+  test "Valid codes on buscar cep when address not found on bronze business" do
     VALID_CEPS_NOT_FOUND_ON_BRONZE_BUSINESS.each do |cep_not_found_on_bronze_business|
       mock_get_response_from_buscar_cep_when_address_not_found_on_bronze_business(limpa_cep(cep_not_found_on_bronze_business))
 
@@ -66,7 +64,7 @@ class BuscaEnderecoTest < Test::Unit::TestCase
     end
   end
 
-  def test_should_raise_exception_when_search_for_zip_with_no_associated_address
+  test "Should raise exception when search for zip with no associated address" do
     ZIPS_WITH_NO_ADDRESS_ASSOCIATED.each do |zip_with_no_address_associated|
       assert_raise RuntimeError, "CEP #{limpa_cep(zip_with_no_address_associated)} não encontrado." do
         mock_get_response_when_theres_no_address_associated_with_zip

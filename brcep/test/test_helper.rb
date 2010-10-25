@@ -1,4 +1,7 @@
-require 'test/unit'
+require 'rubygems'
+require 'active_support/test_case'
+require 'net/http'
+require 'mocha'
 require File.dirname(__FILE__) + '/../lib/brcep'
 
 
@@ -14,8 +17,6 @@ def p80 text
   p text
   yield if block_given?
 end
-
-
 
 class MockSuccess < Net::HTTPSuccess
   def initialize; end
