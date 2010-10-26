@@ -18,7 +18,6 @@ module BrI18n
       I18n.load_path += Dir.glob("#{BrI18n::LOCALES_PATH}/*.pt-BR.yml")
     else
       args.each do |arg|
-        puts args
         I18n.load_path << "#{BrI18n::LOCALES_PATH}/#{arg}.pt-BR.yml"
       end
     end
