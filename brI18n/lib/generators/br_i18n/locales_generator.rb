@@ -6,9 +6,11 @@ module BrI18n
       desc = "Efetua uma cópia dos locales para a pasta do projeto, sendo assim possível criar suas customizações"
       
       def copy_files
-        copy_file "rails.pt-BR.yml", "config/locales/rails.pt-BR.yml"
-        copy_file "devise.pt-BR.yml", "config/locales/devise.pt-BR.yml"
+        Dir.glob(File.join(File.dirname(File.expand_path(__FILE__)), "../../locales/*.yml")).each do |file|
+          copy_file file, "config/locales/#{File.split(file).last}"
+        end
       end
+
     end
   end
 end
