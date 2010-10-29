@@ -1,0 +1,30 @@
+# BrI18n
+
+## O que é?
+A gem BrI18n tem como função adicionar a sua aplicação suporte ao idioma português(pt-BR).
+
+## Como funciona?
+Adicionar ao seu Gemfile:
+
+	gem 'br_i18n'
+
+Agora você tem duas escolhas, copiar os locales em pt-BR para sua aplicação, ou instalar o arquivo de configuração:
+
+Para instalar o arquivo de configuração:
+        rails g br_i18n:install
+Um arquivo onde você poderá escolher as preferências será criado na sua pasta config.
+
+Para copiar os locales:
+        rails g br_i18n:locales
+Os arquivos de tradução serão copiados para a pasta config/locales da sua aplicação.
+
+Para mais detalhes de como usar os geradores:
+        rails g br_i18n:install --help
+ou
+        rails g br_i18n:locales --help
+
+##Suporte
+Atualmente a gem BrI18n suporta traduções para o rails e para a gem devise.
+Caso queira adicionar uma outra tradução, faça um fork, adicione o arquivo de tradução e de um pull request.
+
+
