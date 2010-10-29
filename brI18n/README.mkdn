@@ -13,15 +13,11 @@ Agora você tem duas escolhas, copiar os locales em pt-BR para sua aplicação, 
 Para instalar o arquivo de configuração:
         rails g br_i18n:install
 Um arquivo onde você poderá escolher as preferências será criado na sua pasta config.
+Basta seguir as instruções dentro do próprio arquivo.
 
 Para copiar os locales:
         rails g br_i18n:locales
 Os arquivos de tradução serão copiados para a pasta config/locales da sua aplicação.
-
-Para mais detalhes de como usar os geradores:
-        rails g br_i18n:install --help
-ou
-        rails g br_i18n:locales --help
 
 ##Suporte
 Atualmente a gem BrI18n suporta traduções para o rails e para a gem devise.
