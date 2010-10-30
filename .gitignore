@@ -2,6 +2,7 @@
 **/pkg
 **/doc
 **/tmp/*
+tmp/*
 pkg
 doc
 *~
