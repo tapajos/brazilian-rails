@@ -5,7 +5,8 @@ require "rails"
 require 'rails/test_help'
 require 'net/http'
 require 'mocha'
-require File.dirname(__FILE__) + '/../lib/brcep'
+require File.join(File.dirname(File.expand_path(__FILE__)), "../lib/brcep.rb")
+require File.join(File.dirname(File.expand_path(__FILE__)), "../lib/generators/br_cep/install/install_generator.rb")
 
 class MockSuccess < Net::HTTPSuccess
   def initialize; end
