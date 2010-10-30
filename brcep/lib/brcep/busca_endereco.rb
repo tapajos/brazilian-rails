@@ -24,26 +24,8 @@ require 'rexml/document'
 # BuscaEndereco.proxy_port= 999 # porta a ser utilizada
 #
 class BuscaEndereco
-  @@proxy_addr = nil
-  @@proxy_port = nil
-  
-  class << self
-    def proxy_addr
-      @@proxy_addr
-    end
-    
-    def proxy_addr=(addr)
-      @@proxy_addr = addr
-    end
-    
-    def proxy_port
-      @@proxy_port
-    end
-    
-    def proxy_port=(port)
-      @@proxy_port = port
-    end
-  end
+  cattr_accessor :proxy_addr
+  cattr_accessor :proxy_port
 
   URL_WEB_SERVICE_BRONZE_BUSINESS = 'http://www.bronzebusiness.com.br/webservices/wscep.asmx/cep?strcep=' #:nodoc:
   URL_WEB_SERVICE_BUSCAR_CEP = 'http://www.buscarcep.com.br/?cep=' #:nodoc:

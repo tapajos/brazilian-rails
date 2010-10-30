@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'rails/test_help'
 require 'active_support/test_case'
 require 'net/http'
 require 'mocha'
