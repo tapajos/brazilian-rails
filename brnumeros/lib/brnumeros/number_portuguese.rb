@@ -159,5 +159,4 @@ module ExtensoReal
   end
 end
 
-Numeric.send(:include, ExtensoReal)
 

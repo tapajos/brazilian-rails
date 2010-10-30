@@ -3,6 +3,12 @@ require File.join(File.dirname(File.expand_path(__FILE__)), "test_helper.rb")
 
 class NumberTest < ActiveSupport::TestCase
 
+  def setup
+    BrNumeros.setup do |config|
+      config.ativar_numeros_extensos
+    end
+  end
+
   test "Unidades" do
     assert_equal 'zero',   0.por_extenso
     assert_equal 'um',     1.por_extenso
