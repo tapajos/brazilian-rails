@@ -11,6 +11,13 @@ Primeiro o endereço é procurado no web service da Bronze Business, e caso não
 
 ## Como usar?
 
+No seu Gemfile:
+        gem "brcep"
+
+Gere o arquivo de configuração:
+        rails g br_cep:install
+
+Na sua aplicação:
         BuscaEndereco.por_cep(22640100)     ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
         BuscaEndereco.por_cep('22640100')   ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
         BuscaEndereco.por_cep('22640-100')  ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
