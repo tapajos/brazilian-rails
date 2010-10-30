@@ -6,7 +6,29 @@ class NumberTest < ActiveSupport::TestCase
   def setup
     BrNumeros.setup do |config|
       config.ativar_numeros_extensos
+      config.mensagem_zero_reais = "grátis"
     end
+  end
+
+
+  test "mensagem_zero_reais" do
+    BrNumeros.setup do |config|
+      config.mensagem_zero_reais = "zero reais"
+    end
+    assert_equal 'zero reais', 0.por_extenso_em_reais
+    assert_equal 'zero reais', -0.por_extenso_em_reais
+
+    BrNumeros.setup do |config|
+      config.mensagem_zero_reais = "nada"
+    end
+    assert_equal 'nada', 0.por_extenso_em_reais
+    assert_equal 'nada', -0.por_extenso_em_reais
+
+    BrNumeros.setup do |config|
+      config.mensagem_zero_reais = ""
+    end
+    assert_equal 'grátis', 0.por_extenso_em_reais
+    assert_equal 'grátis', -0.por_extenso_em_reais    
   end
 
   test "Unidades" do

@@ -10,6 +10,10 @@ class BrnumerosTest < ActiveSupport::TestCase
     assert BrNumeros.methods.include?("ativar_numeros_extensos") 
   end
 
+  test "BrNumeros should have a private method mensagem_zero_reais" do
+    assert BrNumeros.methods.include?("mensagem_zero_reais=") 
+  end
+
   test "BrNumeros setup method should yield self" do
     BrNumeros.setup do |config|
       assert_equal BrNumeros, config

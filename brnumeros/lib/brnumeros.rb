@@ -10,4 +10,7 @@ module BrNumeros
     Numeric.send(:include, ExtensoReal)
   end
 
+  def self.mensagem_zero_reais=(message)
+    ExtensoReal.mensagem_zero_reais(message) 
+  end
 end

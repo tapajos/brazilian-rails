@@ -102,7 +102,16 @@ end
 
 module ExtensoReal
   include Extenso
- 
+
+  @@mensagem_zero_reais = "grátis"
+  def self.mensagem_zero_reais(message = "grátis")
+    if message.empty?
+      @@mensagem_zero_reais = "grátis"
+    else
+      @@mensagem_zero_reais = message
+    end
+  end
+
   # Escreve por extenso em reais.
   # 
   # Exemplo:
@@ -125,7 +134,7 @@ module ExtensoReal
     negativo=(valor<0)? " negativo" : ""
     negativos=(valor<0)? " negativos" : ""
     valor = valor.abs
-    return 'grátis' if valor == 0
+    return @@mensagem_zero_reais if valor == 0
     case valor
     when Integer
       extenso = Extenso.por_extenso(valor)
@@ -158,5 +167,3 @@ module ExtensoReal
     end
   end
 end
-
-
