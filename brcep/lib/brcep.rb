@@ -1,8 +1,11 @@
-$:.unshift(File.dirname(__FILE__)) unless
-  $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
-
-%w(busca_endereco version).each {|req| require File.dirname(__FILE__) + "/brcep/#{req}"}
-
-
+%w(version).each {|req| require File.dirname(__FILE__) + "/brcep/#{req}"}
 module BrCep
+
+  def self.ativar_busca_endereco
+    require File.dirname(__FILE__) + "/brcep/busca_endereco"
+  end
+
+  def self.setup
+    yield self
+  end
 end

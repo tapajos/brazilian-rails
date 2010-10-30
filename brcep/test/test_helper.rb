@@ -1,6 +1,8 @@
+ENV["RAILS_ENV"] = "test"
+
 require 'rubygems'
+require "rails"
 require 'rails/test_help'
-require 'active_support/test_case'
 require 'net/http'
 require 'mocha'
 require File.dirname(__FILE__) + '/../lib/brcep'

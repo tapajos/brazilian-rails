@@ -10,6 +10,12 @@ ZIPS_WITH_NO_ADDRESS_ASSOCIATED = [12345678, '12345678', '12.345678', '12345-678
 
 class BuscaEnderecoTest < ActiveSupport::TestCase
 
+  def setup
+    BrCep.setup do |config|
+      config.ativar_busca_endereco
+    end
+  end
+  
   test "Raise without service on both web services" do
     http_error_response = MockServerError.new
   
