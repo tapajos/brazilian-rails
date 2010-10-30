@@ -1,8 +1,9 @@
 # encoding: UTF-8
-require File.dirname(__FILE__) + '/test_helper'
+require File.join(File.dirname(File.expand_path(__FILE__)), "test_helper.rb")
 
-class NumberTest < Test::Unit::TestCase
-  def test_unidades
+class NumberTest < ActiveSupport::TestCase
+
+  test "Unidades" do
     assert_equal 'zero',   0.por_extenso
     assert_equal 'um',     1.por_extenso
     assert_equal 'dois',   2.por_extenso
@@ -15,7 +16,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'nove',   9.por_extenso
   end
   
-  def test_dezenas
+  test "Dezenas" do
     assert_equal 'dez',       10.por_extenso
     assert_equal 'onze',      11.por_extenso
     assert_equal 'doze',      12.por_extenso
@@ -36,7 +37,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'noventa',   90.por_extenso
   end
   
-  def test_dezenas_com_unidades
+  test "Dezenas com unidades" do
     assert_equal 'vinte e um',     21.por_extenso
     assert_equal 'trinta e dois',    32.por_extenso
     assert_equal 'quarenta e três',  43.por_extenso
@@ -47,7 +48,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'noventa e oito',   98.por_extenso
   end
   
-  def test_centenas
+  test "Centenas" do
     assert_equal 'cem', 100.por_extenso
     assert_equal 'duzentos', 200.por_extenso
     assert_equal 'trezentos', 300.por_extenso
@@ -59,7 +60,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'novecentos', 900.por_extenso
   end
   
-  def test_centenas_com_dezenas_e_unidades    
+  test "Centenas com dezenas e unidades" do
     assert_equal 'cento e um', 101.por_extenso
     assert_equal 'cento e dez', 110.por_extenso
     assert_equal 'cento e onze', 111.por_extenso
@@ -97,7 +98,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'novecentos e noventa e nove', 999.por_extenso
   end
   
-  def test_mil
+  test "Mil" do
     assert_equal 'um mil', 1_000.por_extenso
     assert_equal 'um mil e um', 1_001.por_extenso
     assert_equal 'um mil e dez', 1_010.por_extenso
@@ -111,7 +112,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'cento e dez mil', 110_000.por_extenso
   end
   
-  def test_milhao
+  test "Milhão" do
     assert_equal 'um milhão', 1_000_000.por_extenso
     assert_equal 'um milhão e um mil e um', 1_001_001.por_extenso
     assert_equal 'um milhão e dez mil e dez', 1_010_010.por_extenso
@@ -125,7 +126,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'cento e dez milhões', 110_000_000.por_extenso
   end
   
-  def test_bilhao
+  test "Bilhão" do
     assert_equal 'um bilhão', 1_000_000_000.por_extenso
     assert_equal 'um bilhão e um milhão e um mil e um', 1_001_001_001.por_extenso
     assert_equal 'um bilhão e dez milhões e dez mil e dez', 1_010_010_010.por_extenso
@@ -139,7 +140,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'cento e dez bilhões', 110_000_000_000.por_extenso
   end
   
-  def test_trilhao
+  test "Trilhão" do
     assert_equal 'um trilhão', 1_000_000_000_000.por_extenso
     assert_equal 'um trilhão e um bilhão e um milhão e um mil e um', 1_001_001_001_001.por_extenso
     assert_equal 'um trilhão e dez bilhões e dez milhões e dez mil e dez', 1_010_010_010_010.por_extenso
@@ -153,7 +154,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'cento e dez trilhões', 110_000_000_000_000.por_extenso
   end
   
-  def test_numero_maior_que_trilhao_eh_rejetaido
+  test "Número maior que trilhão deve ser rejeitado" do
     begin
       1_000_000_000_000_000.por_extenso
       raise "Deveria lançar RuntimeError com mensagem 'Valor excede o permitido'"
@@ -163,7 +164,7 @@ class NumberTest < Test::Unit::TestCase
     end
   end
   
-  def test_valores_em_real
+  test "Valores em reais" do
     assert_equal 'grátis', 0.por_extenso_em_reais
     assert_equal 'um centavo', 0.01.por_extenso_em_reais 
     assert_equal 'dois centavos', 0.02.por_extenso_em_reais 
@@ -183,7 +184,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'noventa e dois mil e trezentos e setenta e dois reais e oitenta e seis centavos', 92_372.86.por_extenso_em_reais
   end
 
-  def test_unidades_negativas
+  test "Unidades negativas" do
     assert_equal 'zero',   -0.por_extenso #Aha, tentou me pegar :)
     assert_equal 'menos um',     -1.por_extenso
     assert_equal 'menos dois',   -2.por_extenso
@@ -196,7 +197,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'menos nove',   -9.por_extenso
   end
 
-  def test_dezenas_negativas
+  test "Dezenas negativas" do
     assert_equal 'menos dez',       -10.por_extenso
     assert_equal 'menos onze',      -11.por_extenso
     assert_equal 'menos doze',      -12.por_extenso
@@ -217,7 +218,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'menos noventa',   -90.por_extenso
   end
 
-  def test_dezenas_com_unidades_negativas
+  test "Dezenas com unidades negativas" do
     assert_equal 'menos vinte e um',     -21.por_extenso
     assert_equal 'menos trinta e dois',    -32.por_extenso
     assert_equal 'menos quarenta e três',  -43.por_extenso
@@ -228,7 +229,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'menos noventa e oito',   -98.por_extenso
   end
 
-  def test_centenas_negativas
+  test "Centenas negativas" do
     assert_equal 'menos cem', -100.por_extenso
     assert_equal 'menos duzentos', -200.por_extenso
     assert_equal 'menos trezentos', -300.por_extenso
@@ -240,7 +241,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'menos novecentos', -900.por_extenso
   end
 
-  def test_centenas_com_dezenas_e_unidades_negativas
+  test "Centenas com dezenas e unidades negativas" do
     assert_equal 'menos cento e um', -101.por_extenso
     assert_equal 'menos cento e dez', -110.por_extenso
     assert_equal 'menos cento e onze', -111.por_extenso
@@ -278,7 +279,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'menos novecentos e noventa e nove', -999.por_extenso
   end
 
-  def test_mil_negativo
+  test "Mil negativo" do
     assert_equal 'menos um mil', -1_000.por_extenso
     assert_equal 'menos um mil e um', -1_001.por_extenso
     assert_equal 'menos um mil e dez', -1_010.por_extenso
@@ -292,7 +293,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'menos cento e dez mil', -110_000.por_extenso
   end
 
-  def test_milhao_negativo
+  test "Milhão negativo" do
     assert_equal 'menos um milhão', -1_000_000.por_extenso
     assert_equal 'menos um milhão e um mil e um', -1_001_001.por_extenso
     assert_equal 'menos um milhão e dez mil e dez', -1_010_010.por_extenso
@@ -306,7 +307,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'menos cento e dez milhões', -110_000_000.por_extenso
   end
 
-  def test_bilhao_negativo
+  test "Bilhão negativo" do
     assert_equal 'menos um bilhão', -1_000_000_000.por_extenso
     assert_equal 'menos um bilhão e um milhão e um mil e um', -1_001_001_001.por_extenso
     assert_equal 'menos um bilhão e dez milhões e dez mil e dez', -1_010_010_010.por_extenso
@@ -320,7 +321,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'menos cento e dez bilhões', -110_000_000_000.por_extenso
   end
 
-  def test_trilhao_negativo
+  test "Trilhão negativo" do
     assert_equal 'menos um trilhão', -1_000_000_000_000.por_extenso
     assert_equal 'menos um trilhão e um bilhão e um milhão e um mil e um', -1_001_001_001_001.por_extenso
     assert_equal 'menos um trilhão e dez bilhões e dez milhões e dez mil e dez', -1_010_010_010_010.por_extenso
@@ -334,7 +335,7 @@ class NumberTest < Test::Unit::TestCase
     assert_equal 'menos cento e dez trilhões', -110_000_000_000_000.por_extenso
   end
 
-  def test_valores_em_real_negativos
+  test "Valores reais negativos" do
     assert_equal 'grátis', -0.por_extenso_em_reais #grátis é grátis
     assert_equal 'um centavo negativo', -0.01.por_extenso_em_reais
     assert_equal 'dois centavos negativos', -0.02.por_extenso_em_reais
