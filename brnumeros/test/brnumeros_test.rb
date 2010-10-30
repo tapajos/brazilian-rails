@@ -7,7 +7,7 @@ class BrnumerosTest < ActiveSupport::TestCase
   end
 
   test "BrNumeros should have a private method ativar_numeros_extensos" do
-    assert BrNumeros.methods.include?("ativar_numeros_extensos") 
+    assert BrNumeros.methods.include?("ativar_numeros_por_extenso") 
   end
 
   test "BrNumeros should have a private method mensagem_zero_reais" do

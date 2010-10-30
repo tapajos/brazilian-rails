@@ -6,7 +6,7 @@ module BrNumeros
   end
 
   private
-  def self.ativar_numeros_extensos
+  def self.ativar_numeros_por_extenso
     Numeric.send(:include, ExtensoReal)
   end
 
