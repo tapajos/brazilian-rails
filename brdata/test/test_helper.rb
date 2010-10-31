@@ -1,16 +1,10 @@
-require 'test/unit'
-require File.dirname(__FILE__) + '/../lib/brdata'
+ENV["RAILS_ENV"] = "test"
 
+require 'rubygems'
+require "rails"
+require 'rails/test_help'
+require 'active_support/all'
+require 'mocha'
 
-def tornar_metodos_publicos(clazz)
-  clazz.class_eval do
-    private_instance_methods.each { |instance_method| public instance_method }
-    private_methods.each { |method| public_class_method method } 
-  end  
-end
-
-def p80 text
-  p '*'*80
-  p text
-  p '*'*80
-end
+require File.join(File.dirname(File.expand_path(__FILE__)), "../lib/brdata.rb")
+#require File.join(File.dirname(File.expand_path(__FILE__)), "../lib/generators/br_data/install/install_generator.rb")

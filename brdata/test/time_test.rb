@@ -1,28 +1,27 @@
 # encoding: UTF-8
-require File.dirname(__FILE__) + '/test_helper'
+require File.join(File.expand_path(File.dirname(__FILE__)), "test_helper.rb")
 
-class TimeTest < Test::Unit::TestCase
+class TimeTest < ActiveSupport::TestCase
   
   # to_time
-  def test_create_time_with_traditional_time_format
-    assert_equal "2007-01-02 01:23:00", "2007/01/02 01:23".to_time.to_s(:db)
+  test "Create time with traditional time format" do
+    assert_equal "2007-01-02 01:23:00", "2007/01/02 01:23".to_time.to_s(:db)    
   end
-
-  def test_create_time_with_brazilian_time_format_without_time
+  
+  test "Create time with brazilian time format without time" do
     assert_equal "2007-12-13 00:00:00", "13/12/2007".to_time.to_s(:db)
   end
-  
-  def test_create_time_with_brazilian_time_format_with_time
+
+  test "Create time with brazilian time format with time" do
     assert_equal "2007-12-13 01:23:00", "13/12/2007 01:23".to_time.to_s(:db)
   end
-  
-  def test_create_time_with_brazilian_time_format_with_time_with_single_number
+
+  test "Create time with brazilian time format with time with single number" do
     assert_equal "2007-02-01 01:23:00", "1/2/2007 1:23".to_time.to_s(:db)
   end
   
-  
   #to_s
-  def test_time_to_s_with_traditional_format
+  test "Time with to_s and traditional format" do
     if RUBY_VERSION < '1.9'
       assert_equal "Mon Sep 24 16:03:05 UTC 2007", "Mon Sep 24 16:03:05 UTC 2007".to_time.to_s
     else
@@ -31,11 +30,11 @@ class TimeTest < Test::Unit::TestCase
   end
   
   #to_s_br
-  def test_time_to_s_br
+  test "Time to_s_br" do
     assert_equal "24/09/2007 16:03", "Mon Sep 24 16:03:05 UTC 2007".to_time.to_s_br
   end
   
-  def test_month_names
+  test "Month names" do
     assert_equal [nil,
       "Janeiro",
       "Fevereiro",
@@ -52,7 +51,7 @@ class TimeTest < Test::Unit::TestCase
       Time::MONTHNAMES
   end
 	
-  def test_days_names
+  test "Day names" do
     assert_equal ["Domingo",
       "Segunda-Feira",
       "Terça-Feira",
@@ -63,7 +62,7 @@ class TimeTest < Test::Unit::TestCase
       Time::DAYNAMES
   end
 
-  def test_abbr_monthnames
+  test "Abbr month names" do
     assert_equal [nil,
       "Jan",
       "Fev",
@@ -80,11 +79,11 @@ class TimeTest < Test::Unit::TestCase
       Time::ABBR_MONTHNAMES
   end
 
-  def test_abbr_daysnames
+  test "Abbr day names" do
     assert_equal ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"], Time::ABBR_DAYNAMES
   end
   
-  def test_time_translation_with_strftime
+  test "Time translation with strftime" do
     assert_equal "Dezembro Dez Sexta-Feira Sex", Time.parse("2008-12-05").strftime("%B %b %A %a")
   end
 

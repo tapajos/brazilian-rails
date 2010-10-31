@@ -1,12 +1,12 @@
-require File.dirname(__FILE__) + '/test_helper'
+# encoding: UTF-8
+require File.join(File.expand_path(File.dirname(__FILE__)), "test_helper.rb")
 
-class FeriadoParserTest < Test::Unit::TestCase
+class FeriadoParserTest < ActiveSupport::TestCase
   
   FERIADO_YML_PATH = File.expand_path(File.dirname(__FILE__) + '/../lib/brdata/config')
-  p FERIADO_YML_PATH
   NATAL = Feriado.new("natal", 25, 12)
   
-  def test_feriados
+  test "Feriados" do
     feriados, metodos = FeriadoParser.parser(FERIADO_YML_PATH)
     feriados.each {|feriado| assert_kind_of Feriado, feriado}
     assert_equal NATAL, feriados.find {|f| f.nome == "natal"}
@@ -14,17 +14,16 @@ class FeriadoParserTest < Test::Unit::TestCase
     assert metodos.include?( "corpus_christi")
   end
   
-  def test_feriados_quando_path_nao_eh_diretorio
+  test "Feriados quando path não é diretório" do
     assert_raise  FeriadoParserDiretorioInvalidoError do
       FeriadoParser.parser(File.dirname(__FILE__) + 'dinheiro_test.rb')  
     end
   end
   
-  def test_feriados_quando_path_nao_contem_arquivos
+  test "Feriados quando path não contem arquivos" do
     assert_raise  FeriadoParserDiretorioVazioError do
       FeriadoParser.parser(File.dirname(__FILE__))  
     end
   end
-  
   
 end
