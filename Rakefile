@@ -21,7 +21,7 @@ desc "Run all tests"
 Rake::TestTask.new(:test_all) do |t|
   t.libs << 'lib'
   t.libs << 'test'
-  t.pattern = '{brI18n,brcep,brhelper,brnumeros}/test/**/**/*_test.rb'
+  t.pattern = '{brI18n,brcep,brhelper,brnumeros,brstring}/test/**/**/*_test.rb'
   t.verbose = true
 end
 

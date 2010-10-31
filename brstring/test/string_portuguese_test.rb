@@ -1,5 +1,5 @@
 # encoding: UTF-8
-require File.dirname(__FILE__) + '/test_helper'
+require File.join(File.expand_path(File.dirname(__FILE__)), "test_helper.rb")
 
 NOMES_PROPRIOS = {
   'Paulo Gomes' => 'paulo gomes',
@@ -28,16 +28,16 @@ NOMES_TITLEIZE =     {
     "Á É Í Ó Ú À È Ì Ò Ù Ã Õ Â Ê Î Ô Û Ä Ë Ï Ö Ü" => 'á é í ó ú à è ì ò ù ã õ â ê î ô û ä ë ï ö ü'
 } #:nodoc:
 
-class StringPortugueseTest < Test::Unit::TestCase  
-  def test_letras_maiusculas
+class StringPortugueseTest < ActiveSupport::TestCase  
+  test "Letras maiúsculas" do
     assert_equal 'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÄËÏÖÜÃÕÑÇ', String::MAIUSCULAS
   end
 
-  def test_letras_minusculas
+  test "Letras minúsculas" do
     assert_equal 'abcdefghijklmnopqrstuvwxyzáéíóúâêîôûàèìòùäëïöüãõñç', String::MINUSCULAS
   end
   
-  def test_string_nome_proprio
+  test "Strings de nome próprio" do
     NOMES_PROPRIOS.each {|key, value| assert_equal key, String.nome_proprio(value) }
     
     palavras_excluidas = %w(? ! @ # $ % & * \ / ? , . ; ] [ } { = + 0 1 2 3 4 5 6 7 8 9)
@@ -49,7 +49,7 @@ class StringPortugueseTest < Test::Unit::TestCase
     assert_nil String.nome_proprio(nil)
   end
 
-  def test_nome_proprio
+  test "Método nome_proprio" do
     NOMES_PROPRIOS.each {|key, value| assert_equal key, value.nome_proprio }
     
     palavras_excluidas = %w(? ! @ # $ % & * \ / ? , . ; ] [ } { = + 0 1 2 3 4 5 6 7 8 9)
@@ -59,7 +59,7 @@ class StringPortugueseTest < Test::Unit::TestCase
     end
   end
   
-  def test_nome_proprio!
+  test "Método nome_proprio!" do
     NOMES_PROPRIOS.each do |key, value| 
       nome = value
       nome.nome_proprio!
@@ -75,7 +75,7 @@ class StringPortugueseTest < Test::Unit::TestCase
     end
   end
 
-  def test_string_remover_acentos
+  test "Método String.remover_acentos" do
     assert_equal 'aeiouAEIOU', String.remover_acentos("áéíóúÁÉÍÓÚ")
     assert_equal 'aeiouAEIOU', String.remover_acentos("âêîôûÂÊÎÔÛ")
     assert_equal 'aeiouAEIOU', String.remover_acentos("àèìòùÀÈÌÒÙ")
@@ -87,7 +87,7 @@ class StringPortugueseTest < Test::Unit::TestCase
     assert_nil String.remover_acentos(nil)
   end
   
-  def test_remover_acentos
+  test "Método remover_acentos" do
     assert_equal 'aeiouAEIOU', "áéíóúÁÉÍÓÚ".remover_acentos
     assert_equal 'aeiouAEIOU', "âêîôûÂÊÎÔÛ".remover_acentos
     assert_equal 'aeiouAEIOU', "àèìòùÀÈÌÒÙ".remover_acentos
@@ -98,52 +98,52 @@ class StringPortugueseTest < Test::Unit::TestCase
     assert_equal 'aeiouAEIOUaeiouAEIOUaeiouAEIOUaeiouAEIOUaoAOnNcC', "áéíóúÁÉÍÓÚâêîôûÂÊÎÔÛàèìòùÀÈÌÒÙäëïöüÄËÏÖÜãõÃÕñÑçÇ".remover_acentos
   end
   
-  def test_remover_acentos!
+  test "Método remover_acentos!" do
     string = 'áéíóúÁÉÍÓÚ'
     string.remover_acentos!
     assert_equal 'aeiouAEIOU', string
   end
 
-  def test_string_downcase
+  test "Método String.downcase" do
     assert_equal String::MINUSCULAS, String.downcase(String::MAIUSCULAS)
     assert_nil String.downcase(nil)
   end
   
-  def test_downcase
+  test "Método downcase" do
     assert_equal String::MINUSCULAS, String::MAIUSCULAS.downcase
   end
   
-  def test_downcase!
+  test "Método downcase!" do
     string = String::MAIUSCULAS.clone
     string.downcase!
     assert_equal String::MINUSCULAS, string
   end  
   
-  def test_string_upcase
+  test "Método String.upcase" do
     assert_equal String::MAIUSCULAS, String.upcase(String::MINUSCULAS)
     assert_nil String.upcase(nil)
   end
 
-  def test_upcase
+  test "Método upcase" do
     assert_equal String::MAIUSCULAS, String::MINUSCULAS.upcase
   end
 
-  def test_upcase!
+  test "Método upcase!" do 
     string = String::MINUSCULAS.clone
     string.upcase!
     assert_equal String::MAIUSCULAS, string
   end
 
-  def test_string_titleize
+  test "Método String.titleize" do
     NOMES_TITLEIZE.each {|k,v| assert_equal k, String.titleize(v) }
     assert_nil String.titleize(nil)
   end
 
-  def test_titleize
+  test "Método titleize" do
     NOMES_TITLEIZE.each {|k,v| assert_equal k, v.titleize }
   end
 
-  def test_titleize!
+  test "Método titleize!" do
     NOMES_TITLEIZE.each do |k,v| 
       v.titleize!
       assert_equal k, v

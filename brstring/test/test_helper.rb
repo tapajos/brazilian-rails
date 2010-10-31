@@ -1,15 +1,8 @@
+ENV["RAILS_ENV"] = "test"
+
 require 'test/unit'
-require File.dirname(__FILE__) + '/../lib/brstring'
+require 'rubygems'
+require "rails"
+require 'rails/test_help'
 
-def tornar_metodos_publicos(clazz)
-  clazz.class_eval do
-    private_instance_methods.each { |instance_method| public instance_method }
-    private_methods.each { |method| public_class_method method } 
-  end  
-end
-
-def p80 text
-  p '*'*80
-  p text
-  yield if block_given?
-end
+require File.join(File.dirname(File.expand_path(__FILE__)), "../lib/brstring.rb")
