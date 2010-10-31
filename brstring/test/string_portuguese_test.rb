@@ -29,6 +29,13 @@ NOMES_TITLEIZE =     {
 } #:nodoc:
 
 class StringPortugueseTest < ActiveSupport::TestCase  
+
+  def setup
+    BrString.setup do |config|
+      config.ativar_brstring
+    end
+  end
+
   test "Letras maiúsculas" do
     assert_equal 'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÄËÏÖÜÃÕÑÇ', String::MAIUSCULAS
   end
