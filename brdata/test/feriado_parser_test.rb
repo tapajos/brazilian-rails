@@ -3,13 +3,18 @@ require File.join(File.expand_path(File.dirname(__FILE__)), "test_helper.rb")
 
 class FeriadoParserTest < ActiveSupport::TestCase
   
-  FERIADO_YML_PATH = File.expand_path(File.dirname(__FILE__) + '/../lib/brdata/config')
-  NATAL = Feriado.new("natal", 25, 12)
-  
+  def setup
+    BrData.setup do |config|
+      config.ativar_feriados
+    end
+    @feriado_yml_path = File.expand_path(File.dirname(__FILE__) + '/../lib/brdata/config')    
+    @natal = Feriado.new("natal", 25, 12)
+  end
+
   test "Feriados" do
-    feriados, metodos = FeriadoParser.parser(FERIADO_YML_PATH)
+    feriados, metodos = FeriadoParser.parser(@feriado_yml_path)
     feriados.each {|feriado| assert_kind_of Feriado, feriado}
-    assert_equal NATAL, feriados.find {|f| f.nome == "natal"}
+    assert_equal @natal, feriados.find {|f| f.nome == "natal"}
     assert metodos.include?( "pascoa") 
     assert metodos.include?( "corpus_christi")
   end

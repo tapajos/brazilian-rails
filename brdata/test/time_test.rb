@@ -2,6 +2,12 @@
 require File.join(File.expand_path(File.dirname(__FILE__)), "test_helper.rb")
 
 class TimeTest < ActiveSupport::TestCase
+
+  def setup
+    BrData.setup do |config|
+      config.ativar_time
+    end
+  end
   
   # to_time
   test "Create time with traditional time format" do

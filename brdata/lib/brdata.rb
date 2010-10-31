@@ -5,17 +5,43 @@ require 'action_controller'
 require 'active_support'
 require 'action_view'
   
-%w(date_portuguese
-time_portuguese
-version
-br_date_helper
-feriado
-feriado_parser
-excecoes
-).each {|req| require File.dirname(__FILE__) + "/brdata/#{req}"}
+%w(version excecoes).each {|req| require File.dirname(__FILE__) + "/brdata/#{req}"}
 
 
 module BrData
+  def self.setup
+    yield self 
+  end
+
+  private
+  def self.ativar_time
+    require File.dirname(__FILE__) + "/brdata/time_portuguese.rb"
+  end
+
+  def self.ativar_date
+    require File.dirname(__FILE__) + "/brdata/date_portuguese.rb"    
+  end
+
+  def self.ativar_feriados
+    require File.dirname(__FILE__) + "/brdata/feriado.rb"     
+    require File.dirname(__FILE__) + "/brdata/feriado_parser.rb"   
+    # FERIADOS_PATH = RAILS_ROOT + '/config/feriados'
+    feriados, metodos = FeriadoParser.parser(File.dirname(__FILE__) + "/brdata/config")
+    # if File.directory?(FERIADOS_PATH)
+    #   f, m = FeriadoParser.parser(FERIADOS_PATH)
+    #   feriados += f
+    #   metodos += m
+    # end
+    Date::FERIADOS.clear
+    Date::FERIADOS_METODOS.clear
+    feriados.each { |f| Date::FERIADOS << f }
+    metodos.each { |m| Date::FERIADOS_METODOS << m }
+  end
+
+  def self.ativar_helpers
+    require File.dirname(__FILE__) + "/brdata/br_date_helper.rb"    
+  end
+
 end
 
 old_verbose = $VERBOSE
@@ -28,15 +54,3 @@ $VERBOSE = nil
 end
 
 $VERBOSE = old_verbose
-
-# FERIADOS_PATH = RAILS_ROOT + '/config/feriados'
-feriados, metodos = FeriadoParser.parser(File.dirname(__FILE__) + "/brdata/config")
-# if File.directory?(FERIADOS_PATH)
-#   f, m = FeriadoParser.parser(FERIADOS_PATH)
-#   feriados += f
-#   metodos += m
-# end
-Date::FERIADOS.clear
-Date::FERIADOS_METODOS.clear
-feriados.each { |f| Date::FERIADOS << f }
-metodos.each { |m| Date::FERIADOS_METODOS << m }

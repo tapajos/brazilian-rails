@@ -5,6 +5,12 @@ class ActionViewTest < ActiveSupport::TestCase
   
   include ActionView::Helpers::DateHelper
   
+  def setup
+    BrData.setup do |config|
+      config.ativar_helpers
+    end
+  end
+  
   test "Distance of time in words" do
     assert_equal "menos de um minuto", distance_of_time_in_words("Sat Sep 08 22:51:58 -0300 2007".to_time, "Sat Sep 08 22:51:59 -0300 2007".to_time)
     assert_equal "menos de 5 segundos", distance_of_time_in_words("Sat Sep 08 22:51:58 -0300 2007".to_time, "Sat Sep 08 22:51:59 -0300 2007".to_time, true)

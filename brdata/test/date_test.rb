@@ -2,6 +2,12 @@
 require File.join(File.expand_path(File.dirname(__FILE__)), "test_helper.rb")
 
 class DateTest < ActiveSupport::TestCase
+
+  def setup
+    BrData.setup do |config|
+      config.ativar_date
+    end
+  end
   
   # to_date
   test "Create date with traditional date format" do

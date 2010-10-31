@@ -5,8 +5,13 @@ class FeriadoTest < ActiveSupport::TestCase
 
   ATRIBUTOS = %w(dia mes nome)
 
-  # feriado
+  def setup
+    BrData.setup do |config|
+      config.ativar_feriados
+    end
+  end
 
+  # feriado
   test "Feriado quando é feriado" do
     assert "25/12/2007".to_date.feriado?
   end
