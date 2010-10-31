@@ -104,22 +104,7 @@ class Dinheiro
     valor_maior = Dinheiro.new((@quantia/numero_de_parcelar+1)/100.0)
     [valor_menor] * (numero_de_parcelar - resto) + [valor_maior] * resto
   end
-  
-  # Escreve o valor por extenso.
-  # 
-  # Exemplo:
-  #  1.real.to_extenso ==> 'um real'
-  #  (100.58).to_extenso ==> 'cem reais e cinquenta e oito centavos'
-  def to_extenso
-    (@quantia/100.0).por_extenso_em_reais
-  end
-  
-  # Alias para o metodo to_extenso.
-  alias_method :por_extenso, :to_extenso
-  
-  # Alias para o metodo to_extenso.
-  alias_method :por_extenso_em_reais, :to_extenso
-  
+
   # Verifica se o valor é zero.
   def zero?
     to_f.zero?
