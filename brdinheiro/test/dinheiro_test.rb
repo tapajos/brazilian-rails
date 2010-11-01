@@ -3,6 +3,10 @@ require File.join(File.expand_path(File.dirname(__FILE__)), "test_helper.rb")
 
 class DinheiroTest < ActiveSupport::TestCase
 
+  BrDinheiro.setup do |config|
+    config.ativar_dinheiro
+  end
+  
   CONTABIL = { "(2,00)" =>    -2,
                  "2,00" =>     2,    
                  "0,00" =>     0,
@@ -209,8 +213,7 @@ class DinheiroTest < ActiveSupport::TestCase
                  "123.112.211,35"  =>	"+123112211,35" }
   
   PARTE_INTEIRA = [ -1, -123112211, 0, 1, 12344545 ]
-  
-  
+
   def setup
     tornar_metodos_publicos Dinheiro
     @dinheiro = 1.real

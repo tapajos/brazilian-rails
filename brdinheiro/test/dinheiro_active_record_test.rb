@@ -4,6 +4,10 @@ require File.join(File.expand_path(File.dirname(__FILE__)), "active_record/base_
 
 class DinheiroActiveRecordTest < ActiveSupport::TestCase
 
+  BrDinheiro.setup do |config|
+    config.ativar_activerecord_metodos
+  end
+
   class Carteira < ActiveRecord::BaseWithoutTable
     column :saldo, :decimal
     usar_como_dinheiro :saldo
