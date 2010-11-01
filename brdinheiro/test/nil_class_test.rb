@@ -1,29 +1,26 @@
-require File.dirname(__FILE__) + '/test_helper'
+# encoding: UTF-8
+require File.join(File.expand_path(File.dirname(__FILE__)), "test_helper.rb")
 
-class NilClassTest < Test::Unit::TestCase
+class NilClassTest < ActiveSupport::TestCase
   
-  def test_real
+  test "Real" do
     assert_equal Dinheiro.new(0), nil.real
   end
   
-  def test_reais
+  test "Reais" do
     assert_equal Dinheiro.new(0), nil.reais
   end
   
-  def test_para_dinheiro
+  test "para dinheiro" do
     assert_equal Dinheiro.new(0), nil.para_dinheiro
   end
   
-  def test_valor
+  test "valor" do
     assert_equal Dinheiro.new(0), nil.valor
   end
   
-  def test_contabil
+  test "contabil" do
     assert_equal "0,00", nil.contabil
   end
-  
-  
-  
-  
-  
+ 
 end

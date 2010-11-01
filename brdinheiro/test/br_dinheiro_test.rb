@@ -1,12 +1,12 @@
 # encoding: UTF-8
-require File.dirname(__FILE__) + '/test_helper.rb'
+require File.join(File.expand_path(File.dirname(__FILE__)), "test_helper.rb")
 
-class TestBrDinheiro < Test::Unit::TestCase
+class TestBrDinheiro < ActiveSupport::TestCase
 
   def setup
   end
   
-  def test_truth
+  test "Truth" do
     assert true
   end
 end

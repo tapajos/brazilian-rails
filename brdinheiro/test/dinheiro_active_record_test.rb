@@ -1,38 +1,39 @@
-require File.dirname(__FILE__) + '/test_helper'
-require File.dirname(__FILE__) + '/active_record/base_without_table'
+# encoding: UTF-8
+require File.join(File.expand_path(File.dirname(__FILE__)), "test_helper.rb")
+require File.join(File.expand_path(File.dirname(__FILE__)), "active_record/base_without_table.rb")
 
 class Carteira < ActiveRecord::BaseWithoutTable
   column :saldo, :decimal
   usar_como_dinheiro :saldo
 end
 
-class DinheiroActiveRecordTest < Test::Unit::TestCase
+class DinheiroActiveRecordTest < ActiveSupport::TestCase
 
   def setup
     @carteira = Carteira.new
   end
 
-  def teste_se_aceita_dinheiro
+  test "Se aceita dinheiro" do
     @carteira.saldo = 8.reais
     assert @carteira.save
     assert_equal 8.reais, @carteira.saldo
   end
 
-  def teste_se_aceita_numero
+  test "Se aceita número" do
     @carteira.saldo = 30
     assert @carteira.save
     assert_equal 30.reais, @carteira.saldo
   end
 
-  def teste_se_rejeita_valor_invalido
+  test "Se rejeita valor inválido" do
     @carteira.saldo = 30
     assert @carteira.save
     @carteira.saldo = 'bla'
-    assert_false @carteira.save
+    assert !@carteira.save
     assert_equal ["O valor deve estar preenchido e no formato correto. Ex.: 100.00 ."], @carteira.errors['saldo']
   end
 
-  def teste_se_trata_nulo_corretamente
+  test "Se trata nulo corretamente" do
     assert_nil @carteira.saldo
     @carteira.saldo = nil
     assert_nil @carteira.saldo
@@ -40,7 +41,7 @@ class DinheiroActiveRecordTest < Test::Unit::TestCase
     assert_nil @carteira.saldo
   end
 
-  def test_se_cria_carteira_corretamente_quando_recebe_parametros
+  test "Se cria carteira corretamente quando recebe params" do
     carteira = Carteira.new(:saldo => "1")
     assert_equal 1.real, carteira.saldo
   end

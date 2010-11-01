@@ -1,6 +1,7 @@
-require File.dirname(__FILE__) + '/test_helper'
+# encoding: UTF-8
+require File.join(File.expand_path(File.dirname(__FILE__)), "test_helper.rb")
 
-class DinheiroTest < Test::Unit::TestCase
+class DinheiroTest < ActiveSupport::TestCase
 
   CONTABIL = { "(2,00)" =>    -2,
                  "2,00" =>     2,    
@@ -215,14 +216,14 @@ class DinheiroTest < Test::Unit::TestCase
     @dinheiro = 1.real
   end
 
-  def testa_se_cria_dinheiro_a_partir_de_quantias_validos
+  test "Se criar dinheiro a partir de quantias validas" do
     QUANTIA_VALIDA.each do |esperado, quantia| 
       assert_equal esperado, Dinheiro.new(quantia).to_s, "Deveria ter vindo o quantia: #{esperado} quando recebeu #{quantia}"
     end
   end
   
   # coloca_ponto_no_milhar
-  def testa_se_coloca_ponto_no_milhar
+  test "Coloca ponto no milhar" do
     PONTO_NO_MILHAR.each do |esperado, quantia| 
       { esperado       =>     quantia,
         "-#{esperado}" => "-#{quantia}" }.each do |esperado, quantia| 
@@ -231,99 +232,99 @@ class DinheiroTest < Test::Unit::TestCase
     end
   end
   
-  def testa_to_s
+  test "to_s" do
     assert_equal "1,00", Dinheiro.new(1).to_s
     assert_equal "1.000,00", Dinheiro.new(1000).to_s
   end
   
   # real
-  def testa_real_nao_eh_dinheiro
+  test "Real deve ser dinheiro" do
     assert_kind_of(Dinheiro, 1.real)
   end
   
-  def testa_real_eh_dinheiro
+  test "Real é dinheiro" do
     assert_kind_of(Dinheiro, Dinheiro.new(1).real)
   end
   
-  def testa_real_contabil
+  test "Real contábil" do
     REAL_CONTABIL.each { |esperado, quantia| assert_equal esperado, Dinheiro.new(quantia).real_contabil }
   end  
   
-  def testa_reais_contabeis
+  test "Reais contabeis" do
     REAL_CONTABIL.each { |esperado, quantia| assert_equal esperado, Dinheiro.new(quantia).reais_contabeis }
   end  
   
   # reais
-  def testa_reais
+  test "reais" do
     assert_equal Dinheiro.new("2,00"), Dinheiro.new(2).reais
   end
   
-  def testa_contabil
+  test "contabil" do
     CONTABIL.each { |esperado, quantia| assert_equal esperado, Dinheiro.new(quantia).contabil }
   end 
 
   # real_formatado
-  def test_real_formatado
+  test "real_formatado" do
     assert_equal "R$ 2,00", Dinheiro.new(2).real_formatado
   end
   
   # ==
-  def testa_igualdade
+  test "Igualdade" do
     assert_equal Dinheiro.new(1), Dinheiro.new(1)
   end
   
-  def testa_igualdade_quando_passa_possivel_dinheiro
+  test "Igualdade quando passa possivel dinheiro" do
     assert_equal Dinheiro.new(1), 1.0
   end
   
-  def testa_igualdade_quando_passa_algo_que_nao_seja_dinheiro
+  test "Igualdade quando passa algo que não seja dinheiro" do
     assert_equal false, Dinheiro.new(1) == 'salario'
   end
   
   # / (divisao)
-  def testa_divisao
+  test "divisão" do
     DIVISAO.each { |parcelas, divisao| assert_equal parcelas, divisao }
   end
   
-  def testa_divisao_por_zero
+  test "Divisão por zero" do
     assert_raise(ZeroDivisionError) { 1.real / 0 }
   end
   
-  def testa_divisao_por_algo_que_nao_seja_um_escalar
+  test "Divisão por não escalar" do
     assert_raise(DivisaPorNaoEscalarError) { 10.reais / 2.reais }
   end
 
   # parcelar
-  def testa_parcelar
+  test "Parcelar" do
     PARCELAS.each { |parcelas, divisao| assert_equal parcelas, divisao }
   end
   
-  def testa_parcelar_por_zero
+  test "Parcelar por zero" do
     assert_raise(ZeroDivisionError) { 1.real.parcelar 0 }
   end
   
-  def testa_parcelar_por_algo_que_nao_seja_um_escalar
+  test "parcelar por algo que não seja um escalar" do
     assert_raise(DivisaPorNaoEscalarError) { 10.reais.parcelar(2.reais) }
   end
   
   # initialize
-  def testa_se_cria_dinheiro_a_partir_de_float
+  test "Se cria dinheiro a partir de float" do
     verifica_se_cria_dinheiro_para 1.0
   end 
   
-  def testa_se_cria_dinheiro_a_partir_de_fixnum
+  test "Se cria dinheiro a partir de fixnum" do
     verifica_se_cria_dinheiro_para 1
   end 
   
-  def testa_se_cria_dinheiro_a_partir_de_bigdecimal
+  test "Se cria dinheiro a partir de bigdecimal" do
     verifica_se_cria_dinheiro_para BigDecimal.new("1")
   end 
 
-  def testa_se_cria_dinheiro_a_partir_de_string
+  test "Se cria dinheiro a partir de string" do
     verifica_se_cria_dinheiro_para "1"
   end 
   
-  def testa_se_rejeita_criacao_de_dinheiro_a_partir_de_string_invalida
+  test "Se rejeita criação de dinheiro a partir de astring inválida" do
     QUANTIA_COM_FORMATO_INVALIDO.each do |quantia| 
       assert_raise DinheiroInvalidoError, "Deveria ter rejeitado [#{quantia}]" do
         Dinheiro.new quantia
@@ -332,99 +333,99 @@ class DinheiroTest < Test::Unit::TestCase
   end
   
   # + (soma)
-  def testa_soma
+  test "soma" do
     SOMA.each{ |esperado, soma| assert_equal esperado, soma }
   end  
   
   # - (subtracao)
-  def testa_subtracao
+  test "subtração" do
     SUBTRACAO.each { |esperado, subtracao| assert_equal esperado, subtracao }
   end
   
   # * (multiplicacao)
-  def testa_multiplicacao
+  test "multiplicação" do
     MULTIPLICACAO.each { |esperado, multiplicacao| assert_equal esperado, multiplicacao }  
   end
   
   # quantia_de
-  def testa_quantia_de
+  test "quantia_de" do
     assert_equal 0, @dinheiro.quantia_de(0.real)
     assert_equal 0, @dinheiro.quantia_de(0)
   end
 
   # to_f
-  def testa_to_f
+  test "to_f" do
     assert_equal 2.30, 2.30.real.to_f
     assert_equal 1000, 1000.real.to_f
   end
   
   # quantia_respeita_formato?
-  def testa_se_quantia_respeita_formato
+  test "quanti respeita formato?" do
     QUANTIA_COM_FORMATO_VALIDO.each { |quantia| verifica_se_quantia_respeita_formato quantia }
   end
   
   # >, <, == (ordenacao)
-  def testa_comparacao_entre_dinheiro
+  test "comparação entre dinheiro" do
     COMPARACAO.each { |comparacao| assert comparacao }
   end
   
-  def testa_comparacao_entre_possivel_dinheiro
+  test "comparação entre possível dinheiro" do
     COMPARACAO_COM_ESCALAR.each { |comparacao_com_escalar| assert comparacao_com_escalar }
   end
   
   # decimal
-  def testa_decimal_quando_todas_as_casas_estao_preenchidas
+  test "decimal quando todas as casas estão preenchidas" do
     verifica_decimal("12")
   end
   
-  def testa_decimal_quando_apenas_uma_das_casas_esta_preenchida
+  test "decimla quando apenas uma das casas esta preenchida" do
     verifica_decimal("10", "1")
   end
   
-  def testa_decimal_quando_nenhuma_das_casas_esta_preenchida
+  test "decimal quando nenhuma das casas esta preenchida" do
     verifica_decimal("00", "")
   end
   
-  def testa_se_transforma_em_string_que_represente_a_quantia_quando_tem_tres_digitos
+  test "Se transforma em string que representa a quantia quando tem 3 dígitos" do
     verifica_se_transforma_em_string_corretamente "1.23", 123
   end
 
-  def testa_se_transforma_em_string_que_represente_a_quantia_quando_tem_dois_digitos    
+  test "Se transforma em string que representa a quantia quando tem 2 dígitos" do
     verifica_se_transforma_em_string_corretamente "0.12", 12
   end
 
-  def testa_se_transforma_em_string_que_represente_a_quantia_quando_tem_um_digito
+  test "Se transforma em string que representa a quantia quando tem 1 dígito" do
     verifica_se_transforma_em_string_corretamente "0.03", 3
   end
 
-  def testa_se_transforma_em_string_para_valores_especiais
+  test "Se transforma em string para valores especiais" do
     verifica_se_transforma_em_string_corretamente "-123112211.00", -12311221100          
   end
 
   # parte_inteira
-  def testa_parte_inteira
+  test "parte_inteira" do
     PARTE_INTEIRA.each { |quantia| assert_equal "#{quantia}", Dinheiro.new(quantia).parte_inteira }
   end
   
-  def testa_se_arredonda_valores_corretamente
+  test "Se arredonda valores corretamente" do
     ARREDONDAMENTO.each do |esperado, quantia| 
       assert_equal esperado, Dinheiro.new(quantia).quantia, "Deveria retornar #{esperado} para #{quantia}"
     end
   end
   
-  def testa_se_valor_decimal_cria_o_big_decimal_corretamente
+  test "Se valor decimal cria o big decimal corretamente" do
     assert_equal BigDecimal.new("1234.56"), Dinheiro.new("1234,56").valor_decimal
   end
 
-  def testa_soma_de_dinheiro_com_big_decimal
+  test "Soma de dinheiro com big decimal" do
     assert_equal Dinheiro.new(200), BigDecimal.new("100").reais + "100".reais
   end
   
-  def testa_zero_quando_eh_zero
+  test "Zero quando é zero" do
     assert Dinheiro.new(0).zero?
   end
   
-  def testa_zero_quando_nao_eh_zero
+  test "Zero quando não é zero" do
     assert !Dinheiro.new(1).zero?
   end
   
