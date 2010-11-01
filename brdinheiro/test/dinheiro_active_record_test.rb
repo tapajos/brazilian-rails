@@ -2,12 +2,12 @@
 require File.join(File.expand_path(File.dirname(__FILE__)), "test_helper.rb")
 require File.join(File.expand_path(File.dirname(__FILE__)), "active_record/base_without_table.rb")
 
-class Carteira < ActiveRecord::BaseWithoutTable
-  column :saldo, :decimal
-  usar_como_dinheiro :saldo
-end
-
 class DinheiroActiveRecordTest < ActiveSupport::TestCase
+
+  class Carteira < ActiveRecord::BaseWithoutTable
+    column :saldo, :decimal
+    usar_como_dinheiro :saldo
+  end
 
   def setup
     @carteira = Carteira.new
