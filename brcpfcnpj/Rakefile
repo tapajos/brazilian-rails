@@ -1,15 +1,15 @@
 # encoding: UTF-8
-require 'rubygems'
-require 'rake'
-require 'rake/testtask'
-require 'rake/rdoctask'
-require 'rake/packagetask'
-require 'rake/gempackagetask'
+require "rubygems"
+require "rake"
+require "rake/testtask"
+require "rake/rdoctask"
+require "rake/packagetask"
+require "rake/gempackagetask"
 
-require File.join(File.dirname(__FILE__), 'lib', 'brcpfcnpj', 'version')
+require File.join(File.dirname(__FILE__), "lib", "brcpfcnpj", "version")
 
-PKG_BUILD     = ENV['PKG_BUILD'] ? '.' + ENV['PKG_BUILD'] : ''
-PKG_NAME      = 'brcpfcnpj'
+PKG_BUILD     = ENV["PKG_BUILD"] ? "." + ENV["PKG_BUILD"] : ""
+PKG_NAME      = "brcpfcnpj"
 PKG_VERSION   = BrCpfCnpj::VERSION::STRING + PKG_BUILD
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 
@@ -19,15 +19,15 @@ RUBY_FORGE_PROJECT = "brcpfcnpj"
 RUBY_FORGE_USER    = "tapajos"
 
 begin
-  require 'spec'
-  require 'spec/rake/spectask'
+  require "spec"
+  require "spec/rake/spectask"
 
   desc "Default Task"
   task :default => [ :spec ]
 
   desc "Run all specs"
   Spec::Rake::SpecTask.new do |t|
-    t.spec_files = FileList['spec/**/*_spec.rb']
+    t.spec_files = FileList["spec/**/*_spec.rb"]
   end
 
   task :test do
@@ -39,15 +39,14 @@ end
 
 #Generate the RDoc documentation
 Rake::RDocTask.new { |rdoc|
-  rdoc.rdoc_dir = 'doc'
+  rdoc.rdoc_dir = "doc"
   rdoc.title    = "Brazilian Rails -- Data"
-  rdoc.options << '--line-numbers' << '--inline-source' << '-A cattr_accessor=object'
-  rdoc.options << '--charset' << 'utf-8'
-  rdoc.template = "#{ENV['template']}.rb" if ENV['template']
-  rdoc.rdoc_files.include('README', 'CHANGELOG')
-  rdoc.rdoc_files.include('lib/**/*')
+  rdoc.options << "--line-numbers" << "--inline-source" << "-A cattr_accessor=object"
+  rdoc.options << "--charset" << "utf-8"
+  rdoc.template = "#{ENV["template"]}.rb" if ENV["template"]
+  rdoc.rdoc_files.include("README", "CHANGELOG")
+  rdoc.rdoc_files.include("lib/**/*")
 }
-
 
 # Create compressed packages
 spec = Gem::Specification.new do |s|
@@ -62,12 +61,12 @@ spec = Gem::Specification.new do |s|
   s.rubyforge_project = "brcpfcnpj"
   s.homepage = "http://www.improveit.com.br/software_livre/brazilian_rails"
 
-  s.add_dependency('actionpack', '>= 1.13.6')
-  s.add_dependency('activesupport', '>= 1.4.2')
+  s.add_dependency("actionpack", ">= 2.3.2", "< 3.0.0")
+  s.add_dependency("activesupport", ">= 2.3.2", "< 3.0.0")
 
   s.has_rdoc = true
-  s.requirements << 'none'
-  s.require_path = 'lib'
+  s.requirements << "none"
+  s.require_path = "lib"
 
   s.files = [ "Rakefile", "README", "CHANGELOG", "MIT-LICENSE" ]
   s.files = s.files + Dir.glob( "lib/**/*" ).delete_if { |item| item.include?( "\.svn" ) }
@@ -77,8 +76,6 @@ end
 Rake::GemPackageTask.new(spec) do |p|
   p.gem_spec = spec
 end
-
-
 
 desc "Publish the release files to RubyForge."
 task :release => [ :package ] do
