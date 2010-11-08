@@ -1,6 +1,7 @@
 # encoding: UTF-8
 require "rubygems"
 require "rake"
+require "rake/testtask"
 require "rake/rdoctask"
 require "rake/packagetask"
 require "rake/gempackagetask"
@@ -12,19 +13,17 @@ PKG_NAME      = "brcpfcnpj"
 PKG_VERSION   = BrCpfCnpj::VERSION::STRING + PKG_BUILD
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 
-begin
-  require "rspec/core/rake_task"
-  RSpec::Core::RakeTask.new
+desc "Default Task"
+task :default => [ :test ]
 
-  desc "Default Task"
-  task :default => [ :spec ]
+# Run the unit tests
+Rake::TestTask.new { |t|
+  t.libs << "test"
+  t.pattern = "test/*_test.rb"
+  t.verbose = true
+  t.warning = false
+}
 
-  task :test do
-    system("rake spec")
-  end
-rescue LoadError
-  puts "To execute tests for brcnpjcpf gem, you want to install rspec gem before"
-end
 
 #Generate the RDoc documentation
 Rake::RDocTask.new { |rdoc|
