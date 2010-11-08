@@ -5,6 +5,5 @@ require "rails"
 require "rails/generators"
 require 'rails/test_help'
 
-require File.join(File.dirname(File.expand_path(__FILE__)), "../lib/brnumeros.rb")
-require File.join(File.dirname(File.expand_path(__FILE__)), "../lib/generators/br_numeros/install/install_generator.rb")
-
+require"brnumeros"
+require "generators/br_numeros/install/install_generator"

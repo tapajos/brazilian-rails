@@ -1,6 +1,6 @@
 # encoding: UTF-8
-require File.join(File.expand_path(File.dirname(__FILE__)), "test_helper.rb")
-require File.join(File.expand_path(File.dirname(__FILE__)), "active_record/base_without_table.rb")
+require File.dirname(__FILE__) + "/test_helper"
+require File.dirname(__FILE__) + "/active_record/base_without_table"
 
 class DinheiroActiveRecordTest < ActiveSupport::TestCase
 

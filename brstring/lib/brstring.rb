@@ -1,4 +1,4 @@
-%w(version).each {|req| require File.dirname(__FILE__) + "/brstring/#{req}"}
+require "brstring/version"
 
 module BrString
   def self.setup
@@ -7,7 +7,7 @@ module BrString
 
   private
   def self.ativar_brstring
-    require File.dirname(__FILE__) + "/brstring/string_portuguese.rb" 
+    require "brstring/string_portuguese" 
   end
 end
 

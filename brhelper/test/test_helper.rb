@@ -8,4 +8,4 @@ require 'mocha'
 include ActionView::Helpers::FormOptionsHelper
 include ActionView::Helpers::FormHelper
 
-require File.join(File.dirname(File.expand_path(__FILE__)), "../lib/brhelper.rb")
+require "brhelper"

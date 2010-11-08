@@ -1,4 +1,4 @@
-%w(version).each {|req| require File.dirname(__FILE__) + "/brI18n/#{req}"}
+require "brI18n/version"
 
 module BrI18n
   

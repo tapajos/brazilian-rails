@@ -1,5 +1,5 @@
-require File.dirname(__FILE__) + '/test_helper'
-require File.dirname(__FILE__) + '/active_record/base_without_table'
+require 'test_helper'
+require 'active_record/base_without_table'
 
 class Pessoa < ActiveRecord::Base
   usar_como_cpf :cpf

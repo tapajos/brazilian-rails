@@ -1,4 +1,5 @@
-%w(number_portuguese version).each {|req| require File.dirname(__FILE__) + "/brnumeros/#{req}"}
+require "brnumeros/number_portuguese"
+require "brnumeros/version"
 
 module BrNumeros
   def self.setup

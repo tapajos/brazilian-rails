@@ -1,5 +1,6 @@
 require 'find'
 require 'yaml'
+
 class FeriadoParser
   
   # Faz o parser do YML e retorna a coleção de feriados.

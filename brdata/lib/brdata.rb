@@ -4,8 +4,8 @@ require 'rubygems'
 require 'action_controller'
 require 'active_support'
 require 'action_view'
-  
-%w(version excecoes).each {|req| require File.dirname(__FILE__) + "/brdata/#{req}"}
+require "brdata/version"  
+require "brdata/excecoes"
 
 
 module BrData

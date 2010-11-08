@@ -1,5 +1,5 @@
 # encoding: UTF-8
-require File.join(File.expand_path(File.dirname(__FILE__)), "test_helper.rb")
+require "test_helper"
 
 class BrstringTest < ActiveSupport::TestCase
   test "BrString should accept a configuration block" do
