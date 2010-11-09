@@ -13,12 +13,6 @@ class BrcepTest < ActiveSupport::TestCase
     end
   end
 
-  test "Should raise if ativar_busca_endereco is not called" do
-    assert_raise NameError  do
-      BuscaEndereco
-    end
-  end
-
   test "Should have a method called proxy_address= and proxy_address" do
     assert_respond_to BrCep ,"proxy_address="
     assert_respond_to BrCep ,"proxy_address"

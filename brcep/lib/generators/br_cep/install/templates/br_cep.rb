@@ -5,9 +5,8 @@
 
 BrCep.setup do |config|
 
-  #Opção que ativa a class BuscaEndereço
-  #Em qualquer parte da sua aplicação será possível fazer: BuscaEndereco.por_cep(15500-000)
-  config.ativar_busca_endereco
+  config.proxy_address
 
+  config.proxy_port
 end
 

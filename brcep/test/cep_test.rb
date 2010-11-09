@@ -9,12 +9,6 @@ class CepTest < ActiveSupport::TestCase
   VALID_CEPS_NOT_FOUND_ON_BRONZE_BUSINESS = [20230024, '20230024', '20.230024', '20230-024', '20.230-024']
   ZIPS_WITH_NO_ADDRESS_ASSOCIATED = [12345678, '12345678', '12.345678', '12345-678', '12.345-678']
 
-  def setup
-    BrCep.setup do |config|
-      config.ativar_busca_endereco
-    end
-  end
-  
   test "Raise without service on both web services" do
     http_error_response = MockServerError.new
   
