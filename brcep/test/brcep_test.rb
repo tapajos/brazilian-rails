@@ -19,4 +19,14 @@ class BrcepTest < ActiveSupport::TestCase
     end
   end
 
+  test "Should have a method called proxy_address= and proxy_address" do
+    assert_respond_to BrCep ,"proxy_address="
+    assert_respond_to BrCep ,"proxy_address"
+  end
+
+  test "Should have a method called proxy_port= and proxy_port" do
+    assert_respond_to BrCep ,"proxy_port="
+    assert_respond_to BrCep ,"proxy_port"
+  end
+  
 end
