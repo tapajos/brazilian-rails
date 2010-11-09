@@ -23,7 +23,7 @@ class BrI18nTest < ActiveSupport::TestCase
 
   test "ativar_locales deve incluir todos arquivos se chamado sem parâmetros" do
     BrI18n.setup do |config|
-      config.ativar_locales
+      config.ativar_traducoes
     end
 
     Dir.glob("#{BrI18n::LOCALES_PATH}/*").each do |file|
@@ -32,15 +32,18 @@ class BrI18nTest < ActiveSupport::TestCase
   end
 
   test "ativar_locales deve incluir apenas arquivos selecionados se chamado com parâmetros" do
+    I18n.load_path = []
+    
     BrI18n.setup do |config|
-      config.ativar_locales :rails
+      config.ativar_traducoes :rails
     end
     assert_equal I18n.load_path.count, 1
     assert_equal I18n.load_path.first, "#{BrI18n::LOCALES_PATH}/rails.pt-BR.yml"
 
     I18n.load_path = []
+
     BrI18n.setup do |config|
-      config.ativar_locales :devise
+      config.ativar_traducoes :devise
     end
 
     assert_equal I18n.load_path.count, 1

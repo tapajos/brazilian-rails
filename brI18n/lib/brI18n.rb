@@ -9,11 +9,9 @@ module BrI18n
   end
 
   private
-  def self.ativar_traducoes
+  def self.ativar_traducoes(*args)
     I18n.default_locale = 'pt-BR'
-  end
-
-  def self.ativar_locales(*args)
+    
     if args.empty?
       I18n.load_path += Dir.glob("#{BrI18n::LOCALES_PATH}/*.pt-BR.yml")
     else
