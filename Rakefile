@@ -6,39 +6,22 @@ require "rake/rdoctask"
 require "rake/packagetask"
 require "rake/gempackagetask"
 
-
 env = %(PKG_BUILD="#{ENV["PKG_BUILD"]}") if ENV["PKG_BUILD"]
 
-PROJECTS_WITH_TEST_UNIT = %w(brnumeros brdinheiro brcep brdata brhelper brstring brI18n)
-PROJECTS_WITH_RSPEC = %w(brcpfcnpj)
-PROJECTS = PROJECTS_WITH_TEST_UNIT + PROJECTS_WITH_RSPEC
+PROJECTS = %w(brnumeros brdinheiro brcep brdata brhelper brstring brI18n brcpfcnpj)
+ 
 
 Dir["#{File.dirname(__FILE__)}/*/lib/*/version.rb"].each do |version_path|
   require version_path
 end
 
-desc "Run all tests"
-Rake::TestTask.new(:test_all) do |t|
-  t.libs << 'lib'
-  t.libs << 'test'
-  t.pattern = '{brI18n,brcep,brhelper,brnumeros,brstring,brdata,brdinheiro,brcpfcnpj}/test/**/**/*_test.rb'
-  t.verbose = true
-end
-
 desc "Run all tests by default"
-task :default => [:test, :spec]
+task :default => [:test]
 
 desc "Run test/spec task for all projects with test unit"
 task :test do
-  PROJECTS_WITH_TEST_UNIT.each do |project|
+  PROJECTS.each do |project|
     system %(cd #{project} && #{env} #{$0} test)
-  end
-end
-
-desc "Run spec task for all projects with rspec"
-task :spec do
-  PROJECTS_WITH_RSPEC.each do |project|
-    system %(cd #{project} && #{env} #{$0} spec)
   end
 end
 
