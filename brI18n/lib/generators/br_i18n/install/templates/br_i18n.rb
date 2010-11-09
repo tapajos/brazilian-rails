@@ -11,7 +11,6 @@ BrI18n.setup do |config|
 
   #Carrega todos os locales de traduções disponíveis na gem
   #Atualmente: rails.pt-Br e devise.pt-BR são as traduçõs suportadas
-  #Caso queira carregar todas elas basta chamar o metodo "ativar_locales"
   #Esse método também pode receber como parâmetro quais traduções deseja carregar, como :rails ou :devise
   config.ativar_locales
 

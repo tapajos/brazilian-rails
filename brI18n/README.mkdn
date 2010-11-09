@@ -11,17 +11,18 @@ Adicionar ao seu Gemfile:
 Agora você tem duas escolhas, copiar os locales em pt-BR para sua aplicação, ou instalar o arquivo de configuração:
 
 Para instalar o arquivo de configuração:
+
         rails g br_i18n:install
 
 Um arquivo onde você poderá escolher as preferências será criado na sua pasta config.
 Basta seguir as instruções dentro do próprio arquivo.
 
 Para copiar os locales:
+
         rails g br_i18n:locales
+
 Os arquivos de tradução serão copiados para a pasta config/locales da sua aplicação.
 
 ##Suporte
 Atualmente a gem BrI18n suporta traduções para o rails e para a gem devise.
-Caso queira adicionar uma outra tradução, faça um fork, adicione o arquivo de tradução e de um pull request.
-
-
+Caso queira adicionar uma outra tradução,faça um fork e então mande o pull request com as modificações.
