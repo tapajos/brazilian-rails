@@ -28,4 +28,9 @@ class BrcepTest < ActiveSupport::TestCase
     assert_respond_to BrCep ,"cep_invalido="
   end
   
+  test "Should have a method called servico_indisponivel and servico_indisponivel=" do
+    assert_respond_to BrCep ,"servico_indisponivel"
+    assert_respond_to BrCep ,"servico_indisponivel="
+  end
+  
 end

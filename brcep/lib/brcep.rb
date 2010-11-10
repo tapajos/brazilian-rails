@@ -18,6 +18,12 @@ module BrCep
   mattr_accessor :cep_invalido
   @@cep_invalido = :throw
 
+  #Erro para serviços indisponíveis
+  #:throw lançará uma exception
+  #:nil retornará apenas nil
+  mattr_accessor :servico_indisponivel
+  @@servico_indisponivel = :throw
+
   def self.setup
     yield self
   end

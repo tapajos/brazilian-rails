@@ -12,6 +12,7 @@ class CepTest < ActiveSupport::TestCase
   def setup
     BrCep.setup do |config|
       config.cep_invalido = :throw
+      config.servico_indisponivel = :throw
     end
   end
 
@@ -24,6 +25,22 @@ class CepTest < ActiveSupport::TestCase
     assert_raise RuntimeError, "A busca de endereço por CEP está indisponível no momento." do
       Cep.find(VALID_ZIPS.first)
     end
+  end
+
+  test "Return nil without service on both services" do
+    BrCep.servico_indisponivel = :nil
+    http_error_response = MockServerError.new
+  
+    Net::HTTP.expects(:get_response).returns(http_error_response)
+    Net::HTTP.expects(:get_response).returns(http_error_response)
+    Net::HTTP.expects(:get_response).returns(http_error_response)
+    Net::HTTP.expects(:get_response).returns(http_error_response)
+  
+    assert_nothing_raised do
+      Cep.find(VALID_ZIPS.first)
+    end
+
+    assert_nil Cep.find(VALID_ZIPS.first)
   end
 
   test "Raise for invalid zip code" do

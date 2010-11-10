@@ -51,7 +51,7 @@ class Cep
       usar_web_service_do_buscar_cep
     end
     
-    @@retorno << @@cep
+    @@retorno << @@cep if !@@cep.nil?
   end
 
   private
@@ -66,7 +66,16 @@ class Cep
 
   def self.usar_web_service_do_buscar_cep
     @@response = Net::HTTP.Proxy(BrCep.proxy_address, BrCep.proxy_port).get_response(URI.parse("#{URL_WEB_SERVICE_BUSCAR_CEP}#{@@cep}&formato=xml"))
-    raise "A busca de endereço por CEP está indisponível no momento." unless @@response.kind_of?(Net::HTTPSuccess)
+
+    unless @@response.kind_of?(Net::HTTPSuccess)
+      if BrCep.servico_indisponivel == :nil
+        @@response = nil
+        @@cep = nil
+        return
+      else
+        raise "A busca de endereço por CEP está indisponível no momento."
+      end
+    end
     
     @@doc = REXML::Document.new(@@response.body)
     processar_xml ELEMENTOS_XML_BUSCAR_CEP
