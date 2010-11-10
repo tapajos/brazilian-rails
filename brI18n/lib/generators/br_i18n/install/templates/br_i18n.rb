@@ -4,6 +4,7 @@
 #########################################################################################
 
 BrI18n.setup do |config|
+
   #Usa pt-BR como o default-locale da aplicação
   #Carrega todos os locales de traduções disponíveis na gem
   #Atualmente: rails.pt-Br e devise.pt-BR são as traduçõs suportadas
