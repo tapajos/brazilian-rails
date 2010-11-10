@@ -2,12 +2,6 @@
 require 'net/http'
 require 'rexml/document'
 
-# Este recurso tem como finalidade encontrar um endereço através de um CEP, e
-# para isso ele utiliza o web service da Bronze Business (http://www.bronzebusiness.com.br/webservices/wscep.asmx)
-# e o web service do Buscar CEP (http://www.buscarcep.com.br). O segundo só é utilizado quando
-# o primeiro está indisponível ou quando ele não encontra o endereço associado ao CEP informado.
-# Obviamente, para utilizar este serviço é necessário uma conexão com a Internet.
-# 
 #Como fazer a busca de endereço por cep?
 #
 # Cep.find(22640100)     ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', '22640100']
@@ -34,7 +28,9 @@ class Cep
   #
   # Exemplo:
   #  Cep.find(22640100) ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
+
   def self.find(numero)
+    #Remove formatação do cep
     @@cep = numero.to_s.gsub(/\./, '').gsub(/\-/, '')
 
     #verifica cep inválido
@@ -57,15 +53,20 @@ class Cep
   private
   
   def self.usar_web_service_da_bronze_business
-    @@response = Net::HTTP.Proxy(BrCep.proxy_address, BrCep.proxy_port).get_response(URI.parse("#{URL_WEB_SERVICE_BRONZE_BUSINESS}#{@@cep}"))
-    raise "A busca de endereço por CEP através do web service da Bronze Business está indisponível." unless @@response.kind_of?(Net::HTTPSuccess)
+    @@response = Net::HTTP.Proxy(BrCep.proxy_address, BrCep.proxy_port)
+    @@response = @@response.get_response(URI.parse("#{URL_WEB_SERVICE_BRONZE_BUSINESS}#{@@cep}"))
+    
+    unless @@response.kind_of?(Net::HTTPSuccess)
+      raise "A busca de endereço por CEP está indisponível no momento."
+    end
 
     @@doc = REXML::Document.new(@@response.body)
     processar_xml ELEMENTOS_XML_BRONZE_BUSINESS
   end
 
   def self.usar_web_service_do_buscar_cep
-    @@response = Net::HTTP.Proxy(BrCep.proxy_address, BrCep.proxy_port).get_response(URI.parse("#{URL_WEB_SERVICE_BUSCAR_CEP}#{@@cep}&formato=xml"))
+    @@response = Net::HTTP.Proxy(BrCep.proxy_address, BrCep.proxy_port)
+    @@response = @@response.get_response(URI.parse("#{URL_WEB_SERVICE_BUSCAR_CEP}#{@@cep}&formato=xml"))
 
     unless @@response.kind_of?(Net::HTTPSuccess)
       if BrCep.servico_indisponivel == :nil
