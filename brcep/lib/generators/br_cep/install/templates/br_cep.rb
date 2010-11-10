@@ -4,9 +4,19 @@
 #########################################################################################
 
 BrCep.setup do |config|
+  
+  #Caso precise de proxy basta habilitar as opções
+  #config.proxy_address = "example.com"
+  #config.proxy_port = 80
 
-  config.proxy_address
+  #Define o retorno caso o formato do cep seja inválido
+  #:throw lançará uma exception
+  #:nil retornará nil
+  config.cep_invalido = :throw
 
-  config.proxy_port
+  #Define o retorno caso os serviços de busca estejam indisponíveis
+  #:throw lançará uma exception
+  #nil retornará nil
+  config.servico_indisponivel = :throw
 end
 
