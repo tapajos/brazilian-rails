@@ -40,6 +40,7 @@ class BuscaEndereco
   # Exemplo:
   #  BuscaEndereco.por_cep(22640100) ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
   def self.por_cep(numero)
+    warn "[DEPRECATION WARNING] BuscaEndereco.por_cep será removido em breve, use Cep.find."
     @@cep = numero.to_s.gsub(/\./, '').gsub(/\-/, '')
     raise "O CEP informado possui um formato inválido." if @@cep.length != 8
 
