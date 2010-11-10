@@ -23,4 +23,9 @@ class BrcepTest < ActiveSupport::TestCase
     assert_respond_to BrCep ,"proxy_port"
   end
   
+  test "Should have a method called cep_invalido and cep_invalido=" do
+    assert_respond_to BrCep ,"cep_invalido"
+    assert_respond_to BrCep ,"cep_invalido="
+  end
+  
 end

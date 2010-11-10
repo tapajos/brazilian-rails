@@ -36,7 +36,12 @@ class Cep
   #  Cep.find(22640100) ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
   def self.find(numero)
     @@cep = numero.to_s.gsub(/\./, '').gsub(/\-/, '')
-    raise "O CEP informado possui um formato inválido." if @@cep.length != 8
+
+    #verifica cep inválido
+    if @@cep.length != 8
+      raise "O CEP informado possui um formato inválido." if BrCep.cep_invalido == :throw   
+      return nil if BrCep.cep_invalido == :nil
+    end
 
     @@retorno = []
 

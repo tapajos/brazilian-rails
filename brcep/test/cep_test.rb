@@ -9,6 +9,12 @@ class CepTest < ActiveSupport::TestCase
   VALID_CEPS_NOT_FOUND_ON_BRONZE_BUSINESS = [20230024, '20230024', '20.230024', '20230-024', '20.230-024']
   ZIPS_WITH_NO_ADDRESS_ASSOCIATED = [12345678, '12345678', '12.345678', '12345-678', '12.345-678']
 
+  def setup
+    BrCep.setup do |config|
+      config.cep_invalido = :throw
+    end
+  end
+
   test "Raise without service on both web services" do
     http_error_response = MockServerError.new
   
@@ -27,6 +33,20 @@ class CepTest < ActiveSupport::TestCase
       end
     end
   end    
+
+  test "Return nil when BrCep.cep_inválido = :nil" do
+    BrCep.cep_invalido = :nil
+
+    INVALID_ZIPS.each do |invalid_zip|
+      assert_nothing_raised do
+        Cep.find(invalid_zip)
+      end
+    end
+    
+    INVALID_ZIPS.each do |invalid_zip|
+      assert_nil Cep.find(invalid_zip)
+    end
+  end
   
   test "Valid codes on bronze business" do
     VALID_ZIPS.each do |valid_zip|
