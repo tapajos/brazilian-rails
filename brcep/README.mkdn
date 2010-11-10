@@ -17,22 +17,50 @@ No seu Gemfile:
 Gere o arquivo de configuração:
         rails g br_cep:install
 
-Na sua aplicação:
-        BuscaEndereco.por_cep(22640100)     ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
-        BuscaEndereco.por_cep('22640100')   ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
-        BuscaEndereco.por_cep('22640-100')  ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
-        BuscaEndereco.por_cep('22.640-100') ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
+##  Configurando
+Na sua pasta config será criado um arquivo com nome br_cep.rb:
+
+        BrCep.setup do |config|
+          #Caso precise de proxy basta habilitar as opções
+          #config.proxy_address = "example.com"
+          #config.proxy_port = 80
+
+          #Define o retorno caso o formato do cep seja inválido
+          #:throw lançará uma exception
+          #:nil retornará nil
+          config.cep_invalido = :throw
+
+          #Define o retorno caso os serviços de busca estejam indisponíveis
+          #:throw lançará uma exception
+          #nil retornará nil
+          config.servico_indisponivel = :throw
+        end
+
+As configurações são bem simples possibilitando:
+
+* Customizar o uso de proxy: config.proxy_address e config.proxy_port
+* Customizar o retorno caso o CEP seja inválido: config.cep_invalido, aceitando :throw(eception) e :nil(retorna nil)
+* Customizar o retorno caso o serviço de busca esteja indisponível: config.servico_indisponivel, aceitando :throw(eception) e :nil(retorna nil)
+
+## Utilizando
+
+        Cep.find(22640100)     ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
+        Cep.find('22640100')   ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
+        Cep.find('22640-100')  ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
+        Cep.find('22.640-100') ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
 
 ## O que acontece se o CEP informado tiver um formato inválido?
 
-        BuscaEndereco.por_cep('00000000')   ==> RuntimeError 'O CEP informado possui um formato inválido.'
+        Cep.find('00000000')   ==> RuntimeError 'O CEP informado possui um formato inválido.'
 
 ## E se os dois web services estiverem indisponíveis?
 
-        BuscaEndereco.por_cep('22.640-100') ==> RuntimeError, "A busca de endereço por CEP está indisponível no momento."
+        Cep.find('22.640-100') ==> RuntimeError, "A busca de endereço por CEP está indisponível no momento."
 
 ## E se por acaso o CEP não for encontrado em nenhum dos dois web services:
 
-        BuscaEndereco.por_cep('12345678') ==> RuntimeError, "CEP 12345678 não encontrado."
+        Cep.find('12345678') ==> RuntimeError, "CEP 12345678 não encontrado."
+
+Todas opções acima podem ser modificadas no arquivo de configuração config/br_cep.rb
 
 P.S.: Nesse caso o endereço não foi encontrado porque não existe um endereço associado ao CEP 12345678. No entanto, pode haver situações em que CEPs que possuem endereços associados não tenham os seus endereços encontrados, no entanto, até o momemnto os dois web services utilizados cobrem todas os CEPs testados na prática.
