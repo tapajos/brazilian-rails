@@ -2,13 +2,11 @@ require "brnumeros/number_portuguese"
 require "brnumeros/version"
 
 module BrNumeros
+
+  Numeric.send(:include, ExtensoReal)
+
   def self.setup
     yield self
-  end
-
-  private
-  def self.ativar_numeros_por_extenso
-    Numeric.send(:include, ExtensoReal)
   end
 
   def self.mensagem_zero_reais=(message)

@@ -5,11 +5,9 @@ class NumberTest < ActiveSupport::TestCase
 
   def setup
     BrNumeros.setup do |config|
-      config.ativar_numeros_por_extenso
       config.mensagem_zero_reais = "grátis"
     end
   end
-
 
   test "mensagem_zero_reais" do
     BrNumeros.setup do |config|
