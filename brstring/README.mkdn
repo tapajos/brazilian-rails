@@ -1,0 +1,65 @@
+# BrString
+
+## O que é?
+
+O BrString é uma gem que tem como objetivo auxiliar a formatação e tratamento de strings.
+
+* Normalizar nomes próprios
+* Remover letras acentuadas 
+* String com caracteres maiúsculos
+* String com caracteres minúsculos
+* Transformar String em título (primeira letra de cada palavra maiúscula)
+
+## Como usar?
+
+No seu Gemfile:
+        gem "brstring"
+
+## Utilizando
+
+Normalizar nomes próprios:
+
+        String.nome_proprio('maria de souza dos santos e silva da costa') ==> 'Maria de Souza dos Santos e Silva da Costa'
+
+        'maria de souza dos santos e silva da costa'.nome_proprio ==> 'Maria de Souza dos Santos e Silva da Costa'
+
+        texto = 'maria de souza dos santos e silva da costa'
+        texto.nome_proprio!
+        texto ==> 'Maria de Souza dos Santos e Silva da Costa'
+        
+Remover letras acentuadas:
+
+        String.remover_acentos('texto está com acentuação') ==> 'texto esta com acentuacao'
+        'texto está com acentuação'.remover_acentos ==> 'texto esta com acentuacao'
+
+        texto = 'texto está com acentuação'
+        texto.remover_acentos!
+        texto ==> 'texto esta com acentuacao'
+
+String com caracteres maiúsculos
+
+        String.upcase('texto com acentuação' ==> 'TEXTO COM ACENTUAÇÃO'
+        'texto com acentuação'.upcase ==> 'TEXTO COM ACENTUAÇÃO'
+
+        texto = 'texto com acentuação'
+        texto.upcase
+        texto ==> 'TEXTO COM ACENTUAÇÃO'
+
+String com caracteres minúsculos
+
+        String.downcase('TEXTO COM ACENTUAÇÃO') ==> 'texto com acentuação'
+        'TEXTO COM ACENTUAÇÃO'.downcase ==> 'texto com acentuação'
+
+        texto = 'TEXTO COM ACENTUAÇÃO'
+        texto.downcase
+        texto ==> 'texto com acentuação'
+
+Transformar String em título (primeira letra de cada palavra maiúscula)
+
+        String.titleize('o livro esta sobre a mesa!') ==> 'O Livro Esta Sobre A Mesa!'
+        'o livro esta sobre a mesa!'.titleize ==> 'O Livro Esta Sobre A Mesa!'
+
+        texto = 'o livro esta sobre a mesa!'
+        texto.titleize!
+        texto ==> 'O Livro Esta Sobre A Mesa!'
+
