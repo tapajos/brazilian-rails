@@ -1,0 +1,47 @@
+# BrNumeros
+
+## O que é?
+
+O BrNumeros é uma gem que tem como objetivo auxiliar na escrita de números/valores por extenso.
+
+## Como usar?
+
+No seu Gemfile:
+        gem "brnumeros"
+
+Gere o arquivo de configuração:
+        rails g br_numeros:install
+
+##  Configurando
+Na sua pasta config será criado um arquivo com nome br_numeros.rb:
+
+        BrNumeros.setup do |config|
+
+          #Possiblidade  trocar a mensagem por extenso para 0 reais
+          #a mensagem padrão é "grátis"
+          #config.mensagem_zero_reais = "grátis"
+
+        end
+
+Esse bloco de configuração possibilita customizar a mensagem para 0 reias, usando como default "grátis"
+
+## Utilizando
+
+Números:
+
+          1.por_extenso ==> 'um'
+          100.por_extenso ==> 'cem'
+          158.por_extenso ==> 'cento e cinquenta e oito'
+
+          Extenso.por_extenso(1) ==> "um"
+          Extenso.por_extenso(100) ==> "cem"
+          Extenso.por_extenso(158) ==> "cento e cinquenta e oito"  
+
+Valores:
+
+          1.por_extenso_em_reais ==> 'um real'
+          (100.58).por_extenso_em_reais ==> 'cem reais e cinquenta e oito centavos'
+
+          Extenso.por_extenso_em_reais(1) ==> "um real"
+          Extenso.por_extenso_em_reais(100) ==> "cem reais"
+          Extenso.por_extenso_em_reais(100.58) ==> "cem reais e cinquenta e oito centavos"  
