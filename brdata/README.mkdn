@@ -1,1 +1,68 @@
-Aqui vai o readme
+# BrData
+
+## O que é?
+
+O BrData é uma gem que tem como objetivo facilitar o trabalho com datas em pt-BR.
+
+## Como usar?
+
+No seu Gemfile:
+        gem "brdata"
+
+Gere o arquivo de configuração:
+        rails g br_data:install
+
+##  Configurando
+Na sua pasta config será criado um arquivo com nome br_data.rb:
+
+        BrData.setup do |config|
+
+          #Ativa os métodos da class Date
+          config.ativar_date
+
+          #Ativa os métodos da class Time
+          config.ativar_time
+
+          #Ativa os helpers para as views
+          config.ativar_helpers
+
+          #Ativa a capaciade de verificar se uma data é feriado
+          config.ativar_feriados
+        end
+
+O arquivo de configuração é um meio de ativar apenas o que deseja usar, evitando sua aplicação "quebrar" após adicionar a gem.
+
+## Utilizando
+
+#### Convertendo string em data
+
+          "27/09/2007".to_date
+
+#### Retorna data no formato brasileiro
+
+          data = Date.new(2007, 9, 27)
+          data.to_s_br ==> "27/09/2007"
+
+#### Verifica se uma string é uma data válida
+
+          Date.valid?('01/01/2007') ==> true
+          Date.valid?('32/01/2007') ==> false
+
+#### Convertendo string com data e horário
+
+          "27/09/2007 01:23".to_date
+
+#### Hora no padrão brasileiro
+
+          hora = Time.new
+          hora.to_s_br ==> "27/09/2007 13:54"
+
+#### Formata hora usando unidades em pt-BR
+
+          hora = Time.new
+          hora.strftime("%B") ==> "Janeiro"
+
+#### Verifica se uma data é feriado
+
+          data = Date.new(2007, 12, 25)
+          data.feriado? ==> true
