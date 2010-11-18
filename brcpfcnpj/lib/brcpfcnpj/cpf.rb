@@ -43,7 +43,9 @@
 #   c = Cpf.new("11144477735")
 #   p.cpf = "111.444.777-35"
 #   c == p.cpf # ==> true
-# 
+#
+#Também é possível validar um Cpf sem instanciar:
+#   Cpf.valido?("111.444.777-35") ==> true
 class Cpf 
   include CpfCnpj
 end

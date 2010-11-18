@@ -40,6 +40,9 @@
 #  c = Cnpj.new("69103604000160")
 #  e.cnpj = "69.103.604/0001-60"
 #  c == e.cnpj # ==> true   
+#
+#Também é possível validar um Cnpj sem instanciar:
+#  Cnpj.valido?("69.103.604/0001-60")
 class Cnpj
   include CpfCnpj
 end
