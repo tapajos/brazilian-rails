@@ -1,4 +1,9 @@
 module CpfCnpj
+
+  def self.included(base)
+    base.extend ClassMethods
+  end
+
   attr_reader :numero
   
   def initialize(numero)
@@ -24,7 +29,21 @@ module CpfCnpj
     return false unless @match    
     verifica_numero
   end  
-  
+ 
+  #Caseo queira fazer uma simples verificação sem instanciar um objecto:
+  #Cpf.valido?("111.111.111-11")
+  #Cnpj.valido?("111111111111111111")
+  module ClassMethods
+    def valido?(string)
+      case self.name
+      when "Cpf"
+        Cpf.new(string).valido?
+      when "Cnpj"
+        Cnpj.new(string).valido?
+      end
+    end
+  end
+
   private
   DIVISOR = 11
   

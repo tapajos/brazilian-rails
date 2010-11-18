@@ -7,6 +7,7 @@ class CpfTest < ActiveSupport::TestCase
     numeros.each do |n|
       cpf = Cpf.new(n)
       assert !cpf.valido?
+      assert !Cpf.valido?(n)
     end
   end
 
@@ -15,6 +16,7 @@ class CpfTest < ActiveSupport::TestCase
     numeros.each do |n|
       cpf = Cpf.new(n)
       assert !cpf.valido?
+      assert !Cpf.valido?(n)
     end
   end
   
@@ -23,12 +25,14 @@ class CpfTest < ActiveSupport::TestCase
     numeros.each do |n|
       cpf = Cpf.new(n)
       assert cpf.valido?
+      assert Cpf.valido?(n)
     end
   end
   
   test "should be invalid with a number longer than 11 chars, even if the first 11 char represent a valid cpf number" do
     %w(111.444.777-3500 11144477735AB).each do |n|
       assert !Cpf.new(n).valido?
+      assert !Cpf.valido?(n)
     end
   end
   
