@@ -7,6 +7,7 @@ class CnpjTest < ActiveSupport::TestCase
     numeros.each do |n|
       cnpj = Cnpj.new(n)
       assert !cnpj.valido?
+      assert !Cnpj.valido?(n)
     end
   end
 
@@ -15,12 +16,14 @@ class CnpjTest < ActiveSupport::TestCase
     numeros.each do |n|
       cnpj = Cnpj.new(n)
       assert !cnpj.valido?
+      assert !Cnpj.valido?(n)
     end
   end
 
   test "should be invalid with a number longer than 14 chars, even if the first 14 represent a valid number" do
     %w(691036040001-601 69103604000160a 69103604000160ABC 6910360400016000).each do |n|
       assert !Cnpj.new(n).valido?
+      assert !Cnpj.valido?(n)
     end
   end
 
@@ -29,6 +32,7 @@ class CnpjTest < ActiveSupport::TestCase
     numeros.each do |n|
       cnpj = Cnpj.new(n)
       assert cnpj.valido?
+      assert Cnpj.valido?(n)
     end
   end
   
