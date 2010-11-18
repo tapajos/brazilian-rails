@@ -1,0 +1,90 @@
+# BrCpjCnpj
+
+## O que é?
+
+O BrCpjCnpj é uma gem que tem como objetivo facilitar o trabalho com Cpf e Cnpj, ajudando na formatação, validação e etc.
+
+## Como usar?
+
+No seu Gemfile:
+        gem "brcpjcnpj"
+
+## Utilizando
+
+#### Cpf
+
+        c = Cpf.new("11144477735")
+        c.valido? ==> true
+        c.numero ==> "111.444.777-35"
+        k = Cpf.new("11144477735")
+        c == k ==> true
+
+#### Cnpj
+
+        c = Cnpj.new("69103604000160")
+        c.valido? ==> true
+        c.numero ==> "69.103.604/0001-60"
+        k = Cnpj.new("69.103.604/0001-60")
+        c == k ==> true
+
+## Integração com ActiveRecord
+
+Caso esteja usando ActiveRecord na sua aplicação, o BrCpjCnpj fornece algumas facilidades:
+
+#### Cpf
+
+        class Pessoa < ActiveRecord::Base
+         usar_como_cpf :cpf
+        end
+
+        p = Pessoa.new
+        p.cpf = "11144477735"
+        puts p.cpf # ==> 111.444.777-35
+        p.cpf.valido? # ==> true
+        p.cpf_valido? # ==> true
+
+        p = Pessoa.new(:cpf => "111.444.777-35")
+        puts p.cpf # ==> 111.444.777-35
+
+        p = Pessoa.new
+        p.cpf = Cpf.new("111444777-35")
+        puts p.cpf # ==> 111.444.777-35
+
+        p = Pessoa.new
+        p.cpf = "12345" # ==> um cpf invalido
+        puts p.valid? # ==> false
+        p.save # ==> false
+        p.errors.on(:cpf) # ==> 'numero invalido'
+
+        c = Cpf.new("11144477735")
+        p.cpf = "111.444.777-35"
+        c == p.cpf # ==> true
+
+#### Cnpj
+
+        class Empresa < ActiveRecord::Base
+         usar_como_cnpj :cnpj
+        end
+
+        e = Empresa.new
+        e.cnpj = "69103604000160"
+        puts e.cnpj # ==> 69.103.604/0001-60
+        e.cnpj.valido? # ==> true
+        e.cnpj_valido? # ==> true
+         
+        e = Empresa.new(:cnpj => "69.103.604/0001-60")
+        puts e.cnpj # ==> 69.103.604/0001-60
+         
+        e = Empresa.new
+        e.cnpj = Cnpj.new("691036040001-60")
+        puts e.cnpj # ==> 69.103.604/0001-60
+
+        e = Empresa.new
+        e.cnpj = "12343" # ==> um cnpj invalido
+        puts e.valid? # ==> false
+        e.save # ==> false
+        e.errors.on(:cnpj) # ==> 'numero invalido'
+         
+        c = Cnpj.new("69103604000160")
+        e.cnpj = "69.103.604/0001-60"
+        c == e.cnpj # ==> true   
