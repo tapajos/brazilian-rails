@@ -4,6 +4,7 @@ require "rubygems"
 require "rails"
 require 'rails/test_help'
 require "active_record"
+require "active_support"
 
 require "brcpfcnpj"
 ActiveRecord::Base.establish_connection(:adapter=>"sqlite3", :database => ":memory:")
