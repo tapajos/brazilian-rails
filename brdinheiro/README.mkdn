@@ -1,0 +1,114 @@
+# BrDinheiro
+
+## O que é?
+
+O BrDinheiro é uma gem que tem como objetivo facilitar o trabalho com dinheiro(Real - R$).
+
+## Como usar?
+
+No seu Gemfile:
+        gem "brdinheiro"
+
+## Utilizando
+
+        um_real = Dinheiro.new(1)
+        um_real == Dinheiro.new(1) ==> true
+        um_real == Dinheiro.new(2) ==> false
+
+        1.real < 2.reais ==> true
+        1.real > 2.reais ==> false
+        2.real < 1.reais ==> false
+        2.real > 1.reais ==> true
+
+        1.real + 1.real == 2.reais 
+        1.real + 1 == 2.reais 
+
+        10.reais - 2.reais == 8.reais 
+        10.reais - 2 == 8.reais 
+
+        5.reais * 2 == 10.reais
+        5.reais * 2.reais == 10.reais
+
+        5.reais / 2 == (2.5).reais
+        5.reais / 2.reais == DivisaPorNaoEscalarError
+        5.reais / 0 == ZeroDivisionError
+
+        6.reais.parcelar(2) == [3.reais, 3.reais]
+        6.reais.parcelar(2.reais) == DisivaPorNaoEscalarError
+        6.reais.parcelar(0) == ZeroDivisionError
+
+        Dinheiro.new(1).real_formatado ==> 'R$ 1,00'
+        Dinheiro.new(-1).real_formatado ==> 'R$ -1,00'
+
+        Dinheiro.new(1).real_contabil ==> 'R$ 1,00'
+        Dinheiro.new(-1).real_contabil ==> 'R$ (1,00)'
+          
+        Dinheiro.new(1).contabil ==> '1,00'
+        Dinheiro.new(-1).contabil ==> '(1,00)'
+  
+
+#### Conversões
+
+        1.real_contabil ==> 'R$ 1,00'
+        -1.real_contabil ==> 'R$ (1,00)'
+          
+        2.reais_contabeis ==> 'R$ 2,00'
+        -2.reais_contabeis ==> 'R$ 2,00'
+
+        1.contabil ==> '1,00'
+        -1.contabil ==> '(1,00)'
+  
+
+## Facilidades com ActiveRecord
+ 
+Caso use ActiveRecord na sua aplicação o brdinheiro fornece algumas facilidades:
+
+        #001_create_lancamentos.rb:
+        class CreateLancamentos < ActiveRecord::Migration
+         def self.up
+           create_table :lancamentos do |t|
+             t.column :descricao,   :string,    :null => false
+             t.column :valor,       :decimal,   :precision => 14, :scale => 2
+             t.column :mensalidade, :decimal,   :precision => 14, :scale => 2
+           end
+         end
+
+          def self.down
+           drop_table :lancamentos
+          end
+        end
+ 
+
+        #lancamento.rb:
+        class Lancamento < ActiveRecord::Base
+         usar_como_dinheiro :valor, :mensalidade
+        end
+
+ 
+        #script/console:
+        Loading development environment.
+        >> lancamento = Lancamento.new
+        => #<Lancamento:0x9652cd8 @attributes={"descricao"=>nil, 
+                                              "valor"=>#<BigDecimal:9657008,'0.0',4(4)>, 
+                                              "mensalidade"=>#<BigDecimal:9656e8c,'0.0',4(4)>}, 
+                                 @new_record=true>
+        >> lancamento.valor = 100
+        => 100
+        >> lancamento.valor
+        => #<Dinheiro:0x9650f3c @quantia=10000>
+        >> lancamento.valor.real
+        => "R$ 100,00"
+        >> lancamento.valor = 100.50
+        => 100.5
+        >> lancamento.valor.real
+        => "R$ 100,50"
+        >> lancamento.valor = "250.50"
+        => "250.50"
+        >> lancamento.valor.real
+        => "R$ 250,50"
+        >> lancamento.valor = 354.58.reais
+        => #<Dinheiro:0x9646384 @quantia=35458>
+        >> lancamento.valor.real
+        => "R$ 354,58"
+        >> exit
+
