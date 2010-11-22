@@ -1,0 +1,18 @@
+# BrHelper
+
+## O que é?
+
+O BrHelper é uma gem que tem como objetivo criar alguns helpers para facilitar a vida do programador rails brasileiro.
+
+## Como usar?
+
+No seu Gemfile:
+        gem "brhelper"
+
+##  Funcionalidades
+
+  # Helper para seleção de sexo com radio_buttom.
+  # Helper para montar um select para seleção de estados brasileiros por nome e armazenamento da sigla.
+  # Helper para montar um select para seleção de estados brasileiros por sigla.
+    
+Para mais detalhes verifique a documentação
