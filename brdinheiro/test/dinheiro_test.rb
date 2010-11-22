@@ -3,10 +3,6 @@ require File.dirname(__FILE__) + "/test_helper"
 
 class DinheiroTest < ActiveSupport::TestCase
 
-  BrDinheiro.setup do |config|
-    config.ativar_dinheiro
-  end
-  
   CONTABIL = { "(2,00)" =>    -2,
                  "2,00" =>     2,    
                  "0,00" =>     0,

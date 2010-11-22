@@ -1,9 +1,11 @@
-require "brdinheiro/excecoes"
-require "brdinheiro/nil_class"
 require "bigdecimal"
 require "rubygems"
 require "active_record"
 require "active_support/all"
+require "brdinheiro/excecoes"
+require "brdinheiro/nil_class"
+require "brdinheiro/dinheiro" 
+require "brdinheiro/dinheiro_util" 
 
 module BrDinheiro
   def self.setup
@@ -11,11 +13,6 @@ module BrDinheiro
   end
 
   private
-  def self.ativar_dinheiro
-    require File.dirname(__FILE__) + "/brdinheiro/dinheiro" 
-    require File.dirname(__FILE__) + "/brdinheiro/dinheiro_util" 
-  end
-
   def self.ativar_activerecord_metodos
     require File.dirname(__FILE__) + "/brdinheiro/dinheiro_active_record" 
     ActiveRecord::Base.send :include, DinheiroActiveRecord
