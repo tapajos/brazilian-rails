@@ -4,10 +4,6 @@ require File.dirname(__FILE__) + "/active_record/base_without_table"
 
 class DinheiroActiveRecordTest < ActiveSupport::TestCase
 
-  BrDinheiro.setup do |config|
-    config.ativar_activerecord_metodos
-  end
-
   class Carteira < ActiveRecord::BaseWithoutTable
     column :saldo, :decimal
     usar_como_dinheiro :saldo
