@@ -25,6 +25,14 @@ task :test do
   end
 end
 
+# Run tests for brazilian rails generator
+Rake::TestTask.new("generators") { |t|
+  t.libs << "test"
+  t.pattern = "test/**/*_test.rb"
+  t.verbose = true
+  t.warning = false
+}
+
 %w(rdoc package release).each do |task_name|
   desc "Run #{task_name} task for all projects"
   task task_name do

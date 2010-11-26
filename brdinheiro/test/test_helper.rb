@@ -1,4 +1,3 @@
-ENV["RAILS_ENV"] = "test"
 
 require 'rubygems'
 require "rails"
@@ -50,4 +49,3 @@ end
 def verifica_se_cria_dinheiro_para(quantia)
   assert quantia.para_dinheiro.kind_of?(Dinheiro)
 end
-
