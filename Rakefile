@@ -6,12 +6,12 @@ require "rake/rdoctask"
 require "rake/packagetask"
 require "rake/gempackagetask"
 
-
 env = %(PKG_BUILD="#{ENV["PKG_BUILD"]}") if ENV["PKG_BUILD"]
 
 PROJECTS_WITH_TEST_UNIT = %w(brnumeros brdinheiro brcep brdata brhelper brstring brI18n)
 PROJECTS_WITH_RSPEC = %w(brcpfcnpj)
 PROJECTS = PROJECTS_WITH_TEST_UNIT + PROJECTS_WITH_RSPEC
+PKG_VERSION = "3.0.1"
 
 Dir["#{File.dirname(__FILE__)}/*/lib/*/version.rb"].each do |version_path|
   require version_path
@@ -93,8 +93,6 @@ Rake::RDocTask.new do |rdoc|
 
 end
 
-PKG_VERSION = "3.0.0"
-
 # Create compressed packages
 spec = Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
@@ -113,7 +111,7 @@ spec = Gem::Specification.new do |s|
   s.require_path = "lib"
 
   PROJECTS.each do |project|
-    s.add_dependency(project, ">= #{PKG_VERSION}")
+    s.add_dependency(project, "= #{PKG_VERSION}")
   end
 
   s.add_development_dependency "rake"
