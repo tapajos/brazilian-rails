@@ -1,0 +1,24 @@
+From <a href="/tapajos/brazilian-rails/commit/7d4b7d85af66992a9c4bfdb6e163eb5d13ee9edc">7d4b7d8</a> Mon Sep 17 00:00:00 2001
+From: William Brombal Chinelato <wchinelato@simplesmenteuse.com>
+Date: Sat, 27 Nov 2010 14:41:06 -0200
+Subject: [PATCH] Alterada o parametro do require na inclusao de subprojetos.
+
+---
+ lib/brazilian-rails.rb |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/lib/brazilian-rails.rb b/lib/brazilian-rails.rb
+index b7f5aa8..1dfa46b 100644
+--- a/lib/brazilian-rails.rb
++++ b/lib/brazilian-rails.rb
+@@ -1,6 +1,6 @@
+ PROJECTS = %w(brdinheiro brcep brdata brhelper brnumeros brstring brcpfcnpj)
+
+ PROJECTS.each do |project|
+-  require File.dirname(__FILE__) + "/../#{project}/lib/#{project}"
++  require project
+ end
+
+-- 
+1.7.3.1.msysgit.0
+
