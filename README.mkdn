@@ -59,12 +59,12 @@ Por padrão, a pluralização vem desabilitada, isso para não atrapalhar os pro
 
 #### Como gem:
 
-	gem install brazilian-rails -v 2.1.14
+	gem install brazilian-rails -v 2.1.15
 
 Depois que todas as gems forem instaladas você pode utiliza-las individualmente ou carregando todas, como no trecho abaixo.
 
 	Rails::Initializer.run do |config|
-		config.gem 'brazilian-rails', '2.1.14'
+		config.gem 'brazilian-rails', '2.1.15'
 	end
 
 ### I18n
