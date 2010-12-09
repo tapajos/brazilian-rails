@@ -111,12 +111,10 @@ spec = Gem::Specification.new do |s|
   s.require_path = "lib"
 
   PROJECTS.each do |project|
-    s.add_dependency(project, "= #{PKG_VERSION}")
+    s.add_dependency(project, ["= #{PKG_VERSION}"])
   end
 
   s.add_development_dependency "rake"
-
-  s.autorequire = PROJECTS
 
   s.files = [ "README.mkdn", "lib/brazilian-rails.rb"]
 end
