@@ -26,7 +26,7 @@ task :test do
 end
 
 # Run tests for brazilian rails generator
-Rake::TestTask.new("generators") { |t|
+Rake::TestTask.new("test_generators") { |t|
   t.libs << "test"
   t.pattern = "test/**/*_test.rb"
   t.verbose = true
@@ -120,6 +120,8 @@ spec = Gem::Specification.new do |s|
   s.autorequire = PROJECTS
 
   s.files = [ "README.mkdn", "lib/brazilian-rails.rb"]
+  s.files = s.files + Dir.glob( "lib/**/*" ).delete_if { |item| item.include?( "\.svn" ) }
+  s.files = s.files + Dir.glob( "test/**/*" ).delete_if { |item| item.include?( "\.svn" ) }
 end
 
 Rake::GemPackageTask.new(spec) do |p|

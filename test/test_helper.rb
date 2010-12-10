@@ -3,4 +3,5 @@ ENV["RAILS_ENV"] = "test"
 require 'rubygems'
 require "rails"
 require 'rails/test_help'
-require 'brazilian-rails/generators/install_generator'
+require "rails/generators"
+require 'generators/brazilian_rails/install/install_generator'
