@@ -45,8 +45,8 @@ spec = Gem::Specification.new do |s|
   s.description = %q{brcpfcnpj é uma das gems que compoem o Brazilian Rails}
   s.version = PKG_VERSION
 
-  s.authors = ["Marcos Tapajós", "Celestino Gomes", "Andre Kupkosvki", "Vinícius Teles", "Felipe Barreto", "Rafael Walter", "Cassio Marques"]
-  s.email = %w"tapajos@gmail.com tinorj@gmail.com kupkovski@gmail.com vinicius.m.teles@gmail.com felipebarreto@gmail.com rafawalter@gmail.com cassiommc@gmail.com"
+  s.authors = ["Marcos Tapajós", "Celestino Gomes", "Andre Kupkosvki", "Vinícius Teles", "Felipe Barreto", "Rafael Walter", "Cassio Marques", "Rafael Felix"]
+  s.email = %w"tapajos@gmail.com tinorj@gmail.com kupkovski@gmail.com vinicius.m.teles@gmail.com felipebarreto@gmail.com rafawalter@gmail.com cassiommc@gmail.com felix.rafael@gmail.com"
   s.rubyforge_project = "brcpfcnpj"
   s.homepage = "http://www.improveit.com.br/software_livre/brazilian_rails"
 
@@ -54,7 +54,7 @@ spec = Gem::Specification.new do |s|
   s.add_dependency("activesupport", ">= 3.0.0")
 
   s.add_development_dependency "rake"
-  s.add_development_dependency "rspec", ">= 2.0.0"
+  s.add_development_dependency "rspec", ">= 2.4.0"
 
   s.has_rdoc = true
   s.requirements << "none"
@@ -62,7 +62,7 @@ spec = Gem::Specification.new do |s|
 
   s.files = [ "Rakefile", "README", "CHANGELOG", "MIT-LICENSE" ]
   s.files = s.files + Dir.glob( "lib/**/*" ).delete_if { |item| item.include?( "\.svn" ) }
-  s.files = s.files + Dir.glob( "test/**/*" ).delete_if { |item| item.include?( "\.svn" ) }
+  s.files = s.files + Dir.glob( "test/**/*" ).delete_if { |item| item.include?( "\.svn" ) } 
 end
 
 Rake::GemPackageTask.new(spec) do |p|

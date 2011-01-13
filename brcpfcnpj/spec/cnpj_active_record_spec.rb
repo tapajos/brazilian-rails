@@ -105,7 +105,7 @@ describe "when validating" do
     end
 
     it "should be valid using a new cnpj" do
-      e2 = Empresa.new(:nome => "Ble", :cnpj => "00012345000165")
+      e2 = Empresa.new(:nome => "Ble", :cnpj => "00012345000165")      
       e2.should be_valid
     end
   end
