@@ -128,7 +128,6 @@ Muitos já contribuíram com o projeto.
 * Cpf e Cnpj
 * Feriado
 * Mensagens de erro traduzidas
-* Pluralização em português-Brasil-sil-sil
 * etc
 
 ## Duvidas?
