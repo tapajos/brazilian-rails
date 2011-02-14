@@ -38,7 +38,7 @@
 #   p.cpf = "12345" # ==> um cpf invalido
 #   puts p.valid? # ==> false
 #   p.save # ==> false
-#   p.errors.on(:cpf) # ==> 'numero invalido'
+#   p.errors.on(:cpf) # ==> 'número inválido'
 #
 #   c = Cpf.new("11144477735")
 #   p.cpf = "111.444.777-35"
