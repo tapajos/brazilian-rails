@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module CpfCnpjActiveRecord #:nodoc:
   def self.included(base) #:nodoc:
     base.extend ClassMethods

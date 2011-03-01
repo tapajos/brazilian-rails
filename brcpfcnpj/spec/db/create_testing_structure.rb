@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateTestingStructure < ActiveRecord::Migration
   def self.up
     create_table :empresas do |t|

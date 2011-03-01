@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/spec_helper'
 require File.dirname(__FILE__) + '/active_record/base_without_table'
 

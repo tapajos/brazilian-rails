@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module BrCpfCnpj
   module VERSION #:nodoc:
     MAJOR = 3
