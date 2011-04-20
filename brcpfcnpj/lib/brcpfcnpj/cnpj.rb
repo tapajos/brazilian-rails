@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Representa um numero de CNPJ. Objetos da classe Cnpj recebem strings representando numeros de cnpj e verificam a validade destes numeros usando dois criterios:
 # 1. O formato da string, que deve seguir o padrao xx.xxx.xxx/xxxx-xx, onde 'x' pode ser qualquer digito de 0 a 9 e os tracos (-), barra (/) e pontos (.) *sao opcionais*.
 # 2. O conteudo numerico desta string, que eh validado atraves do calculo do 'modulo 11' dos digitos que compoe a string.
@@ -35,7 +36,7 @@
 #  e.cnpj = "12343" # ==> um cnpj invalido
 #  puts e.valid? # ==> false
 #  e.save # ==> false
-#  e.errors.on(:cnpj) # ==> 'numero invalido'
+#  e.errors.on(:cnpj) # ==> 'número inválido'
 #   
 #  c = Cnpj.new("69103604000160")
 #  e.cnpj = "69.103.604/0001-60"

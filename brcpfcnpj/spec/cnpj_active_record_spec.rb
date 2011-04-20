@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/spec_helper'
 require File.dirname(__FILE__) + '/active_record/base_without_table'
 
@@ -38,7 +39,7 @@ describe "Using a model attribute as Cnpj" do
   it "should have an error in the cnpj field when invalid" do
     @company.cnpj = "232df"
     @company.save
-    @company.errors[:cnpj].should == ["numero invalido"]
+    @company.errors[:cnpj].should == ["número inválido"]
   end
 
   it "should be valid with a null cnpj number" do

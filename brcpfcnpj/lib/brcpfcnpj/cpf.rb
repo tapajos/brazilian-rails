@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Representa um numero de CPF. Objetos da classe Cpf recebem strings representando
 # numeros de cpf e verificam a validade destes numeros usando dois criterios:
 # 1. O formato da string, que deve seguir o padrao xxx.xxx.xxx-xx, onde 'x' pode ser qualquer digito de 0 a 9 e os tracos (-) e pontos (.) *sao opcionais*.
@@ -38,7 +39,7 @@
 #   p.cpf = "12345" # ==> um cpf invalido
 #   puts p.valid? # ==> false
 #   p.save # ==> false
-#   p.errors.on(:cpf) # ==> 'numero invalido'
+#   p.errors.on(:cpf) # ==> 'número inválido'
 #
 #   c = Cpf.new("11144477735")
 #   p.cpf = "111.444.777-35"
