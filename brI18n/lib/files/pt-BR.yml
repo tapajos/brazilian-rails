@@ -1,112 +1,115 @@
-pt-BR: 
+pt-BR:
   # formatos de data e hora
-  date: 
-    formats: 
+  date:
+    formats:
       default: "%d/%m/%Y"
       short: "%d de %B"
       long: "%d de %B de %Y"
       only_day: "%d"
-    
+
     day_names: [Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado]
     abbr_day_names: [Dom, Seg, Ter, Qua, Qui, Sex, Sáb]
     month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]
     abbr_month_names: [~, Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez]
-    order: [:day, :month, :year]
-  
-  time: 
-    formats: 
+    order:
+      - :day
+      - :month
+      - :year
+
+  time:
+    formats:
       default: "%A, %d de %B de %Y, %H:%M hs"
       time: "%H:%M hs"
       short: "%d/%m, %H:%M hs"
       long: "%A, %d de %B de %Y, %H:%M hs"
       only_second: "%S"
-      datetime: 
-        formats: 
+      datetime:
+        formats:
           default: "%Y-%m-%dT%H:%M:%S%Z"
     am: ''
     pm: ''
-  
+
   # date helper distanci em palavras
-  datetime: 
-    distance_in_words: 
+  datetime:
+    distance_in_words:
       half_a_minute: 'meio minuto'
-      less_than_x_seconds:  
+      less_than_x_seconds:
         one: 'menos de 1 segundo'
         other: 'menos de {{count}} segundos'
-      
-      x_seconds:  
+
+      x_seconds:
         one: '1 segundo'
         other: '{{count}} segundos'
-      
-      less_than_x_minutes:  
+
+      less_than_x_minutes:
         one: 'menos de um minuto'
         other: 'menos de {{count}} minutos'
-      
-      x_minutes:  
+
+      x_minutes:
         one: '1 minuto'
         other: '{{count}} minutos'
-      
-      about_x_hours:  
+
+      about_x_hours:
         one: 'aproximadamente 1 hora'
         other: 'aproximadamente {{count}} horas'
-      
-      x_days:  
+
+      x_days:
         one: '1 dia'
         other: '{{count}} dias'
-      
-      about_x_months:  
+
+      about_x_months:
         one: 'aproximadamente 1 mês'
         other: 'aproximadamente {{count}} meses'
-      
-      x_months:  
+
+      x_months:
         one: '1 mês'
         other: '{{count}} meses'
-      
-      about_x_years:  
+
+      about_x_years:
         one: 'aproximadamente 1 ano'
         other: 'aproximadamente {{count}} anos'
-      
-      over_x_years:  
+
+      over_x_years:
         one: 'mais de 1 ano'
         other: 'mais de {{count}} anos'
-  
+
   # numeros
-  number: 
-    format: 
+  number:
+    format:
       precision: 3
       separator: ','
       delimiter: '.'
-    currency: 
-      format: 
+    currency:
+      format:
         unit: 'R$'
         precision: 2
         format: '%u %n'
         separator: ','
         delimiter: '.'
-    percentage: 
-      format: 
+    percentage:
+      format:
         delimiter: '.'
-    precision: 
-      format: 
+    precision:
+      format:
         delimiter: '.'
-    human: 
-      format: 
+    human:
+      format:
         precision: 1
         delimiter: '.'
-  support: 
-    array: 
+  support:
+    array:
       sentence_connector: "e"
-      skip_last_comma: true              
-    
+      skip_last_comma: true
+
   # Active Record
   activerecord:
-    errors: 
-      template: 
-        header: 
+    errors:
+      template:
+        header:
           one: "Não pôde ser salvo: 1 erro"
           other: "Não pôde ser salvo: {{count}} erros."
         body: "Por favor, cheque os seguintes campos:"
-      messages: 
+      messages:
         inclusion: "não está incluso na lista"
         exclusion: "não está disponível"
         invalid: "não é válido"
@@ -126,3 +129,4 @@ pt-BR:
         less_than_or_equal_to: "precisa ser menor ou igual a {{count}}"
         odd: "precisa ser ímpar"
         even: "precisa ser par"
+
