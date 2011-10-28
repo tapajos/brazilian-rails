@@ -7,7 +7,7 @@ module CpfCnpjActiveRecord #:nodoc:
     def usar_como_cpf(*args) #:nodoc:
       init(args, 'Cpf')
     end
-    
+
     def usar_como_cnpj(*args) #:nodoc:
       init(args, 'Cnpj')
     end
@@ -18,16 +18,16 @@ module CpfCnpjActiveRecord #:nodoc:
           add_composed_class(name, klass)
           module_eval create_code(name.to_s, klass)
         end
-      end      
+      end
     end
 
     def add_composed_class(name, klass)
       options = {:class_name => klass, :mapping => [name.to_s, "numero"], :allow_nil => true}
       constructor = Proc.new { |numero| eval(klass).new(numero) }
       converter   = Proc.new { |value| eval(klass).new(value) }
-      begin 
+      begin
         composed_of name, options.merge( { :constructor => constructor, :converter => converter } )
-      rescue Exception 
+      rescue Exception
         composed_of name, options { eval(klass).new(name[:numero]) }
       end
     end
@@ -42,15 +42,15 @@ module CpfCnpjActiveRecord #:nodoc:
           end
         end
         def #{name}=(value)
-          if value.blank?            
+          if value.blank?
             write_attribute('#{name}', nil)
-          elsif value.kind_of?(#{eval(klass)}) 
+          elsif value.kind_of?(#{eval(klass)})
             write_attribute('#{name}', value.numero)
           else
-            begin               
+            begin
               c = #{eval(klass)}.new(value)
-              c.valido? ? write_attribute('#{name}', c.numero) : write_attribute('#{name}', value) 
-            rescue               
+              c.valido? ? write_attribute('#{name}', c.numero) : write_attribute('#{name}', value)
+            rescue
               @#{name} = value
             end
           end

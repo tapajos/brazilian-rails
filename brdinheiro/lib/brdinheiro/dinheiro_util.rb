@@ -27,7 +27,7 @@ module DinheiroUtil
   def real_contabil
     Dinheiro.new(self).real_contabil
   end
-  
+
   # Retorna string formatada com simbolo monetario
   #
   # Exemplo:
@@ -36,7 +36,7 @@ module DinheiroUtil
   def reais_contabeis
     Dinheiro.new(self).reais_contabeis
   end
-  
+
   # Retorna string formatada com simbolo monetario
   #
   # Exemplo:
