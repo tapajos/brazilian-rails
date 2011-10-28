@@ -11,17 +11,17 @@
 # Como usar a classe Cpf no seu ActiveRecord:
 #
 # Suponha que temos um model Pessoa, com um atributo 'cpf'
-# que voce quer usar como um numero de documento para cpf. Basta usar o 
+# que voce quer usar como um numero de documento para cpf. Basta usar o
 # metodo <tt>usar_como_cpf</tt>, assim:
 #
 #   class Pessoa < ActiveRecord::Base
 #     usar_como_cpf :cpf
 #   end
-# 
+#
 # O atributo que sera usado como cpf pode ter qualquer nome e nao apenas 'cpf'
 #
 # Agora voce pode usar o atributo para cpf da seguinte forma:
-# 
+#
 #   p = Pessoa.new
 #   p.cpf = "11144477735"
 #   puts p.cpf # ==> 111.444.777-35
@@ -44,8 +44,8 @@
 #   c = Cpf.new("11144477735")
 #   p.cpf = "111.444.777-35"
 #   c == p.cpf # ==> true
-# 
-class Cpf 
+#
+class Cpf
   include CpfCnpj
 end
 

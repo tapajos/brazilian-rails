@@ -2,11 +2,11 @@
 $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
-require 'rubygems'  
+require 'rubygems'
 require 'action_controller'
 require 'active_support'
 require 'action_view'
-  
+
 %w(date_portuguese
 time_portuguese
 version

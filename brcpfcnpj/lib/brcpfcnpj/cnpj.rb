@@ -10,7 +10,7 @@
 # Como usar a classe Cnpj no seu ActiveRecord:
 #
 # Suponha que temos um model Empresa, com um atributo 'cnpj'
-# que voce quer usar como um numero de documento para cnpj. Basta usar o 
+# que voce quer usar como um numero de documento para cnpj. Basta usar o
 # metodo <tt>usar_como_cnpj</tt>, assim:
 #
 #   class Empresa < ActiveRecord::Base
@@ -24,10 +24,10 @@
 #  puts e.cnpj # ==> 69.103.604/0001-60
 #  e.cnpj.valido? # ==> true
 #  e.cnpj_valido? # ==> true
-#   
+#
 #  e = Empresa.new(:cnpj => "69.103.604/0001-60")
 #  puts e.cnpj # ==> 69.103.604/0001-60
-#   
+#
 #  e = Empresa.new
 #  e.cnpj = Cnpj.new("691036040001-60")
 #  puts e.cnpj # ==> 69.103.604/0001-60
@@ -37,10 +37,10 @@
 #  puts e.valid? # ==> false
 #  e.save # ==> false
 #  e.errors.on(:cnpj) # ==> 'número inválido'
-#   
+#
 #  c = Cnpj.new("69103604000160")
 #  e.cnpj = "69.103.604/0001-60"
-#  c == e.cnpj # ==> true   
+#  c == e.cnpj # ==> true
 class Cnpj
   include CpfCnpj
 end

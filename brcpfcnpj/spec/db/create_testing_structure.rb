@@ -10,7 +10,7 @@ class CreateTestingStructure < ActiveRecord::Migration
       t.string :cpf
     end
   end
-    
+
   def self.down
     drop_table :pessoas
     drop_table :empresas

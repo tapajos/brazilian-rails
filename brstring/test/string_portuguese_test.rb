@@ -20,7 +20,7 @@ NOMES_PROPRIOS = {
 } #:nodoc:
 
 NOMES_TITLEIZE =     {
-    'José Silva' => 'josé silva',    
+    'José Silva' => 'josé silva',
     'José Silva' => 'JOSÉ SILVA',
     'José Da Silva' => 'josé da silva',
     ' José  Da   Silva  ' => ' josé  da   silva  ',
@@ -28,7 +28,7 @@ NOMES_TITLEIZE =     {
     "Á É Í Ó Ú À È Ì Ò Ù Ã Õ Â Ê Î Ô Û Ä Ë Ï Ö Ü" => 'á é í ó ú à è ì ò ù ã õ â ê î ô û ä ë ï ö ü'
 } #:nodoc:
 
-class StringPortugueseTest < Test::Unit::TestCase  
+class StringPortugueseTest < Test::Unit::TestCase
   def test_letras_maiusculas
     assert_equal 'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÄËÏÖÜÃÕÑÇ', String::MAIUSCULAS
   end
@@ -36,38 +36,38 @@ class StringPortugueseTest < Test::Unit::TestCase
   def test_letras_minusculas
     assert_equal 'abcdefghijklmnopqrstuvwxyzáéíóúâêîôûàèìòùäëïöüãõñç', String::MINUSCULAS
   end
-  
+
   def test_string_nome_proprio
     NOMES_PROPRIOS.each {|key, value| assert_equal key, String.nome_proprio(value) }
-    
+
     palavras_excluidas = %w(? ! @ # $ % & * \ / ? , . ; ] [ } { = + 0 1 2 3 4 5 6 7 8 9)
-    
+
     palavras_excluidas.each do |char|
       assert_equal char, String.nome_proprio(char), "Não deveria alterar o caracter '#{char}'"
     end
-    
+
     assert_nil String.nome_proprio(nil)
   end
 
   def test_nome_proprio
     NOMES_PROPRIOS.each {|key, value| assert_equal key, value.nome_proprio }
-    
+
     palavras_excluidas = %w(? ! @ # $ % & * \ / ? , . ; ] [ } { = + 0 1 2 3 4 5 6 7 8 9)
-    
+
     palavras_excluidas.each do |char|
       assert_equal char, char.nome_proprio, "Não deveria alterar o caracter '#{char}'"
     end
   end
-  
+
   def test_nome_proprio!
-    NOMES_PROPRIOS.each do |key, value| 
+    NOMES_PROPRIOS.each do |key, value|
       nome = value
       nome.nome_proprio!
       assert_equal key, nome
     end
-    
+
     palavras_excluidas = %w(? ! @ # $ % & * \ / ? , . ; ] [ } { = + 0 1 2 3 4 5 6 7 8 9)
-    
+
     palavras_excluidas.each do |char|
       nome = char.clone
       nome.nome_proprio!
@@ -86,7 +86,7 @@ class StringPortugueseTest < Test::Unit::TestCase
     assert_equal 'aeiouAEIOUaeiouAEIOUaeiouAEIOUaeiouAEIOUaoAOnNcC', String.remover_acentos("áéíóúÁÉÍÓÚâêîôûÂÊÎÔÛàèìòùÀÈÌÒÙäëïöüÄËÏÖÜãõÃÕñÑçÇ")
     assert_nil String.remover_acentos(nil)
   end
-  
+
   def test_remover_acentos
     assert_equal 'aeiouAEIOU', "áéíóúÁÉÍÓÚ".remover_acentos
     assert_equal 'aeiouAEIOU', "âêîôûÂÊÎÔÛ".remover_acentos
@@ -97,7 +97,7 @@ class StringPortugueseTest < Test::Unit::TestCase
     assert_equal 'cC', "çÇ".remover_acentos
     assert_equal 'aeiouAEIOUaeiouAEIOUaeiouAEIOUaeiouAEIOUaoAOnNcC', "áéíóúÁÉÍÓÚâêîôûÂÊÎÔÛàèìòùÀÈÌÒÙäëïöüÄËÏÖÜãõÃÕñÑçÇ".remover_acentos
   end
-  
+
   def test_remover_acentos!
     string = 'áéíóúÁÉÍÓÚ'
     string.remover_acentos!
@@ -108,17 +108,17 @@ class StringPortugueseTest < Test::Unit::TestCase
     assert_equal String::MINUSCULAS, String.downcase(String::MAIUSCULAS)
     assert_nil String.downcase(nil)
   end
-  
+
   def test_downcase
     assert_equal String::MINUSCULAS, String::MAIUSCULAS.downcase
   end
-  
+
   def test_downcase!
     string = String::MAIUSCULAS.clone
     string.downcase!
     assert_equal String::MINUSCULAS, string
-  end  
-  
+  end
+
   def test_string_upcase
     assert_equal String::MAIUSCULAS, String.upcase(String::MINUSCULAS)
     assert_nil String.upcase(nil)
@@ -144,7 +144,7 @@ class StringPortugueseTest < Test::Unit::TestCase
   end
 
   def test_titleize!
-    NOMES_TITLEIZE.each do |k,v| 
+    NOMES_TITLEIZE.each do |k,v|
       v.titleize!
       assert_equal k, v
     end

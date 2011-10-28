@@ -7,7 +7,7 @@ class NilClass
   def contabil
     0.contabil
   end
-  
+
   def para_dinheiro
     0.real
   end
@@ -18,7 +18,7 @@ class NilClass
 
   def real
     0.real
-  end  
+  end
 
 end
 

@@ -5,11 +5,11 @@
 # Você pode ver exemplos desses YML dentro do diretório samples/feriado.
 #
 class Feriado
-  
-  attr_accessor :dia 
+
+  attr_accessor :dia
   attr_accessor :mes
   attr_accessor :nome
-  
+
   # Construtor um feriado.
   #
   # Exemplo:
@@ -18,33 +18,33 @@ class Feriado
     valida_dia(dia)
     valida_mes(mes)
     self.nome = nome
-    self.dia = dia.to_i 
+    self.dia = dia.to_i
     self.mes = mes.to_i
-    
+
   end
-  
+
   # Compara dois feriados. Dois feriados são iguais se acontecem na mesma data.
   def ==(outro_feriado)
     self.mes == outro_feriado.mes && self.dia == outro_feriado.dia
   end
-  
+
   private
-  
+
   def valida_dia(dia)
     raise FeriadoDiaInvalidoError unless (1..31).include?(dia.to_i)
   end
-  
+
   def valida_mes(mes)
     raise FeriadoMesInvalidoError unless (1..12).include?(mes.to_i)
   end
-  
+
 end
 
 class Date
-  
+
   FERIADOS = []
   FERIADOS_METODOS = []
-  
+
   # Retorna a true se a data for um feriado
   #
   # Exemplo:
@@ -57,7 +57,7 @@ class Date
     end
     false
   end
-  
+
   # Retorna a pascoa no ano da data atual
   #
   # Exemplo:
@@ -84,6 +84,6 @@ class Date
   def corpus_christi
     Date.parse((pascoa.to_time + 60.days).to_date.to_s)
   end
-  
+
 end
 
