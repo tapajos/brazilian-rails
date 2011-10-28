@@ -15,7 +15,7 @@ class MockSuccess < Net::HTTPSuccess
 end
 
 class MockServerError < Net::HTTPServerError
-  def initialize; 
+  def initialize;
     @message = 'HTTPServiceUnavailable'
     @code = '504'
   end
@@ -28,10 +28,10 @@ end
 class BuscaEnderecoTest < Test::Unit::TestCase
   def test_raise_without_service_on_both_web_services
     http_error_response = MockServerError.new
-  
+
     Net::HTTP.expects(:get_response).returns(http_error_response)
     Net::HTTP.expects(:get_response).returns(http_error_response)
-  
+
     assert_raise RuntimeError, "A busca de endereço por CEP está indisponível no momento." do
       BuscaEndereco.por_cep(VALID_ZIPS.first)
     end
@@ -43,8 +43,8 @@ class BuscaEnderecoTest < Test::Unit::TestCase
         BuscaEndereco.por_cep(invalid_zip)
       end
     end
-  end    
-  
+  end
+
   def test_valid_code_on_bronze_business
     VALID_ZIPS.each do |valid_zip|
       mock_get_response_from_bronze_business(limpa_cep(valid_zip))

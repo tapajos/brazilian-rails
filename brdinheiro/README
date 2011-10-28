@@ -1,7 +1,7 @@
  == Como usar o Dinheiro em seu ActiveRecord?
- 
+
  * Arquivo 001_create_lancamentos.rb:
- 
+
      class CreateLancamentos < ActiveRecord::Migration
        def self.up
          create_table :lancamentos do |t|
@@ -15,20 +15,20 @@
          drop_table :lancamentos
        end
      end
- 
+
  * Arquivo lancamento.rb:
- 
+
      class Lancamento < ActiveRecord::Base
        usar_como_dinheiro :valor, :mensalidade
      end
 
  * No console (script/console):
- 
+
      Loading development environment.
      >> lancamento = Lancamento.new
-     => #<Lancamento:0x9652cd8 @attributes={"descricao"=>nil, 
-                                            "valor"=>#<BigDecimal:9657008,'0.0',4(4)>, 
-                                            "mensalidade"=>#<BigDecimal:9656e8c,'0.0',4(4)>}, 
+     => #<Lancamento:0x9652cd8 @attributes={"descricao"=>nil,
+                                            "valor"=>#<BigDecimal:9657008,'0.0',4(4)>,
+                                            "mensalidade"=>#<BigDecimal:9656e8c,'0.0',4(4)>},
                                @new_record=true>
      >> lancamento.valor = 100
      => 100
@@ -49,4 +49,4 @@
      >> lancamento.valor.real
      => "R$ 354,58"
      >> exit
-  
+

@@ -1,48 +1,48 @@
 # encoding: UTF-8
-module Extenso 
+module Extenso
   @@unidade = {
-    0 => "zero",  
-    1 => "um",  
-    2 => "dois",  
-    3 => "três",  
-    4 => "quatro",  
-    5 => "cinco",  
-    6 => "seis",  
-    7 => "sete",  
-    8 => "oito",  
-    9 => "nove" 
+    0 => "zero",
+    1 => "um",
+    2 => "dois",
+    3 => "três",
+    4 => "quatro",
+    5 => "cinco",
+    6 => "seis",
+    7 => "sete",
+    8 => "oito",
+    9 => "nove"
   }
   @@dezena = {
-    10 => "dez",  
-    11 => "onze",  
-    12 => "doze",  
-    13 => "treze",  
-    14 => "quatorze",  
-    15 => "quinze",  
-    16 => "dezesseis",  
-    17 => "dezessete",  
-    18 => "dezoito",  
-    19 => "dezenove",  
-    20 => "vinte",  
-    30 => "trinta",  
-    40 => "quarenta",  
-    50 => "cinquenta",  
-    60 => "sessenta",  
-    70 => "setenta",  
-    80 => "oitenta",  
+    10 => "dez",
+    11 => "onze",
+    12 => "doze",
+    13 => "treze",
+    14 => "quatorze",
+    15 => "quinze",
+    16 => "dezesseis",
+    17 => "dezessete",
+    18 => "dezoito",
+    19 => "dezenove",
+    20 => "vinte",
+    30 => "trinta",
+    40 => "quarenta",
+    50 => "cinquenta",
+    60 => "sessenta",
+    70 => "setenta",
+    80 => "oitenta",
     90 => "noventa"  }
-  @@centena = {100 => "cento",  
-    200 => "duzentos",  
-    300 => "trezentos",  
-    400 => "quatrocentos",  
-    500 => "quinhentos",  
-    600 => "seiscentos",  
-    700 => "setecentos",  
-    800 => "oitocentos",  
+  @@centena = {100 => "cento",
+    200 => "duzentos",
+    300 => "trezentos",
+    400 => "quatrocentos",
+    500 => "quinhentos",
+    600 => "seiscentos",
+    700 => "setecentos",
+    800 => "oitocentos",
     900 => "novecentos"  }
-  
+
   # Escreve o numero por extenso.
-  # 
+  #
   # Exemplo:
   #  1.por_extenso ==> 'um'
   #  100.por_extenso ==> 'cem'
@@ -50,16 +50,16 @@ module Extenso
   def por_extenso
     Extenso.por_extenso(self)
   end
-  
+
   # Alias para o metodo por_extenso
   alias_method :to_extenso, :por_extenso
-  
+
   # Escreve o numero por extenso.
-  # 
+  #
   # Exemplo:
   #  Extenso.por_extenso(1) ==> "um"
   #  Extenso.por_extenso(100) ==> "cem"
-  #  Extenso.por_extenso(158) ==> "cento e cinquenta e oito"  
+  #  Extenso.por_extenso(158) ==> "cento e cinquenta e oito"
   def Extenso.por_extenso(numero)
     negativo=(numero<0)? "menos " : ""
     n=numero.to_i.abs
@@ -102,25 +102,25 @@ end
 
 module ExtensoReal
   include Extenso
- 
+
   # Escreve por extenso em reais.
-  # 
+  #
   # Exemplo:
   #  1.por_extenso_em_reais ==> 'um real'
   #  (100.58).por_extenso_em_reais ==> 'cem reais e cinquenta e oito centavos'
   def por_extenso_em_reais
     ExtensoReal.por_extenso_em_reais(self)
   end
-  
+
   # Alias para por_extenso_em_reais
   alias_method :to_extenso_real, :por_extenso_em_reais
 
   # Escreve o numero por extenso em reais.
-  # 
+  #
   # Exemplo:
   #  Extenso.por_extenso_em_reais(1) ==> "um real"
   #  Extenso.por_extenso_em_reais(100) ==> "cem reais"
-  #  Extenso.por_extenso_em_reais(100.58) ==> "cem reais e cinquenta e oito centavos"  
+  #  Extenso.por_extenso_em_reais(100.58) ==> "cem reais e cinquenta e oito centavos"
   def ExtensoReal.por_extenso_em_reais(valor)
     negativo=(valor<0)? " negativo" : ""
     negativos=(valor<0)? " negativos" : ""
