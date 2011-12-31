@@ -11,7 +11,7 @@ env = %(PKG_BUILD="#{ENV["PKG_BUILD"]}") if ENV["PKG_BUILD"]
 PROJECTS_WITH_TEST_UNIT = %w(brnumeros brdinheiro brcep brdata brhelper brstring brI18n)
 PROJECTS_WITH_RSPEC = %w(brcpfcnpj)
 PROJECTS = PROJECTS_WITH_TEST_UNIT + PROJECTS_WITH_RSPEC
-PKG_VERSION = "3.0.4"
+PKG_VERSION = "3.0.5"
 
 Dir["#{File.dirname(__FILE__)}/*/lib/*/version.rb"].each do |version_path|
   require version_path
