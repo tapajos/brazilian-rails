@@ -11,7 +11,11 @@ module ActiveRecord
     def save
       self.valid?
     end
-
+    
+    def column_for_attribute(name)
+      self.class.columns_hash[name.to_s]
+    end
+    
     class << self
       def columns()
         @columns ||= []
@@ -27,7 +31,29 @@ module ActiveRecord
         undefine_attribute_methods
         @column_names = @columns_hash = @content_columns = @dynamic_methods_hash = @read_methods = nil
       end
+      
+      def columns_hash
+        hash = {}
+        columns.each do |column|
+          hash[column.name] = column
+        end
+        hash
+      end
+      
+      def column_defaults
+        defaults = {}
+        columns.each do |column|
+          defaults[column.name.to_sym] = nil
+        end
+        defaults
+      end
     end
+    
+    private
+      def self.attributes_protected_by_default
+        []
+      end
+    
   end
 end
 

@@ -33,6 +33,10 @@ module DinheiroActiveRecord#:nodoc:
               end
             end
           end
+          
+          def #{name}
+            read_attribute(:#{name})
+          end
           ADICIONANDO_METODO
         end
       end

@@ -44,6 +44,12 @@ class DinheiroActiveRecordTest < Test::Unit::TestCase
     carteira = Carteira.new(:saldo => "1")
     assert_equal 1.real, carteira.saldo
   end
+  
+  def test_se_atualiza_valor_inicializado
+    carteira = Carteira.new(:saldo => 10.reais)
+    carteira.saldo += 5.reais
+    assert_equal 15.reais, carteira.saldo
+  end
 
 end
 
