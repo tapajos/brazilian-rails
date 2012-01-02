@@ -99,27 +99,30 @@ Muitos já contribuíram com o projeto.
 
 	git log --raw | grep "^Author: " | sed 's/Author: //' | sed 's/<.*$//' | sort | uniq
 
-* Cássio Marques
-* Eduardo Fiorezi
-* Eduardo Hertz
-* Everton Ribeiro
-* Fabio Akita
-* Fernando Gomes
-* Fernando Luizao
-* Joao Vitor
-* Julio Santos Monteiro
-* Kivanio Barbosa
-* Marcus Derencius
-* Marcus Sá
-* Mauricio Zaffari
-* Rafael Uchoa
-* Ricardo Shiota Yasuda
-* Sergio Brant
-* albertobraschi
-* cassio
-* dannnylo
-* elomarns
-* frederico
+[Andre Bernardes](https://github.com/albertobraschi),
+[Cássio Marques](https://github.com/cassiomarques),
+[Danilo Jeremias da Silva](https://github.com/dannnylo),
+[Eduardo Fiorezi](https://github.com/eduardofiorezi),
+[Eduardo Hertz](https://github.com/eduardohertz),
+[Elomar Nascimento dos Santos](https://github.com/elomarns),
+[Everton Ribeiro](https://github.com/nuxlli),
+[Fabio Akita](https://github.com/akitaonrails),
+[Fernando Gomes](https://github.com/fernandogomes),
+[Fernando Migliorini Luizão](https://github.com/fernandoluizao),
+[Frederico Macedo](https://github.com/frederico),
+[Gun.io Whitespace Robot](https://github.com/GunioRobot),
+[Jhimy Fernandes Villar](https://github.com/stjhimy),
+[João Vitor](https://github.com/joaovitor),
+[Julio Santos Monteiro](https://github.com/jmonteiro),
+[Kivanio Barbosa](https://github.com/kivanio),
+[Marcus Derencius](https://github.com/derencius),
+[Marcus Sá](http://about.me/marcus_sa),
+[Mauricio Zaffari](https://github.com/mauriciozaffari),
+[Rafael Uchoa](https://github.com/uchoaaa),
+[Rafeal Carvalho](https://github.com/rafaeldx7),
+[Ricardo Shiota Yasuda](https://github.com/shadow11),
+[Rodrigo Manhães](https://github.com/rodrigomanhaes) e
+[Sergio Brant](https://github.com/smbrant)
 
 ## Algumas funcionalidades:
 
