@@ -2,7 +2,7 @@
 require "rubygems"
 require "rake"
 require "rake/testtask"
-require "rake/rdoctask"
+require "rdoc/task"
 require "rake/packagetask"
 require "rake/gempackagetask"
 
@@ -16,13 +16,10 @@ PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 desc "Default Task"
 task :default => [ :test ]
 
-# Run the unit tests
-Rake::TestTask.new { |t|
-  t.libs << "test"
-  t.pattern = "test/*_test.rb"
-  t.verbose = true
-  t.warning = false
-}
+desc "Task description"
+task :test do
+  puts "No tests for brI18n"
+end
 
 #Generate the RDoc documentation
 Rake::RDocTask.new { |rdoc|

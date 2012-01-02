@@ -1,9 +1,10 @@
-.DS_Store
-**/pkg
 **/doc
-pkg
-doc
-*~
-*swp
+**/pkg
 *swo
+*swp
+*~
+.bundle
+.DS_Store
 .rvmrc
+doc
+pkg
