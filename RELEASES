@@ -1,5 +1,6 @@
 v3.0.5 - 02 de janeiro de 2012
 
+4188aab Fixing requires for rake tasks and addded rake into Gemfile
 44c349b Correção de um problema que não permitia atualização de valores inicializados em um objeto ActiveRecord no brDinheiro
 26fdc7c Remove whitespace [Gun.io WhitespaceBot]
 e8e988e fixed Psych::SyntaxError
