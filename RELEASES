@@ -1,3 +1,7 @@
+v3.0.6 - 02 de janeiro de 2012
+
+85127a1 Adicionado validador no estilo rails 3 para CPF e CNPJ validates :cnpj => true, :cpf => true
+
 v3.0.5 - 02 de janeiro de 2012
 
 4188aab Fixing requires for rake tasks and addded rake into Gemfile

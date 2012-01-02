@@ -118,6 +118,7 @@ Muitos já contribuíram com o projeto.
 [Marcus Derencius](https://github.com/derencius),
 [Marcus Sá](http://about.me/marcus_sa),
 [Mauricio Zaffari](https://github.com/mauriciozaffari),
+[Rafael Felix](https://github/com/fellix),
 [Rafael Uchoa](https://github.com/uchoaaa),
 [Rafeal Carvalho](https://github.com/rafaeldx7),
 [Ricardo Shiota Yasuda](https://github.com/shadow11),
