@@ -49,7 +49,7 @@ describe "Using a model attribute as Cpf" do
   it "should have an error in the cpf field when invalid" do
     @person.cpf = "232df"
     @person.save.should be_false
-    @person.errors[:cpf].should == ["número inválido"]
+    @person.errors[:cpf].should == ["is invalid"]
   end
 
   it "should be valid with a null cpf number" do

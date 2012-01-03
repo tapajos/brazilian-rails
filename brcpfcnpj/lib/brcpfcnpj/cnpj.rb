@@ -36,7 +36,7 @@
 #  e.cnpj = "12343" # ==> um cnpj invalido
 #  puts e.valid? # ==> false
 #  e.save # ==> false
-#  e.errors.on(:cnpj) # ==> 'número inválido'
+#  e.errors.on(:cnpj) # ==> 'não é válido' # de acordo com a I18n
 #
 #  c = Cnpj.new("69103604000160")
 #  e.cnpj = "69.103.604/0001-60"

@@ -39,7 +39,7 @@ describe "Using a model attribute as Cnpj" do
   it "should have an error in the cnpj field when invalid" do
     @company.cnpj = "232df"
     @company.save
-    @company.errors[:cnpj].should == ["número inválido"]
+    @company.errors[:cnpj].should == ["is invalid"]
   end
 
   it "should be valid with a null cnpj number" do

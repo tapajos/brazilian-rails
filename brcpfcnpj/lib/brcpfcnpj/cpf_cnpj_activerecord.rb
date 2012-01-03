@@ -38,7 +38,7 @@ module CpfCnpjActiveRecord #:nodoc:
         def #{name}_valido?
           value = read_attribute('#{name}')
           if !value.nil? && value.strip != '' && !#{name}.nil? && !#{name}.valido?
-            self.errors.add('#{name}', 'número inválido')
+            self.errors.add('#{name}', :invalid)
           end
         end
         def #{name}=(value)
