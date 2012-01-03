@@ -50,6 +50,11 @@ class DinheiroActiveRecordTest < Test::Unit::TestCase
     carteira.saldo += 5.reais
     assert_equal 15.reais, carteira.saldo
   end
+  
+  def test_se_retorna_objeto_do_mesmo_tipo
+    @carteira.saldo = 10.reais
+    assert_equal 10.reais.class, @carteira.saldo.class
+  end
 
 end
 
