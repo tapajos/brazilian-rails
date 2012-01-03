@@ -1,3 +1,7 @@
+v3.0.8 - 03 de janeiro de 2012
+
+bf0dfbb Using invalid error when invalid cpf/cnpj on `cpf_valido?` and `cnpj_valido?`
+
 v3.0.7 - 03 de janeiro de 2012
 
 627a4a7 Retornar sempre um objeto da classe dinheiro.
