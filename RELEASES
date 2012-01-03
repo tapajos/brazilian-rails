@@ -1,3 +1,8 @@
+v3.0.7 - 03 de janeiro de 2012
+
+627a4a7 Retornar sempre um objeto da classe dinheiro.
+aab72f7 Using invalid error when invalid cpf/cnpj
+
 v3.0.6 - 02 de janeiro de 2012
 
 85127a1 Adicionado validador no estilo rails 3 para CPF e CNPJ validates :cnpj => true, :cpf => true
