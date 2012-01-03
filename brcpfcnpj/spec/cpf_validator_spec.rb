@@ -8,7 +8,7 @@ describe CpfValidator do
   it "should isn't valid when the cpf isn't valid" do
     @pessoa = Person.new(:cpf => "12345")
     @pessoa.valid?.should be_false
-    @pessoa.errors[:cpf].should == ["nao e um CPF valido"]
+    @pessoa.errors[:cpf].should == ["is invalid"]
   end
   it "should accept a nil cpf" do
     @pessoa = Person.new(:cpf => nil)    

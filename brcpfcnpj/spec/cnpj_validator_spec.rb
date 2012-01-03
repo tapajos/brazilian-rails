@@ -9,7 +9,7 @@ describe CnpjValidator do
   it "should isn't valid when the cnpj isn't valid" do
     @empresa = Company.new(:cnpj => "12345")
     @empresa.valid?.should be_false
-    @empresa.errors[:cnpj].should == ["nao e um CNPJ valido"]
+    @empresa.errors[:cnpj].should == ["is invalid"]
   end
   it "should accept a nil cnpj" do
     @empresa = Company.new(:cnpj => nil)    
