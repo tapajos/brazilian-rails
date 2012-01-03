@@ -88,7 +88,6 @@ Por favor, nos avise! Isso é fácil e rápido. Isso pode ser feito em:
 1. Fazer um fork do projeto
 1. Instalar as dependências: bundle install (Se não tiver o bundler instalado, faça antes: gem install bundler)
 1. Fazer os devidos ajustes com os respectivos testes (TestUnit se possível e tente fazer commits atômicos)
-1. Incrementar o número da versão de cada lib/version.rb e a constante PKG_VERSION no Rakefile do brazilian-rails
 1. Fazer pull request
 
 ## Quem está por traz disso tudo?
