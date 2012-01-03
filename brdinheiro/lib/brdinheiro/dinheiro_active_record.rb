@@ -35,7 +35,7 @@ module DinheiroActiveRecord#:nodoc:
           end
           
           def #{name}
-            read_attribute(:#{name})
+            read_attribute(:#{name}).reais if read_attribute(:#{name})
           end
           ADICIONANDO_METODO
         end
