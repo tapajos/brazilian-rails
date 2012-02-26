@@ -1,3 +1,7 @@
+v3.1.0 - 25 de fevereiro de 2012
+
+0be6ca4 Substituindo o webservice para busca de cep
+
 v3.0.8 - 03 de janeiro de 2012
 
 bf0dfbb Using invalid error when invalid cpf/cnpj on `cpf_valido?` and `cnpj_valido?`

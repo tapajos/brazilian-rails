@@ -1,8 +1,8 @@
 module BrCpfCnpj
   module VERSION #:nodoc:
     MAJOR = 3
-    MINOR = 0
-    TINY = 8
+    MINOR = 1
+    TINY = 0
 
     STRING = "#{MAJOR}.#{MINOR}.#{TINY}"
   end
