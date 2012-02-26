@@ -1,7 +1,6 @@
 require 'test/unit'
 require File.dirname(__FILE__) + '/../lib/brcep'
 
-
 def tornar_metodos_publicos(clazz)
   clazz.class_eval do
     private_instance_methods.each { |instance_method| public instance_method }
