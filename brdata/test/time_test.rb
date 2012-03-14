@@ -36,52 +36,20 @@ class TimeTest < Test::Unit::TestCase
   end
 
   def test_month_names
-    assert_equal [nil,
-      "Janeiro",
-      "Fevereiro",
-      "Março",
-      "Abril",
-      "Maio",
-      "Junho",
-      "Julho",
-      "Agosto",
-      "Setembro",
-      "Outubro",
-      "Novembro",
-      "Dezembro"],
-      Time::MONTHNAMES
+    assert_equal [nil] + %w[Janeiro Fevereiro Março Abril Maio Junho Julho Agosto Setembro Outubro Novembro Dezembro], Time::MONTHNAMES
   end
 
   def test_days_names
-    assert_equal ["Domingo",
-      "Segunda-Feira",
-      "Terça-Feira",
-      "Quarta-Feira",
-      "Quinta-Feira",
-      "Sexta-Feira",
-      "Sábado"],
+    assert_equal %w[Domingo Segunda-Feira Terça-Feira Quarta-Feira Quinta-Feira Sexta-Feira Sábado],
       Time::DAYNAMES
   end
 
   def test_abbr_monthnames
-    assert_equal [nil,
-      "Jan",
-      "Fev",
-      "Mar",
-      "Abr",
-      "Mai",
-      "Jun",
-      "Jul",
-      "Ago",
-      "Set",
-      "Out",
-      "Nov",
-      "Dez"],
-      Time::ABBR_MONTHNAMES
+    assert_equal [nil] + %w[Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez], Time::ABBR_MONTHNAMES
   end
 
   def test_abbr_daysnames
-    assert_equal ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"], Time::ABBR_DAYNAMES
+    assert_equal %w[Dom Seg Ter Qua Qui Sex Sáb], Time::ABBR_DAYNAMES
   end
 
   def test_time_translation_with_strftime

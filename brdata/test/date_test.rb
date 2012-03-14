@@ -53,57 +53,24 @@ class DateTest < Test::Unit::TestCase
     assert !Date.valid?("00/00/0000"), "Should be a invalid date"
   end
 
-	def test_month_names
-		assert_equal [nil,
-									 "Janeiro",
-									 "Fevereiro",
-									 "Março",
-									 "Abril",
-									 "Maio",
-									 "Junho",
-									 "Julho",
-									 "Agosto",
-									 "Setembro",
-									 "Outubro",
-									 "Novembro",
-									 "Dezembro"],
-									Date::MONTHNAMES
-	end
-
-	def test_days_names
-		assert_equal ["Domingo",
-									 "Segunda-Feira",
-									 "Terça-Feira",
-									 "Quarta-Feira",
-									 "Quinta-Feira",
-									 "Sexta-Feira",
-									 "Sábado"],
-									Date::DAYNAMES
-	end
-
-	def test_abbr_monthnames
-		assert_equal [nil,
-									 "Jan",
-									 "Fev",
-									 "Mar",
-									 "Abr",
-									 "Mai",
-									 "Jun",
-									 "Jul",
-									 "Ago",
-									 "Set",
-									 "Out",
-									 "Nov",
-									 "Dez"],
-									Date::ABBR_MONTHNAMES
+  def test_month_names
+    expected = [nil] + %w[Janeiro Fevereiro Março Abril Maio Junho Julho Agosto Setembro Outubro Novembro Dezembro]
+    assert_equal expected, Date::MONTHNAMES
   end
 
-	def test_abbr_daysnames
-		assert_equal ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"], Date::ABBR_DAYNAMES
-	end
+  def test_days_names
+    assert_equal %w[Domingo Segunda-Feira Terça-Feira Quarta-Feira Quinta-Feira Sexta-Feira Sábado], Date::DAYNAMES
+  end
 
-	def test_date_translation_with_strftime
+  def test_abbr_monthnames
+    assert_equal [nil] + %w[Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez], Date::ABBR_MONTHNAMES
+  end
+
+  def test_abbr_daysnames
+    assert_equal %w[Dom Seg Ter Qua Qui Sex Sáb], Date::ABBR_DAYNAMES
+  end
+
+  def test_date_translation_with_strftime
     assert_equal "Dezembro Dez Sexta-Feira Sex", Date.parse("2008-12-05").strftime("%B %b %A %a")
   end
-
 end

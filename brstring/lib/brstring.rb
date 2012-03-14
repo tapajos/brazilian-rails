@@ -12,4 +12,3 @@ string_portuguese).each {|req| require File.dirname(__FILE__) + "/brstring/#{req
 
 module BrString
 end
-

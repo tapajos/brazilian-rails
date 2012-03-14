@@ -1,7 +1,6 @@
 # encoding: UTF-8
 require 'net/http'
 require 'cgi'
-require 'iconv'
 
 # Este recurso tem como finalidade encontrar um endereço através de um CEP, e
 # para isso ele utiliza o web service da Republica Virtual (http://cep.republicavirtual.com.br/web_cep.php)
@@ -65,7 +64,12 @@ class BuscaEndereco
     raise "CEP #{cep} não encontrado." unless [1,2].include?(doc['resultado'].to_i)
 
     %w(tipo_logradouro logradouro bairro cidade uf).each do |field|
-      retorno << Iconv.conv("utf-8", "ISO-8859-1", doc[field])
+      retorno << if RUBY_VERSION < '1.9'
+        require 'iconv'
+        Iconv.conv("utf-8", "ISO-8859-1", doc[field])
+      else 
+        doc[field].force_encoding("ISO-8859-1").encode("UTF-8")
+      end
     end
     
     retorno << cep
