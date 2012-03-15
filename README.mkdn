@@ -1,5 +1,7 @@
 # Brazilian Rails
 
+[![Build Status](https://secure.travis-ci.org/tapajos/brazilian-rails.png?branch=master)](http://travis-ci.org/tapajos/brazilian-rails)
+
 ## O que foi?
 
 O Brazilian Rails foi o plugin de internacionalização mais conhecido do Brasil e tinha como objetivo unir vários recursos de regras e traduções para o desenvolvedor brasileiro.
