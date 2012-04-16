@@ -1,6 +1,7 @@
 # Como usar a classe CNPJ no seu ActiveRecord
 
 Objetos da classe CNPJ recebem strings representando números de CNPJ e verificam a validade destes números usando dois critérios:
+
 1. O formato da string, que deve seguir o padrão xx.xxx.xxx/xxxx-xx, onde 'x' pode ser qualquer dígito de 0 a 9 e os traços (-), barra (/) e pontos (.) *são opcionais*.
 2. O conteúdo numérico desta string, que é validado através do cálculo do 'módulo 11' dos dígitos que compõem a string.
 
