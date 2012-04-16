@@ -1,0 +1,49 @@
+# Como usar a classe CNPJ no seu ActiveRecord
+
+Objetos da classe CNPJ recebem strings representando números de CNPJ e verificam a validade destes números usando dois critérios:
+
+1. O formato da string, que deve seguir o padrão xx.xxx.xxx/xxxx-xx, onde 'x' pode ser qualquer dígito de 0 a 9 e os traços (-), barra (/) e pontos (.) *são opcionais*.
+2. O conteúdo numérico desta string, que é validado através do cálculo do 'módulo 11' dos dígitos que compõem a string.
+
+Caso o conteúdo da string obedeça ao formato especificado acima, o mesmo será formatado para obedecer ao padrão xx.xxx.xxx/xxxx-xx
+
+É importante observar que caso você associe um valor de CNPJ inválido ao seu model, o mesmo passará automaticamente a ser inválido, o que impede que valores de CNPJ incorretos sejam salvos no banco de dados.
+
+Suponha que temos um model Empresa, com um atributo 'cnpj' que você quer usar como um número de documento para CNPJ. Basta usar o método `usar_como_cnpj`, assim:
+
+```ruby
+class Empresa < ActiveRecord::Base
+  usar_como_cnpj :cnpj
+end
+```
+
+## Agora você pode usar o atributo para CNPJ da seguinte forma:
+
+```ruby
+e = Empresa.new
+e.cnpj = "69103604000160"
+puts e.cnpj # ==> 69.103.604/0001-60
+e.cnpj.valido? # ==> true
+e.cnpj_valido? # ==> true
+
+e = Empresa.new(:cnpj => "69.103.604/0001-60")
+puts e.cnpj # ==> 69.103.604/0001-60
+
+e = Empresa.new
+e.cnpj = Cnpj.new("691036040001-60")
+puts e.cnpj # ==> 69.103.604/0001-60
+
+e = Empresa.new
+e.cnpj = "12343" # ==> um cnpj invalido
+puts e.valid? # ==> false
+e.save # ==> false
+e.errors.on(:cnpj) # ==> 'não é válido' # de acordo com a I18n
+
+c = Cnpj.new("69103604000160")
+e.cnpj = "69.103.604/0001-60"
+c == e.cnpj # ==> true
+```
+
+# Como usar a classe CPF no seu ActiveRecord
+
+Objetos da classe CPF seguem especificações semelhantes as da classe CNPJ, possuindo apenas alterações na validação para acomodar o formato dos números de CPF e têm seus métodos alterados de `usar_como_cnpj` para `usar_como_cpf`, por exemplo.
