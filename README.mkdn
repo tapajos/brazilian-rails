@@ -98,7 +98,7 @@ O [Marcos Tapajós][mt] tomou coragem para publicar todas as funcionalidades em 
 
 Muitos já contribuíram com o projeto.
 
-	git log --raw | grep "^Author: " | sed 's/Author: //' | sed 's/<.*$//' | sort | uniq
+    git log --format='%an' |sort -u
 
 [Andre Bernardes](https://github.com/albertobraschi),
 [Cássio Marques](https://github.com/cassiomarques),
