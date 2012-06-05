@@ -55,9 +55,7 @@ Está tudo explicado na nossa [api][].
 
 ## Achei um BUG, o que eu faço?
 
-Por favor, nos avise! Isso é fácil e rápido. Isso pode ser feito em:
-
-[http://github.com/tapajos/brazilian-rails/issues][issues]
+No melhor seria fazer um fork, adicionar os testes para reproduzir o erro, implementar a devida correção e fazer um pull request. Se acha que não tem capacidade para isso (tá com preguiça), por favor, nos avise! Isso é fácil e rápido. Isso pode ser feito em <http://github.com/tapajos/brazilian-rails/issues>
 
 ## Como contribuir?
 
@@ -131,4 +129,3 @@ As duvidas podem ser enviadas diretamente a um dos desenvolvedores ou através d
 [vt]: http://www.improveit.com.br/vinicius
 [gg]: http://ggarnier.wordpress.com/
 [brtraducoes]: http://blog.improveit.com.br/articles/2009/02/13/o-brazilian-rails-e-o-suporte-i18n
-[issues]: http://github.com/tapajos/brazilian-rails/issues
