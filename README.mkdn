@@ -2,6 +2,8 @@
 
 [![Build Status](https://secure.travis-ci.org/tapajos/brazilian-rails.png?branch=master)](http://travis-ci.org/tapajos/brazilian-rails)
 
+Estamos testando, via Travis-CI, nas versões de Ruby ree, 1.8.7, 1.9.2 e 1.9.3, nas versões de Rails 2.3.x, 3.0.x, 3.1.x e 3.2.x
+
 ## O que foi?
 
 O Brazilian Rails foi o plugin de internacionalização mais conhecido do Brasil e tinha como objetivo unir vários recursos de regras e traduções para o desenvolvedor brasileiro.
@@ -9,18 +11,6 @@ O Brazilian Rails foi o plugin de internacionalização mais conhecido do Brasil
 ## O que é?
 
 Brazilian Rails é um conjunto de gems para serem usadas com Ruby e com o Ruby on Rails e tem como objetivo unir alguns recursos úteis para os desenvolvedores brasileiros.
-
-## O que vem pela frente?
-
-Existem vários plugins espalhados, que são úteis a comunidade brasileira, e gostaria de convocar seus colaboradores a entrar em contato comigo para que juntos nós migremos para gems dentro do Brazilian Rails.
-
-## Já usava como plugin, o que eu tenho que fazer?
-
-_NADA!_ Essa gem foi cuidadosamente pensada permitir seu uso como plugin sem precisar fazer mais nada, preservando-se a mesma forma de instalação anterior.
-
-## Cade o SVN?
-
-Foi desativado por completo. Agora só teremos suporte GIT.
 
 ## Quais as gems que compõe o Brazilian Rails?
 
@@ -37,37 +27,21 @@ Foi desativado por completo. Agora só teremos suporte GIT.
 
 **OBS**: A gem brI18n foi criada para acomodar as traduções usando suporte i18n das versões mais recentes do Rails.
 
-## Suporte à Ruby 1.9 (experimental)
-
-As gems foram portadas para Ruby 1.9, porém o suporte ainda é experimental, e contamos com a comunidade para ajudar a melhorar o suporte. Todas as gems funcionam corretamente, mas caso decida usar a nova versão do Ruby, tome um cuidado especial com a gem brdata. O método Date#parse se comporta de maneira diferente nas versões 1.8 e 1.9 do Ruby, o que pode ocasionar alguns erros.
-
 ## Como faço para instalar?
 
 É muito difícil...
 
-### No Rails 3.x
+### com Bundler
 
 Adicionar ao seu Gemfile:
 
 	gem 'brazilian-rails'
 
-### No Rails 2.x
+### sem Bundler
 
-#### Como plugin:
-
-	ruby script/plugin install git://github.com/tapajos/brazilian-rails.git
+require "brazilian-rails"
 
 Por padrão, a pluralização vem desabilitada, isso para não atrapalhar os projetos que já existem.
-
-#### Como gem:
-
-	gem install brazilian-rails -v 2.1.15
-
-Depois que todas as gems forem instaladas você pode utiliza-las individualmente ou carregando todas, como no trecho abaixo.
-
-	Rails::Initializer.run do |config|
-		config.gem 'brazilian-rails', '2.1.15'
-	end
 
 ### I18n
 
@@ -98,7 +72,7 @@ O [Marcos Tapajós][mt] tomou coragem para publicar todas as funcionalidades em 
 
 Muitos já contribuíram com o projeto.
 
-    git log --format='%an' |sort -u
+    git log --format='%an' | sort -u
 
 [Andre Bernardes](https://github.com/albertobraschi),
 [Cássio Marques](https://github.com/cassiomarques),
@@ -140,9 +114,9 @@ Muitos já contribuíram com o projeto.
 
 As duvidas podem ser enviadas diretamente a um dos desenvolvedores ou através da página do projeto no [RubyForge][rf]
 
-## Quem investe nesse plugin?
+## Quem apoia nesta gem?
 
-Este plugin é patrocinado pela [Improve It][ii].
+[Improve It][ii]
 
 [![Improve It][logo]][ii]
 
