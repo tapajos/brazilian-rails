@@ -104,6 +104,17 @@ class StringPortugueseTest < Test::Unit::TestCase
     assert_equal 'aeiouAEIOU', string
   end
 
+  def test_nao_trocar_caracter_pipe_pelo_caracter_a_ao_removere_acentos
+    assert_equal '|', String.remover_acentos('|')
+    assert_not_equal 'a', String.remover_acentos('|')
+    assert_equal '|', '|'.remover_acentos
+    assert_not_equal 'a', '|'.remover_acentos
+    char_pipe = '|'
+    char_pipe.remover_acentos!
+    assert_equal '|', char_pipe
+    assert_not_equal 'a', char_pipe
+  end
+
   def test_string_downcase
     assert_equal String::MINUSCULAS, String.downcase(String::MAIUSCULAS)
     assert_nil String.downcase(nil)
