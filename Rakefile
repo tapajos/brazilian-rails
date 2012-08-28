@@ -87,6 +87,7 @@ Rake::RDocTask.new do |rdoc|
 
   PROJECTS.each do |project|
     rdoc.rdoc_files.include("#{project}/README")
+    rdoc.rdoc_files.include("#{project}/README.mkdn")
     rdoc.rdoc_files.include("#{project}/CHANGELOG")
     rdoc.rdoc_files.include("#{project}/lib/**/*.rb")
   end
