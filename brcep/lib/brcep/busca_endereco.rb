@@ -59,19 +59,20 @@ class BuscaEndereco
 
     doc = Hash[* CGI::parse(response.body).map {|k,v| [k,v[0]]}.flatten]
     
-    retorno = []
+    retorno = {}
     
     raise "CEP #{cep} não encontrado." unless [1,2].include?(doc['resultado'].to_i)
 
     %w(tipo_logradouro logradouro bairro cidade uf).each do |field|
-      retorno << if RUBY_VERSION < '1.9'
+      retorno[field.to_sym] = if RUBY_VERSION < '1.9'
         require 'iconv'
         Iconv.conv("utf-8", "ISO-8859-1", doc[field])
       else 
         doc[field].force_encoding("ISO-8859-1").encode("UTF-8")
       end
     end
-    
-    retorno << cep
+
+    retorno[:cep] = cep
+    retorno
   end
 end
