@@ -15,18 +15,27 @@ ZIPS_WITH_NO_ADDRESS_ASSOCIATED = [12345678, '12345678', '12.345678', '12345-678
 URL = BuscaEndereco::WEB_SERVICE_REPUBLICA_VIRTUAL_URL
 
 class BuscaEnderecoTest < Test::Unit::TestCase
+  def test_if_warn_for_por_cep_usage
+    cep = VALID_ZIPS.sample
+    expected = {:tipo_logradouro => 'Avenida', :logradouro => 'das Américas', :bairro => 'Barra da Tijuca', :cidade => 'Rio de Janeiro', :uf => 'RJ', :cep => cep}
+    BuscaEndereco.expects(:warn).with("DEPRECATION WARNING: O método `BuscaEnderedo.por_cep` será removido. Use o BuscaEndereco.cep e faça os ajustes necessarios")
+    BuscaEndereco.expects(:cep).with(cep).returns(expected)
+    
+    assert_equal expected.values, BuscaEndereco.por_cep(cep)
+  end
+  
   def test_raise_without_service_on_both_web_services
     FakeWeb.register_uri(:get, "#{URL}#{22640100}", :status => 504, :body => "Service Unavailable")
     
     assert_raise RuntimeError, "A busca de endereço por CEP está indisponível no momento." do
-      BuscaEndereco.por_cep(22640100)
+      BuscaEndereco.cep(22640100)
     end
   end
 
   INVALID_ZIPS.each do |invalid_zip|
     define_method "test_raise_for_invalid_zip_code_#{invalid_zip}" do
       assert_raise RuntimeError, "O CEP informado possui um formato inválido." do
-        BuscaEndereco.por_cep(invalid_zip)
+        BuscaEndereco.cep(invalid_zip)
       end
     end
   end
@@ -39,7 +48,7 @@ class BuscaEnderecoTest < Test::Unit::TestCase
 
       FakeWeb.register_uri(:get, "#{URL}#{cep}", :body => body)
 
-      assert_equal expected,BuscaEndereco.por_cep(valid_zip)
+      assert_equal expected,BuscaEndereco.cep(valid_zip)
     end
   end
   
@@ -51,7 +60,7 @@ class BuscaEnderecoTest < Test::Unit::TestCase
       
       FakeWeb.register_uri(:get, "#{URL}#{cep}", :body => body)
   
-      assert_equal expected, BuscaEndereco.por_cep(cep)
+      assert_equal expected, BuscaEndereco.cep(cep)
     end
   end
 
@@ -62,7 +71,7 @@ class BuscaEnderecoTest < Test::Unit::TestCase
     assert_raise RuntimeError, "CEP #{cep} não encontrado." do
       FakeWeb.register_uri(:get, "#{URL}#{cep}", :body => body)
 
-      BuscaEndereco.por_cep("12345678")
+      BuscaEndereco.cep("12345678")
     end
   end
 end

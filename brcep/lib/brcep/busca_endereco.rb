@@ -6,18 +6,17 @@ require 'cgi'
 # para isso ele utiliza o web service da Republica Virtual (http://cep.republicavirtual.com.br/web_cep.php)
 # Obviamente, para utilizar este serviço é necessário uma conexão com a Internet.
 #
-#Como fazer a busca de endereço por cep?
+# Como fazer a busca de endereço por cep?
 #
-# BuscaEndereco.por_cep(22640100)     ==> ['Avenida', 'das Américas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', '22640100']
-# BuscaEndereco.por_cep('22640100')   ==> ['Avenida', 'das Américas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', '22640100']
-# BuscaEndereco.por_cep('22640-100')  ==> ['Avenida', 'das Américas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', '22640100']
-# BuscaEndereco.por_cep('22.640-100') ==> ['Avenida', 'das Américas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', '22640100']
-# BuscaEndereco.por_cep('04006000')   ==> ["Rua", "Doutor Tomaz Carvalhal", "Paraiso", "SP", "Sao Paulo", "04006000"]
+# BuscaEndereco.cep(22640100)     ==> {:tipo_logradouro => 'Avenida', :logradouro => 'das Américas', :bairro => 'Barra da Tijuca', :uf => 'RJ', :cidade => 'Rio de Janeiro', :cep => '22640100'}
+# BuscaEndereco.cep('22640100')   ==> {:tipo_logradouro => 'Avenida', :logradouro => 'das Américas', :bairro => 'Barra da Tijuca', :uf => 'RJ', :cidade => 'Rio de Janeiro', :cep => '22640100'}
+# BuscaEndereco.cep('22640-100')  ==> {:tipo_logradouro => 'Avenida', :logradouro => 'das Américas', :bairro => 'Barra da Tijuca', :uf => 'RJ', :cidade => 'Rio de Janeiro', :cep => '22640100'}
+# BuscaEndereco.cep('22.640-100') ==> {:tipo_logradouro => 'Avenida', :logradouro => 'das Américas', :bairro => 'Barra da Tijuca', :uf => 'RJ', :cidade => 'Rio de Janeiro', :cep => '22640100'}
 #
 # É feita uma validação para ver se o cep possui 8 caracteres após a remoção de '.' e '-'.
-# BuscaEndereco.por_cep('0000000')   ==> RuntimeError 'O CEP informado possui um formato inválido.'
+# BuscaEndereco.cep('0000000')   ==> RuntimeError 'O CEP informado possui um formato inválido.'
 #
-#Se necessário usar proxy, faça (de preferência em environment.rb):
+# Se necessário usar proxy, faça (de preferência em environment.rb):
 # BuscaEndereco.proxy_addr= 'endereco.do.proxy'
 # BuscaEndereco.proxy_port= 999 # porta a ser utilizada
 #
@@ -44,13 +43,28 @@ class BuscaEndereco
   end
 
   WEB_SERVICE_REPUBLICA_VIRTUAL_URL = "http://cep.republicavirtual.com.br/web_cep.php?formato=query_string&cep="
+  
+  # Deprecated: Será removido
+  def self.por_cep(numero)
+    warn("DEPRECATION WARNING: O método `BuscaEnderedo.por_cep` será removido. Use o BuscaEndereco.cep e faça os ajustes necessarios")
+    _cep = cep(numero)
+    [
+      _cep[:tipo_logradouro], 
+      _cep[:logradouro], 
+      _cep[:bairro], 
+      _cep[:cidade], 
+      _cep[:uf], 
+      _cep[:cep]
+    ]
+  end
 
-  # Retorna um array com os dados de endereçamento para o cep informado ou um erro quando o serviço está indisponível,
-  # quando o cep informado possui um formato inválido ou quando o endereço não foi encontrado.
+  # Retorna um hash com os dados de endereçamento para o cep informado ou 
+  # um erro quando o serviço está indisponível, quando o cep informado possui 
+  # um formato inválido ou quando o endereço não foi encontrado.
   #
   # Exemplo:
-  #  BuscaEndereco.por_cep(22640100) ==> ['Avenida', 'das Américas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
-  def self.por_cep(numero)
+  #  BuscaEndereco.cep(22640100) ==> {:tipo_logradouro => 'Avenida', :logradouro => 'das Américas', :bairro => 'Barra da Tijuca', :uf => 'RJ', :cidade => 'Rio de Janeiro', :cep => '22640100'}
+  def self.cep(numero)
     cep = numero.to_s.gsub(/[\.-]/, '')
     raise "O CEP informado possui um formato inválido." unless cep.to_s.match(/^\d{8}$/)
     
