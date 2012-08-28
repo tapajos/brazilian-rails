@@ -1,3 +1,9 @@
+v3.2.0 - 28 de agosto de 2012
+
+f8503d9 2 minutes ago -- Invalidando método por_cep, em lugar ao método cep no BuscaEndereco (tinogomes)
+3519675 - Convertendo List para Hash no resultado da busca de endereço pelo cep (Victor Dolirio Ferreira Barbosa)
+a1236b1 - Ajuste na expressão regular usada na remoção de acentos para que o caracter "|" não seja mais substituído pelo caracter "a". (Vinícius Silva)
+
 v3.1.0 - 25 de fevereiro de 2012
 
 0be6ca4 Substituindo o webservice para busca de cep
