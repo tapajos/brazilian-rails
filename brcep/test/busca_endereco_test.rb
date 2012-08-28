@@ -34,7 +34,7 @@ class BuscaEnderecoTest < Test::Unit::TestCase
   VALID_ZIPS.each do |valid_zip|
     define_method "test_valid_code_#{valid_zip}" do
       cep = VALID_ZIPS.first.to_s
-      expected = ['Avenida', 'das Américas', 'Barra da Tijuca', 'Rio de Janeiro', 'RJ', cep]
+      expected = {:tipo_logradouro => 'Avenida', :logradouro => 'das Américas', :bairro => 'Barra da Tijuca', :cidade => 'Rio de Janeiro', :uf => 'RJ', :cep => cep}
       body = "&resultado=1&resultado_txt=sucesso+-+cep+completo&uf=RJ&cidade=Rio+de+Janeiro&bairro=Barra+da+Tijuca&tipo_logradouro=Avenida&logradouro=das+Am%E9ricas"
 
       FakeWeb.register_uri(:get, "#{URL}#{cep}", :body => body)
@@ -46,7 +46,7 @@ class BuscaEnderecoTest < Test::Unit::TestCase
   VALID_ZIPS_WITH_ZERO_AT_BEGINNING.each do |valid_zip|
     define_method "test_valid_code_#{valid_zip}" do
       cep = VALID_ZIPS_WITH_ZERO_AT_BEGINNING.first
-      expected = ["Avenida", "Raimundo Pereira de Magalhães", "Jardim Iris", "São Paulo", "SP", cep]
+      expected = {:tipo_logradouro => "Avenida", :logradouro => "Raimundo Pereira de Magalhães", :bairro => "Jardim Iris", :cidade => "São Paulo", :uf => "SP", :cep => cep}
       body = "&resultado=1&resultado_txt=sucesso+-+cep+completo&uf=SP&cidade=S%E3o+Paulo&bairro=Jardim+Iris&tipo_logradouro=Avenida&logradouro=Raimundo+Pereira+de+Magalh%E3es"
       
       FakeWeb.register_uri(:get, "#{URL}#{cep}", :body => body)
