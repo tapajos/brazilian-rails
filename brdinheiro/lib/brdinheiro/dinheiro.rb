@@ -14,6 +14,16 @@ class Dinheiro
     self.quantia = quantia
   end
 
+  # Retorna o valor em Float quando uma coleção 
+  # ou objeto é convertido para JSON
+  # 
+  # Exemplo:
+  #  produto = Produto.find 1
+  #  produto.to_json // {"nome": "MacBook", "valor": 3500.0}
+  def as_json
+    self.to_f
+  end
+
   # Retorna o valor armazenado em string.
   #
   # Exemplo:
