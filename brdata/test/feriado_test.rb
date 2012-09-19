@@ -23,6 +23,35 @@ class FeriadoTest < Test::Unit::TestCase
   def test_feriado_quando_feriado_eh_corpus_christi
     assert "07/06/2007".to_date.feriado?
   end
+  
+  # feriados nacionais
+  def test_confraternizacao_mundial
+    assert "01/01/2012".to_date.feriado?
+  end
+  
+  def test_tiradentes
+    assert "21/04/2012".to_date.feriado?
+  end
+  
+  def test_trabalho
+    assert "01/05/2012".to_date.feriado?
+  end
+  
+  def test_independencia
+    assert "07/09/2012".to_date.feriado?
+  end
+  
+  def test_finados
+    assert "02/11/2012".to_date.feriado?
+  end
+  
+  def test_republica
+    assert "15/11/2012".to_date.feriado?
+  end
+  
+  def test_natal
+    assert "25/12/2012".to_date.feriado?
+  end
 
   # pascoa
   def test_pascoa
