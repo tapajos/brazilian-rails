@@ -52,6 +52,10 @@ class FeriadoTest < Test::Unit::TestCase
   def test_natal
     assert "25/12/2012".to_date.feriado?
   end
+  
+  def test_padroeira_brasil
+    assert "12/10/2012".to_date.feriado?
+  end
 
   # pascoa
   def test_pascoa
