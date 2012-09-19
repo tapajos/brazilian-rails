@@ -1,4 +1,5 @@
 # encoding: UTF-8
+# Load the rails application
 $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
@@ -19,7 +20,6 @@ excecoes
 
 module BrData
 end
-
 old_verbose = $VERBOSE
 $VERBOSE = nil
 [Time, Date].each do |clazz|
@@ -30,13 +30,16 @@ $VERBOSE = nil
 end
 $VERBOSE = old_verbose
 
-# FERIADOS_PATH = RAILS_ROOT + '/config/feriados'
 feriados, metodos = FeriadoParser.parser(File.dirname(__FILE__) + "/brdata/config")
-# if File.directory?(FERIADOS_PATH)
-#   f, m = FeriadoParser.parser(FERIADOS_PATH)
-#   feriados += f
-#   metodos += m
-# end
+
+# Verifica se existe arquivo de feriados na aplicação e carrega-os
+FERIADOS_PATH = File.expand_path(File.split(APP_PATH)[0] + "/feriados",  __FILE__)
+if File.directory?(FERIADOS_PATH)
+  f, m = FeriadoParser.parser(FERIADOS_PATH)
+  feriados += f
+  metodos += m
+end
+
 Date::FERIADOS.clear
 Date::FERIADOS_METODOS.clear
 feriados.each { |f| Date::FERIADOS << f }
