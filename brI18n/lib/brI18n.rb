@@ -9,5 +9,5 @@ module BrI18n
 
 end
 
-I18n.load_path = Dir.glob("#{RAILS_ROOT}/config/locales/*") + Dir.glob("#{BrI18n::I18N_FILES}/*")
+I18n.load_path = Dir.glob("#{Rails.root}/config/locales/*") + Dir.glob("#{BrI18n::I18N_FILES}/*")
 I18n.default_locale = 'pt-BR'
