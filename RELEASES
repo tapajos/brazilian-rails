@@ -1,3 +1,14 @@
+v3.3.0 - 20 de setembro de 2012
+
+# brdata
+4ffc4e0 Inclusao do feriado de 12 de Outubro - (http://www.planalto.gov.br/ccivil_03/leis/l6802.htm)
+3791616 Inclusao do feriado de 02 de Novembro - (http://www.planalto.gov.br/ccivil_03/leis/2002/L10607.htm)
+aec8f91 Acerto mes do feriado da independencia
+a5b36b6 Permitir criar arquivos com novos feriados dentro da app no diretorio config/feriados
+
+# brdinheiro
+c002db3 Quando convertia um objeto ou coleção para JSON, no lugar do valor, era criado mais uma seção chamada "quantia", e o valor era exibido sem formatação. (ATENÇÃO: mundado a assinatura de resposta, pode quebrar sua aplicação)
+
 v3.2.0 - 28 de agosto de 2012
 
 # brcep
