@@ -37,7 +37,7 @@ class String
   #  texto.nome_proprio!
   #  texto ==> 'Maria de Souza dos Santos e Silva da Costa'
   def nome_proprio!
-    self.gsub!(/^.*$/, String.nome_proprio(self)) if self
+    self.replace(String.nome_proprio(self)) if self
   end
 
   # Remove as letras acentuadas
@@ -68,7 +68,7 @@ class String
   #  texto.remover_acentos!
   #  texto ==> 'texto esta com acentuacao'
   def remover_acentos!
-    self.gsub!(/^.*$/, String.remover_acentos(self)) if self
+    self.replace(String.remover_acentos(self)) if self
   end
 
   # Retorna uma string com caracteres maiusculos
@@ -95,7 +95,7 @@ class String
   #  texto.upcase
   #  texto ==> 'TEXTO COM ACENTUAÇÃO'
   def upcase!
-    self.gsub!(/^.*$/, String.upcase(self)) if self
+    self.replace(String.upcase(self)) if self
   end
 
   # Retorna uma string com caracteres minúsculos
@@ -122,7 +122,7 @@ class String
   #  texto.downcase
   #  texto ==> 'texto com acentuação'
   def downcase!
-    self.gsub!(/^.*$/, String.downcase(self)) if self
+    self.replace(String.downcase(self)) if self
   end
 
   # Passa a primeira letra de cada palavra para maiúscula e as demais para minúsculas.
@@ -149,7 +149,7 @@ class String
   #  texto.titleize!
   #  texto ==> 'O Livro Esta Sobre A Mesa!'
   def titleize!
-    self.gsub!(/^.*$/, String.titleize(self)) if self
+    self.replace(String.titleize(self)) if self
   end
 
 
