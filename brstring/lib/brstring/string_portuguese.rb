@@ -5,6 +5,11 @@ class String
 
   MINUSCULAS = "abcdefghijklmnopqrstuvwxyz#{MINUSCULAS_COM_ACENTO}"
   MAIUSCULAS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ#{MAIUSCULAS_COM_ACENTO}"
+  
+  old_titleize = instance_method(:titleize)
+  # Expõe método antigo para testes de regressão
+  define_method(:test_titleize, old_titleize) if Test::Unit
+  
 
   # Normaliza nomes proprios
   #
@@ -12,7 +17,9 @@ class String
   #  String.nome_proprio('maria de souza dos santos e silva da costa') ==> 'Maria de Souza dos Santos e Silva da Costa'
   def self.nome_proprio(texto)
     return texto if texto.blank?
-    self.titleize(texto).gsub(/ D(a|e|o|as|os) /, ' d\1 ').gsub(/ E /, ' e ')
+    texto.downcase.split('-').map do |part|
+      part.titleize.gsub(/ D(a|e|o|as|os) /, ' d\1 ').gsub(/ E /, ' e ')
+    end.join('-')
   end
 
   # Normaliza nomes proprios
@@ -121,14 +128,10 @@ class String
   # Passa a primeira letra de cada palavra para maiúscula e as demais para minúsculas.
   #
   # Exemplo:
-  #  String.titleize('o livro esta sobre a mesa!') ==> 'O Livro Esta Sobre A Mesa!'
-  def self.titleize(texto)
-    return texto if texto.nil? or texto.empty?
-    texto = texto.downcase
-    texto = texto.downcase
-    texto.mb_chars[0] = texto.mb_chars.first.upcase
-    texto = texto.gsub(/\s[a-z#{String::MINUSCULAS_COM_ACENTO}]/) {|a| a.upcase }
-    texto
+  #  String.titleize('o livro está sobre a mesa!') ==> 'O Livro Está Sobre A Mesa!'
+  define_singleton_method(:titleize) do |texto|
+    return texto if texto.blank?
+    old_titleize.bind(texto).().gsub(/(\s|^)[#{String::MINUSCULAS_COM_ACENTO}]/) {|a| a.upcase }
   end
 
   # Passa a primeira letra de cada palavra para maiúscula e as demais para minúsculas.
