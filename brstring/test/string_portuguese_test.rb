@@ -15,7 +15,7 @@ NOMES_PROPRIOS = {
   'Érica da Silva' => 'érica da silva',
   'Íris Santos' => 'íris santos',
   'Paulo dos Santos' => 'paulo dos saNTos',
-  ' José  da   Silva  ' => ' josé  da   silva  ',
+  'José da Silva' => ' josé  da   silva  ',
   'Knut Schimidt-Nielsen' => 'Knut SCHIMIDT-NIELSEN',
   '' => ''
 } #:nodoc:

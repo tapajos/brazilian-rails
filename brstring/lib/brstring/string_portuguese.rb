@@ -18,7 +18,7 @@ class String
   def self.nome_proprio(texto)
     return texto if texto.blank?
     texto.downcase.split('-').map do |part|
-      part.titleize.gsub(/ D(a|e|o|as|os) /, ' d\1 ').gsub(/ E /, ' e ')
+      part.strip.squeeze(' ').titleize.gsub(/ D(a|e|o|as|os) /, ' d\1 ').gsub(/ E /, ' e ')
     end.join('-')
   end
 
