@@ -3,8 +3,7 @@ require "rubygems"
 require "rake"
 require "rake/testtask"
 require "rdoc/task"
-require "rake/packagetask"
-require "rubygems/packagetask"
+require "rubygems/package_task"
 
 env = %(PKG_BUILD="#{ENV["PKG_BUILD"]}") if ENV["PKG_BUILD"]
 
