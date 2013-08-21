@@ -119,7 +119,7 @@ spec = Gem::Specification.new do |s|
   s.files = [ "README.mkdn", "lib/brazilian-rails.rb"]
 end
 
-Rake::GemPackageTask.new(spec) do |p|
+Gem::PackageTask.new(spec) do |p|
   p.gem_spec = spec
 end
 
