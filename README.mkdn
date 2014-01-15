@@ -1,6 +1,7 @@
 # Brazilian Rails
 
 [![Build Status](https://secure.travis-ci.org/tapajos/brazilian-rails.png?branch=master)](http://travis-ci.org/tapajos/brazilian-rails)
+[![Code Climate](https://codeclimate.com/github/tapajos/brazilian-rails.png)](https://codeclimate.com/github/tapajos/brazilian-rails)
 
 Estamos testando, via Travis-CI, nas versões de Ruby ree, 1.8.7, 1.9.2 e 1.9.3, nas versões de Rails 2.3.x, 3.0.x, 3.1.x e 3.2.x
 
