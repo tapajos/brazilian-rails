@@ -33,9 +33,8 @@ $VERBOSE = old_verbose
 feriados, metodos = FeriadoParser.parser(File.dirname(__FILE__) + "/brdata/config")
 
 # Verifica se existe arquivo de feriados na aplicação e carrega-os
-FERIADOS_PATH = ""
 FERIADOS_PATH = File.expand_path(File.split(APP_PATH)[0] + "/feriados",  __FILE__) if defined?(APP_PATH)
-if File.directory?(FERIADOS_PATH)
+if defined?(FERIADOS_PATH) && File.directory?(FERIADOS_PATH)
   f, m = FeriadoParser.parser(FERIADOS_PATH)
   feriados += f
   metodos += m
