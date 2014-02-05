@@ -3,8 +3,7 @@ require "rubygems"
 require "rake"
 require "rake/testtask"
 require "rdoc/task"
-require "rake/packagetask"
-require "rake/gempackagetask"
+require "rubygems/package_task"
 
 env = %(PKG_BUILD="#{ENV["PKG_BUILD"]}") if ENV["PKG_BUILD"]
 
@@ -120,7 +119,7 @@ spec = Gem::Specification.new do |s|
   s.files = [ "README.mkdn", "lib/brazilian-rails.rb"]
 end
 
-Rake::GemPackageTask.new(spec) do |p|
+Gem::PackageTask.new(spec) do |p|
   p.gem_spec = spec
 end
 
