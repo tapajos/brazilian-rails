@@ -5,6 +5,6 @@
 *~
 .bundle
 .DS_Store
-.rvmrc
+.ruby-*
 doc
 pkg
