@@ -1,9 +1,9 @@
 # encoding: UTF-8
-require "rubygems"
-require "rake"
-require "rdoc/task"
-require "rake/packagetask"
-require "rake/gempackagetask"
+require 'rubygems'
+require 'rake'
+require 'rdoc/task'
+require 'rake/packagetask'
+require 'rake/gempackagetask'
 
 require File.join(File.dirname(__FILE__), "lib", "brcpfcnpj", "version")
 
@@ -13,7 +13,7 @@ PKG_VERSION   = BrCpfCnpj::VERSION::STRING + PKG_BUILD
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 
 begin
-  require "rspec/core/rake_task"
+  require 'rspec/core/rake_task'
   RSpec::Core::RakeTask.new
 
   desc "Default Task"

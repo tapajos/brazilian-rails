@@ -3,6 +3,5 @@ $:.unshift(File.dirname(__FILE__)) unless
 
 %w(busca_endereco version).each {|req| require File.dirname(__FILE__) + "/brcep/#{req}"}
 
-
 module BrCep
 end

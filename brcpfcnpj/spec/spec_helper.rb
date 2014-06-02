@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
-require "rubygems"
-require "rspec"
-require "active_record"
+require 'rubygems'
+require 'rspec'
+require 'active_record'
 require File.expand_path(File.dirname(__FILE__) + "/../lib/brcpfcnpj")
 
 ActiveRecord::Base.establish_connection(:adapter=>"sqlite3", :database => ":memory:")

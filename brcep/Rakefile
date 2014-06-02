@@ -1,10 +1,10 @@
 # encoding: UTF-8
-require "rubygems"
-require "rake"
-require "rake/testtask"
-require "rdoc/task"
-require "rake/packagetask"
-require "rake/gempackagetask"
+require 'rubygems'
+require 'rake'
+require 'rake/testtask'
+require 'rdoc/task'
+require 'rake/packagetask'
+require 'rake/gempackagetask'
 
 require File.join(File.dirname(__FILE__), "lib", "brcep", "version")
 

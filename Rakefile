@@ -1,10 +1,10 @@
 # encoding: UTF-8
-require "rubygems"
-require "rake"
-require "rake/testtask"
-require "rdoc/task"
-require "rake/packagetask"
-require "rake/gempackagetask"
+require 'rubygems'
+require 'rake'
+require 'rake/testtask'
+require 'rdoc/task'
+require 'rake/packagetask'
+require 'rubygems/package_task'
 
 env = %(PKG_BUILD="#{ENV["PKG_BUILD"]}") if ENV["PKG_BUILD"]
 
@@ -57,7 +57,7 @@ end
 
 desc "remove old gem packages"
 task :clean_packages do
-  require "fileutils"
+  require 'fileutils'
   PROJECTS.each do |project|
     Dir.entries("#{project}/pkg").select{ |d| d =~ /#{project}/ }.each do |file|
       FileUtils.rm_rf(File.join(project,"pkg",file))

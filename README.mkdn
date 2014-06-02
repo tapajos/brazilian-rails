@@ -40,7 +40,7 @@ Adicionar ao seu Gemfile:
 
 ### sem Bundler
 
-require "brazilian-rails"
+require 'brazilian-rails'
 
 Por padrão, a pluralização vem desabilitada, isso para não atrapalhar os projetos que já existem.
 
