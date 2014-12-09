@@ -12,7 +12,7 @@ rubygems
 active_record
 active_support/all).each {|req| require req }
 
-require 'brnumeros'
+require File.expand_path("../../../brnumeros/lib/brnumeros.rb", __FILE__)
 
 String.send(:include, DinheiroUtil)
 ActiveRecord::Base.send :include, DinheiroActiveRecord
