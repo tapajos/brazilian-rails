@@ -1,5 +1,7 @@
 # Brazilian Rails
 
+[![Join the chat at https://gitter.im/tapajos/brazilian-rails](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/tapajos/brazilian-rails?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://secure.travis-ci.org/tapajos/brazilian-rails.png?branch=master)](http://travis-ci.org/tapajos/brazilian-rails)
 [![Code Climate](https://codeclimate.com/github/tapajos/brazilian-rails.png)](https://codeclimate.com/github/tapajos/brazilian-rails)
 
