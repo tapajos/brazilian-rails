@@ -92,7 +92,7 @@ Muitos já contribuíram com o projeto.
 [Mauricio Zaffari](https://github.com/mauriciozaffari),
 [Rafael Felix](https://github/com/fellix),
 [Rafael Uchoa](https://github.com/uchoaaa),
-[Rafeal Carvalho](https://github.com/rafaeldx7),
+[Rafeal Carvalho](https://github.com/dx7),
 [Ricardo Shiota Yasuda](https://github.com/shadow11),
 [Rodrigo Manhães](https://github.com/rodrigomanhaes) e
 [Sergio Brant](https://github.com/smbrant)
