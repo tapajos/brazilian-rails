@@ -6,6 +6,12 @@ O BrCep é um gem que tem como objetivo buscar um endereço com base no seu CEP.
 
 * RepublicaVirtual
 
+## Como faço para instalar?
+
+Adicionar ao seu Gemfile:
+
+	gem 'brazilian-rails'
+
 ## Como usar?
 
         BuscaEndereco.cep(22640100)     ==> ['Avenida', 'das Americas', 'Barra da Tijuca', 'RJ', 'Rio de Janeiro', 22640100]
