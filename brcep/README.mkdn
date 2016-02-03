@@ -8,9 +8,11 @@ O BrCep é um gem que tem como objetivo buscar um endereço com base no seu CEP.
 
 ## Como faço para instalar?
 
-Adicionar ao seu Gemfile:
+Adicione ao seu Gemfile:
 
-	gem 'brazilian-rails'
+	gem 'brcep'
+
+Execute o Bundle para instalar.
 
 ## Como usar?
 
