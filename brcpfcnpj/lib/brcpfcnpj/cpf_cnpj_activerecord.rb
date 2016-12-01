@@ -11,6 +11,10 @@ module CpfCnpjActiveRecord #:nodoc:
     def usar_como_cnpj(*args) #:nodoc:
       init(args, 'Cnpj')
     end
+    
+    def usar_como_cpf_ou_cnpj(*args) #:nodoc:
+      init(args, 'CpfOuCnpj')
+    end
 
     def init(args, klass)
       unless args.size.zero?
