@@ -2,14 +2,9 @@
 
 ## AVISO: A _gem_ Brazilian Rails não tem um _release_ de nova versão desde 2012, por falta de mantenedores ativos. Mais abaixo segue uma lista de _gems_ que podem ser usadas em substituição a várias das _gems_ internas do BR. Se você tem uma sugestão de outras _gems_, por favor, faça um _Pull Request_ editando este _README_ com sua sugestão.
 
-[![Build Status](https://secure.travis-ci.org/tapajos/brazilian-rails.png?branch=master)](http://travis-ci.org/tapajos/brazilian-rails)
-[![Code Climate](https://codeclimate.com/github/tapajos/brazilian-rails.png)](https://codeclimate.com/github/tapajos/brazilian-rails)
-
-~~Estamos testando, via Travis-CI, nas versões de Ruby ree, 1.8.7, 1.9.2 e 1.9.3, nas versões de Rails 2.3.x, 3.0.x, 3.1.x e 3.2.x~~ está quebrado e precisa manutenção
-
 ## O que foi?
 
-O Brazilian Rails foi o plugin de internacionalização mais conhecido do Brasil e tinha como objetivo unir vários recursos de regras e traduções para o desenvolvedor brasileiro.
+O Brazilian Rails foi o plugin/gem de internacionalização mais conhecido do Brasil e tinha como objetivo unir vários recursos de regras e traduções para o desenvolvedor brasileiro.
 
 ## O que é?
 
