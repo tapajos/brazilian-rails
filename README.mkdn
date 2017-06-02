@@ -2,8 +2,6 @@
 
 ## AVISO: A _gem_ Brazilian Rails não tem um _release_ de nova versão desde 2012, por falta de mantenedores ativos. Mais abaixo segue uma lista de _gems_ que podem ser usadas em substituição a várias das _gems_ internas do BR. Se você tem uma sugestão de outras _gems_, por favor, faça um _Pull Request_ editando este _README_ com sua sugestão.
 
-[![Join the chat at https://gitter.im/tapajos/brazilian-rails](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/tapajos/brazilian-rails?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 [![Build Status](https://secure.travis-ci.org/tapajos/brazilian-rails.png?branch=master)](http://travis-ci.org/tapajos/brazilian-rails)
 [![Code Climate](https://codeclimate.com/github/tapajos/brazilian-rails.png)](https://codeclimate.com/github/tapajos/brazilian-rails)
 
@@ -61,61 +59,5 @@ Por padrão a gem não carrega o suporte de traduções do Rails, para usa-la vo
 1. Fazer os devidos ajustes com os respectivos testes (TestUnit se possível e tente fazer commits atômicos)
 1. Fazer pull request
 
-## Quem estava por traz disso tudo?
-
-O [Marcos Tapajós][mt] tomou coragem para publicar todas as funcionalidades em um plugin, com testes unitários para garantir que tudo funcione conforme manda o figurino. Além do Tápa, outros loucos mantém tudo organizado, são: [Celestino Gomes][tino], [André Luiz Kupkovski][andre], [A galera da Improve It][ii] e mais alguns que ficam escondidos para não pagar esse mico...
-
-Muitos já contribuíram com o projeto.
-
-    git log --format='%an' | sort -u
-
-[Andre Bernardes](https://github.com/albertobraschi),
-[Cássio Marques](https://github.com/cassiomarques),
-[Danilo Jeremias da Silva](https://github.com/dannnylo),
-[Eduardo Fiorezi](https://github.com/eduardofiorezi),
-[Eduardo Hertz](https://github.com/eduardohertz),
-[Elomar Nascimento dos Santos](https://github.com/elomarns),
-[Everton Ribeiro](https://github.com/nuxlli),
-[Fabio Akita](https://github.com/akitaonrails),
-[Fernando Gomes](https://github.com/fernandogomes),
-[Fernando Migliorini Luizão](https://github.com/fernandoluizao),
-[Frederico Macedo](https://github.com/frederico),
-[Gun.io Whitespace Robot](https://github.com/GunioRobot),
-[Jhimy Fernandes Villar](https://github.com/stjhimy),
-[João Vitor](https://github.com/joaovitor),
-[Julio Santos Monteiro](https://github.com/jmonteiro),
-[Kivanio Barbosa](https://github.com/kivanio),
-[Marcus Derencius](https://github.com/derencius),
-[Marcus Sá](http://about.me/marcus_sa),
-[Mauricio Zaffari](https://github.com/mauriciozaffari),
-[Rafael Felix](https://github/com/fellix),
-[Rafael Uchoa](https://github.com/uchoaaa),
-[Rafeal Carvalho](https://github.com/dx7),
-[Ricardo Shiota Yasuda](https://github.com/shadow11),
-[Rodrigo Manhães](https://github.com/rodrigomanhaes) e
-[Sergio Brant](https://github.com/smbrant)
-
-## Algumas funcionalidades:
-
-* Date e Time no formato brasileiro
-* Números por Extenso
-* Dinheiro
-* Cpf e Cnpj
-* Feriado
-* Mensagens de erro traduzidas
-* etc
-
-## Duvidas?
-
-As duvidas podem ser enviadas diretamente a um dos desenvolvedores ou através da página do [projeto no github][github]
-
-## Quem apoia nesta gem?
-
-[github]: http://github.com/tapajos/brazilian-rails/
-[tino]: https://twitter.com/tinogomes
-[andre]: https://twitter.com/kupkovski
-[mt]: https://twitter.com/tapajos
-[vt]: https://twitter.com/viniciusteles
-[gg]: https://twitter.com/gpgarnier
 [cardinalitybr]: https://github.com/leandro/cardinality-br
 [cpfcnpj]: https://github.com/fnando/cpf_cnpj
