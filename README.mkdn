@@ -25,7 +25,7 @@ Brazilian Rails é um conjunto de _gems_ para serem usadas com _Ruby_ e fácil c
 * brhelper
 * brnumeros (Sugerimos o uso da gem [`cardinality-br`][cardinalitybr])
 * brstring
-* brcpfcnpj (Sugerimos o uso da gem [cpf_cnpj][cpfcnpj]
+* brcpfcnpj (Sugerimos o uso da gem [`cpf_cnpj`][cpfcnpj]
 * brI18n
 
 **OBS**: A _gem_ `brtraducao` foi removida do Brazilian Rails devido a adição do suporte _i18n_ do _Rails_. Ele continua podendo ser usada, porém não faz mais parte desse projeto.
