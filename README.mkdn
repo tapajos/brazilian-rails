@@ -1,5 +1,7 @@
 # Brazilian Rails
 
+## AVISO: A _gem_ Brazilian Rails não tem um _release_ de nova versão desde 2012, por falta de mantenedores ativos. Mais abaixo segue uma lista de _gems_ que podem ser usadas em substituição a várias das _gems_ internas do BR. Se você tem uma sugestão de outras _gems_, por favor, faça um _Pull Request_ editando este _README_ com sua sugestão.
+
 [![Join the chat at https://gitter.im/tapajos/brazilian-rails](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/tapajos/brazilian-rails?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![Build Status](https://secure.travis-ci.org/tapajos/brazilian-rails.png?branch=master)](http://travis-ci.org/tapajos/brazilian-rails)
@@ -13,7 +15,7 @@ O Brazilian Rails foi o plugin de internacionalização mais conhecido do Brasil
 
 ## O que é?
 
-Brazilian Rails é um conjunto de gems para serem usadas com Ruby e com o Ruby on Rails e tem como objetivo unir alguns recursos úteis para os desenvolvedores brasileiros.
+Brazilian Rails é um conjunto de _gems_ para serem usadas com _Ruby_ e fácil configuração com _Rails_, e seu objetivo era unir alguns recursos úteis para os projetos, principalmente, voltados ao público brasileiro.
 
 ## Quais as gems que compõe o Brazilian Rails?
 
@@ -21,14 +23,14 @@ Brazilian Rails é um conjunto de gems para serem usadas com Ruby e com o Ruby o
 * brdata
 * brdinheiro
 * brhelper
-* brnumeros
+* brnumeros (Sugerimos o uso da gem [`cardinality-br`][cardinalitybr])
 * brstring
-* brcpfcnpj
+* brcpfcnpj (Sugerimos o uso da gem [cpf_cnpj][cpfcnpj]
 * brI18n
 
-**OBS**: A gem brtraducao foi removida do Brazilian Rails devido a adição do suporte i18n do Rails. Ele continua podendo ser usada, porém não faz mais parte desse projeto. Para maiores detalhes, leia o post [O Brazilian Rails e o suporte i18n][brtraducoes]
+**OBS**: A _gem_ `brtraducao` foi removida do Brazilian Rails devido a adição do suporte _i18n_ do _Rails_. Ele continua podendo ser usada, porém não faz mais parte desse projeto.
 
-**OBS**: A gem brI18n foi criada para acomodar as traduções usando suporte i18n das versões mais recentes do Rails.
+**OBS**: A _gem_ `brI18n` foi criada para acomodar as traduções usando suporte _i18n_ das versões mais recentes do _Rails_.
 
 ## Como faço para instalar?
 
@@ -52,10 +54,6 @@ Por padrão a gem não carrega o suporte de traduções do Rails, para usa-la vo
 
 	require 'brI18n'
 
-## Achei um BUG, o que eu faço?
-
-No melhor seria fazer um fork, adicionar os testes para reproduzir o erro, implementar a devida correção e fazer um pull request. Se acha que não tem capacidade para isso (tá com preguiça), por favor, nos avise! Isso é fácil e rápido. Isso pode ser feito em <http://github.com/tapajos/brazilian-rails/issues>
-
 ## Como contribuir?
 
 1. Fazer um fork do projeto
@@ -63,7 +61,7 @@ No melhor seria fazer um fork, adicionar os testes para reproduzir o erro, imple
 1. Fazer os devidos ajustes com os respectivos testes (TestUnit se possível e tente fazer commits atômicos)
 1. Fazer pull request
 
-## Quem está por traz disso tudo?
+## Quem estava por traz disso tudo?
 
 O [Marcos Tapajós][mt] tomou coragem para publicar todas as funcionalidades em um plugin, com testes unitários para garantir que tudo funcione conforme manda o figurino. Além do Tápa, outros loucos mantém tudo organizado, são: [Celestino Gomes][tino], [André Luiz Kupkovski][andre], [A galera da Improve It][ii] e mais alguns que ficam escondidos para não pagar esse mico...
 
@@ -109,21 +107,15 @@ Muitos já contribuíram com o projeto.
 
 ## Duvidas?
 
-As duvidas podem ser enviadas diretamente a um dos desenvolvedores ou através da página do projeto no [RubyForge][rf]
+As duvidas podem ser enviadas diretamente a um dos desenvolvedores ou através da página do [projeto no github][github]
 
 ## Quem apoia nesta gem?
 
-[Improve It][ii]
-
-[![Improve It][logo]][ii]
-
-[rf]: http://rubyforge.org/projects/brazilian-rails/
-[ii]: http://www.improveit.com.br
-[logo]: http://www.improveit.com.br/images/logo/logo_improve_it_screen.gif "Improve It"
-[tino]: http://tinogomes.wordpress.com
-[andre]: http://www.workingwithrails.com/person/9227-andr-luiz-kupkovski
-[rf]: http://rubyforge.org/projects/brazilian-rails
-[mt]: http://www.improveit.com.br/tapajos
-[vt]: http://www.improveit.com.br/vinicius
-[gg]: http://ggarnier.wordpress.com/
-[brtraducoes]: http://blog.improveit.com.br/articles/2009/02/13/o-brazilian-rails-e-o-suporte-i18n
+[github]: http://github.com/tapajos/brazilian-rails/
+[tino]: https://twitter.com/tinogomes
+[andre]: https://twitter.com/kupkovski
+[mt]: https://twitter.com/tapajos
+[vt]: https://twitter.com/viniciusteles
+[gg]: https://twitter.com/gpgarnier
+[cardinalitybr]: https://github.com/leandro/cardinality-br
+[cpfcnpj]: https://github.com/fnando/cpf_cnpj
