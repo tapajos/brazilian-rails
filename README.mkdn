@@ -12,7 +12,7 @@ Brazilian Rails é um conjunto de _gems_ para serem usadas com _Ruby_ e fácil c
 
 ## Quais as gems que compõe o Brazilian Rails?
 
-* brcep
+* brcep (Sugerimos o uso da gem [`via_cep`][via_cep])
 * brdata
 * brdinheiro
 * brhelper
@@ -56,3 +56,4 @@ Por padrão a gem não carrega o suporte de traduções do Rails, para usa-la vo
 
 [cardinalitybr]: https://github.com/leandro/cardinality-br
 [cpfcnpj]: https://github.com/fnando/cpf_cnpj
+[via_cep]: https://github.com/marcelobarreto/via_cep
