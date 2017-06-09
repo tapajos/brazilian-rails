@@ -15,18 +15,26 @@ NOMES_PROPRIOS = {
   'Érica da Silva' => 'érica da silva',
   'Íris Santos' => 'íris santos',
   'Paulo dos Santos' => 'paulo dos saNTos',
-  ' José  da   Silva  ' => ' josé  da   silva  ',
+  'José da Silva' => ' josé  da   silva  ',
+  'Knut Schimidt-Nielsen' => 'Knut SCHIMIDT-NIELSEN',
   '' => ''
 } #:nodoc:
 
 NOMES_TITLEIZE =     {
-    'José Silva' => 'josé silva',
-    'José Silva' => 'JOSÉ SILVA',
-    'José Da Silva' => 'josé da silva',
-    ' José  Da   Silva  ' => ' josé  da   silva  ',
-    'Átila Da Silva' => 'átila da silva',
-    "Á É Í Ó Ú À È Ì Ò Ù Ã Õ Â Ê Î Ô Û Ä Ë Ï Ö Ü" => 'á é í ó ú à è ì ò ù ã õ â ê î ô û ä ë ï ö ü'
+  'José Silva' => 'josé silva',
+  'José Silva' => 'JOSÉ SILVA',
+  'José Da Silva' => 'josé da silva',
+  ' José  Da   Silva  ' => ' josé  da   silva  ',
+  'Átila Da Silva' => 'átila da silva',
+  'Á É Í Ó Ú À È Ì Ò Ù Ã Õ Â Ê Î Ô Û Ä Ë Ï Ö Ü' => 'á é í ó ú à è ì ò ù ã õ â ê î ô û ä ë ï ö ü'
 } #:nodoc:
+
+TITLEIZE_REGRESSAO = [
+  'man from the boondocks',  # => 'Man From The Boondocks'
+  'x-men: the last stand',   # => 'X Men: The Last Stand'
+  'TheManWithoutAPast',      # => 'The Man Without A Past'
+  'raiders_of_the_lost_ark' # => 'Raiders Of The Lost Ark'
+] #:nodoc:
 
 class StringPortugueseTest < Test::Unit::TestCase
   def test_letras_maiusculas
@@ -40,7 +48,7 @@ class StringPortugueseTest < Test::Unit::TestCase
   def test_string_nome_proprio
     NOMES_PROPRIOS.each {|key, value| assert_equal key, String.nome_proprio(value) }
 
-    palavras_excluidas = %w(? ! @ # $ % & * \ / ? , . ; ] [ } { = + 0 1 2 3 4 5 6 7 8 9)
+    palavras_excluidas = %w(? ! @ # $ % & * \\ / ? , . ; ] [ } { = + 0 1 2 3 4 5 6 7 8 9)
 
     palavras_excluidas.each do |char|
       assert_equal char, String.nome_proprio(char), "Não deveria alterar o caracter '#{char}'"
@@ -52,7 +60,7 @@ class StringPortugueseTest < Test::Unit::TestCase
   def test_nome_proprio
     NOMES_PROPRIOS.each {|key, value| assert_equal key, value.nome_proprio }
 
-    palavras_excluidas = %w(? ! @ # $ % & * \ / ? , . ; ] [ } { = + 0 1 2 3 4 5 6 7 8 9)
+    palavras_excluidas = %w(? ! @ # $ % & * \\ / ? , . ; ] [ } { = + 0 1 2 3 4 5 6 7 8 9)
 
     palavras_excluidas.each do |char|
       assert_equal char, char.nome_proprio, "Não deveria alterar o caracter '#{char}'"
@@ -66,7 +74,7 @@ class StringPortugueseTest < Test::Unit::TestCase
       assert_equal key, nome
     end
 
-    palavras_excluidas = %w(? ! @ # $ % & * \ / ? , . ; ] [ } { = + 0 1 2 3 4 5 6 7 8 9)
+    palavras_excluidas = %w(? ! @ # $ % & * \\ / ? , . ; ] [ } { = + 0 1 2 3 4 5 6 7 8 9)
 
     palavras_excluidas.each do |char|
       nome = char.clone
@@ -152,6 +160,10 @@ class StringPortugueseTest < Test::Unit::TestCase
 
   def test_titleize
     NOMES_TITLEIZE.each {|k,v| assert_equal k, v.titleize }
+  end
+  
+  def test_regressao_titleize
+    TITLEIZE_REGRESSAO.each {|str| assert_equal str.titleize, str.test_titleize }
   end
 
   def test_titleize!
