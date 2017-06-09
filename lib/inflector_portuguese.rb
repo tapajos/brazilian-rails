@@ -21,6 +21,9 @@ module Inflector
     inflect.plural(/ão$/i,  'ões')
     inflect.plural(/^(irm|m)ão$/i,  '\1ãos')
     inflect.plural(/^(alem|c|p)ão$/i,  '\1ães')
+    
+    # Termos compostos (doce de banana, base de dados)
+    inflect.plural(/(^\w+)\s(de\s\w+)/i, '\1s \2')
 
     # Sem acentos...
     inflect.plural(/ao$/i,  'oes')
